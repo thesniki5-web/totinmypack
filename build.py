@@ -220,6 +220,11 @@ def footer(prefix: str, extra_js: str = "") -> str:
   <div class="player-frame"></div>
   <p class="player-caption" id="player-caption"></p>
   <p class="youtube-fallback"></p>
+  <div class="player-tour" id="player-tour" hidden>
+    <button type="button" class="btn btn-ghost player-tour-btn" id="player-tour-prev" disabled>Previous stop</button>
+    <p class="player-tour-status" id="player-tour-status" aria-live="polite"></p>
+    <button type="button" class="btn btn-gold player-tour-btn" id="player-tour-next">Next stop</button>
+  </div>
 </dialog>
 <script src="{prefix}js/main.js" defer></script>
 {extra_js}"""
@@ -943,6 +948,11 @@ def page_trip(slug: str) -> str:
         <div id="trip-map" class="trip-map" role="region" aria-label="{esc(map_aria)}">
           <p class="trip-map-placeholder">The map loads when you scroll to it. The stops are listed below.</p>
         </div>
+      </div>
+      <div class="trip-tour" id="trip-tour" hidden>
+        <button type="button" class="btn btn-ghost trip-tour-btn" id="trip-tour-prev" disabled>Previous stop</button>
+        <p class="trip-tour-status" id="trip-tour-status" aria-live="polite">Step through the stops</p>
+        <button type="button" class="btn btn-gold trip-tour-btn" id="trip-tour-next">Next stop</button>
       </div>
       {legend}
     </div>

@@ -114,6 +114,10 @@
 
       var bounds = [];
       var markers = {};
+      var popups = {};
+      var tourStops = [];
+      var currentIndex = -1;
+
       (data.stops || []).forEach(function (stop) {
         if (!stop.on_map || stop.lat == null || stop.lon == null) return;
         var latlng = [stop.lat, stop.lon];
@@ -159,18 +163,11 @@
         }
         marker.bindPopup(popup, { maxWidth: 260 });
         marker.on("click", function () {
-          var row = document.getElementById("stop-" + stop.id);
-          if (row) {
-            document.querySelectorAll(".trip-stop.is-active").forEach(function (el) {
-              el.classList.remove("is-active");
-            });
-            row.classList.add("is-active");
-          }
-          // Clicking the pin opens the film at this stop's moment, if known.
-          var watchBtn = popup.querySelector(".trip-popup-watch");
-          if (watchBtn) watchBtn.click();
+          goToStop(indexOfStop(stop.id), { play: true, fromMarker: true });
         });
         markers[stop.id] = marker;
+        popups[stop.id] = popup;
+        tourStops.push(stop);
       });
 
       if (bounds.length) {
@@ -178,14 +175,101 @@
         map.fitBounds(bounds, { padding: [36, 36], maxZoom: maxZoom });
       }
 
-      mount.addEventListener("click", function (e) {
-        var link = e.target.closest("[data-stop-focus]");
-        if (!link) return;
-      });
+      var tour = document.getElementById("trip-tour");
+      var prevBtn = document.getElementById("trip-tour-prev");
+      var nextBtn = document.getElementById("trip-tour-next");
+      var statusEl = document.getElementById("trip-tour-status");
+      var playerTour = document.getElementById("player-tour");
+      var playerPrev = document.getElementById("player-tour-prev");
+      var playerNext = document.getElementById("player-tour-next");
+      var playerStatus = document.getElementById("player-tour-status");
+
+      function indexOfStop(id) {
+        for (var i = 0; i < tourStops.length; i++) {
+          if (tourStops[i].id === id) return i;
+        }
+        return -1;
+      }
+
+      function highlight(stop) {
+        document.querySelectorAll(".trip-stop.is-active").forEach(function (el) {
+          el.classList.remove("is-active");
+        });
+        if (!stop) return;
+        var row = document.getElementById("stop-" + stop.id);
+        if (row) row.classList.add("is-active");
+      }
+
+      function statusText(stop, index) {
+        if (!stop || index < 0) return "Step through the stops";
+        var n = stop.number != null ? stop.number : index + 1;
+        return n + " of " + tourStops.length + " · " + stop.name;
+      }
+
+      function updateTourUi() {
+        var stop = currentIndex >= 0 ? tourStops[currentIndex] : null;
+        var text = statusText(stop, currentIndex);
+        var prevDisabled = currentIndex <= 0;
+        var nextDisabled =
+          tourStops.length === 0 ||
+          (currentIndex >= 0 && currentIndex >= tourStops.length - 1);
+        if (statusEl) statusEl.textContent = text;
+        if (prevBtn) prevBtn.disabled = prevDisabled;
+        if (nextBtn) nextBtn.disabled = nextDisabled;
+        if (playerStatus) playerStatus.textContent = text;
+        if (playerPrev) playerPrev.disabled = prevDisabled;
+        if (playerNext) playerNext.disabled = nextDisabled;
+        if (playerTour) {
+          if (currentIndex >= 0) playerTour.removeAttribute("hidden");
+          else playerTour.setAttribute("hidden", "");
+        }
+      }
+
+      function goToStop(index, opts) {
+        opts = opts || {};
+        if (index < 0 || index >= tourStops.length) return;
+        var stop = tourStops[index];
+        currentIndex = index;
+        highlight(stop);
+        updateTourUi();
+        var marker = markers[stop.id];
+        if (marker && !opts.fromMarker) {
+          map.panTo(marker.getLatLng());
+          marker.openPopup();
+        }
+        if (opts.play) {
+          var popup = popups[stop.id];
+          var watchBtn = popup ? popup.querySelector(".trip-popup-watch") : null;
+          if (watchBtn) watchBtn.click();
+        }
+      }
+
+      function goNext() {
+        var next = currentIndex < 0 ? 0 : currentIndex + 1;
+        goToStop(next, { play: true });
+      }
+
+      function goPrev() {
+        goToStop(currentIndex - 1, { play: true });
+      }
+
+      if (tour && tourStops.length) {
+        tour.removeAttribute("hidden");
+        updateTourUi();
+        if (prevBtn) prevBtn.addEventListener("click", goPrev);
+        if (nextBtn) nextBtn.addEventListener("click", goNext);
+      }
+      if (playerPrev) playerPrev.addEventListener("click", goPrev);
+      if (playerNext) playerNext.addEventListener("click", goNext);
 
       document.querySelectorAll("[data-stop-focus]").forEach(function (el) {
         el.addEventListener("click", function () {
           var id = el.getAttribute("data-stop-focus");
+          var idx = indexOfStop(id);
+          if (idx >= 0) {
+            goToStop(idx, { play: false });
+            return;
+          }
           var marker = markers[id];
           if (!marker) return;
           map.panTo(marker.getLatLng());

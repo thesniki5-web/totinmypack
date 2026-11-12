@@ -75,7 +75,7 @@
     }
     dialog.dataset.kind = kind === "short" ? "short" : "film";
     if (typeof dialog.showModal === "function") {
-      dialog.showModal();
+      if (!dialog.open) dialog.showModal();
     } else {
       dialog.setAttribute("open", "");
     }
