@@ -724,6 +724,36 @@ main { display: block; }
 }
 .prose p { color: var(--text-dim); font-size: 1.12rem; }
 .prose p.lead { color: var(--text); font-size: 1.25rem; }
+.prose ul {
+  margin: 0 0 1.2rem;
+  padding-left: 1.2rem;
+  color: var(--text-dim);
+  font-size: 1.12rem;
+}
+.prose li { margin: 0.35rem 0; }
+.about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 0.85rem;
+  margin-top: 2rem;
+}
+.draft-banner {
+  margin: 0 0 1.6rem;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid var(--gold);
+  border-left-width: 4px;
+  border-radius: 0.5rem;
+  background: rgba(212, 179, 122, 0.1);
+  max-width: 44rem;
+}
+.draft-banner p { margin: 0; color: var(--text); font-size: 1rem; }
+.draft-banner strong {
+  font-family: var(--sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  color: var(--gold-soft);
+}
 
 /* Filters */
 .filters {

@@ -669,7 +669,12 @@ def page_shorts() -> str:
 
 def page_about() -> str:
     prefix = ""
-    desc = CHANNEL_DESC
+    totin = "https://www.youtube.com/@totinmypack"
+    unscripted = "https://www.youtube.com/@TeddyUnscripted"
+    desc = (
+        "Teddy (Theodore) films his trips under the name Totin My Pack. "
+        "A draft about page, for him to personalize."
+    )
     return f"""{head("About — Totin My Pack", desc, "/about.html", "logo", prefix, og_logo=True)}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
@@ -681,18 +686,26 @@ def page_about() -> str:
     </div>
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="hero-copy">
-      <p class="kicker">The channel</p>
+      <p class="kicker">A draft</p>
       <h1>About</h1>
     </div>
   </section>
   <section class="section">
     <div class="wrap">
+      <div class="draft-banner" role="status">
+        <p><strong>Draft.</strong> This page is a starting point only. Please replace it with your own words when you are ready.</p>
+      </div>
       <div class="prose">
-        <p class="lead">{esc(CHANNEL_DESC)}</p>
-        <p>The channel began on September 24, 2022. The films are short — most run a few minutes — and follow scenic drives, state parks, historic places, and personal memories from the road.</p>
-        <p>Places in the films include Halkidiki and a 2008 trip to Skopelos, Meteora, and Mount Olympus; Texas parks, churches, and river country; Dallas wildlife and weather, including the total solar eclipse of April 8, 2024; Route 66; the Ozarks and the Great Plains; the Southeast and Mid-Atlantic; California’s redwoods and coast; the Southwest; and a 2012 winter film of Berlin.</p>
-        <p>Watch the films, and subscribe for new ones, on YouTube at <a href="{CHANNEL}" rel="noopener noreferrer">@totinmypack</a>.</p>
-        <p style="margin-top:2rem"><a class="btn btn-gold" href="{CHANNEL}" rel="noopener noreferrer">Subscribe on YouTube</a></p>
+        <p class="lead">Teddy (Theodore) films his trips under the name Totin My Pack.</p>
+        <p>The films follow places in Greece and the United States. They are published on two YouTube channels:</p>
+        <ul>
+          <li><a href="{totin}" rel="noopener noreferrer">Totin My Pack</a> — @totinmypack</li>
+          <li><a href="{unscripted}" rel="noopener noreferrer">Teddy Unscripted</a> — @TeddyUnscripted</li>
+        </ul>
+        <p class="about-actions">
+          <a class="btn btn-gold" href="{totin}" rel="noopener noreferrer">Totin My Pack on YouTube</a>
+          <a class="btn btn-ghost" href="{unscripted}" rel="noopener noreferrer">Teddy Unscripted</a>
+        </p>
       </div>
     </div>
   </section>
