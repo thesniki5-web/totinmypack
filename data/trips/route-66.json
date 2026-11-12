@@ -2,12 +2,12 @@
   "slug": "route-66",
   "name": "Route 66",
   "title": "Route 66 — One Stop at a Time",
-  "description": "Route 66 roadside memories from Missouri to Arizona, arranged east to west from separate trips: Devil’s Elbow, Cadillac Ranch, the Blue Hole, Winslow, and more filmed stops.",
+  "description": "Route 66 roadside memories from Missouri to the Santa Monica Pier, arranged east to west from separate trips: Devil’s Elbow, Cadillac Ranch, the Blue Hole, Winslow, and more filmed stops.",
   "hero": "DHxZueP0Z04",
   "hero_pos": "82% 80%",
   "hero_alt": "A scene from the film Route 66, One Stop at a Time.",
   "intro": [
-    "Route 66 gave them more reasons to stop than to hurry. These films gather roadside memories from Missouri to Arizona: small towns, old bridges, Oklahoma neon, Cadillac Ranch, the Blue Hole, Lowell Observatory — where Pluto was discovered in 1930 — and the people and places they wanted to remember.",
+    "Route 66 gave them more reasons to stop than to hurry. These films gather roadside memories from Missouri to the Santa Monica Pier: small towns, old bridges, Oklahoma neon, Cadillac Ranch, the Blue Hole, Lowell Observatory — where Pluto was discovered in 1930 — and the people and places they wanted to remember.",
     "The footage comes from separate trips, arranged east to west. It is not one continuous drive, and they have not driven every mile. The map line follows Route 66 roughly between the stops that appear in the films. It is a guide to the road, not a record of a single journey."
   ],
   "overview_film": "DHxZueP0Z04",
@@ -50,10 +50,9 @@
       "film": "DHxZueP0Z04"
     },
     {
-      "id": "separate",
-      "name": "A separate memory",
-      "kicker": "Santa Monica",
-      "note": "The Santa Monica Pier photograph at the end of the film is from a separate visit — a little joke, a good memory, and a reminder that there is still road ahead. One day they hope to drive the miles between.",
+      "id": "california",
+      "name": "California",
+      "kicker": "The end of the route",
       "film": "DHxZueP0Z04"
     }
   ],
@@ -240,6 +239,20 @@
         "E9TIfpZ69NU"
       ],
       "thumb": "MEWEWz0Ny9M",
+      "on_map": true
+    },
+    {
+      "id": "buck-atom",
+      "state": "oklahoma",
+      "name": "Buck Atom’s Cosmic Curios",
+      "place": "Tulsa, Oklahoma",
+      "lat": 36.14802,
+      "lon": -95.97367,
+      "note": "On Route 66 in Tulsa.",
+      "videos": [
+        "E9TIfpZ69NU"
+      ],
+      "thumb": "E9TIfpZ69NU",
       "on_map": true
     },
     {
@@ -460,17 +473,18 @@
     },
     {
       "id": "santa-monica",
-      "state": "separate",
+      "state": "california",
       "name": "Santa Monica Pier",
-      "place": "A separate visit",
-      "note": "The photograph in the film is from a separate visit, not from a continuous drive west on Route 66. It is left off the map for that reason.",
+      "place": "California",
+      "note": "The last stop in the east-to-west film.",
       "videos": [
         "DHxZueP0Z04",
         "OkjZP-cKp6o"
       ],
       "thumb": "DHxZueP0Z04",
-      "on_map": false,
-      "separate": true
+      "on_map": true,
+      "lat": 34.0089,
+      "lon": -118.4974
     }
   ],
   "route": [
@@ -535,6 +549,10 @@
       -95.73293
     ],
     [
+      36.14802,
+      -95.97367
+    ],
+    [
       36.14276,
       -96.00486
     ],
@@ -597,6 +615,26 @@
     [
       35.20169,
       -111.66528
+    ],
+    [
+      35.18959,
+      -114.0533
+    ],
+    [
+      34.83832,
+      -114.60387
+    ],
+    [
+      34.89862,
+      -117.02443
+    ],
+    [
+      34.14765,
+      -118.14415
+    ],
+    [
+      34.0089,
+      -118.4974
     ]
   ],
   "spur": [

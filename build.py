@@ -888,7 +888,7 @@ def page_trip_route66() -> str:
     <div class="hero-copy">
       <p class="kicker">A journey</p>
       <h1>Route 66</h1>
-      <p class="lede">One stop at a time, from Missouri toward Arizona.</p>
+      <p class="lede">One stop at a time, from Missouri to the Santa Monica Pier.</p>
       <div class="hero-actions">
         <a class="btn btn-gold" href="#trip-map">View the map</a>
         <button class="btn btn-ghost" type="button" data-video-id="{esc(overview['id'])}" data-title="{esc(overview['title'])}" data-kind="{esc(overview['kind'])}">Watch the film</button>
