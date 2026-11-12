@@ -51,13 +51,43 @@
     return m + ":" + (s < 10 ? "0" : "") + s;
   }
 
-  function markerIcon(num, spur) {
+  function markerSizeForZoom(z) {
+    if (z < 6) return 12;
+    if (z < 7) return 16;
+    if (z < 8) return 22;
+    if (z < 10) return 28;
+    return 36;
+  }
+
+  function markerIcon(num, spur, size) {
+    size = size || 36;
+    var inner;
+    if (size < 16) {
+      inner =
+        '<span class="trip-marker-num is-dot" style="width:' +
+        size +
+        "px;height:" +
+        size +
+        'px"></span>';
+    } else {
+      var fs = size >= 28 ? "0.72rem" : "0.55rem";
+      inner =
+        '<span class="trip-marker-num" style="width:' +
+        size +
+        "px;height:" +
+        size +
+        "px;font-size:" +
+        fs +
+        '">' +
+        num +
+        "</span>";
+    }
     return window.L.divIcon({
       className: "trip-marker" + (spur ? " is-spur" : ""),
-      html: '<span class="trip-marker-num">' + num + "</span>",
-      iconSize: [36, 36],
-      iconAnchor: [18, 18],
-      popupAnchor: [0, -20]
+      html: inner,
+      iconSize: [size, size],
+      iconAnchor: [size / 2, size / 2],
+      popupAnchor: [0, -Math.round(size / 2) - 2]
     });
   }
 
@@ -115,7 +145,6 @@
       var bounds = [];
       var markers = {};
       var popups = {};
-      var origins = {};
       var tourStops = [];
       var currentIndex = -1;
 
@@ -124,7 +153,7 @@
         var latlng = [stop.lat, stop.lon];
         bounds.push(latlng);
         var marker = L.marker(latlng, {
-          icon: markerIcon(stop.number, stop.spur),
+          icon: markerIcon(stop.number, stop.spur, 12),
           title: stop.name,
           keyboard: true,
           riseOnHover: true
@@ -197,11 +226,16 @@
         }
         marker.bindPopup(popup, { maxWidth: stop.photo ? 320 : 280 });
         marker.on("click", function () {
+          var hits = overlappingStops(stop);
+          if (hits.length > 1) {
+            map.closePopup();
+            zoomToSeparate(hits);
+            return;
+          }
           goToStop(indexOfStop(stop.id), { play: true, fromMarker: true });
         });
         markers[stop.id] = marker;
         popups[stop.id] = popup;
-        origins[stop.id] = latlng;
         tourStops.push(stop);
       });
 
@@ -210,65 +244,64 @@
         map.fitBounds(bounds, { padding: [36, 36], maxZoom: maxZoom });
       }
 
-      function offsetOverlappingPins() {
-        var ids = Object.keys(markers);
-        if (!ids.length || !map) return;
-        var items = ids.map(function (id) {
-          return { id: id, latlng: L.latLng(origins[id][0], origins[id][1]) };
+      var appliedMarkerSize = 0;
+
+      function overlappingStops(stop) {
+        var marker = markers[stop.id];
+        if (!marker) return [stop];
+        var size = markerSizeForZoom(map.getZoom());
+        var pt = map.latLngToLayerPoint(marker.getLatLng());
+        var hits = [];
+        tourStops.forEach(function (s) {
+          var m = markers[s.id];
+          if (!m) return;
+          var p = map.latLngToLayerPoint(m.getLatLng());
+          var dx = p.x - pt.x;
+          var dy = p.y - pt.y;
+          if (Math.sqrt(dx * dx + dy * dy) < size) hits.push(s);
         });
-        var pts = items.map(function (it) {
-          return map.latLngToLayerPoint(it.latlng);
-        });
-        var parent = items.map(function (_, i) { return i; });
-        function find(i) {
-          if (parent[i] !== i) parent[i] = find(parent[i]);
-          return parent[i];
-        }
-        function union(a, b) {
-          a = find(a);
-          b = find(b);
-          if (a !== b) parent[b] = a;
-        }
-        var minSep = 44;
-        var i, j;
-        for (i = 0; i < items.length; i++) {
-          for (j = i + 1; j < items.length; j++) {
-            var dx = pts[i].x - pts[j].x;
-            var dy = pts[i].y - pts[j].y;
-            if (Math.sqrt(dx * dx + dy * dy) < minSep) union(i, j);
+        return hits;
+      }
+
+      function zoomToSeparate(hits) {
+        var z = map.getZoom();
+        var maxZ = 18;
+        var target = Math.min(z + 2, maxZ);
+        var zTry, i, j;
+        for (zTry = z + 1; zTry <= maxZ; zTry++) {
+          var size = markerSizeForZoom(zTry);
+          var minPx = Infinity;
+          for (i = 0; i < hits.length; i++) {
+            for (j = i + 1; j < hits.length; j++) {
+              var p1 = map.project(markers[hits[i].id].getLatLng(), zTry);
+              var p2 = map.project(markers[hits[j].id].getLatLng(), zTry);
+              var d = p1.distanceTo(p2);
+              if (d < minPx) minPx = d;
+            }
           }
+          target = zTry;
+          if (minPx >= size + 10) break;
         }
-        var groups = {};
-        for (i = 0; i < items.length; i++) {
-          var root = find(i);
-          (groups[root] = groups[root] || []).push(i);
-        }
-        Object.keys(groups).forEach(function (key) {
-          var idxs = groups[key];
-          if (idxs.length === 1) {
-            markers[items[idxs[0]].id].setLatLng(items[idxs[0]].latlng);
-            return;
-          }
-          var cx = 0, cy = 0;
-          idxs.forEach(function (k) { cx += pts[k].x; cy += pts[k].y; });
-          cx /= idxs.length;
-          cy /= idxs.length;
-          var n = idxs.length;
-          var radius = Math.max(28, 20 / Math.sin(Math.PI / n));
-          idxs.forEach(function (k, idx) {
-            var angle = (Math.PI * 2 * idx) / n - Math.PI / 2;
-            var point = L.point(
-              cx + Math.cos(angle) * radius,
-              cy + Math.sin(angle) * radius
-            );
-            markers[items[k].id].setLatLng(map.layerPointToLatLng(point));
-          });
+        var bounds = L.latLngBounds(
+          hits.map(function (s) {
+            return markers[s.id].getLatLng();
+          })
+        );
+        map.setView(bounds.getCenter(), target, { animate: true });
+      }
+
+      function updateMarkerSizes() {
+        var size = markerSizeForZoom(map.getZoom());
+        if (size === appliedMarkerSize) return;
+        appliedMarkerSize = size;
+        tourStops.forEach(function (stop) {
+          var m = markers[stop.id];
+          if (m) m.setIcon(markerIcon(stop.number, stop.spur, size));
         });
       }
 
-
-      offsetOverlappingPins();
-      map.on("zoomend", offsetOverlappingPins);
+      updateMarkerSizes();
+      map.on("zoomend", updateMarkerSizes);
 
       var tour = document.getElementById("trip-tour");
       var prevBtn = document.getElementById("trip-tour-prev");
@@ -383,7 +416,7 @@
       map.invalidateSize();
       setTimeout(function () {
         map.invalidateSize();
-        offsetOverlappingPins();
+        updateMarkerSizes();
       }, 250);
     }).catch(function () {
       mount.innerHTML =

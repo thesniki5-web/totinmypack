@@ -1012,6 +1012,10 @@ main { display: block; }
   color: var(--gold-soft);
   border-color: var(--gold);
 }
+.trip-marker-num.is-dot {
+  font-size: 0;
+  border-width: 1px;
+}
 .trip-popup-photo {
   display: block;
   width: calc(100% + 2rem);
