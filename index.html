@@ -22,11 +22,10 @@
   <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="assets/icon-512.png" type="image/png" sizes="512x512">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180">
-  <link rel="shortcut icon" href="assets/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preconnect" href="https://i.ytimg.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@300;400;500;600&display=swap">
   <link rel="stylesheet" href="css/styles.css">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "name": "Totin My Pack", "url": "https://totinmypack.com", "description": "Travel with Totin My Pack through Greece and across the United States. We share short travel films, scenic drives, state parks, historic places, and personal memories from our trips.", "publisher": {"@type": "Organization", "name": "Totin My Pack", "url": "https://totinmypack.com", "sameAs": ["https://youtube.com/@totinmypack"]}}, {"@type": "ItemList", "name": "Start Here | Totin My Pack Travel Favorites", "itemListElement": [{"@type": "VideoObject", "position": 1, "name": "Exploring an Abandoned Church in Texas | St. John’s in Bomarton", "url": "https://www.youtube.com/watch?v=mC0ZWATfzvc", "thumbnailUrl": "https://i.ytimg.com/vi/mC0ZWATfzvc/maxresdefault.jpg", "embedUrl": "https://www.youtube-nocookie.com/embed/mC0ZWATfzvc"}, {"@type": "VideoObject", "position": 2, "name": "Mount Itamos, Greece | Hiking to an Ancient Tree", "url": "https://www.youtube.com/watch?v=ONbdk7yflpM", "thumbnailUrl": "https://i.ytimg.com/vi/ONbdk7yflpM/maxresdefault.jpg", "embedUrl": "https://www.youtube-nocookie.com/embed/ONbdk7yflpM"}, {"@type": "VideoObject", "position": 3, "name": "Talimena Scenic Byway in Fall | Oklahoma & Arkansas Road Trip", "url": "https://www.youtube.com/watch?v=3cFk5Tf7nOg", "thumbnailUrl": "https://i.ytimg.com/vi/3cFk5Tf7nOg/maxresdefault.jpg", "embedUrl": "https://www.youtube-nocookie.com/embed/3cFk5Tf7nOg"}, {"@type": "VideoObject", "position": 4, "name": "Devils River, Texas | Turquoise Water & Drone Views", "url": "https://www.youtube.com/watch?v=p9PXuj51NJs", "thumbnailUrl": "https://i.ytimg.com/vi/p9PXuj51NJs/maxresdefault.jpg", "embedUrl": "https://www.youtube-nocookie.com/embed/p9PXuj51NJs"}, {"@type": "VideoObject", "position": 5, "name": "Caddo Lake in Fall | Cypress Swamps of East Texas (2023)", "url": "https://www.youtube.com/watch?v=ZKI-PbPRraw", "thumbnailUrl": "https://i.ytimg.com/vi/ZKI-PbPRraw/maxresdefault.jpg", "embedUrl": "https://www.youtube-nocookie.com/embed/ZKI-PbPRraw"}]}]}</script>
 </head>
@@ -36,7 +35,7 @@
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="index.html">
-      <img src="assets/icon-512.png" width="512" height="512" alt="">
+      <img src="assets/logo-128.webp" width="128" height="128" alt="">
       <span class="logo-text">Totin&nbsp;<span>My Pack</span></span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
@@ -101,7 +100,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="mC0ZWATfzvc" data-title="Exploring an Abandoned Church in Texas | St. John’s in Bomarton" data-kind="film" data-filter-item data-group="texas">
     <span class="thumb">
-      <img src="https://i.ytimg.com/vi/mC0ZWATfzvc/maxresdefault.jpg" alt="Exploring an Abandoned Church in Texas | St. John’s in Bomarton" width="1280" height="720" loading="eager" decoding="async" fetchpriority="high" data-fallback="mC0ZWATfzvc">
+      <img src="https://i.ytimg.com/vi/mC0ZWATfzvc/hqdefault.jpg" srcset="https://i.ytimg.com/vi/mC0ZWATfzvc/mqdefault.jpg 320w, https://i.ytimg.com/vi/mC0ZWATfzvc/hqdefault.jpg 480w, https://i.ytimg.com/vi/mC0ZWATfzvc/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="mC0ZWATfzvc" alt="Exploring an Abandoned Church in Texas | St. John’s in Bomarton" loading="eager" decoding="async" fetchpriority="high">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">2:56</span>
     </span>
@@ -114,7 +113,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="ONbdk7yflpM" data-title="Mount Itamos, Greece | Hiking to an Ancient Tree" data-kind="film" data-filter-item data-group="greece">
     <span class="thumb">
-      <img src="https://i.ytimg.com/vi/ONbdk7yflpM/maxresdefault.jpg" alt="Mount Itamos, Greece | Hiking to an Ancient Tree" width="1280" height="720" loading="lazy" decoding="async" data-fallback="ONbdk7yflpM">
+      <img src="https://i.ytimg.com/vi/ONbdk7yflpM/hqdefault.jpg" srcset="https://i.ytimg.com/vi/ONbdk7yflpM/mqdefault.jpg 320w, https://i.ytimg.com/vi/ONbdk7yflpM/hqdefault.jpg 480w, https://i.ytimg.com/vi/ONbdk7yflpM/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="ONbdk7yflpM" alt="Mount Itamos, Greece | Hiking to an Ancient Tree" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">5:46</span>
     </span>
@@ -127,7 +126,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="3cFk5Tf7nOg" data-title="Talimena Scenic Byway in Fall | Oklahoma &amp; Arkansas Road Trip" data-kind="film" data-filter-item data-group="plains">
     <span class="thumb">
-      <img src="https://i.ytimg.com/vi/3cFk5Tf7nOg/maxresdefault.jpg" alt="Talimena Scenic Byway in Fall | Oklahoma &amp; Arkansas Road Trip" width="1280" height="720" loading="lazy" decoding="async" data-fallback="3cFk5Tf7nOg">
+      <img src="https://i.ytimg.com/vi/3cFk5Tf7nOg/hqdefault.jpg" srcset="https://i.ytimg.com/vi/3cFk5Tf7nOg/mqdefault.jpg 320w, https://i.ytimg.com/vi/3cFk5Tf7nOg/hqdefault.jpg 480w, https://i.ytimg.com/vi/3cFk5Tf7nOg/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="3cFk5Tf7nOg" alt="Talimena Scenic Byway in Fall | Oklahoma &amp; Arkansas Road Trip" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">3:51</span>
     </span>
@@ -140,7 +139,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="p9PXuj51NJs" data-title="Devils River, Texas | Turquoise Water &amp; Drone Views" data-kind="film" data-filter-item data-group="texas">
     <span class="thumb">
-      <img src="https://i.ytimg.com/vi/p9PXuj51NJs/maxresdefault.jpg" alt="Devils River, Texas | Turquoise Water &amp; Drone Views" width="1280" height="720" loading="lazy" decoding="async" data-fallback="p9PXuj51NJs">
+      <img src="https://i.ytimg.com/vi/p9PXuj51NJs/hqdefault.jpg" srcset="https://i.ytimg.com/vi/p9PXuj51NJs/mqdefault.jpg 320w, https://i.ytimg.com/vi/p9PXuj51NJs/hqdefault.jpg 480w, https://i.ytimg.com/vi/p9PXuj51NJs/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="p9PXuj51NJs" alt="Devils River, Texas | Turquoise Water &amp; Drone Views" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">4:21</span>
     </span>
@@ -153,7 +152,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="ZKI-PbPRraw" data-title="Caddo Lake in Fall | Cypress Swamps of East Texas (2023)" data-kind="film" data-filter-item data-group="texas">
     <span class="thumb">
-      <img src="https://i.ytimg.com/vi/ZKI-PbPRraw/maxresdefault.jpg" alt="Caddo Lake in Fall | Cypress Swamps of East Texas (2023)" width="1280" height="720" loading="lazy" decoding="async" data-fallback="ZKI-PbPRraw">
+      <img src="https://i.ytimg.com/vi/ZKI-PbPRraw/hqdefault.jpg" srcset="https://i.ytimg.com/vi/ZKI-PbPRraw/mqdefault.jpg 320w, https://i.ytimg.com/vi/ZKI-PbPRraw/hqdefault.jpg 480w, https://i.ytimg.com/vi/ZKI-PbPRraw/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="ZKI-PbPRraw" alt="Caddo Lake in Fall | Cypress Swamps of East Texas (2023)" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">3:09</span>
     </span>
@@ -180,63 +179,63 @@
       <div class="dest-grid">
         
 <a class="dest-card" href="destinations/greece.html">
-  <img src="https://i.ytimg.com/vi/ONbdk7yflpM/maxresdefault.jpg" alt="Greece" width="1280" height="720" loading="lazy" decoding="async" data-fallback="ONbdk7yflpM">
+  <img src="https://i.ytimg.com/vi/ONbdk7yflpM/hqdefault.jpg" srcset="https://i.ytimg.com/vi/ONbdk7yflpM/mqdefault.jpg 320w, https://i.ytimg.com/vi/ONbdk7yflpM/hqdefault.jpg 480w, https://i.ytimg.com/vi/ONbdk7yflpM/maxresdefault.jpg 1280w" sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px" width="480" height="360" data-fallback="ONbdk7yflpM" alt="Greece" loading="lazy" decoding="async">
   <span class="dest-copy">
     <h3>Greece</h3>
     <p>8 films</p>
   </span>
 </a>
 <a class="dest-card" href="destinations/texas.html">
-  <img src="https://i.ytimg.com/vi/p9PXuj51NJs/maxresdefault.jpg" alt="Texas" width="1280" height="720" loading="lazy" decoding="async" data-fallback="p9PXuj51NJs">
+  <img src="https://i.ytimg.com/vi/p9PXuj51NJs/hqdefault.jpg" srcset="https://i.ytimg.com/vi/p9PXuj51NJs/mqdefault.jpg 320w, https://i.ytimg.com/vi/p9PXuj51NJs/hqdefault.jpg 480w, https://i.ytimg.com/vi/p9PXuj51NJs/maxresdefault.jpg 1280w" sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px" width="480" height="360" data-fallback="p9PXuj51NJs" alt="Texas" loading="lazy" decoding="async">
   <span class="dest-copy">
     <h3>Texas</h3>
     <p>22 films</p>
   </span>
 </a>
 <a class="dest-card" href="destinations/dallas.html">
-  <img src="https://i.ytimg.com/vi/VktGvxzG4sU/maxresdefault.jpg" alt="Dallas &amp; close to home" width="1280" height="720" loading="lazy" decoding="async" data-fallback="VktGvxzG4sU">
+  <img src="https://i.ytimg.com/vi/VktGvxzG4sU/hqdefault.jpg" srcset="https://i.ytimg.com/vi/VktGvxzG4sU/mqdefault.jpg 320w, https://i.ytimg.com/vi/VktGvxzG4sU/hqdefault.jpg 480w, https://i.ytimg.com/vi/VktGvxzG4sU/maxresdefault.jpg 1280w" sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px" width="480" height="360" data-fallback="VktGvxzG4sU" alt="Dallas &amp; close to home" loading="lazy" decoding="async">
   <span class="dest-copy">
     <h3>Dallas &amp; close to home</h3>
     <p>15 films</p>
   </span>
 </a>
 <a class="dest-card" href="destinations/route-66.html">
-  <img src="https://i.ytimg.com/vi/egYLfHGUae4/maxresdefault.jpg" alt="Route 66" width="1280" height="720" loading="lazy" decoding="async" data-fallback="egYLfHGUae4">
+  <img src="https://i.ytimg.com/vi/egYLfHGUae4/hqdefault.jpg" srcset="https://i.ytimg.com/vi/egYLfHGUae4/mqdefault.jpg 320w, https://i.ytimg.com/vi/egYLfHGUae4/hqdefault.jpg 480w, https://i.ytimg.com/vi/egYLfHGUae4/maxresdefault.jpg 1280w" sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px" width="480" height="360" data-fallback="egYLfHGUae4" alt="Route 66" loading="lazy" decoding="async">
   <span class="dest-copy">
     <h3>Route 66</h3>
     <p>9 films</p>
   </span>
 </a>
 <a class="dest-card" href="destinations/plains.html">
-  <img src="https://i.ytimg.com/vi/3cFk5Tf7nOg/maxresdefault.jpg" alt="Oklahoma, Arkansas &amp; the Plains" width="1280" height="720" loading="lazy" decoding="async" data-fallback="3cFk5Tf7nOg">
+  <img src="https://i.ytimg.com/vi/3cFk5Tf7nOg/hqdefault.jpg" srcset="https://i.ytimg.com/vi/3cFk5Tf7nOg/mqdefault.jpg 320w, https://i.ytimg.com/vi/3cFk5Tf7nOg/hqdefault.jpg 480w, https://i.ytimg.com/vi/3cFk5Tf7nOg/maxresdefault.jpg 1280w" sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px" width="480" height="360" data-fallback="3cFk5Tf7nOg" alt="Oklahoma, Arkansas &amp; the Plains" loading="lazy" decoding="async">
   <span class="dest-copy">
     <h3>Oklahoma, Arkansas &amp; the Plains</h3>
     <p>12 films</p>
   </span>
 </a>
 <a class="dest-card" href="destinations/southeast.html">
-  <img src="https://i.ytimg.com/vi/jNoREzI7-B0/maxresdefault.jpg" alt="Southeast &amp; Mid-Atlantic" width="1280" height="720" loading="lazy" decoding="async" data-fallback="jNoREzI7-B0">
+  <img src="https://i.ytimg.com/vi/jNoREzI7-B0/hqdefault.jpg" srcset="https://i.ytimg.com/vi/jNoREzI7-B0/mqdefault.jpg 320w, https://i.ytimg.com/vi/jNoREzI7-B0/hqdefault.jpg 480w, https://i.ytimg.com/vi/jNoREzI7-B0/maxresdefault.jpg 1280w" sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px" width="480" height="360" data-fallback="jNoREzI7-B0" alt="Southeast &amp; Mid-Atlantic" loading="lazy" decoding="async">
   <span class="dest-copy">
     <h3>Southeast &amp; Mid-Atlantic</h3>
     <p>9 films</p>
   </span>
 </a>
 <a class="dest-card" href="destinations/california.html">
-  <img src="https://i.ytimg.com/vi/lbhHR6MpSlA/maxresdefault.jpg" alt="California" width="1280" height="720" loading="lazy" decoding="async" data-fallback="lbhHR6MpSlA">
+  <img src="https://i.ytimg.com/vi/lbhHR6MpSlA/hqdefault.jpg" srcset="https://i.ytimg.com/vi/lbhHR6MpSlA/mqdefault.jpg 320w, https://i.ytimg.com/vi/lbhHR6MpSlA/hqdefault.jpg 480w, https://i.ytimg.com/vi/lbhHR6MpSlA/maxresdefault.jpg 1280w" sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px" width="480" height="360" data-fallback="lbhHR6MpSlA" alt="California" loading="lazy" decoding="async">
   <span class="dest-copy">
     <h3>California</h3>
     <p>2 films</p>
   </span>
 </a>
 <a class="dest-card" href="destinations/southwest.html">
-  <img src="https://i.ytimg.com/vi/ixpaxmrlv1w/maxresdefault.jpg" alt="The Southwest" width="1280" height="720" loading="lazy" decoding="async" data-fallback="ixpaxmrlv1w">
+  <img src="https://i.ytimg.com/vi/ixpaxmrlv1w/hqdefault.jpg" srcset="https://i.ytimg.com/vi/ixpaxmrlv1w/mqdefault.jpg 320w, https://i.ytimg.com/vi/ixpaxmrlv1w/hqdefault.jpg 480w, https://i.ytimg.com/vi/ixpaxmrlv1w/maxresdefault.jpg 1280w" sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px" width="480" height="360" data-fallback="ixpaxmrlv1w" alt="The Southwest" loading="lazy" decoding="async">
   <span class="dest-copy">
     <h3>The Southwest</h3>
     <p>11 films</p>
   </span>
 </a>
 <a class="dest-card" href="destinations/berlin.html">
-  <img src="https://i.ytimg.com/vi/VeKh55kDqeg/maxresdefault.jpg" alt="Berlin" width="1280" height="720" loading="lazy" decoding="async" data-fallback="VeKh55kDqeg">
+  <img src="https://i.ytimg.com/vi/VeKh55kDqeg/hqdefault.jpg" srcset="https://i.ytimg.com/vi/VeKh55kDqeg/mqdefault.jpg 320w, https://i.ytimg.com/vi/VeKh55kDqeg/hqdefault.jpg 480w, https://i.ytimg.com/vi/VeKh55kDqeg/maxresdefault.jpg 1280w" sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px" width="480" height="360" data-fallback="VeKh55kDqeg" alt="Berlin" loading="lazy" decoding="async">
   <span class="dest-copy">
     <h3>Berlin</h3>
     <p>1 film</p>
@@ -260,7 +259,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="QWMI7iZEz1I" data-title="Big Bend Twice in One Year | Two 2024 Road Trips" data-kind="film" data-filter-item data-group="texas">
     <span class="thumb">
-      <img src="https://i.ytimg.com/vi/QWMI7iZEz1I/maxresdefault.jpg" alt="Big Bend Twice in One Year | Two 2024 Road Trips" width="1280" height="720" loading="lazy" decoding="async" data-fallback="QWMI7iZEz1I">
+      <img src="https://i.ytimg.com/vi/QWMI7iZEz1I/hqdefault.jpg" srcset="https://i.ytimg.com/vi/QWMI7iZEz1I/mqdefault.jpg 320w, https://i.ytimg.com/vi/QWMI7iZEz1I/hqdefault.jpg 480w, https://i.ytimg.com/vi/QWMI7iZEz1I/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="QWMI7iZEz1I" alt="Big Bend Twice in One Year | Two 2024 Road Trips" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">5:21</span>
     </span>
@@ -273,7 +272,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="DHxZueP0Z04" data-title="Route 66, One Stop at a Time | Our Roadside Memories" data-kind="film" data-filter-item data-group="route66">
     <span class="thumb">
-      <img src="https://i.ytimg.com/vi/DHxZueP0Z04/maxresdefault.jpg" alt="Route 66, One Stop at a Time | Our Roadside Memories" width="1280" height="720" loading="lazy" decoding="async" data-fallback="DHxZueP0Z04">
+      <img src="https://i.ytimg.com/vi/DHxZueP0Z04/hqdefault.jpg" srcset="https://i.ytimg.com/vi/DHxZueP0Z04/mqdefault.jpg 320w, https://i.ytimg.com/vi/DHxZueP0Z04/hqdefault.jpg 480w, https://i.ytimg.com/vi/DHxZueP0Z04/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="DHxZueP0Z04" alt="Route 66, One Stop at a Time | Our Roadside Memories" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">6:34</span>
     </span>
@@ -286,7 +285,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="IsS0M0oikks" data-title="One Tree, Many Lives | Wildlife in Dallas, Texas" data-kind="film" data-filter-item data-group="dallas">
     <span class="thumb">
-      <img src="https://i.ytimg.com/vi/IsS0M0oikks/maxresdefault.jpg" alt="One Tree, Many Lives | Wildlife in Dallas, Texas" width="1280" height="720" loading="lazy" decoding="async" data-fallback="IsS0M0oikks">
+      <img src="https://i.ytimg.com/vi/IsS0M0oikks/hqdefault.jpg" srcset="https://i.ytimg.com/vi/IsS0M0oikks/mqdefault.jpg 320w, https://i.ytimg.com/vi/IsS0M0oikks/hqdefault.jpg 480w, https://i.ytimg.com/vi/IsS0M0oikks/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="IsS0M0oikks" alt="One Tree, Many Lives | Wildlife in Dallas, Texas" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">2:49</span>
     </span>
@@ -299,7 +298,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="AWAJOYe12cU" data-title="I Finally Filmed a Hummingbird Hovering | Canon R7" data-kind="film" data-filter-item data-group="dallas">
     <span class="thumb">
-      <img src="https://i.ytimg.com/vi/AWAJOYe12cU/maxresdefault.jpg" alt="I Finally Filmed a Hummingbird Hovering | Canon R7" width="1280" height="720" loading="lazy" decoding="async" data-fallback="AWAJOYe12cU">
+      <img src="https://i.ytimg.com/vi/AWAJOYe12cU/hqdefault.jpg" srcset="https://i.ytimg.com/vi/AWAJOYe12cU/mqdefault.jpg 320w, https://i.ytimg.com/vi/AWAJOYe12cU/hqdefault.jpg 480w, https://i.ytimg.com/vi/AWAJOYe12cU/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="AWAJOYe12cU" alt="I Finally Filmed a Hummingbird Hovering | Canon R7" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">0:45</span>
     </span>
@@ -312,7 +311,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="VktGvxzG4sU" data-title="Hummingbirds on My Dallas Balcony | Small Birds, Big Business" data-kind="film" data-filter-item data-group="dallas">
     <span class="thumb">
-      <img src="https://i.ytimg.com/vi/VktGvxzG4sU/maxresdefault.jpg" alt="Hummingbirds on My Dallas Balcony | Small Birds, Big Business" width="1280" height="720" loading="lazy" decoding="async" data-fallback="VktGvxzG4sU">
+      <img src="https://i.ytimg.com/vi/VktGvxzG4sU/hqdefault.jpg" srcset="https://i.ytimg.com/vi/VktGvxzG4sU/mqdefault.jpg 320w, https://i.ytimg.com/vi/VktGvxzG4sU/hqdefault.jpg 480w, https://i.ytimg.com/vi/VktGvxzG4sU/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="VktGvxzG4sU" alt="Hummingbirds on My Dallas Balcony | Small Birds, Big Business" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">3:21</span>
     </span>
@@ -325,7 +324,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="EgpjjRVXfWs" data-title="Black Hills &amp; Devils Tower | South Dakota Road Trip, Part 2" data-kind="film" data-filter-item data-group="plains">
     <span class="thumb">
-      <img src="https://i.ytimg.com/vi/EgpjjRVXfWs/maxresdefault.jpg" alt="Black Hills &amp; Devils Tower | South Dakota Road Trip, Part 2" width="1280" height="720" loading="lazy" decoding="async" data-fallback="EgpjjRVXfWs">
+      <img src="https://i.ytimg.com/vi/EgpjjRVXfWs/hqdefault.jpg" srcset="https://i.ytimg.com/vi/EgpjjRVXfWs/mqdefault.jpg 320w, https://i.ytimg.com/vi/EgpjjRVXfWs/hqdefault.jpg 480w, https://i.ytimg.com/vi/EgpjjRVXfWs/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="EgpjjRVXfWs" alt="Black Hills &amp; Devils Tower | South Dakota Road Trip, Part 2" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">1:52</span>
     </span>
@@ -338,7 +337,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="_JLdOGsAiLU" data-title="From Dallas to El Paso | Airport, Flight &amp; First Impressions" data-kind="film" data-filter-item data-group="texas">
     <span class="thumb">
-      <img src="https://i.ytimg.com/vi/_JLdOGsAiLU/maxresdefault.jpg" alt="From Dallas to El Paso | Airport, Flight &amp; First Impressions" width="1280" height="720" loading="lazy" decoding="async" data-fallback="_JLdOGsAiLU">
+      <img src="https://i.ytimg.com/vi/_JLdOGsAiLU/hqdefault.jpg" srcset="https://i.ytimg.com/vi/_JLdOGsAiLU/mqdefault.jpg 320w, https://i.ytimg.com/vi/_JLdOGsAiLU/hqdefault.jpg 480w, https://i.ytimg.com/vi/_JLdOGsAiLU/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="_JLdOGsAiLU" alt="From Dallas to El Paso | Airport, Flight &amp; First Impressions" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">3:06</span>
     </span>
@@ -351,7 +350,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="V7cVxfXdDqQ" data-title="Dallas to South Dakota | Carhenge &amp; Great Plains Road Trip, Part 1" data-kind="film" data-filter-item data-group="plains">
     <span class="thumb">
-      <img src="https://i.ytimg.com/vi/V7cVxfXdDqQ/maxresdefault.jpg" alt="Dallas to South Dakota | Carhenge &amp; Great Plains Road Trip, Part 1" width="1280" height="720" loading="lazy" decoding="async" data-fallback="V7cVxfXdDqQ">
+      <img src="https://i.ytimg.com/vi/V7cVxfXdDqQ/hqdefault.jpg" srcset="https://i.ytimg.com/vi/V7cVxfXdDqQ/mqdefault.jpg 320w, https://i.ytimg.com/vi/V7cVxfXdDqQ/hqdefault.jpg 480w, https://i.ytimg.com/vi/V7cVxfXdDqQ/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="V7cVxfXdDqQ" alt="Dallas to South Dakota | Carhenge &amp; Great Plains Road Trip, Part 1" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">2:33</span>
     </span>
@@ -380,7 +379,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="-ibB4Z-a5tQ" data-title="This Hummingbird Takes Feather Care Seriously" data-kind="short" data-filter-item data-group="dallas">
     <span class="thumb thumb-short">
-      <img src="https://i.ytimg.com/vi/-ibB4Z-a5tQ/maxresdefault.jpg" alt="This Hummingbird Takes Feather Care Seriously" width="1280" height="720" loading="lazy" decoding="async" data-fallback="-ibB4Z-a5tQ">
+      <img src="https://i.ytimg.com/vi/-ibB4Z-a5tQ/hqdefault.jpg" srcset="https://i.ytimg.com/vi/-ibB4Z-a5tQ/mqdefault.jpg 320w, https://i.ytimg.com/vi/-ibB4Z-a5tQ/hqdefault.jpg 480w, https://i.ytimg.com/vi/-ibB4Z-a5tQ/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="-ibB4Z-a5tQ" alt="This Hummingbird Takes Feather Care Seriously" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">0:26</span>
     </span>
@@ -393,7 +392,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="EBnbggUsdMw" data-title="Turquoise Water in West Texas | Devils River" data-kind="short" data-filter-item data-group="texas">
     <span class="thumb thumb-short">
-      <img src="https://i.ytimg.com/vi/EBnbggUsdMw/maxresdefault.jpg" alt="Turquoise Water in West Texas | Devils River" width="1280" height="720" loading="lazy" decoding="async" data-fallback="EBnbggUsdMw">
+      <img src="https://i.ytimg.com/vi/EBnbggUsdMw/hqdefault.jpg" srcset="https://i.ytimg.com/vi/EBnbggUsdMw/mqdefault.jpg 320w, https://i.ytimg.com/vi/EBnbggUsdMw/hqdefault.jpg 480w, https://i.ytimg.com/vi/EBnbggUsdMw/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="EBnbggUsdMw" alt="Turquoise Water in West Texas | Devils River" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">0:21</span>
     </span>
@@ -406,7 +405,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="SuYFwuJCK70" data-title="Found From Above: An Abandoned Texas Church #Shorts" data-kind="short" data-filter-item data-group="texas">
     <span class="thumb thumb-short">
-      <img src="https://i.ytimg.com/vi/SuYFwuJCK70/maxresdefault.jpg" alt="Found From Above: An Abandoned Texas Church #Shorts" width="1280" height="720" loading="lazy" decoding="async" data-fallback="SuYFwuJCK70">
+      <img src="https://i.ytimg.com/vi/SuYFwuJCK70/hqdefault.jpg" srcset="https://i.ytimg.com/vi/SuYFwuJCK70/mqdefault.jpg 320w, https://i.ytimg.com/vi/SuYFwuJCK70/hqdefault.jpg 480w, https://i.ytimg.com/vi/SuYFwuJCK70/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="SuYFwuJCK70" alt="Found From Above: An Abandoned Texas Church #Shorts" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">0:21</span>
     </span>
@@ -419,7 +418,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="oGOguq2e0AI" data-title="Route 66, One Stop at a Time | Our Roadside Memories" data-kind="short" data-filter-item data-group="route66">
     <span class="thumb thumb-short">
-      <img src="https://i.ytimg.com/vi/oGOguq2e0AI/maxresdefault.jpg" alt="Route 66, One Stop at a Time | Our Roadside Memories" width="1280" height="720" loading="lazy" decoding="async" data-fallback="oGOguq2e0AI">
+      <img src="https://i.ytimg.com/vi/oGOguq2e0AI/hqdefault.jpg" srcset="https://i.ytimg.com/vi/oGOguq2e0AI/mqdefault.jpg 320w, https://i.ytimg.com/vi/oGOguq2e0AI/hqdefault.jpg 480w, https://i.ytimg.com/vi/oGOguq2e0AI/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="oGOguq2e0AI" alt="Route 66, One Stop at a Time | Our Roadside Memories" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">0:32</span>
     </span>
@@ -432,7 +431,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="K2cJeiEFkBs" data-title="Look Closer: Anoles, Ants &amp; a Damselfly | Texas Wildlife" data-kind="short" data-filter-item data-group="dallas">
     <span class="thumb thumb-short">
-      <img src="https://i.ytimg.com/vi/K2cJeiEFkBs/maxresdefault.jpg" alt="Look Closer: Anoles, Ants &amp; a Damselfly | Texas Wildlife" width="1280" height="720" loading="lazy" decoding="async" data-fallback="K2cJeiEFkBs">
+      <img src="https://i.ytimg.com/vi/K2cJeiEFkBs/hqdefault.jpg" srcset="https://i.ytimg.com/vi/K2cJeiEFkBs/mqdefault.jpg 320w, https://i.ytimg.com/vi/K2cJeiEFkBs/hqdefault.jpg 480w, https://i.ytimg.com/vi/K2cJeiEFkBs/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="K2cJeiEFkBs" alt="Look Closer: Anoles, Ants &amp; a Damselfly | Texas Wildlife" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">0:26</span>
     </span>
@@ -445,7 +444,7 @@
 <article>
   <button class="film-card" type="button" data-video-id="2f-wKhlW_PE" data-title="Autumn From Above in Talimena #Shorts" data-kind="short" data-filter-item data-group="plains">
     <span class="thumb thumb-short">
-      <img src="https://i.ytimg.com/vi/2f-wKhlW_PE/maxresdefault.jpg" alt="Autumn From Above in Talimena #Shorts" width="1280" height="720" loading="lazy" decoding="async" data-fallback="2f-wKhlW_PE">
+      <img src="https://i.ytimg.com/vi/2f-wKhlW_PE/hqdefault.jpg" srcset="https://i.ytimg.com/vi/2f-wKhlW_PE/mqdefault.jpg 320w, https://i.ytimg.com/vi/2f-wKhlW_PE/hqdefault.jpg 480w, https://i.ytimg.com/vi/2f-wKhlW_PE/maxresdefault.jpg 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px" width="480" height="360" data-fallback="2f-wKhlW_PE" alt="Autumn From Above in Talimena #Shorts" loading="lazy" decoding="async">
       <span class="play-badge" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><polygon points="8,5 20,12 8,19"/></svg></span>
       <span class="chip">0:21</span>
     </span>
@@ -472,7 +471,7 @@
   <div class="footer-inner">
     <div>
       <a class="logo" href="index.html">
-      <img src="assets/icon-512.png" width="512" height="512" alt="">
+      <img src="assets/logo-128.webp" width="128" height="128" alt="">
       <span class="logo-text">Totin&nbsp;<span>My Pack</span></span>
     </a>
       <p>Short travel films from Greece and the United States.</p>

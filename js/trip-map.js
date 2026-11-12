@@ -55,9 +55,9 @@
     return window.L.divIcon({
       className: "trip-marker" + (spur ? " is-spur" : ""),
       html: '<span class="trip-marker-num">' + num + "</span>",
-      iconSize: [28, 28],
-      iconAnchor: [14, 14],
-      popupAnchor: [0, -16]
+      iconSize: [36, 36],
+      iconAnchor: [18, 18],
+      popupAnchor: [0, -20]
     });
   }
 
@@ -115,6 +115,7 @@
       var bounds = [];
       var markers = {};
       var popups = {};
+      var origins = {};
       var tourStops = [];
       var currentIndex = -1;
 
@@ -200,13 +201,74 @@
         });
         markers[stop.id] = marker;
         popups[stop.id] = popup;
+        origins[stop.id] = latlng;
         tourStops.push(stop);
       });
 
       if (bounds.length) {
-        var maxZoom = data.maxZoom || 7;
+        var maxZoom = data.maxZoom || 9;
         map.fitBounds(bounds, { padding: [36, 36], maxZoom: maxZoom });
       }
+
+      function offsetOverlappingPins() {
+        var ids = Object.keys(markers);
+        if (!ids.length || !map) return;
+        var items = ids.map(function (id) {
+          return { id: id, latlng: L.latLng(origins[id][0], origins[id][1]) };
+        });
+        var pts = items.map(function (it) {
+          return map.latLngToLayerPoint(it.latlng);
+        });
+        var parent = items.map(function (_, i) { return i; });
+        function find(i) {
+          if (parent[i] !== i) parent[i] = find(parent[i]);
+          return parent[i];
+        }
+        function union(a, b) {
+          a = find(a);
+          b = find(b);
+          if (a !== b) parent[b] = a;
+        }
+        var minSep = 44;
+        var i, j;
+        for (i = 0; i < items.length; i++) {
+          for (j = i + 1; j < items.length; j++) {
+            var dx = pts[i].x - pts[j].x;
+            var dy = pts[i].y - pts[j].y;
+            if (Math.sqrt(dx * dx + dy * dy) < minSep) union(i, j);
+          }
+        }
+        var groups = {};
+        for (i = 0; i < items.length; i++) {
+          var root = find(i);
+          (groups[root] = groups[root] || []).push(i);
+        }
+        Object.keys(groups).forEach(function (key) {
+          var idxs = groups[key];
+          if (idxs.length === 1) {
+            markers[items[idxs[0]].id].setLatLng(items[idxs[0]].latlng);
+            return;
+          }
+          var cx = 0, cy = 0;
+          idxs.forEach(function (k) { cx += pts[k].x; cy += pts[k].y; });
+          cx /= idxs.length;
+          cy /= idxs.length;
+          var n = idxs.length;
+          var radius = Math.max(28, 20 / Math.sin(Math.PI / n));
+          idxs.forEach(function (k, idx) {
+            var angle = (Math.PI * 2 * idx) / n - Math.PI / 2;
+            var point = L.point(
+              cx + Math.cos(angle) * radius,
+              cy + Math.sin(angle) * radius
+            );
+            markers[items[k].id].setLatLng(map.layerPointToLatLng(point));
+          });
+        });
+      }
+
+
+      offsetOverlappingPins();
+      map.on("zoomend", offsetOverlappingPins);
 
       var tour = document.getElementById("trip-tour");
       var prevBtn = document.getElementById("trip-tour-prev");
@@ -319,7 +381,10 @@
       });
 
       map.invalidateSize();
-      setTimeout(function () { map.invalidateSize(); }, 250);
+      setTimeout(function () {
+        map.invalidateSize();
+        offsetOverlappingPins();
+      }, 250);
     }).catch(function () {
       mount.innerHTML =
         '<p class="trip-map-fallback">The map could not be loaded. The stops are listed below.</p>';

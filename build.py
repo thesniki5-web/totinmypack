@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import html
 import json
+import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -116,8 +117,26 @@ DESTINATIONS = [
 
 
 
-def thumb(vid: str) -> str:
-    return f"https://i.ytimg.com/vi/{vid}/maxresdefault.jpg"
+def thumb(vid: str, name: str = "maxresdefault") -> str:
+    return f"https://i.ytimg.com/vi/{vid}/{name}.jpg"
+
+
+def thumb_srcset(
+    vid: str,
+    *,
+    sizes: str = "(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px",
+) -> str:
+    """Card thumbnails: hqdefault as the default, with a srcset of smaller and larger YouTube stills."""
+    src = thumb(vid, "hqdefault")
+    srcset = (
+        f"{thumb(vid, 'mqdefault')} 320w, "
+        f"{thumb(vid, 'hqdefault')} 480w, "
+        f"{thumb(vid, 'maxresdefault')} 1280w"
+    )
+    return (
+        f'src="{src}" srcset="{srcset}" sizes="{sizes}" '
+        f'width="480" height="360" data-fallback="{esc(vid)}"'
+    )
 
 
 def esc(s: str) -> str:
@@ -143,7 +162,7 @@ def film_card(v: dict, *, featured: bool = False, lazy: bool = True, prefix: str
 <article>
   <button class="{cls}" type="button" data-video-id="{esc(v['id'])}" data-title="{esc(v['title'])}" data-kind="{kind}" data-filter-item data-group="{esc(v['groups'][0]) if v.get('groups') else ''}">
     <span class="{thumb_cls}">
-      <img src="{thumb(v['id'])}" alt="{alt}" width="1280" height="720" loading="{loading}" decoding="async"{fetch} data-fallback="{esc(v['id'])}">
+      <img {thumb_srcset(v['id'])} alt="{alt}" loading="{loading}" decoding="async"{fetch}>
       {play_icon()}
       {f'<span class="chip">{esc(v["length"])}</span>' if v.get("length") else ""}
     </span>
@@ -167,7 +186,7 @@ def nav(prefix: str, current: str) -> str:
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="{prefix}index.html">
-      <img src="{prefix}assets/icon-512.png" width="512" height="512" alt="">
+      <img src="{prefix}assets/logo-128.webp" width="128" height="128" alt="">
       <span class="logo-text">Totin&nbsp;<span>My Pack</span></span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
@@ -200,7 +219,7 @@ def footer(prefix: str, extra_js: str = "") -> str:
   <div class="footer-inner">
     <div>
       <a class="logo" href="{prefix}index.html">
-      <img src="{prefix}assets/icon-512.png" width="512" height="512" alt="">
+      <img src="{prefix}assets/logo-128.webp" width="128" height="128" alt="">
       <span class="logo-text">Totin&nbsp;<span>My Pack</span></span>
     </a>
       <p>Short travel films from Greece and the United States.</p>
@@ -262,11 +281,10 @@ def head(title: str, description: str, path: str, og_id: str, prefix: str, extra
   <link rel="icon" href="{prefix}assets/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="{prefix}assets/icon-512.png" type="image/png" sizes="512x512">
   <link rel="apple-touch-icon" href="{prefix}assets/apple-touch-icon.png" sizes="180x180">
-  <link rel="shortcut icon" href="{prefix}assets/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="shortcut icon" href="{prefix}favicon.ico">
+  <link rel="preload" href="{prefix}assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{prefix}assets/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preconnect" href="https://i.ytimg.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@300;400;500;600&display=swap">
   <link rel="stylesheet" href="{prefix}css/styles.css">
   {extra}
 </head>"""
@@ -322,7 +340,7 @@ def page_home() -> str:
         dest_cards.append(
             f"""
 <a class="dest-card" href="destinations/{slug}.html">
-  <img src="{thumb(img)}" alt="{esc(name)}" width="1280" height="720" loading="lazy" decoding="async" data-fallback="{img}">
+  <img {thumb_srcset(img, sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px")} alt="{esc(name)}" loading="lazy" decoding="async">
   <span class="dest-copy">
     <h3>{esc(name)}</h3>
     <p>{esc(label)}</p>
@@ -439,9 +457,9 @@ def page_destinations_index() -> str:
         cards.append(
             f"""
 <a class="dest-card" href="{d['slug']}.html">
-  <img src="{thumb(d['hero'])}" alt="{esc(d['name'])}" width="1280" height="720" loading="lazy" decoding="async" data-fallback="{d['hero']}">
+  <img {thumb_srcset(d['hero'], sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px")} alt="{esc(d['name'])}" loading="lazy" decoding="async">
   <span class="dest-copy">
-    <h3>{esc(d['name'])}</h3>
+    <h2>{esc(d['name'])}</h2>
     <p>{n} {'film' if n == 1 else 'films'}</p>
   </span>
 </a>"""
@@ -740,9 +758,9 @@ def page_trips_index() -> str:
             blurb = f"{n_stops} filmed stops"
         cards.append(
             f'<a class="dest-card" href="{esc(trip["slug"])}.html">'
-            f'<img src="{thumb(trip["hero"])}" alt="{esc(trip.get("hero_alt") or trip["name"])}" '
-            f'width="1280" height="720" loading="lazy" decoding="async" data-fallback="{trip["hero"]}">'
-            f'<span class="dest-copy"><h3>{esc(trip["name"])}</h3>'
+            f'<img {thumb_srcset(trip["hero"], sizes="(max-width: 560px) 92vw, 45vw")} '
+            f'alt="{esc(trip.get("hero_alt") or trip["name"])}" loading="lazy" decoding="async">'
+            f'<span class="dest-copy"><h2>{esc(trip["name"])}</h2>'
             f"<p>{esc(blurb)}</p></span></a>"
         )
     hero = trips[0]
@@ -920,7 +938,6 @@ def page_trip(slug: str) -> str:
             primary = videos[0] if videos else None
             thumb_id = s.get("thumb") or (primary["id"] if primary else trip["hero"])
             photo_src = _stop_photo(s, prefix)
-            thumb_src = photo_src or thumb(thumb_id)
             num = s.get("number")
             if num:
                 num_html = f'<span class="trip-stop-num" aria-hidden="true">{num}</span>'
@@ -945,11 +962,15 @@ def page_trip(slug: str) -> str:
                     "</li>"
                 )
             watch = f'<ul class="trip-watch-list">{"".join(watch_btns)}</ul>' if watch_btns else ""
-            fallback_attr = "" if photo_src else f' data-fallback="{esc(thumb_id)}"'
-            img = (
-                f'<img src="{esc(thumb_src)}" alt="" width="480" height="300" loading="lazy" '
-                f'decoding="async"{fallback_attr}>'
-            )
+            if photo_src:
+                img = (
+                    f'<img src="{esc(photo_src)}" alt="" width="480" height="270" loading="lazy" '
+                    f'decoding="async">'
+                )
+            else:
+                img = (
+                    f'<img {thumb_srcset(thumb_id)} alt="" loading="lazy" decoding="async">'
+                )
             if primary:
                 thumb_btn = (
                     f'<button class="trip-stop-thumb" type="button" data-video-id="{esc(primary["id"])}" '
@@ -1100,6 +1121,34 @@ def robots_and_sitemap() -> None:
     print("wrote robots.txt and sitemap.xml")
 
 
+
+def page_404() -> str:
+    prefix = "/"
+    desc = "This page could not be found on Totin My Pack."
+    return f"""{head("Page not found — Totin My Pack", desc, "/404.html", "logo", prefix, og_logo=True)}
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+{nav(prefix, "")}
+<main id="content">
+  <section class="page-hero" aria-label="Page not found">
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <p class="kicker">404</p>
+      <h1>Page not found</h1>
+      <p class="lede">That address is not a page on this site.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="/index.html">Home</a>
+        <a class="btn btn-ghost" href="/videos.html">Films</a>
+        <a class="btn btn-ghost" href="/trips/index.html">Trips</a>
+      </div>
+    </div>
+  </section>
+</main>
+{footer(prefix)}
+</body>
+</html>"""
+
+
 def main() -> None:
     write(ROOT / "index.html", page_home())
     write(ROOT / "destinations" / "index.html", page_destinations_index())
@@ -1108,6 +1157,8 @@ def main() -> None:
     write(ROOT / "videos.html", page_videos())
     write(ROOT / "shorts.html", page_shorts())
     write(ROOT / "about.html", page_about())
+    write(ROOT / "404.html", page_404())
+    shutil.copyfile(ROOT / "assets" / "favicon.ico", ROOT / "favicon.ico")
     write(ROOT / "trips" / "index.html", page_trips_index())
     for slug in _trip_slugs():
         write(ROOT / "trips" / f"{slug}.html", page_trip(slug))

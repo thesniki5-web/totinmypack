@@ -17,29 +17,81 @@
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
+  function isMobileNav() {
+    return window.matchMedia("(max-width: 880px)").matches;
+  }
+
+  function setMobileMenuOpen(open) {
+    if (!toggle || !nav) return;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    nav.classList.toggle("is-open", open);
+    document.body.classList.toggle("nav-open", open);
+    if (isMobileNav()) {
+      document.querySelectorAll(".has-sub").forEach(function (item) {
+        var btn = item.querySelector(":scope > .nav-label");
+        if (!btn) return;
+        btn.setAttribute("aria-expanded", String(open));
+        item.classList.toggle("is-open", open);
+      });
+    }
+  }
+
   if (toggle && nav) {
     toggle.addEventListener("click", function () {
       var open = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", String(!open));
-      nav.classList.toggle("is-open", !open);
-      document.body.classList.toggle("nav-open", !open);
+      setMobileMenuOpen(!open);
     });
     nav.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function () {
-        toggle.setAttribute("aria-expanded", "false");
-        nav.classList.remove("is-open");
-        document.body.classList.remove("nav-open");
+        setMobileMenuOpen(false);
       });
     });
   }
 
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && toggle && toggle.getAttribute("aria-expanded") === "true") {
-      toggle.setAttribute("aria-expanded", "false");
-      nav.classList.remove("is-open");
-      document.body.classList.remove("nav-open");
-      toggle.focus();
+  document.querySelectorAll(".has-sub").forEach(function (item) {
+    var btn = item.querySelector(":scope > .nav-label");
+    if (!btn) return;
+
+    function setSubOpen(open) {
+      btn.setAttribute("aria-expanded", String(open));
+      item.classList.toggle("is-open", open);
     }
+
+    btn.addEventListener("click", function () {
+      if (isMobileNav()) {
+        setSubOpen(true);
+        return;
+      }
+      setSubOpen(btn.getAttribute("aria-expanded") !== "true");
+    });
+    item.addEventListener("mouseenter", function () {
+      if (!isMobileNav()) setSubOpen(true);
+    });
+    item.addEventListener("mouseleave", function () {
+      if (!isMobileNav()) setSubOpen(false);
+    });
+    item.addEventListener("focusin", function () {
+      if (!isMobileNav()) setSubOpen(true);
+    });
+    item.addEventListener("focusout", function (e) {
+      if (item.contains(e.relatedTarget)) return;
+      if (!isMobileNav()) setSubOpen(false);
+    });
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    if (toggle && toggle.getAttribute("aria-expanded") === "true") {
+      setMobileMenuOpen(false);
+      toggle.focus();
+      return;
+    }
+    document.querySelectorAll(".has-sub > .nav-label[aria-expanded='true']").forEach(function (btn) {
+      btn.setAttribute("aria-expanded", "false");
+      var item = btn.closest(".has-sub");
+      if (item) item.classList.remove("is-open");
+    });
   });
 
   function thumbUrl(id) {
@@ -160,6 +212,7 @@
       var id = img.getAttribute("data-fallback");
       if (!id) return;
       img.removeAttribute("data-fallback");
+      img.removeAttribute("srcset");
       img.src = "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg";
     });
   });

@@ -678,5 +678,6 @@
       "type": "spur",
       "label": "Spur to Pecos National Historical Park"
     }
-  ]
+  ],
+  "map_max_zoom": 9
 }
