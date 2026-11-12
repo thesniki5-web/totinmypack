@@ -101,7 +101,13 @@
       ],
       "thumb": "bwhDxYsaBT4",
       "on_map": true,
-      "start_seconds": 37
+      "start_seconds": 37,
+      "then_and_now": {
+        "text": "The trading post closed in September 2024, and the building was demolished in May 2025.",
+        "source_name": "Route 66 News",
+        "source_url": "https://www.route66news.com/2025/05/14/totem-pole-trading-post-in-rolla-one-of-twin-bridges-near-catoosa-torn-down/",
+        "source_note": "Ron Warnick, “Totem Pole Trading Post in Rolla, one of Twin Bridges near Catoosa torn down,” Route 66 News, May 14, 2025: Josh Thompson photographed the demolition on May 7, 2025; the post closed in late September 2024. Closure on Sept. 30, 2024 also reported by Allison Skinner, Phelps County Focus, Sept. 23, 2024, https://phelpscountyfocus.com/2024/09/23/open-since-1933-totem-pole-trading-post-doors-closing-sept-30/."
+      }
     },
     {
       "id": "devils-elbow",

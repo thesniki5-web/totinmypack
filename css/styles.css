@@ -968,6 +968,42 @@ main { display: block; }
   color: #5c5448;
 }
 .trip-popup-watch { display: inline-flex; padding: 0.4rem 0.8rem; font-size: 0.78rem; }
+.trip-popup-then {
+  margin: 0 0 0.75rem;
+  padding: 0.55rem 0.65rem;
+  border-left: 3px solid var(--gold);
+  background: rgba(212, 179, 122, 0.14);
+  border-radius: 0 0.35rem 0.35rem 0;
+}
+.trip-popup-then p { margin: 0; font-size: 0.78rem; line-height: 1.4; color: #3d362c; }
+.trip-popup-then-label,
+.trip-then-label {
+  margin: 0 0 0.2rem !important;
+  font-family: var(--sans);
+  font-size: 0.68rem !important;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7a5c28 !important;
+}
+.trip-popup-then-source,
+.trip-then-source {
+  margin-top: 0.35rem !important;
+  font-size: 0.7rem !important;
+  color: #5c5448;
+}
+.trip-popup-then-source a,
+.trip-then-source a { color: #7a5c28; }
+
+.trip-then {
+  margin: 0 0 0.75rem;
+  padding: 0.65rem 0.8rem;
+  border-left: 3px solid var(--gold);
+  background: rgba(212, 179, 122, 0.08);
+  border-radius: 0 0.4rem 0.4rem 0;
+}
+.trip-then p { margin: 0; color: var(--text-dim); }
+.trip-then-source { margin-top: 0.3rem; font-size: 0.78rem; }
 
 .trip-tour {
   display: flex;

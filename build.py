@@ -762,6 +762,37 @@ def page_trips_index() -> str:
 </html>"""
 
 
+def _then_and_now(stop: dict) -> dict | None:
+    raw = stop.get("then_and_now") or {}
+    text = (raw.get("text") or "").strip()
+    if not text:
+        return None
+    out = {"text": text}
+    if raw.get("source_name"):
+        out["source_name"] = raw["source_name"]
+    if raw.get("source_url"):
+        out["source_url"] = raw["source_url"]
+    return out
+
+
+def _then_and_now_html(stop: dict) -> str:
+    info = _then_and_now(stop)
+    if not info:
+        return ""
+    src = ""
+    if info.get("source_url") and info.get("source_name"):
+        src = (
+            f'<p class="trip-then-source">Source: '
+            f'<a href="{esc(info["source_url"])}" rel="noopener noreferrer">'
+            f"{esc(info['source_name'])}</a></p>"
+        )
+    return (
+        f'<div class="trip-then">'
+        f'<p class="trip-then-label">Then and now</p>'
+        f"<p>{esc(info['text'])}</p>{src}</div>"
+    )
+
+
 def _stop_videos(stop: dict) -> list[dict]:
     out = []
     for vid in stop.get("videos") or []:
@@ -809,6 +840,7 @@ def page_trip(slug: str) -> str:
                 "number": s.get("number"),
                 "videos": _stop_videos(s),
                 **({"start_seconds": int(s["start_seconds"])} if s.get("start_seconds") else {}),
+                **({"then_and_now": _then_and_now(s)} if _then_and_now(s) else {}),
             }
             for s in trip["stops"]
         ],
@@ -848,6 +880,7 @@ def page_trip(slug: str) -> str:
             else:
                 num_html = '<span class="trip-stop-num is-off" aria-hidden="true">–</span>'
             note = f'<p>{esc(s["note"])}</p>' if s.get("note") else ""
+            then_html = _then_and_now_html(s)
             locate_id = s["id"] if s.get("on_map") else s.get("focus")
             locate = ""
             if locate_id:
@@ -884,7 +917,7 @@ def page_trip(slug: str) -> str:
                 f"{thumb_btn}<div class=\"trip-stop-copy\">"
                 f"<h3>{num_html}{esc(s['name'])}</h3>"
                 f'<p class="trip-stop-place">{esc(s.get("place") or "")}</p>'
-                f"{note}{watch}{locate}</div></article>"
+                f"{note}{then_html}{watch}{locate}</div></article>"
             )
         state_note = f'<p>{esc(state["note"])}</p>' if state.get("note") else ""
         state_blocks.append(

@@ -148,6 +148,30 @@
           at.textContent = "Starts at " + formatTime(stop.start_seconds);
           popup.appendChild(at);
         }
+        if (stop.then_and_now && stop.then_and_now.text) {
+          var thenBox = document.createElement("div");
+          thenBox.className = "trip-popup-then";
+          var thenLabel = document.createElement("p");
+          thenLabel.className = "trip-popup-then-label";
+          thenLabel.textContent = "Then and now";
+          thenBox.appendChild(thenLabel);
+          var thenText = document.createElement("p");
+          thenText.textContent = stop.then_and_now.text;
+          thenBox.appendChild(thenText);
+          if (stop.then_and_now.source_url && stop.then_and_now.source_name) {
+            var thenSrc = document.createElement("p");
+            thenSrc.className = "trip-popup-then-source";
+            thenSrc.appendChild(document.createTextNode("Source: "));
+            var thenLink = document.createElement("a");
+            thenLink.href = stop.then_and_now.source_url;
+            thenLink.rel = "noopener noreferrer";
+            thenLink.target = "_blank";
+            thenLink.textContent = stop.then_and_now.source_name;
+            thenSrc.appendChild(thenLink);
+            thenBox.appendChild(thenSrc);
+          }
+          popup.appendChild(thenBox);
+        }
         if (primary) {
           var btn = document.createElement("button");
           btn.type = "button";
@@ -161,7 +185,7 @@
           btn.textContent = "Watch the film";
           popup.appendChild(btn);
         }
-        marker.bindPopup(popup, { maxWidth: 260 });
+        marker.bindPopup(popup, { maxWidth: 280 });
         marker.on("click", function () {
           goToStop(indexOfStop(stop.id), { play: true, fromMarker: true });
         });
