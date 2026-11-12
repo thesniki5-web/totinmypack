@@ -21,14 +21,14 @@
     {
       "id": "kansas",
       "name": "Kansas",
-      "kicker": "Galena and Rainbow Bridge",
+      "kicker": "Galena, Cars on the Route, and Rainbow Bridge",
       "film": "DHxZueP0Z04"
     },
     {
       "id": "oklahoma",
       "name": "Oklahoma",
-      "kicker": "Roadside stops and Tulsa neon",
-      "note": "The Oklahoma film starts in Tulsa, then features stops along the state’s stretch of the road.",
+      "kicker": "Tulsa, the Blue Whale, and roadside stops",
+      "note": "The Oklahoma film starts at the Golden Driller in Tulsa. The stops below are the places it shows, listed east to west along the road.",
       "film": "MEWEWz0Ny9M"
     },
     {
@@ -64,13 +64,44 @@
       "place": "Fanning, Missouri",
       "lat": 38.03744,
       "lon": -91.46923,
-      "note": "42 feet tall and steel-framed, built in 2008 as a Guinness Record breaker, at the Route 66 Fanning Outpost.",
+      "note": "The film caption reads “The Red Rocker Cuba, MO.” The chair stands at the Route 66 Fanning Outpost: 42 feet tall and steel-framed, built in 2008 as a Guinness Record breaker.",
       "videos": [
         "bwhDxYsaBT4",
         "E9TIfpZ69NU"
       ],
       "thumb": "bwhDxYsaBT4",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 5
+    },
+    {
+      "id": "mule-trading-post",
+      "state": "missouri",
+      "name": "Mule Trading Post",
+      "place": "Rolla, Missouri",
+      "lat": 37.97783,
+      "lon": -91.72191,
+      "note": "A Route 66 stop in Rolla, seen in the Missouri film.",
+      "videos": [
+        "bwhDxYsaBT4"
+      ],
+      "thumb": "bwhDxYsaBT4",
+      "on_map": true,
+      "start_seconds": 23
+    },
+    {
+      "id": "totem-pole-trading-post",
+      "state": "missouri",
+      "name": "Totem Pole Trading Post",
+      "place": "Rolla, Missouri",
+      "lat": 37.94314,
+      "lon": -91.79096,
+      "note": "A Route 66 trading post on Martin Springs Drive in Rolla, seen in the Missouri film.",
+      "videos": [
+        "bwhDxYsaBT4"
+      ],
+      "thumb": "bwhDxYsaBT4",
+      "on_map": true,
+      "start_seconds": 37
     },
     {
       "id": "devils-elbow",
@@ -84,7 +115,8 @@
         "bwhDxYsaBT4"
       ],
       "thumb": "bwhDxYsaBT4",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 61
     },
     {
       "id": "uranus",
@@ -98,7 +130,8 @@
         "bwhDxYsaBT4"
       ],
       "thumb": "bwhDxYsaBT4",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 111
     },
     {
       "id": "marshfield",
@@ -112,7 +145,8 @@
         "bwhDxYsaBT4"
       ],
       "thumb": "bwhDxYsaBT4",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 128
     },
     {
       "id": "galena",
@@ -128,6 +162,21 @@
       "thumb": "DHxZueP0Z04",
       "on_map": true,
       "start_seconds": 71
+    },
+    {
+      "id": "cars-on-the-route",
+      "state": "kansas",
+      "name": "Cars on the Route",
+      "place": "Galena, Kansas",
+      "lat": 37.08039,
+      "lon": -94.63889,
+      "note": "A restored Kan-O-Tex station in Galena, seen in the Missouri film. The Galena stop above is from the east-to-west film.",
+      "videos": [
+        "bwhDxYsaBT4"
+      ],
+      "thumb": "bwhDxYsaBT4",
+      "on_map": true,
+      "start_seconds": 146
     },
     {
       "id": "rainbow-bridge",
@@ -156,77 +205,23 @@
         "bwhDxYsaBT4"
       ],
       "thumb": "bwhDxYsaBT4",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 167
     },
     {
-      "id": "commerce",
+      "id": "totem-pole-park",
       "state": "oklahoma",
-      "name": "Vintage Iron Motorcycle Museum",
-      "place": "Commerce, Oklahoma",
-      "lat": 36.93329,
-      "lon": -94.87704,
-      "note": "",
+      "name": "Ed Galloway’s Totem Pole Park",
+      "place": "Foyil, Oklahoma",
+      "lat": 36.43722,
+      "lon": -95.44806,
+      "note": "A folk-art park east of Foyil, seen in the Oklahoma film.",
       "videos": [
         "MEWEWz0Ny9M"
       ],
       "thumb": "MEWEWz0Ny9M",
-      "on_map": true
-    },
-    {
-      "id": "miami",
-      "state": "oklahoma",
-      "name": "Coleman Theatre Beautiful",
-      "place": "Miami, Oklahoma",
-      "lat": 36.87652,
-      "lon": -94.87794,
-      "note": "A preserved Vaudeville-era palace.",
-      "videos": [
-        "MEWEWz0Ny9M"
-      ],
-      "thumb": "MEWEWz0Ny9M",
-      "on_map": true
-    },
-    {
-      "id": "afton",
-      "state": "oklahoma",
-      "name": "Afton Station",
-      "place": "Afton, Oklahoma",
-      "lat": 36.69414,
-      "lon": -94.96199,
-      "note": "A lovingly restored 1930s D-X gas station.",
-      "videos": [
-        "MEWEWz0Ny9M"
-      ],
-      "thumb": "MEWEWz0Ny9M",
-      "on_map": true
-    },
-    {
-      "id": "vinita",
-      "state": "oklahoma",
-      "name": "Route 66 Inn",
-      "place": "Vinita, Oklahoma",
-      "lat": 36.62963,
-      "lon": -95.16045,
-      "note": "",
-      "videos": [
-        "MEWEWz0Ny9M"
-      ],
-      "thumb": "MEWEWz0Ny9M",
-      "on_map": true
-    },
-    {
-      "id": "claremore",
-      "state": "oklahoma",
-      "name": "Will Rogers Memorial Museum",
-      "place": "Claremore, Oklahoma",
-      "lat": 36.3126,
-      "lon": -95.61607,
-      "note": "",
-      "videos": [
-        "MEWEWz0Ny9M"
-      ],
-      "thumb": "MEWEWz0Ny9M",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 42
     },
     {
       "id": "catoosa",
@@ -239,6 +234,36 @@
       "videos": [
         "MEWEWz0Ny9M",
         "E9TIfpZ69NU"
+      ],
+      "thumb": "MEWEWz0Ny9M",
+      "on_map": true,
+      "start_seconds": 16
+    },
+    {
+      "id": "route-66-rising",
+      "state": "oklahoma",
+      "name": "Route 66 Rising",
+      "place": "Tulsa, Oklahoma",
+      "lat": 36.1607,
+      "lon": -95.86884,
+      "note": "A sculpture at the Cyrus Avery Traffic Circle in Tulsa.",
+      "videos": [
+        "MEWEWz0Ny9M"
+      ],
+      "thumb": "MEWEWz0Ny9M",
+      "on_map": true,
+      "start_seconds": 13
+    },
+    {
+      "id": "golden-driller",
+      "state": "oklahoma",
+      "name": "The Golden Driller",
+      "place": "Tulsa, Oklahoma",
+      "lat": 36.13364,
+      "lon": -95.93116,
+      "note": "A tall oil-worker statue at the Tulsa Expo Center. The Oklahoma film starts here.",
+      "videos": [
+        "MEWEWz0Ny9M"
       ],
       "thumb": "MEWEWz0Ny9M",
       "on_map": true
@@ -258,89 +283,49 @@
       "on_map": true
     },
     {
-      "id": "tulsa",
+      "id": "pops",
       "state": "oklahoma",
-      "name": "Tulsa",
-      "place": "Oklahoma",
-      "lat": 36.14276,
-      "lon": -96.00486,
-      "note": "The starting point of the Oklahoma Route 66 film: the Cyrus Avery Route 66 Memorial Bridge, the Blue Dome District, and Tulsa Route 66 Main Street.",
-      "videos": [
-        "MEWEWz0Ny9M",
-        "DHxZueP0Z04"
-      ],
-      "thumb": "MEWEWz0Ny9M",
-      "on_map": true
-    },
-    {
-      "id": "clinton",
-      "state": "oklahoma",
-      "name": "Oklahoma Route 66 Museum",
-      "place": "Clinton, Oklahoma",
-      "lat": 35.50649,
-      "lon": -98.98691,
-      "note": "",
+      "name": "Pops 66",
+      "place": "Arcadia, Oklahoma",
+      "lat": 35.65861,
+      "lon": -97.33513,
+      "note": "A Route 66 restaurant and gas station in Arcadia, marked by a tall soda bottle.",
       "videos": [
         "MEWEWz0Ny9M"
       ],
       "thumb": "MEWEWz0Ny9M",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 78
     },
     {
-      "id": "elk-city",
+      "id": "braums-milk-bottle",
       "state": "oklahoma",
-      "name": "National Route 66 Museum Complex",
-      "place": "Elk City, Oklahoma",
-      "lat": 35.41401,
-      "lon": -99.41386,
-      "note": "A complex with multiple mini-museums.",
+      "name": "Braum’s Giant Milk Bottle",
+      "place": "Oklahoma City, Oklahoma",
+      "lat": 35.49417,
+      "lon": -97.53194,
+      "note": "The Milk Bottle Grocery on Classen Boulevard, with a Braum’s milk bottle on the roof.",
       "videos": [
         "MEWEWz0Ny9M"
       ],
       "thumb": "MEWEWz0Ny9M",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 74
     },
     {
-      "id": "sayre",
+      "id": "lucilles",
       "state": "oklahoma",
-      "name": "Beckham County Courthouse & Sandhills Curiosity Shop",
-      "place": "Sayre, Oklahoma",
-      "lat": 35.29139,
-      "lon": -99.63667,
-      "note": "",
+      "name": "Lucille’s Service Station",
+      "place": "Hydro, Oklahoma",
+      "lat": 35.53718,
+      "lon": -98.58823,
+      "note": "A historic Route 66 service station near Hydro, also known as the Provine Service Station.",
       "videos": [
         "MEWEWz0Ny9M"
       ],
       "thumb": "MEWEWz0Ny9M",
-      "on_map": true
-    },
-    {
-      "id": "erick",
-      "state": "oklahoma",
-      "name": "Erick",
-      "place": "Oklahoma",
-      "lat": 35.21271,
-      "lon": -99.86906,
-      "note": "Birthplace of Roger Miller, and home to quirky Route 66 attractions.",
-      "videos": [
-        "MEWEWz0Ny9M"
-      ],
-      "thumb": "MEWEWz0Ny9M",
-      "on_map": true
-    },
-    {
-      "id": "texola",
-      "state": "oklahoma",
-      "name": "Texola",
-      "place": "Oklahoma",
-      "lat": 35.21922,
-      "lon": -99.99122,
-      "note": "A ghost town with hints of a bygone era.",
-      "videos": [
-        "MEWEWz0Ny9M"
-      ],
-      "thumb": "MEWEWz0Ny9M",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 68
     },
     {
       "id": "cadillac-ranch",
@@ -503,6 +488,14 @@
       -91.46923
     ],
     [
+      37.97783,
+      -91.72191
+    ],
+    [
+      37.94314,
+      -91.79096
+    ],
+    [
       37.8461,
       -92.06075
     ],
@@ -527,6 +520,10 @@
       -94.63904
     ],
     [
+      37.08039,
+      -94.63889
+    ],
+    [
       37.07345,
       -94.74083
     ],
@@ -535,60 +532,36 @@
       -94.73472
     ],
     [
-      36.93329,
-      -94.87704
-    ],
-    [
-      36.87652,
-      -94.87794
-    ],
-    [
-      36.69414,
-      -94.96199
-    ],
-    [
-      36.62963,
-      -95.16045
-    ],
-    [
-      36.3126,
-      -95.61607
+      36.43722,
+      -95.44806
     ],
     [
       36.19385,
       -95.73293
     ],
     [
+      36.1607,
+      -95.86884
+    ],
+    [
+      36.13364,
+      -95.93116
+    ],
+    [
       36.14802,
       -95.97367
     ],
     [
-      36.14276,
-      -96.00486
+      35.65861,
+      -97.33513
     ],
     [
-      35.47299,
-      -97.51705
+      35.49417,
+      -97.53194
     ],
     [
-      35.50649,
-      -98.98691
-    ],
-    [
-      35.41401,
-      -99.41386
-    ],
-    [
-      35.29139,
-      -99.63667
-    ],
-    [
-      35.21271,
-      -99.86906
-    ],
-    [
-      35.21922,
-      -99.99122
+      35.53718,
+      -98.58823
     ],
     [
       35.18723,
@@ -670,7 +643,7 @@
   "legs_heading": "Stop by stop",
   "films_kicker": "The films",
   "films_heading": "Watch along the way",
-  "index_blurb": "East to west, 29 filmed stops",
+  "index_blurb": "East to west, 27 filmed stops",
   "legend": [
     {
       "type": "pin",

@@ -2,7 +2,7 @@
   "slug": "greece",
   "name": "Greece",
   "title": "Greece — Halkidiki and a 2008 journey",
-  "description": "Travel films from Gerakini and Mount Itamos in Halkidiki, a summer camp at Agios Nikolaos, and a 2008 trip to Skopelos, Meteora, Mount Olympus, Pella, and Thessaloniki.",
+  "description": "Travel films from Gerakini and Mount Itamos in Halkidiki, a summer camp at Agios Nikolaos, and a 2008 trip to Skopelos, Mount Olympus, Pella, Meteora, and Thessaloniki.",
   "kicker": "A journey",
   "lede": "Halkidiki, and a 2008 trip across Greece.",
   "hero": "is4VhiJbrPU",
@@ -19,7 +19,7 @@
   "legs_heading": "Place by place",
   "films_kicker": "The films",
   "films_heading": "Watch along the way",
-  "index_blurb": "Halkidiki, and a 2008 trip to Skopelos, Meteora, and Mount Olympus",
+  "index_blurb": "Halkidiki, and a 2008 trip to Skopelos, Mount Olympus, Pella, Meteora, and Thessaloniki",
   "legend": [
     {
       "type": "pin",
@@ -27,7 +27,7 @@
     }
   ],
   "intro": [
-    "These films follow places in Greece named in the titles and descriptions: Gerakini and Mount Itamos in Halkidiki, a summer camp at Agios Nikolaos, and a 2008 trip with Tres to Skopelos, Mount Olympus, Meteora, Pella, and Thessaloniki.",
+    "These films follow places in Greece named in the titles and descriptions: Gerakini and Mount Itamos in Halkidiki, a summer camp at Agios Nikolaos, and a 2008 trip with Tres to Skopelos, Mount Olympus, Pella, Meteora, and Thessaloniki.",
     "They come from more than one visit. The map marks the places that can be located from the films; it is not a record of one continuous drive."
   ],
   "states": [
@@ -40,8 +40,8 @@
     {
       "id": "2008",
       "name": "A 2008 trip with Tres",
-      "kicker": "Skopelos, Meteora, and Mount Olympus",
-      "note": "These are the places named in the 2008 film, listed as they appear there. The film also names Halkidiki, which is covered in the section above. This is not presented as a confirmed driving order."
+      "kicker": "Skopelos, Mount Olympus, Pella, Meteora, and Thessaloniki",
+      "note": "These are the places named in the 2008 film, listed as they appear there. The film also names Halkidiki, which is covered in the section above."
     }
   ],
   "stops": [
@@ -146,7 +146,8 @@
         "vQvsLO0F0tE"
       ],
       "thumb": "vQvsLO0F0tE",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 49
     },
     {
       "id": "olympus",
@@ -160,21 +161,8 @@
         "vQvsLO0F0tE"
       ],
       "thumb": "vQvsLO0F0tE",
-      "on_map": true
-    },
-    {
-      "id": "meteora",
-      "state": "2008",
-      "name": "Meteora",
-      "place": "Greece",
-      "lat": 39.7219,
-      "lon": 21.63223,
-      "note": "Named in the 2008 film for the monasteries of Meteora.",
-      "videos": [
-        "vQvsLO0F0tE"
-      ],
-      "thumb": "vQvsLO0F0tE",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 142
     },
     {
       "id": "pella",
@@ -188,7 +176,23 @@
         "vQvsLO0F0tE"
       ],
       "thumb": "vQvsLO0F0tE",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 170
+    },
+    {
+      "id": "meteora",
+      "state": "2008",
+      "name": "Meteora",
+      "place": "Greece",
+      "lat": 39.7219,
+      "lon": 21.63223,
+      "note": "Named in the 2008 film for the monasteries of Meteora.",
+      "videos": [
+        "vQvsLO0F0tE"
+      ],
+      "thumb": "vQvsLO0F0tE",
+      "on_map": true,
+      "start_seconds": 176
     },
     {
       "id": "thessaloniki",
@@ -202,7 +206,8 @@
         "vQvsLO0F0tE"
       ],
       "thumb": "vQvsLO0F0tE",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 183
     }
   ],
   "route": [],
