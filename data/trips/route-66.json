@@ -646,5 +646,33 @@
       35.53827,
       -105.66952
     ]
+  ],
+  "kicker": "A journey",
+  "lede": "One stop at a time, from Missouri to the Santa Monica Pier.",
+  "dest_slug": "route-66",
+  "dest_label": "All Route 66 films",
+  "video_group": "route66",
+  "overview_watch_label": "East-to-west film",
+  "map_kicker": "The road",
+  "map_heading": "The stops they filmed",
+  "map_aria": "Map of filmed Route 66 stops",
+  "legs_kicker": "East to west",
+  "legs_heading": "Stop by stop",
+  "films_kicker": "The films",
+  "films_heading": "Watch along the way",
+  "index_blurb": "East to west, 29 filmed stops",
+  "legend": [
+    {
+      "type": "pin",
+      "label": "Filmed stop"
+    },
+    {
+      "type": "line",
+      "label": "Route 66, roughly, between those stops"
+    },
+    {
+      "type": "spur",
+      "label": "Spur to Pecos National Historical Park"
+    }
   ]
 }

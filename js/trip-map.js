@@ -155,7 +155,8 @@
       });
 
       if (bounds.length) {
-        map.fitBounds(bounds, { padding: [36, 36], maxZoom: 7 });
+        var maxZoom = data.maxZoom || 7;
+        map.fitBounds(bounds, { padding: [36, 36], maxZoom: maxZoom });
       }
 
       mount.addEventListener("click", function (e) {

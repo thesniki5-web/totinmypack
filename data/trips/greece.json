@@ -1,0 +1,208 @@
+{
+  "slug": "greece",
+  "name": "Greece",
+  "title": "Greece — Halkidiki and a 2008 journey",
+  "description": "Travel films from Gerakini and Mount Itamos in Halkidiki, a summer camp at Agios Nikolaos, and a 2008 trip to Skopelos, Meteora, Mount Olympus, Pella, and Thessaloniki.",
+  "kicker": "A journey",
+  "lede": "Halkidiki, and a 2008 trip across Greece.",
+  "hero": "is4VhiJbrPU",
+  "hero_pos": "100% 62%",
+  "hero_alt": "A pine-covered shore and turquoise water at Agios Nikolaos, Halkidiki, from the summer camp film.",
+  "dest_slug": "greece",
+  "dest_label": "All Greece films",
+  "video_group": "greece",
+  "overview_film": "ONbdk7yflpM",
+  "map_kicker": "The places",
+  "map_heading": "The places they filmed",
+  "map_aria": "Map of filmed places in Greece",
+  "legs_kicker": "The films",
+  "legs_heading": "Place by place",
+  "films_kicker": "The films",
+  "films_heading": "Watch along the way",
+  "index_blurb": "Halkidiki, and a 2008 trip to Skopelos, Meteora, and Mount Olympus",
+  "legend": [
+    {
+      "type": "pin",
+      "label": "Filmed place"
+    }
+  ],
+  "intro": [
+    "These films follow places in Greece named in the titles and descriptions: Gerakini and Mount Itamos in Halkidiki, a summer camp at Agios Nikolaos, and a 2008 trip with Tres to Skopelos, Mount Olympus, Meteora, Pella, and Thessaloniki.",
+    "They come from more than one visit. The map marks the places that can be located from the films; it is not a record of one continuous drive."
+  ],
+  "states": [
+    {
+      "id": "halkidiki",
+      "name": "Halkidiki",
+      "kicker": "The coast and the mountain",
+      "note": "Gerakini is named as his favorite beach in Greece, and the place where he grew up. The summer camp film is set in Agios Nikolaos, Halkidiki, where he spent childhood summers. The Mount Itamos hike is listed in the order of that film’s chapters."
+    },
+    {
+      "id": "2008",
+      "name": "A 2008 trip with Tres",
+      "kicker": "Skopelos, Meteora, and Mount Olympus",
+      "note": "These are the places named in the 2008 film, listed as they appear there. The film also names Halkidiki, which is covered in the section above. This is not presented as a confirmed driving order."
+    }
+  ],
+  "stops": [
+    {
+      "id": "gerakini",
+      "state": "halkidiki",
+      "name": "Gerakini",
+      "place": "Halkidiki, Greece",
+      "lat": 40.27974,
+      "lon": 23.4443,
+      "note": "His favorite beach in Greece, and the place where he grew up. The film looks at clear Aegean water, schools of fish, rocky outcrops, and soft sand.",
+      "videos": [
+        "mk44NdLZgQs"
+      ],
+      "thumb": "mk44NdLZgQs",
+      "on_map": true
+    },
+    {
+      "id": "agios-nikolaos",
+      "state": "halkidiki",
+      "name": "Summer camp at Agios Nikolaos",
+      "place": "Halkidiki, Greece",
+      "lat": 40.24898,
+      "lon": 23.69453,
+      "note": "A tribute to the ΧΑΝΘ camp where he spent childhood summers — beaches, paths, and friendships. The pin marks the village named in the film; the exact camp grounds are not given.",
+      "videos": [
+        "is4VhiJbrPU"
+      ],
+      "thumb": "is4VhiJbrPU",
+      "on_map": true
+    },
+    {
+      "id": "itamos",
+      "state": "halkidiki",
+      "name": "Mount Itamos",
+      "place": "Sithonia, Halkidiki",
+      "lat": 40.12874,
+      "lon": 23.86504,
+      "note": "The mountain of the hike, with forest paths and views toward the Aegean.",
+      "videos": [
+        "ONbdk7yflpM",
+        "674bBByn45U",
+        "RWvKeHEqRVM"
+      ],
+      "thumb": "ONbdk7yflpM",
+      "on_map": true
+    },
+    {
+      "id": "profitis-ilias",
+      "state": "halkidiki",
+      "name": "Profítis Ilias Church",
+      "place": "Mount Itamos (Dragoudeli), Halkidiki",
+      "lat": 40.12423,
+      "lon": 23.85358,
+      "note": "The first stop on the Mount Itamos hike. A short was also filmed at the church on Mount Dragoudeli, which the long film treats as the same mountain.",
+      "videos": [
+        "ONbdk7yflpM",
+        "Whbt1fpVyUE"
+      ],
+      "thumb": "Whbt1fpVyUE",
+      "on_map": true
+    },
+    {
+      "id": "fire-tower",
+      "state": "halkidiki",
+      "name": "Pyrofylakio / Fire Tower",
+      "place": "Mount Itamos, Halkidiki",
+      "note": "The second chapter of the Mount Itamos hike. A precise point for the tower is not given, so it is not marked separately; the map pin for the mountain is nearby.",
+      "videos": [
+        "ONbdk7yflpM"
+      ],
+      "thumb": "ONbdk7yflpM",
+      "on_map": false,
+      "focus": "itamos"
+    },
+    {
+      "id": "itamos-tree",
+      "state": "halkidiki",
+      "name": "The ancient Itamos tree",
+      "place": "Mount Itamos, Halkidiki",
+      "note": "The hike’s destination, also seen in a Short. The exact tree is not separately mapped; the mountain pin is nearby.",
+      "videos": [
+        "ONbdk7yflpM",
+        "fdVL-Z72EKM"
+      ],
+      "thumb": "fdVL-Z72EKM",
+      "on_map": false,
+      "focus": "itamos"
+    },
+    {
+      "id": "skopelos",
+      "state": "2008",
+      "name": "Skopelos",
+      "place": "Greece",
+      "lat": 39.14017,
+      "lon": 23.68138,
+      "note": "Named in the 2008 film for island life in Skopelos.",
+      "videos": [
+        "vQvsLO0F0tE"
+      ],
+      "thumb": "vQvsLO0F0tE",
+      "on_map": true
+    },
+    {
+      "id": "olympus",
+      "state": "2008",
+      "name": "Mount Olympus",
+      "place": "Greece",
+      "lat": 40.08631,
+      "lon": 22.35857,
+      "note": "Named in the 2008 film.",
+      "videos": [
+        "vQvsLO0F0tE"
+      ],
+      "thumb": "vQvsLO0F0tE",
+      "on_map": true
+    },
+    {
+      "id": "meteora",
+      "state": "2008",
+      "name": "Meteora",
+      "place": "Greece",
+      "lat": 39.7219,
+      "lon": 21.63223,
+      "note": "Named in the 2008 film for the monasteries of Meteora.",
+      "videos": [
+        "vQvsLO0F0tE"
+      ],
+      "thumb": "vQvsLO0F0tE",
+      "on_map": true
+    },
+    {
+      "id": "pella",
+      "state": "2008",
+      "name": "Pella",
+      "place": "Greece",
+      "lat": 40.762,
+      "lon": 22.51924,
+      "note": "Named in the 2008 film for ancient ruins in Pella.",
+      "videos": [
+        "vQvsLO0F0tE"
+      ],
+      "thumb": "vQvsLO0F0tE",
+      "on_map": true
+    },
+    {
+      "id": "thessaloniki",
+      "state": "2008",
+      "name": "Thessaloniki",
+      "place": "Greece",
+      "lat": 40.64032,
+      "lon": 22.93527,
+      "note": "Named in the 2008 film.",
+      "videos": [
+        "vQvsLO0F0tE"
+      ],
+      "thumb": "vQvsLO0F0tE",
+      "on_map": true
+    }
+  ],
+  "route": [],
+  "spur": [],
+  "map_max_zoom": 9
+}
