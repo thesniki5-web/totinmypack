@@ -1,0 +1,612 @@
+{
+  "slug": "route-66",
+  "name": "Route 66",
+  "title": "Route 66 — One Stop at a Time",
+  "description": "Route 66 roadside memories from Missouri to Arizona, arranged east to west from separate trips: Devil’s Elbow, Cadillac Ranch, the Blue Hole, Winslow, and more filmed stops.",
+  "hero": "DHxZueP0Z04",
+  "hero_pos": "82% 80%",
+  "hero_alt": "A scene from the film Route 66, One Stop at a Time.",
+  "intro": [
+    "Route 66 gave them more reasons to stop than to hurry. These films gather roadside memories from Missouri to Arizona: small towns, old bridges, Oklahoma neon, Cadillac Ranch, the Blue Hole, Lowell Observatory — where Pluto was discovered in 1930 — and the people and places they wanted to remember.",
+    "The footage comes from separate trips, arranged east to west. It is not one continuous drive, and they have not driven every mile. The map line follows Route 66 roughly between the stops that appear in the films. It is a guide to the road, not a record of a single journey."
+  ],
+  "overview_film": "DHxZueP0Z04",
+  "states": [
+    {
+      "id": "missouri",
+      "name": "Missouri",
+      "kicker": "Where the story starts",
+      "film": "bwhDxYsaBT4"
+    },
+    {
+      "id": "kansas",
+      "name": "Kansas",
+      "kicker": "Galena and Rainbow Bridge",
+      "film": "DHxZueP0Z04"
+    },
+    {
+      "id": "oklahoma",
+      "name": "Oklahoma",
+      "kicker": "Roadside stops and Tulsa neon",
+      "note": "The Oklahoma film starts in Tulsa, then features stops along the state’s stretch of the road.",
+      "film": "MEWEWz0Ny9M"
+    },
+    {
+      "id": "texas",
+      "name": "Texas",
+      "kicker": "Amarillo, Cadillac Ranch, and the midpoint",
+      "film": "egYLfHGUae4"
+    },
+    {
+      "id": "new-mexico",
+      "name": "New Mexico",
+      "kicker": "Tucumcari, the Blue Hole, and on to Pecos",
+      "film": "egYLfHGUae4"
+    },
+    {
+      "id": "arizona",
+      "name": "Arizona",
+      "kicker": "Petrified Forest to Flagstaff",
+      "film": "DHxZueP0Z04"
+    },
+    {
+      "id": "separate",
+      "name": "A separate memory",
+      "kicker": "Santa Monica",
+      "note": "The Santa Monica Pier photograph at the end of the film is from a separate visit — a little joke, a good memory, and a reminder that there is still road ahead. One day they hope to drive the miles between.",
+      "film": "DHxZueP0Z04"
+    }
+  ],
+  "stops": [
+    {
+      "id": "fanning",
+      "state": "missouri",
+      "name": "World’s Largest Rocking Chair",
+      "place": "Fanning, Missouri",
+      "lat": 38.03744,
+      "lon": -91.46923,
+      "note": "42 feet tall and steel-framed, built in 2008 as a Guinness Record breaker, at the Route 66 Fanning Outpost.",
+      "videos": [
+        "bwhDxYsaBT4",
+        "E9TIfpZ69NU"
+      ],
+      "thumb": "bwhDxYsaBT4",
+      "on_map": true
+    },
+    {
+      "id": "devils-elbow",
+      "state": "missouri",
+      "name": "Devil’s Elbow",
+      "place": "Missouri",
+      "lat": 37.8461,
+      "lon": -92.06075,
+      "note": "A sharp bend in the Big Piney River that gave this community its name, and the historic Devil’s Elbow Bridge.",
+      "videos": [
+        "bwhDxYsaBT4"
+      ],
+      "thumb": "bwhDxYsaBT4",
+      "on_map": true
+    },
+    {
+      "id": "uranus",
+      "state": "missouri",
+      "name": "Uranus Fudge Factory & General Store",
+      "place": "Uranus, Missouri",
+      "lat": 37.82873,
+      "lon": -92.10544,
+      "note": "A humorous roadside stop with gift shops, photo ops, and novelty fun.",
+      "videos": [
+        "bwhDxYsaBT4"
+      ],
+      "thumb": "bwhDxYsaBT4",
+      "on_map": true
+    },
+    {
+      "id": "marshfield",
+      "state": "missouri",
+      "name": "Marshfield",
+      "place": "Missouri",
+      "lat": 37.33712,
+      "lon": -92.90659,
+      "note": "A scale replica of the Hubble Space Telescope, honoring local legend Edwin Hubble.",
+      "videos": [
+        "bwhDxYsaBT4"
+      ],
+      "thumb": "bwhDxYsaBT4",
+      "on_map": true
+    },
+    {
+      "id": "galena",
+      "state": "kansas",
+      "name": "Galena",
+      "place": "Kansas",
+      "lat": 37.07415,
+      "lon": -94.63904,
+      "note": "Named in the Kansas chapter of the east-to-west film, together with Rainbow Bridge.",
+      "videos": [
+        "DHxZueP0Z04"
+      ],
+      "thumb": "DHxZueP0Z04",
+      "on_map": true
+    },
+    {
+      "id": "rainbow-bridge",
+      "state": "kansas",
+      "name": "Rainbow Bridge",
+      "place": "Kansas",
+      "lat": 37.07345,
+      "lon": -94.74083,
+      "note": "Named in the Kansas chapter of the east-to-west film, together with Galena.",
+      "videos": [
+        "DHxZueP0Z04"
+      ],
+      "thumb": "DHxZueP0Z04",
+      "on_map": true
+    },
+    {
+      "id": "baxter-springs",
+      "state": "kansas",
+      "name": "Phillips 66 Visitors’ Center",
+      "place": "Baxter Springs, Kansas",
+      "lat": 37.02583,
+      "lon": -94.73472,
+      "note": "Just over the border from Missouri. A restored 1930s Phillips 66 gas station, now a Route 66 Visitors’ Center, run by volunteers.",
+      "videos": [
+        "bwhDxYsaBT4"
+      ],
+      "thumb": "bwhDxYsaBT4",
+      "on_map": true
+    },
+    {
+      "id": "commerce",
+      "state": "oklahoma",
+      "name": "Vintage Iron Motorcycle Museum",
+      "place": "Commerce, Oklahoma",
+      "lat": 36.93329,
+      "lon": -94.87704,
+      "note": "",
+      "videos": [
+        "MEWEWz0Ny9M"
+      ],
+      "thumb": "MEWEWz0Ny9M",
+      "on_map": true
+    },
+    {
+      "id": "miami",
+      "state": "oklahoma",
+      "name": "Coleman Theatre Beautiful",
+      "place": "Miami, Oklahoma",
+      "lat": 36.87652,
+      "lon": -94.87794,
+      "note": "A preserved Vaudeville-era palace.",
+      "videos": [
+        "MEWEWz0Ny9M"
+      ],
+      "thumb": "MEWEWz0Ny9M",
+      "on_map": true
+    },
+    {
+      "id": "afton",
+      "state": "oklahoma",
+      "name": "Afton Station",
+      "place": "Afton, Oklahoma",
+      "lat": 36.69414,
+      "lon": -94.96199,
+      "note": "A lovingly restored 1930s D-X gas station.",
+      "videos": [
+        "MEWEWz0Ny9M"
+      ],
+      "thumb": "MEWEWz0Ny9M",
+      "on_map": true
+    },
+    {
+      "id": "vinita",
+      "state": "oklahoma",
+      "name": "Route 66 Inn",
+      "place": "Vinita, Oklahoma",
+      "lat": 36.62963,
+      "lon": -95.16045,
+      "note": "",
+      "videos": [
+        "MEWEWz0Ny9M"
+      ],
+      "thumb": "MEWEWz0Ny9M",
+      "on_map": true
+    },
+    {
+      "id": "claremore",
+      "state": "oklahoma",
+      "name": "Will Rogers Memorial Museum",
+      "place": "Claremore, Oklahoma",
+      "lat": 36.3126,
+      "lon": -95.61607,
+      "note": "",
+      "videos": [
+        "MEWEWz0Ny9M"
+      ],
+      "thumb": "MEWEWz0Ny9M",
+      "on_map": true
+    },
+    {
+      "id": "catoosa",
+      "state": "oklahoma",
+      "name": "The Blue Whale",
+      "place": "Catoosa, Oklahoma",
+      "lat": 36.19385,
+      "lon": -95.73293,
+      "note": "An iconic Route 66 stop.",
+      "videos": [
+        "MEWEWz0Ny9M",
+        "E9TIfpZ69NU"
+      ],
+      "thumb": "MEWEWz0Ny9M",
+      "on_map": true
+    },
+    {
+      "id": "tulsa",
+      "state": "oklahoma",
+      "name": "Tulsa",
+      "place": "Oklahoma",
+      "lat": 36.14276,
+      "lon": -96.00486,
+      "note": "The starting point of the Oklahoma Route 66 film: the Cyrus Avery Route 66 Memorial Bridge, the Blue Dome District, and Tulsa Route 66 Main Street.",
+      "videos": [
+        "MEWEWz0Ny9M",
+        "DHxZueP0Z04"
+      ],
+      "thumb": "MEWEWz0Ny9M",
+      "on_map": true
+    },
+    {
+      "id": "clinton",
+      "state": "oklahoma",
+      "name": "Oklahoma Route 66 Museum",
+      "place": "Clinton, Oklahoma",
+      "lat": 35.50649,
+      "lon": -98.98691,
+      "note": "",
+      "videos": [
+        "MEWEWz0Ny9M"
+      ],
+      "thumb": "MEWEWz0Ny9M",
+      "on_map": true
+    },
+    {
+      "id": "elk-city",
+      "state": "oklahoma",
+      "name": "National Route 66 Museum Complex",
+      "place": "Elk City, Oklahoma",
+      "lat": 35.41401,
+      "lon": -99.41386,
+      "note": "A complex with multiple mini-museums.",
+      "videos": [
+        "MEWEWz0Ny9M"
+      ],
+      "thumb": "MEWEWz0Ny9M",
+      "on_map": true
+    },
+    {
+      "id": "sayre",
+      "state": "oklahoma",
+      "name": "Beckham County Courthouse & Sandhills Curiosity Shop",
+      "place": "Sayre, Oklahoma",
+      "lat": 35.29139,
+      "lon": -99.63667,
+      "note": "",
+      "videos": [
+        "MEWEWz0Ny9M"
+      ],
+      "thumb": "MEWEWz0Ny9M",
+      "on_map": true
+    },
+    {
+      "id": "erick",
+      "state": "oklahoma",
+      "name": "Erick",
+      "place": "Oklahoma",
+      "lat": 35.21271,
+      "lon": -99.86906,
+      "note": "Birthplace of Roger Miller, and home to quirky Route 66 attractions.",
+      "videos": [
+        "MEWEWz0Ny9M"
+      ],
+      "thumb": "MEWEWz0Ny9M",
+      "on_map": true
+    },
+    {
+      "id": "texola",
+      "state": "oklahoma",
+      "name": "Texola",
+      "place": "Oklahoma",
+      "lat": 35.21922,
+      "lon": -99.99122,
+      "note": "A ghost town with hints of a bygone era.",
+      "videos": [
+        "MEWEWz0Ny9M"
+      ],
+      "thumb": "MEWEWz0Ny9M",
+      "on_map": true
+    },
+    {
+      "id": "cadillac-ranch",
+      "state": "texas",
+      "name": "Cadillac Ranch",
+      "place": "Amarillo, Texas",
+      "lat": 35.18723,
+      "lon": -101.98707,
+      "note": "Also filmed at sunrise.",
+      "videos": [
+        "egYLfHGUae4",
+        "6dM9uO6qR5I",
+        "DHxZueP0Z04",
+        "E9TIfpZ69NU"
+      ],
+      "thumb": "6dM9uO6qR5I",
+      "on_map": true
+    },
+    {
+      "id": "midpoint",
+      "state": "texas",
+      "name": "Route 66 Midpoint",
+      "place": "Texas",
+      "lat": 35.27069,
+      "lon": -102.67286,
+      "note": "",
+      "videos": [
+        "egYLfHGUae4",
+        "DHxZueP0Z04"
+      ],
+      "thumb": "egYLfHGUae4",
+      "on_map": true
+    },
+    {
+      "id": "tucumcari",
+      "state": "new-mexico",
+      "name": "Tucumcari",
+      "place": "New Mexico",
+      "lat": 35.17194,
+      "lon": -103.72504,
+      "note": "",
+      "videos": [
+        "egYLfHGUae4",
+        "DHxZueP0Z04"
+      ],
+      "thumb": "egYLfHGUae4",
+      "on_map": true
+    },
+    {
+      "id": "blue-hole",
+      "state": "new-mexico",
+      "name": "The Blue Hole",
+      "place": "New Mexico",
+      "lat": 34.9405,
+      "lon": -104.67325,
+      "note": "",
+      "videos": [
+        "egYLfHGUae4",
+        "DHxZueP0Z04"
+      ],
+      "thumb": "egYLfHGUae4",
+      "on_map": true
+    },
+    {
+      "id": "lucero-canyon",
+      "state": "new-mexico",
+      "name": "Lucero Canyon",
+      "place": "New Mexico",
+      "note": "Named in the Texas to New Mexico film, between the Blue Hole and Pecos National Historical Park. The exact location is not given, so it is not marked on the map.",
+      "videos": [
+        "egYLfHGUae4"
+      ],
+      "thumb": "egYLfHGUae4",
+      "on_map": false
+    },
+    {
+      "id": "pecos",
+      "state": "new-mexico",
+      "name": "Pecos National Historical Park",
+      "place": "New Mexico",
+      "lat": 35.53827,
+      "lon": -105.66952,
+      "note": "The last stop in the Texas to New Mexico film. The dotted line on the map is a spur off the main Route 66 corridor.",
+      "videos": [
+        "egYLfHGUae4"
+      ],
+      "thumb": "egYLfHGUae4",
+      "on_map": true,
+      "spur": true
+    },
+    {
+      "id": "petrified-forest",
+      "state": "arizona",
+      "name": "Petrified Forest",
+      "place": "Arizona",
+      "lat": 35.06581,
+      "lon": -109.78088,
+      "note": "",
+      "videos": [
+        "DHxZueP0Z04"
+      ],
+      "thumb": "DHxZueP0Z04",
+      "on_map": true
+    },
+    {
+      "id": "winslow",
+      "state": "arizona",
+      "name": "Standin’ on the Corner",
+      "place": "Winslow, Arizona",
+      "lat": 35.02371,
+      "lon": -110.69826,
+      "note": "A stop at the famous corner during their Route 66 travels.",
+      "videos": [
+        "PGW3p9qo6aA"
+      ],
+      "thumb": "PGW3p9qo6aA",
+      "on_map": true
+    },
+    {
+      "id": "flagstaff",
+      "state": "arizona",
+      "name": "Lowell Observatory",
+      "place": "Flagstaff, Arizona",
+      "lat": 35.20169,
+      "lon": -111.66528,
+      "note": "Where Pluto was discovered in 1930.",
+      "videos": [
+        "DHxZueP0Z04"
+      ],
+      "thumb": "DHxZueP0Z04",
+      "on_map": true
+    },
+    {
+      "id": "santa-monica",
+      "state": "separate",
+      "name": "Santa Monica Pier",
+      "place": "A separate visit",
+      "note": "The photograph in the film is from a separate visit, not from a continuous drive west on Route 66. It is left off the map for that reason.",
+      "videos": [
+        "DHxZueP0Z04",
+        "OkjZP-cKp6o"
+      ],
+      "thumb": "DHxZueP0Z04",
+      "on_map": false,
+      "separate": true
+    }
+  ],
+  "route": [
+    [
+      38.03744,
+      -91.46923
+    ],
+    [
+      37.8461,
+      -92.06075
+    ],
+    [
+      37.82873,
+      -92.10544
+    ],
+    [
+      37.33712,
+      -92.90659
+    ],
+    [
+      37.20817,
+      -93.29227
+    ],
+    [
+      37.08418,
+      -94.51334
+    ],
+    [
+      37.07415,
+      -94.63904
+    ],
+    [
+      37.07345,
+      -94.74083
+    ],
+    [
+      37.02583,
+      -94.73472
+    ],
+    [
+      36.93329,
+      -94.87704
+    ],
+    [
+      36.87652,
+      -94.87794
+    ],
+    [
+      36.69414,
+      -94.96199
+    ],
+    [
+      36.62963,
+      -95.16045
+    ],
+    [
+      36.3126,
+      -95.61607
+    ],
+    [
+      36.19385,
+      -95.73293
+    ],
+    [
+      36.14276,
+      -96.00486
+    ],
+    [
+      35.47299,
+      -97.51705
+    ],
+    [
+      35.50649,
+      -98.98691
+    ],
+    [
+      35.41401,
+      -99.41386
+    ],
+    [
+      35.29139,
+      -99.63667
+    ],
+    [
+      35.21271,
+      -99.86906
+    ],
+    [
+      35.21922,
+      -99.99122
+    ],
+    [
+      35.18723,
+      -101.98707
+    ],
+    [
+      35.27069,
+      -102.67286
+    ],
+    [
+      35.17194,
+      -103.72504
+    ],
+    [
+      34.9405,
+      -104.67325
+    ],
+    [
+      35.0841,
+      -106.65099
+    ],
+    [
+      35.06581,
+      -109.78088
+    ],
+    [
+      34.90371,
+      -110.15933
+    ],
+    [
+      35.02371,
+      -110.69826
+    ],
+    [
+      35.20169,
+      -111.66528
+    ]
+  ],
+  "spur": [
+    [
+      34.9405,
+      -104.67325
+    ],
+    [
+      35.53827,
+      -105.66952
+    ]
+  ]
+}

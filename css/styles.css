@@ -839,3 +839,264 @@ main { display: block; }
   .hero h1 { font-size: clamp(2.7rem, 14vw, 3.6rem); }
   .play-badge { width: 2.8rem; height: 2.8rem; margin: -1.4rem 0 0 -1.4rem; }
 }
+
+/* ---------- Trips ---------- */
+.trip-map-section { padding-top: 0; }
+.trip-map-frame {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+  box-shadow: var(--shadow);
+}
+.trip-map {
+  min-height: min(70vh, 36rem);
+  height: min(70vh, 36rem);
+}
+.trip-map-canvas {
+  width: 100%;
+  height: min(70vh, 36rem);
+  background: #cfd6c4;
+}
+.trip-map-fallback,
+.trip-map-placeholder {
+  margin: 0;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: var(--text-dim);
+}
+.trip-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.4rem;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--text-mute);
+  font-size: 0.82rem;
+}
+.trip-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.trip-legend-line,
+.trip-legend-spur,
+.trip-legend-pin {
+  width: 1.4rem;
+  height: 0;
+  border-top: 3px solid var(--gold);
+  border-radius: 2px;
+}
+.trip-legend-spur { border-top-style: dashed; }
+.trip-legend-pin {
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.trip-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none !important;
+  border: 0 !important;
+}
+.trip-marker-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #1a140c;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  border: 2px solid #1a140c;
+}
+.trip-marker.is-spur .trip-marker-num {
+  background: var(--bg-elev);
+  color: var(--gold-soft);
+  border-color: var(--gold);
+}
+.trip-popup-name {
+  margin: 0 0 0.15rem;
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a140c;
+}
+.trip-popup-place {
+  margin: 0 0 0.7rem;
+  font-size: 0.8rem;
+  color: #5c5448;
+}
+.leaflet-container {
+  font-family: var(--sans);
+  background: #cfd6c4;
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: #f4efe6;
+  color: #1a140c;
+  border-radius: 0.6rem;
+  box-shadow: var(--shadow);
+}
+.leaflet-popup-content { margin: 0.85rem 1rem; }
+.leaflet-container a.leaflet-popup-close-button { color: #5c5448; }
+.leaflet-control-attribution {
+  background: rgba(14, 12, 10, 0.78) !important;
+  color: #c6bdb0 !important;
+  font-size: 0.68rem;
+}
+.leaflet-control-attribution a { color: var(--gold-soft); }
+.trip-popup-watch { display: inline-flex; padding: 0.4rem 0.8rem; font-size: 0.78rem; }
+
+.trip-state { margin-top: 2.4rem; }
+.trip-state:first-child { margin-top: 0; }
+.trip-state-head { margin-bottom: 1rem; }
+.trip-state-head .kicker { margin-bottom: 0.3rem; }
+.trip-state-head h2 { margin: 0 0 0.35rem; font-size: clamp(1.5rem, 2.4vw, 2rem); }
+.trip-state-head p { margin: 0; color: var(--text-dim); max-width: 42rem; }
+
+.trip-stop {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: 1.1rem 1.25rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 5.5rem;
+}
+.trip-stop:first-of-type { border-top: 0; }
+.trip-stop.is-active {
+  background: rgba(212, 179, 122, 0.06);
+  margin-inline: -0.75rem;
+  padding-inline: 0.75rem;
+  border-radius: 0.6rem;
+}
+.trip-stop-thumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  background: var(--bg-soft);
+  border-radius: 0.65rem;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 16 / 10;
+}
+.trip-stop-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s var(--ease);
+}
+.trip-stop-thumb:hover img,
+.trip-stop-thumb:focus-visible img { transform: scale(1.05); }
+.trip-stop-thumb .play-badge {
+  position: absolute;
+  left: 0.45rem;
+  bottom: 0.45rem;
+  width: 1.8rem;
+  height: 1.8rem;
+}
+.trip-stop-copy h3 {
+  margin: 0 0 0.15rem;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.trip-stop-place {
+  margin: 0 0 0.4rem;
+  color: var(--gold);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.trip-stop-copy p { margin: 0 0 0.7rem; color: var(--text-dim); }
+.trip-stop-copy p:last-child { margin-bottom: 0; }
+.trip-stop-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.45rem;
+  height: 1.45rem;
+  margin-right: 0.4rem;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #1a140c;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.trip-stop-num.is-off {
+  background: transparent;
+  color: var(--gold-soft);
+  border: 1px solid var(--gold);
+}
+.trip-watch-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.trip-watch-list button,
+.trip-watch-list .trip-watch {
+  appearance: none;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.82rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+  text-align: left;
+}
+.trip-watch-list button:hover,
+.trip-watch-list button:focus-visible,
+.trip-watch-list .trip-watch:hover {
+  border-color: var(--gold);
+  color: var(--gold-soft);
+}
+.trip-stop.is-separate { border-top-style: dashed; }
+.trip-stop-locate {
+  display: inline-block;
+  margin-top: 0.35rem;
+  color: var(--gold);
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.trip-stop-locate:hover { color: var(--gold-soft); }
+
+.trips-list { display: grid; gap: 1.25rem; }
+@media (min-width: 720px) {
+  .trips-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 700px) {
+  .trip-map,
+  .trip-map-canvas { height: 22rem; min-height: 22rem; }
+  .trip-stop { grid-template-columns: 6.5rem minmax(0, 1fr); gap: 0.85rem; }
+  .trip-stop-copy h3 { font-size: 1.05rem; }
+}
+@media (max-width: 480px) {
+  .trip-stop { grid-template-columns: 1fr; }
+  .trip-stop-thumb { max-width: 18rem; }
+}

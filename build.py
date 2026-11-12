@@ -183,6 +183,7 @@ def nav(prefix: str, current: str) -> str:
 {dest_links}
           </ul>
         </li>
+        <li><a href="{prefix}trips/index.html"{cur("trips")}>Trips</a></li>
         <li><a href="{prefix}videos.html"{cur("videos")}>Films</a></li>
         <li><a href="{prefix}shorts.html"{cur("shorts")}>Shorts</a></li>
         <li><a href="{prefix}about.html"{cur("about")}>About</a></li>
@@ -193,7 +194,7 @@ def nav(prefix: str, current: str) -> str:
 </header>"""
 
 
-def footer(prefix: str) -> str:
+def footer(prefix: str, extra_js: str = "") -> str:
     return f"""
 <footer class="site-footer">
   <div class="footer-inner">
@@ -206,6 +207,7 @@ def footer(prefix: str) -> str:
     </div>
     <nav class="footer-nav" aria-label="Footer">
       <a href="{prefix}destinations/index.html">Destinations</a>
+      <a href="{prefix}trips/index.html">Trips</a>
       <a href="{prefix}videos.html">Films</a>
       <a href="{prefix}shorts.html">Shorts</a>
       <a href="{prefix}about.html">About</a>
@@ -219,7 +221,8 @@ def footer(prefix: str) -> str:
   <p class="player-caption" id="player-caption"></p>
   <p class="youtube-fallback"></p>
 </dialog>
-<script src="{prefix}js/main.js" defer></script>"""
+<script src="{prefix}js/main.js" defer></script>
+{extra_js}"""
 
 
 def head(title: str, description: str, path: str, og_id: str, prefix: str, extra: str = "", og_logo: bool = False) -> str:
@@ -497,6 +500,13 @@ def page_destination(d: dict) -> str:
       </div>
     </div>
   </section>"""
+    trip_cta = ""
+    if d["slug"] == "route-66":
+        trip_cta = (
+            '<div class="hero-actions">'
+            '<a class="btn btn-gold" href="../trips/route-66.html">Follow the journey on the map</a>'
+            "</div>"
+        )
     title = f"{d['name']} — Totin My Pack"
     desc = d["blurb"]
     style = f'style="object-position:{d["hero_pos"]}"'
@@ -514,6 +524,7 @@ def page_destination(d: dict) -> str:
       <p class="kicker">Destination</p>
       <h1>{esc(d['name'])}</h1>
       <p class="lede">{esc(d['blurb'])}</p>
+      {trip_cta}
     </div>
   </section>
   <section class="section" aria-labelledby="films-heading">
@@ -686,6 +697,257 @@ def page_about() -> str:
 </html>"""
 
 
+def _trip_data() -> dict:
+    return json.loads((ROOT / "data" / "trips" / "route-66.json").read_text(encoding="utf-8"))
+
+
+def page_trips_index() -> str:
+    prefix = "../"
+    trip = _trip_data()
+    n_stops = sum(1 for s in trip["stops"] if s.get("on_map"))
+    desc = (
+        "Travel journeys from Totin My Pack, beginning with a Route 66 trip "
+        "arranged east to west from the films."
+    )
+    card = (
+        f'<a class="dest-card" href="route-66.html">'
+        f'<img src="{thumb(trip["hero"])}" alt="{esc(trip.get("hero_alt") or trip["name"])}" '
+        f'width="1280" height="720" loading="lazy" decoding="async" data-fallback="{trip["hero"]}">'
+        f'<span class="dest-copy"><h3>{esc(trip["name"])}</h3>'
+        f"<p>East to west, {n_stops} filmed stops</p></span></a>"
+    )
+    return f"""{head("Trips — Totin My Pack", desc, "/trips/", "logo", prefix, og_logo=True)}
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+{nav(prefix, "trips")}
+<main id="content">
+  <section class="page-hero" aria-label="Trips">
+    <div class="hero-media">
+      <img src="{thumb(trip['hero'])}" alt="{esc(trip.get('hero_alt') or trip['name'])}" width="1280" height="720" fetchpriority="high" decoding="async" style="object-position:{esc(trip.get('hero_pos') or '50% 50%')}">
+    </div>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <p class="kicker">Journeys</p>
+      <h1>Trips</h1>
+      <p class="lede">Films arranged as a journey, one road at a time, from the places named in the videos.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="trips-list dest-grid">
+        {card}
+      </div>
+    </div>
+  </section>
+</main>
+{footer(prefix)}
+</body>
+</html>"""
+
+
+def _stop_videos(stop: dict) -> list[dict]:
+    out = []
+    for vid in stop.get("videos") or []:
+        v = BY_ID.get(vid)
+        if v:
+            out.append({"id": v["id"], "title": v["title"], "kind": v["kind"]})
+    return out
+
+
+def _watch_label(v: dict, videos: list, overview_id: str) -> str:
+    if len(videos) == 1:
+        return "Watch the Short" if v["kind"] == "short" else "Watch the film"
+    short_title = v["title"].split(" | ")[0]
+    if v["kind"] == "short":
+        return short_title
+    if v["id"] == overview_id:
+        return "East-to-west film"
+    return short_title
+
+
+def page_trip_route66() -> str:
+    prefix = "../"
+    trip = _trip_data()
+    number = 0
+    for stop in trip["stops"]:
+        if stop.get("on_map"):
+            number += 1
+            stop["number"] = number
+        else:
+            stop["number"] = None
+
+    map_payload = {
+        "route": trip.get("route") or [],
+        "spur": trip.get("spur") or [],
+        "stops": [
+            {
+                "id": s["id"],
+                "name": s["name"],
+                "place": s.get("place") or "",
+                "lat": s.get("lat"),
+                "lon": s.get("lon"),
+                "on_map": bool(s.get("on_map")),
+                "spur": bool(s.get("spur")),
+                "number": s.get("number"),
+                "videos": _stop_videos(s),
+            }
+            for s in trip["stops"]
+        ],
+    }
+    map_json = json.dumps(map_payload, ensure_ascii=False)
+    intro = "".join(f"<p>{esc(p)}</p>" for p in trip["intro"])
+    overview = BY_ID[trip["overview_film"]]
+
+    seen: list[str] = []
+    for vid in [trip["overview_film"]]:
+        if vid not in seen:
+            seen.append(vid)
+    for s in trip["stops"]:
+        for vid in s.get("videos") or []:
+            if vid not in seen:
+                seen.append(vid)
+    for v in VIDEOS:
+        if "route66" in v["groups"] and v["id"] not in seen:
+            seen.append(v["id"])
+    film_cards = "".join(film_card(BY_ID[i], lazy=True) for i in seen if i in BY_ID)
+
+    by_state: dict[str, list] = {}
+    for s in trip["stops"]:
+        by_state.setdefault(s["state"], []).append(s)
+
+    state_blocks = []
+    for state in trip["states"]:
+        rows = []
+        for s in by_state.get(state["id"], []):
+            videos = _stop_videos(s)
+            primary = videos[0] if videos else None
+            thumb_id = s.get("thumb") or (primary["id"] if primary else trip["hero"])
+            num = s.get("number")
+            if num:
+                num_html = f'<span class="trip-stop-num" aria-hidden="true">{num}</span>'
+            else:
+                num_html = '<span class="trip-stop-num is-off" aria-hidden="true">–</span>'
+            note = f'<p>{esc(s["note"])}</p>' if s.get("note") else ""
+            locate = ""
+            if s.get("on_map"):
+                locate = (
+                    f'<button type="button" class="trip-stop-locate" data-stop-focus="{esc(s["id"])}">'
+                    "Show on the map</button>"
+                )
+            watch_btns = []
+            for v in videos:
+                label = _watch_label(v, videos, trip["overview_film"])
+                watch_btns.append(
+                    "<li>"
+                    f'<button type="button" class="trip-watch" data-video-id="{esc(v["id"])}" '
+                    f'data-title="{esc(v["title"])}" data-kind="{esc(v["kind"])}">{esc(label)}</button>'
+                    "</li>"
+                )
+            watch = f'<ul class="trip-watch-list">{"".join(watch_btns)}</ul>' if watch_btns else ""
+            if primary:
+                thumb_btn = (
+                    f'<button class="trip-stop-thumb" type="button" data-video-id="{esc(primary["id"])}" '
+                    f'data-title="{esc(primary["title"])}" data-kind="{esc(primary["kind"])}" '
+                    f'aria-label="Play {esc(primary["title"])}">'
+                    f'<img src="{thumb(thumb_id)}" alt="" width="480" height="300" loading="lazy" '
+                    f'decoding="async" data-fallback="{esc(thumb_id)}">{play_icon()}</button>'
+                )
+            else:
+                thumb_btn = (
+                    f'<div class="trip-stop-thumb"><img src="{thumb(thumb_id)}" alt="" width="480" '
+                    f'height="300" loading="lazy" decoding="async" data-fallback="{esc(thumb_id)}"></div>'
+                )
+            sep = " is-separate" if (s.get("separate") or not s.get("on_map")) else ""
+            rows.append(
+                f'<article class="trip-stop{sep}" id="stop-{esc(s["id"])}">'
+                f"{thumb_btn}<div class=\"trip-stop-copy\">"
+                f"<h3>{num_html}{esc(s['name'])}</h3>"
+                f'<p class="trip-stop-place">{esc(s.get("place") or "")}</p>'
+                f"{note}{watch}{locate}</div></article>"
+            )
+        state_note = f'<p>{esc(state["note"])}</p>' if state.get("note") else ""
+        state_blocks.append(
+            f'<div class="trip-state" id="leg-{esc(state["id"])}">'
+            f'<div class="trip-state-head"><p class="kicker">{esc(state.get("kicker") or "")}</p>'
+            f"<h2>{esc(state['name'])}</h2>{state_note}</div>"
+            f"{''.join(rows)}</div>"
+        )
+
+    extra_js = f'<script src="{prefix}js/trip-map.js" defer></script>'
+    style = f'style="object-position:{esc(trip.get("hero_pos") or "50% 50%")}"'
+    return f"""{head(trip["title"] + " — Totin My Pack", trip["description"], "/trips/route-66.html", trip["hero"], prefix)}
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+{nav(prefix, "trips")}
+<main id="content">
+  <section class="page-hero" aria-label="{esc(trip['name'])}">
+    <div class="hero-media">
+      <img src="{thumb(trip['hero'])}" alt="{esc(trip.get('hero_alt') or trip['name'])}" width="1280" height="720" fetchpriority="high" decoding="async" {style}>
+    </div>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <p class="kicker">A journey</p>
+      <h1>Route 66</h1>
+      <p class="lede">One stop at a time, from Missouri toward Arizona.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#trip-map">View the map</a>
+        <button class="btn btn-ghost" type="button" data-video-id="{esc(overview['id'])}" data-title="{esc(overview['title'])}" data-kind="{esc(overview['kind'])}">Watch the film</button>
+      </div>
+    </div>
+  </section>
+  <section class="section trip-map-section" aria-labelledby="map-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-intro">
+          <p class="kicker">The road</p>
+          <h2 id="map-heading">The stops they filmed</h2>
+          {intro}
+        </div>
+        <a class="link-arrow" href="{prefix}destinations/route-66.html">All Route 66 films</a>
+      </div>
+      <div class="trip-map-frame">
+        <div id="trip-map" class="trip-map" role="region" aria-label="Map of filmed Route 66 stops">
+          <p class="trip-map-placeholder">The map loads when you scroll to it. The stops are listed below.</p>
+        </div>
+      </div>
+      <ul class="trip-legend">
+        <li><span class="trip-legend-pin" aria-hidden="true"></span> Filmed stop</li>
+        <li><span class="trip-legend-line" aria-hidden="true"></span> Route 66, roughly, between those stops</li>
+        <li><span class="trip-legend-spur" aria-hidden="true"></span> Spur to Pecos National Historical Park</li>
+      </ul>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="legs-heading" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-intro">
+          <p class="kicker">East to west</p>
+          <h2 id="legs-heading">Stop by stop</h2>
+        </div>
+      </div>
+      {"".join(state_blocks)}
+    </div>
+  </section>
+  <section class="section" aria-labelledby="trip-films-heading" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-intro">
+          <p class="kicker">The films</p>
+          <h2 id="trip-films-heading">Watch along the way</h2>
+        </div>
+      </div>
+      <div class="film-grid">
+        {film_cards}
+      </div>
+    </div>
+  </section>
+</main>
+{footer(prefix, extra_js)}
+<script type="application/json" id="trip-map-data">{map_json}</script>
+</body>
+</html>"""
+
+
 def robots_and_sitemap() -> None:
     pages = [
         "/",
@@ -693,6 +955,8 @@ def robots_and_sitemap() -> None:
         "/videos.html",
         "/shorts.html",
         "/about.html",
+        "/trips/",
+        "/trips/route-66.html",
     ] + [f"/destinations/{d['slug']}.html" for d in DESTINATIONS]
     (ROOT / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n",
@@ -718,6 +982,8 @@ def main() -> None:
     write(ROOT / "videos.html", page_videos())
     write(ROOT / "shorts.html", page_shorts())
     write(ROOT / "about.html", page_about())
+    write(ROOT / "trips" / "index.html", page_trips_index())
+    write(ROOT / "trips" / "route-66.html", page_trip_route66())
     robots_and_sitemap()
     ids = [v["id"] for v in VIDEOS]
     assert len(ids) == len(set(ids)), "duplicate video ids"
