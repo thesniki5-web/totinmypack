@@ -1,0 +1,75 @@
+{
+  "hero_id": "ZKI-PbPRraw",
+  "start_ids": [
+    "mC0ZWATfzvc",
+    "ONbdk7yflpM",
+    "3cFk5Tf7nOg",
+    "p9PXuj51NJs",
+    "ZKI-PbPRraw"
+  ],
+  "latest_film_ids": [
+    "QWMI7iZEz1I",
+    "DHxZueP0Z04",
+    "IsS0M0oikks",
+    "AWAJOYe12cU",
+    "VktGvxzG4sU",
+    "EgpjjRVXfWs",
+    "_JLdOGsAiLU",
+    "V7cVxfXdDqQ"
+  ],
+  "short_teaser_ids": [
+    "-ibB4Z-a5tQ",
+    "EBnbggUsdMw",
+    "SuYFwuJCK70",
+    "oGOguq2e0AI",
+    "K2cJeiEFkBs",
+    "2f-wKhlW_PE"
+  ],
+  "dest_cards": [
+    {
+      "slug": "greece",
+      "name": "Greece",
+      "img": "ONbdk7yflpM"
+    },
+    {
+      "slug": "texas",
+      "name": "Texas",
+      "img": "p9PXuj51NJs"
+    },
+    {
+      "slug": "dallas",
+      "name": "Dallas & close to home",
+      "img": "VktGvxzG4sU"
+    },
+    {
+      "slug": "route-66",
+      "name": "Route 66",
+      "img": "egYLfHGUae4"
+    },
+    {
+      "slug": "plains",
+      "name": "Oklahoma, Arkansas & the Plains",
+      "img": "3cFk5Tf7nOg"
+    },
+    {
+      "slug": "southeast",
+      "name": "Southeast & Mid-Atlantic",
+      "img": "jNoREzI7-B0"
+    },
+    {
+      "slug": "california",
+      "name": "California",
+      "img": "lbhHR6MpSlA"
+    },
+    {
+      "slug": "southwest",
+      "name": "The Southwest",
+      "img": "ixpaxmrlv1w"
+    },
+    {
+      "slug": "berlin",
+      "name": "Berlin",
+      "img": "VeKh55kDqeg"
+    }
+  ]
+}

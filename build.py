@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import html
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -16,98 +17,15 @@ CHANNEL_DESC = (
 )
 
 # Dates are America/New_York. Eight early films use YouTube's published date only.
-VIDEOS = [
-    # id, title, kind, date, length, groups
-    ("mC0ZWATfzvc", "Exploring an Abandoned Church in Texas | St. John’s in Bomarton", "film", "November 7, 2022", "2:56", ["texas", "start"]),
-    ("ONbdk7yflpM", "Mount Itamos, Greece | Hiking to an Ancient Tree", "film", "October 17, 2022", "5:46", ["greece", "start"]),
-    ("3cFk5Tf7nOg", "Talimena Scenic Byway in Fall | Oklahoma & Arkansas Road Trip", "film", "November 20, 2023", "3:51", ["plains", "start"]),
-    ("p9PXuj51NJs", "Devils River, Texas | Turquoise Water & Drone Views", "film", "December 4, 2023", "4:21", ["texas", "start"]),
-    ("ZKI-PbPRraw", "Caddo Lake in Fall | Cypress Swamps of East Texas (2023)", "film", "November 26, 2023", "3:09", ["texas", "start"]),
-    ("vQvsLO0F0tE", "Greece with Tres & Teddy | Skopelos, Meteora & Mount Olympus (2008)", "film", "June 2, 2025", "3:15", ["greece"]),
-    ("is4VhiJbrPU", "ΧΑΝΘ Κατασκήνωση Αγίου Νικολάου | My Summer Camp Tribute in Halkidiki", "film", "October 28, 2022", "11:02", ["greece"]),
-    ("mk44NdLZgQs", "Swimming in Gerakini, Greece | Crystal Clear Water & Marine Life", "film", "October 1, 2022", "5:16", ["greece"]),
-    ("RWvKeHEqRVM", "The Road to an Ancient Greek Tree | Mount Itamos", "short", "October 7, 2026", "0:21", ["greece"]),
-    ("674bBByn45U", "A Greek Mountain Overlooking the Aegean", "short", "October 4, 2026", "0:21", ["greece"]),
-    ("fdVL-Z72EKM", "The Ancient Itamos Tree | Halkidiki, Greece", "short", "November 19, 2022", "0:15", ["greece"]),
-    ("Whbt1fpVyUE", "Mount Dragoudeli, Greece | Profítis Ilias Church", "short", "November 4, 2022", "0:15", ["greece"]),
-    ("QWMI7iZEz1I", "Big Bend Twice in One Year | Two 2024 Road Trips", "film", "October 10, 2026", "5:21", ["texas"]),
-    ("_JLdOGsAiLU", "From Dallas to El Paso | Airport, Flight & First Impressions", "film", "January 2, 2026", "3:06", ["texas"]),
-    ("AFfq9r_-VVc", "3 Texas Parks and a Meteor Crater in 1 Day | Road to Big Bend", "film", "May 16, 2024", "2:41", ["texas"]),
-    ("2uoq3FREvm0", "Texas Rivers & the Present Moment | Alan Watts on Life’s Flow", "film", "December 3, 2023", "2:37", ["texas"]),
-    ("vlZ-VTkCJWc", "New Sweden Lutheran Church, Texas | Chasing the Steeple", "film", "December 3, 2023", "1:56", ["texas"]),
-    ("MUVr2dNxiJU", "Daingerfield State Park | Scenic Trails & Lake Views in East Texas", "film", "December 3, 2023", "2:15", ["texas"]),
-    ("nKqIFBJJD5Q", "Purtis Creek State Park, Texas | A Scenic Visit", "film", "October 6, 2022", "2:47", ["texas"]),
-    ("8ISaQKSOX2I", "St. Olaf Rock Church | Cranfills Gap, Texas", "film", "October 6, 2022", "3:08", ["texas"]),
-    ("NVj-nf5WV3s", "Mother Neff State Park, Texas | Tonkawa Cave & Rock Tower", "film", "October 1, 2022", "3:08", ["texas"]),
-    ("u-07NbxVSmg", "Seminole Canyon, Judge Roy Bean & Pecos High Bridge | Texas Road Trip", "film", "October 1, 2022", "2:40", ["texas"]),
-    ("mKbvoBOyDcg", "Mayfield’s Country Store | A West Texas Road Trip Stop", "film", "October 1, 2022", "2:41", ["texas"]),
-    ("iAX9HuobAG4", "Downtown Beaumont, Texas | Quiet Streets & Historic Buildings", "film", "September 30, 2022", "3:32", ["texas"]),
-    ("_pAqzkL05D8", "Enchanted Rock Summit Trail | A Personal Hiking Challenge in Texas", "film", "September 29, 2022", "3:53", ["texas"]),
-    ("EBnbggUsdMw", "Turquoise Water in West Texas | Devils River", "short", "October 1, 2026", "0:21", ["texas"]),
-    ("mJdj_aKcp5U", "This Texas River Looks Unreal | Devils River", "short", "September 28, 2026", "0:21", ["texas"]),
-    ("SuYFwuJCK70", "Found From Above: An Abandoned Texas Church #Shorts", "short", "September 25, 2026", "0:21", ["texas"]),
-    ("UVgpgOu0iMY", "This Abandoned Texas Church Is Still Standing #Shorts", "short", "September 22, 2026", "0:09", ["texas"]),
-    ("kMLey2PDgr4", "The Open Road in West Texas", "short", "November 18, 2022", "0:15", ["texas"]),
-    ("NPsozGVaW_M", "Maker of Peace Sculpture | Seminole Canyon, Texas", "short", "November 10, 2022", "0:15", ["texas"]),
-    ("IsS0M0oikks", "One Tree, Many Lives | Wildlife in Dallas, Texas", "film", "September 26, 2026", "2:49", ["dallas"]),
-    ("AWAJOYe12cU", "I Finally Filmed a Hummingbird Hovering | Canon R7", "film", "September 22, 2026", "0:45", ["dallas"]),
-    ("VktGvxzG4sU", "Hummingbirds on My Dallas Balcony | Small Birds, Big Business", "film", "September 19, 2026", "3:21", ["dallas"]),
-    ("e6Wr9Cpg0y8", "2024 Total Solar Eclipse in Dallas, Texas | April 8 Totality", "film", "April 11, 2024", "6:55", ["dallas"]),
-    ("IAWKwGGkmuo", "Snow at White Rock Lake, Dallas | January 15, 2024", "film", "January 15, 2024", "2:42", ["dallas"]),
-    ("K6H6o_XyXJ0", "Dallas Snowstorm 2021 | The Lakes at The Village", "film", "October 6, 2022", "5:35", ["dallas"]),
-    ("eLENrH_cRhg", "White Rock Lake in Winter | Dallas Freeze (2021)", "film", "October 5, 2022", "4:46", ["dallas"]),
-    ("q7nWd0ujrco", "White Rock Lake Frozen | Rare Snowstorm in Dallas, Texas (2021)", "film", "October 5, 2022", "2:17", ["dallas"]),
-    ("-vBN1DJ2ghI", "The Moment Day Turned to Night | Total Eclipse #Shorts", "short", "October 13, 2026", "0:21", ["dallas"]),
-    ("vXyd_HIr6tE", "Dallas Saw Totality in 2024 #Shorts", "short", "October 10, 2026", "0:21", ["dallas"]),
-    ("T2cuzLzEK0s", "A Fox Squirrel's Busy Day Has a Quiet Ending", "short", "October 3, 2026", "0:24", ["dallas"]),
-    ("K2cJeiEFkBs", "Look Closer: Anoles, Ants & a Damselfly | Texas Wildlife", "short", "September 30, 2026", "0:26", ["dallas"]),
-    ("yBZF6kZQ1_I", "A Cooper's Hawk Watches, Then Takes Flight | Dallas Wildlife", "short", "September 27, 2026", "0:25", ["dallas"]),
-    ("-ibB4Z-a5tQ", "This Hummingbird Takes Feather Care Seriously", "short", "September 25, 2026", "0:26", ["dallas"]),
-    ("sQ1H9CDtSgA", "Why Land? A Hummingbird's Lunch Break", "short", "September 22, 2026", "0:13", ["dallas"]),
-    ("DHxZueP0Z04", "Route 66, One Stop at a Time | Our Roadside Memories", "film", "September 27, 2026", "6:34", ["route66"]),
-    ("MEWEWz0Ny9M", "Oklahoma Route 66 | Roadside Stops & Mother Road Memories", "film", "December 8, 2023", "1:39", ["route66"]),
-    ("bwhDxYsaBT4", "Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus", "film", "December 7, 2023", "3:05", ["route66"]),
-    ("egYLfHGUae4", "Route 66: Texas to New Mexico | Cadillac Ranch to Pecos", "film", "September 25, 2022", "2:41", ["route66"]),
-    ("OkjZP-cKp6o", "We Haven't Driven Every Mile of Route 66—Yet #Shorts", "short", "October 5, 2026", "0:31", ["route66"]),
-    ("E9TIfpZ69NU", "The Roadside Characters of Route 66", "short", "October 2, 2026", "0:32", ["route66"]),
-    ("oGOguq2e0AI", "Route 66, One Stop at a Time | Our Roadside Memories", "short", "September 29, 2026", "0:32", ["route66"]),
-    ("6dM9uO6qR5I", "Cadillac Ranch at Sunrise | Route 66, Texas", "short", "November 11, 2022", "0:16", ["route66"]),
-    ("PGW3p9qo6aA", "Standin’ on the Corner | Winslow, Arizona Route 66", "short", "November 2, 2022", "0:26", ["route66"]),
-    ("EgpjjRVXfWs", "Black Hills & Devils Tower | South Dakota Road Trip, Part 2", "film", "January 24, 2026", "1:52", ["plains"]),
-    ("V7cVxfXdDqQ", "Dallas to South Dakota | Carhenge & Great Plains Road Trip, Part 1", "film", "December 2, 2025", "2:33", ["plains"]),
-    ("3bheRk_JsVk", "World’s Largest Leg Lamp | A Christmas Story Landmark in Chickasha, Oklahoma", "film", "December 5, 2022", "2:52", ["plains"]),
-    ("vcucLYAUPAQ", "Mount Scott, Oklahoma | Views from the Summit", "film", "October 6, 2022", "2:04", ["plains"]),
-    ("WduI4TDWmn4", "Eureka Springs to War Eagle Mill | Arkansas Road Trip, Part 3", "film", "September 30, 2022", "3:21", ["plains"]),
-    ("Zy74kbpTBF8", "Arkansas Grand Canyon & Bella Vista | Ozarks Winter Drive, Part 2", "film", "September 29, 2022", "3:20", ["plains"]),
-    ("FmwMcGvxNrE", "Pig Trail Scenic Byway | Fort Smith to Rogers, Arkansas", "film", "September 29, 2022", "3:13", ["plains"]),
-    ("5P7y5tmslhQ", "An Oklahoma–Arkansas Fall Drive #Shorts", "short", "October 19, 2026", "0:21", ["plains"]),
-    ("2f-wKhlW_PE", "Autumn From Above in Talimena #Shorts", "short", "October 16, 2026", "0:21", ["plains"]),
-    ("DEwRiH1wkbk", "South Dakota in Motion | Road Trip Moments", "short", "January 25, 2026", "0:12", ["plains"]),
-    ("ky4mX9ykzxY", "Buffalo National River | Red Bluff Overlook, Arkansas", "short", "November 3, 2022", "0:27", ["plains"]),
-    ("AVvLeGSLk50", "Buc-ee Visits Gatlinburg! (November 2014 Throwback)", "film", "June 3, 2025", "2:26", ["southeast"]),
-    ("S_K-LyRann0", "From The Waltons to Monticello | Our Road Trip Through Virginia’s Past", "film", "April 3, 2025", "3:29", ["southeast"]),
-    ("y0EhqN3QnnY", "Appomattox, Roanoke & New River Gorge | Road Trip 2024, Part 2", "film", "March 31, 2025", "3:52", ["southeast"]),
-    ("jNoREzI7-B0", "Norfolk, Virginia Beach & Cape Charles | Coastal Road Trip (2024)", "film", "March 30, 2025", "4:36", ["southeast"]),
-    ("aVUb43ZTMrI", "Key West, Florida | The Journey & Island Memories", "film", "October 1, 2022", "3:06", ["southeast"]),
-    ("g6QLNAGmNDk", "Savannah & Tybee Island | Squares, Cemetery & Lighthouse", "film", "September 30, 2022", "3:48", ["southeast"]),
-    ("qMI9-rGlwD4", "Myrtle Beach, South Carolina | Sunrises & Coastal Stops, Part 3", "film", "September 30, 2022", "4:27", ["southeast"]),
-    ("VnSlljuciTI", "Athens, Georgia | R.E.M. Landmarks & Georgia Guidestones", "film", "September 30, 2022", "4:32", ["southeast"]),
-    ("qbXorgrsIi4", "Texas to Alabama Road Trip | Meridian & Moundville, Part 1", "film", "September 29, 2022", "3:57", ["southeast"]),
-    ("YfS65RVDiXY", "Northern California Road Trip | Santa Rosa, Mendocino & Napa", "film", "December 20, 2023", "4:31", ["california"]),
-    ("lbhHR6MpSlA", "California Redwoods to the Pacific | Chandelier Tree Road Trip (2023)", "film", "December 15, 2023", "3:15", ["california"]),
-    ("UEMTYT3kYA4", "Flagstaff to Sedona | Sunset Crater, Wupatki & Oak Creek Canyon", "film", "September 25, 2022", "3:06", ["southwest"]),
-    ("ixpaxmrlv1w", "Grand Canyon Sunset at Lipan Point | Road Trip from Flagstaff", "film", "September 25, 2022", "2:48", ["southwest"]),
-    ("N484V1EG0a0", "Santa Fe to Taos | Camel Rock & Rio Grande Gorge Road Trip", "film", "September 25, 2022", "3:25", ["southwest"]),
-    ("7PROHmCUf_Q", "Santa Fe to Monument Valley | Loretto Chapel, Shiprock & Four Corners", "film", "September 25, 2022", "3:20", ["southwest"]),
-    ("5cLy5YOaPW8", "Monument Valley Jeep Tour | Sunrise, Forrest Gump Point & Milky Way", "film", "September 25, 2022", "5:55", ["southwest"]),
-    ("cuwNyFySMzQ", "Arizona to Roswell | Meteor Crater, Winslow & Petrified Forest", "film", "September 25, 2022", "4:00", ["southwest"]),
-    ("1_Wc9tugXdg", "Rio Grande Gorge Bridge | New Mexico Views", "short", "November 13, 2022", "0:18", ["southwest"]),
-    ("DZPAwk3lHsw", "Shiprock, New Mexico | A Striking Volcanic Landmark", "short", "November 9, 2022", "0:13", ["southwest"]),
-    ("nydMxizVhQw", "Monument Valley Under the Stars | Night Sky", "short", "November 6, 2022", "0:17", ["southwest"]),
-    ("GyP3qhUY8FA", "Grand Canyon Views | Arizona Road Trip", "short", "November 5, 2022", "0:26", ["southwest"]),
-    ("h8lAvPv69wg", "Monument Valley Sunrise | First Light", "short", "October 31, 2022", "0:16", ["southwest"]),
-    ("VeKh55kDqeg", "Berlin in Winter | Brandenburg Gate, Reichstag & Berlin Wall (2012)", "film", "August 26, 2024", "1:49", ["berlin"]),
-]
+# The catalog itself lives in data/videos.json and is updated from the channel RSS feed.
+SITE_DATA = json.loads((ROOT / "data" / "site.json").read_text(encoding="utf-8"))
+VIDEOS = json.loads((ROOT / "data" / "videos.json").read_text(encoding="utf-8"))
+START_IDS = SITE_DATA["start_ids"]
+HERO_ID = SITE_DATA["hero_id"]
+LATEST_FILM_IDS = SITE_DATA["latest_film_ids"]
+SHORT_TEASER_IDS = SITE_DATA["short_teaser_ids"]
+DEST_CARDS = SITE_DATA["dest_cards"]
+BY_ID = {v["id"]: v for v in VIDEOS}
 
 DESTINATIONS = [
     {
@@ -195,34 +113,7 @@ DESTINATIONS = [
     },
 ]
 
-# Homepage destination card stills (cropped via object-position in CSS where needed)
-DEST_CARDS = [
-    ("greece", "Greece", "ONbdk7yflpM", "8 films"),
-    ("texas", "Texas", "p9PXuj51NJs", "22 films"),
-    ("dallas", "Dallas & close to home", "VktGvxzG4sU", "15 films"),
-    ("route-66", "Route 66", "egYLfHGUae4", "9 films"),
-    ("plains", "Oklahoma, Arkansas & the Plains", "3cFk5Tf7nOg", "12 films"),
-    ("southeast", "Southeast & Mid-Atlantic", "jNoREzI7-B0", "9 films"),
-    ("california", "California", "lbhHR6MpSlA", "2 films"),
-    ("southwest", "The Southwest", "ixpaxmrlv1w", "11 films"),
-    ("berlin", "Berlin", "VeKh55kDqeg", "1 film"),
-]
 
-START_IDS = ["mC0ZWATfzvc", "ONbdk7yflpM", "3cFk5Tf7nOg", "p9PXuj51NJs", "ZKI-PbPRraw"]
-HERO_ID = "ZKI-PbPRraw"
-LATEST_FILM_IDS = [
-    "QWMI7iZEz1I", "DHxZueP0Z04", "IsS0M0oikks", "AWAJOYe12cU",
-    "VktGvxzG4sU", "EgpjjRVXfWs", "_JLdOGsAiLU", "V7cVxfXdDqQ",
-]
-SHORT_TEASER_IDS = [
-    "-ibB4Z-a5tQ", "EBnbggUsdMw", "SuYFwuJCK70", "oGOguq2e0AI",
-    "K2cJeiEFkBs", "2f-wKhlW_PE",
-]
-
-BY_ID = {
-    v[0]: {"id": v[0], "title": v[1], "kind": v[2], "date": v[3], "length": v[4], "groups": v[5]}
-    for v in VIDEOS
-}
 
 
 def thumb(vid: str) -> str:
@@ -250,11 +141,11 @@ def film_card(v: dict, *, featured: bool = False, lazy: bool = True, prefix: str
     alt = esc(v["title"])
     return f"""
 <article>
-  <button class="{cls}" type="button" data-video-id="{esc(v['id'])}" data-title="{esc(v['title'])}" data-kind="{kind}" data-filter-item data-group="{esc(v['groups'][0])}">
+  <button class="{cls}" type="button" data-video-id="{esc(v['id'])}" data-title="{esc(v['title'])}" data-kind="{kind}" data-filter-item data-group="{esc(v['groups'][0]) if v.get('groups') else ''}">
     <span class="{thumb_cls}">
       <img src="{thumb(v['id'])}" alt="{alt}" width="1280" height="720" loading="{loading}" decoding="async"{fetch} data-fallback="{esc(v['id'])}">
       {play_icon()}
-      <span class="chip">{esc(v['length'])}</span>
+      {f'<span class="chip">{esc(v["length"])}</span>' if v.get("length") else ""}
     </span>
     <span class="film-meta">
       <span class="film-title">{esc(v['title'])}</span>
@@ -387,8 +278,6 @@ def json_ld_home() -> str:
                 "embedUrl": f"https://www.youtube-nocookie.com/embed/{v['id']}",
             }
         )
-    import json
-
     data = {
         "@context": "https://schema.org",
         "@graph": [
@@ -417,7 +306,11 @@ def page_home() -> str:
     latest = "".join(film_card(BY_ID[i], lazy=True) for i in LATEST_FILM_IDS)
     shorts = "".join(film_card(BY_ID[i], lazy=True) for i in SHORT_TEASER_IDS)
     dest_cards = []
-    for slug, name, img, label in DEST_CARDS:
+    for card in DEST_CARDS:
+        slug, name, img = card["slug"], card["name"], card["img"]
+        key = "route66" if slug == "route-66" else slug.replace("-", "")
+        n = sum(1 for v in BY_ID.values() if key in v["groups"])
+        label = "1 film" if n == 1 else f"{n} films"
         dest_cards.append(
             f"""
 <a class="dest-card" href="destinations/{slug}.html">
@@ -826,9 +719,9 @@ def main() -> None:
     write(ROOT / "shorts.html", page_shorts())
     write(ROOT / "about.html", page_about())
     robots_and_sitemap()
-    ids = [v[0] for v in VIDEOS]
-    assert len(ids) == len(set(ids)) == 89, len(set(ids))
-    print("OK — 89 unique videos")
+    ids = [v["id"] for v in VIDEOS]
+    assert len(ids) == len(set(ids)), "duplicate video ids"
+    print(f"OK — {len(ids)} unique videos")
 
 
 if __name__ == "__main__":
