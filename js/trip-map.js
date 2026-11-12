@@ -132,6 +132,15 @@
         var primary = (stop.videos && stop.videos[0]) || null;
         var popup = document.createElement("div");
         popup.className = "trip-popup";
+        if (stop.photo) {
+          var pic = document.createElement("img");
+          pic.className = "trip-popup-photo";
+          pic.src = stop.photo;
+          pic.alt = stop.name;
+          pic.width = 480;
+          pic.height = 270;
+          popup.appendChild(pic);
+        }
         var heading = document.createElement("p");
         heading.className = "trip-popup-name";
         heading.textContent = stop.number + ". " + stop.name;
@@ -185,7 +194,7 @@
           btn.textContent = "Watch the film";
           popup.appendChild(btn);
         }
-        marker.bindPopup(popup, { maxWidth: 280 });
+        marker.bindPopup(popup, { maxWidth: stop.photo ? 320 : 280 });
         marker.on("click", function () {
           goToStop(indexOfStop(stop.id), { play: true, fromMarker: true });
         });
@@ -298,6 +307,14 @@
           if (!marker) return;
           map.panTo(marker.getLatLng());
           marker.openPopup();
+        });
+      });
+
+      document.querySelectorAll("[data-stop-play]").forEach(function (el) {
+        el.addEventListener("click", function () {
+          var id = el.getAttribute("data-stop-play");
+          var idx = indexOfStop(id);
+          if (idx >= 0) goToStop(idx, { play: true });
         });
       });
 

@@ -762,6 +762,13 @@ def page_trips_index() -> str:
 </html>"""
 
 
+def _stop_photo(stop: dict, prefix: str) -> str | None:
+    photo = (stop.get("photo") or "").strip()
+    if not photo:
+        return None
+    return f"{prefix}assets/{photo}"
+
+
 def _then_and_now(stop: dict) -> dict | None:
     raw = stop.get("then_and_now") or {}
     text = (raw.get("text") or "").strip()
@@ -813,6 +820,30 @@ def _watch_label(v: dict, videos: list, trip: dict) -> str:
     return short_title
 
 
+def _photo_strip(trip: dict, prefix: str) -> str:
+    items = []
+    for s in trip["stops"]:
+        src = _stop_photo(s, prefix)
+        if not src:
+            continue
+        num = s.get("number")
+        label = f"{num}. {s['name']}" if num else s["name"]
+        items.append(
+            "<li>"
+            f'<button type="button" class="trip-photo" data-stop-play="{esc(s["id"])}">'
+            f'<img src="{esc(src)}" alt="{esc(s["name"])}" width="480" height="270" '
+            f'loading="lazy" decoding="async">'
+            f"<span>{esc(label)}</span></button></li>"
+        )
+    if not items:
+        return ""
+    return (
+        '<div class="trip-photos" id="trip-photos">'
+        '<p class="trip-photos-label">Stills from the films</p>'
+        f'<ul class="trip-photos-list">{"".join(items)}</ul></div>'
+    )
+
+
 def page_trip(slug: str) -> str:
     prefix = "../"
     trip = _trip_data(slug)
@@ -841,6 +872,7 @@ def page_trip(slug: str) -> str:
                 "videos": _stop_videos(s),
                 **({"start_seconds": int(s["start_seconds"])} if s.get("start_seconds") else {}),
                 **({"then_and_now": _then_and_now(s)} if _then_and_now(s) else {}),
+                **({"photo": _stop_photo(s, prefix)} if _stop_photo(s, prefix) else {}),
             }
             for s in trip["stops"]
         ],
@@ -874,6 +906,8 @@ def page_trip(slug: str) -> str:
             videos = _stop_videos(s)
             primary = videos[0] if videos else None
             thumb_id = s.get("thumb") or (primary["id"] if primary else trip["hero"])
+            photo_src = _stop_photo(s, prefix)
+            thumb_src = photo_src or thumb(thumb_id)
             num = s.get("number")
             if num:
                 num_html = f'<span class="trip-stop-num" aria-hidden="true">{num}</span>'
@@ -898,19 +932,20 @@ def page_trip(slug: str) -> str:
                     "</li>"
                 )
             watch = f'<ul class="trip-watch-list">{"".join(watch_btns)}</ul>' if watch_btns else ""
+            fallback_attr = "" if photo_src else f' data-fallback="{esc(thumb_id)}"'
+            img = (
+                f'<img src="{esc(thumb_src)}" alt="" width="480" height="300" loading="lazy" '
+                f'decoding="async"{fallback_attr}>'
+            )
             if primary:
                 thumb_btn = (
                     f'<button class="trip-stop-thumb" type="button" data-video-id="{esc(primary["id"])}" '
                     f'data-title="{esc(primary["title"])}" data-kind="{esc(primary["kind"])}" '
                     f'aria-label="Play {esc(primary["title"])}">'
-                    f'<img src="{thumb(thumb_id)}" alt="" width="480" height="300" loading="lazy" '
-                    f'decoding="async" data-fallback="{esc(thumb_id)}">{play_icon()}</button>'
+                    f"{img}{play_icon()}</button>"
                 )
             else:
-                thumb_btn = (
-                    f'<div class="trip-stop-thumb"><img src="{thumb(thumb_id)}" alt="" width="480" '
-                    f'height="300" loading="lazy" decoding="async" data-fallback="{esc(thumb_id)}"></div>'
-                )
+                thumb_btn = f'<div class="trip-stop-thumb">{img}</div>'
             sep = " is-separate" if (s.get("separate") or not s.get("on_map")) else ""
             rows.append(
                 f'<article class="trip-stop{sep}" id="stop-{esc(s["id"])}">'
@@ -987,6 +1022,7 @@ def page_trip(slug: str) -> str:
         <p class="trip-tour-status" id="trip-tour-status" aria-live="polite">Step through the stops</p>
         <button type="button" class="btn btn-gold trip-tour-btn" id="trip-tour-next">Next stop</button>
       </div>
+      {_photo_strip(trip, prefix)}
       {legend}
     </div>
   </section>

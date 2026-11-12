@@ -147,7 +147,8 @@
       ],
       "thumb": "vQvsLO0F0tE",
       "on_map": true,
-      "start_seconds": 49
+      "start_seconds": 49,
+      "photo": "stops/greece/skopelos.webp"
     },
     {
       "id": "olympus",
@@ -162,7 +163,8 @@
       ],
       "thumb": "vQvsLO0F0tE",
       "on_map": true,
-      "start_seconds": 142
+      "start_seconds": 142,
+      "photo": "stops/greece/olympus.webp"
     },
     {
       "id": "pella",
@@ -177,7 +179,8 @@
       ],
       "thumb": "vQvsLO0F0tE",
       "on_map": true,
-      "start_seconds": 170
+      "start_seconds": 170,
+      "photo": "stops/greece/pella.webp"
     },
     {
       "id": "meteora",
@@ -192,7 +195,8 @@
       ],
       "thumb": "vQvsLO0F0tE",
       "on_map": true,
-      "start_seconds": 176
+      "start_seconds": 176,
+      "photo": "stops/greece/meteora.webp"
     },
     {
       "id": "thessaloniki",
@@ -207,7 +211,8 @@
       ],
       "thumb": "vQvsLO0F0tE",
       "on_map": true,
-      "start_seconds": 183
+      "start_seconds": 183,
+      "photo": "stops/greece/thessaloniki.webp"
     }
   ],
   "route": [],
