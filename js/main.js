@@ -46,14 +46,17 @@
     return "https://i.ytimg.com/vi/" + id + "/maxresdefault.jpg";
   }
 
-  function openPlayer(id, title, kind) {
+  function openPlayer(id, title, kind, start) {
     if (!dialog || !frame) return;
     lastFocus = document.activeElement;
     var safeTitle = title || "YouTube video";
+    var startSec = parseInt(start, 10);
+    if (!(startSec > 0)) startSec = 0;
     var src =
       "https://www.youtube-nocookie.com/embed/" +
       encodeURIComponent(id) +
       "?autoplay=1&rel=0&modestbranding=1";
+    if (startSec) src += "&start=" + startSec;
     frame.innerHTML =
       '<iframe src="' +
       src +
@@ -62,9 +65,12 @@
       '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>';
     if (caption) caption.textContent = safeTitle;
     if (fallback) {
+      var watch =
+        "https://www.youtube.com/watch?v=" + encodeURIComponent(id);
+      if (startSec) watch += "&t=" + startSec;
       fallback.innerHTML =
-        '<a href="https://www.youtube.com/watch?v=' +
-        encodeURIComponent(id) +
+        '<a href="' +
+        watch +
         '" rel="noopener noreferrer">Watch on YouTube</a>';
     }
     dialog.dataset.kind = kind === "short" ? "short" : "film";
@@ -103,7 +109,12 @@
     var card = e.target.closest("[data-video-id]");
     if (!card) return;
     e.preventDefault();
-    openPlayer(card.getAttribute("data-video-id"), card.getAttribute("data-title"), card.getAttribute("data-kind"));
+    openPlayer(
+      card.getAttribute("data-video-id"),
+      card.getAttribute("data-title"),
+      card.getAttribute("data-kind"),
+      card.getAttribute("data-start")
+    );
   });
 
   document.addEventListener("keydown", function (e) {
@@ -111,7 +122,12 @@
     var card = e.target.closest("[data-video-id]");
     if (!card || e.target !== card) return;
     e.preventDefault();
-    openPlayer(card.getAttribute("data-video-id"), card.getAttribute("data-title"), card.getAttribute("data-kind"));
+    openPlayer(
+      card.getAttribute("data-video-id"),
+      card.getAttribute("data-title"),
+      card.getAttribute("data-kind"),
+      card.getAttribute("data-start")
+    );
   });
 
   var filterBar = document.querySelector("[data-filters]");

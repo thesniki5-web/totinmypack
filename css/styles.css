@@ -955,6 +955,11 @@ main { display: block; }
   font-size: 0.68rem;
 }
 .leaflet-control-attribution a { color: var(--gold-soft); }
+.trip-popup-start {
+  margin: 0 0 0.65rem;
+  font-size: 0.75rem;
+  color: #5c5448;
+}
 .trip-popup-watch { display: inline-flex; padding: 0.4rem 0.8rem; font-size: 0.78rem; }
 
 .trip-state { margin-top: 2.4rem; }

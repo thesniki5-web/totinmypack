@@ -803,6 +803,7 @@ def page_trip(slug: str) -> str:
                 "spur": bool(s.get("spur")),
                 "number": s.get("number"),
                 "videos": _stop_videos(s),
+                **({"start_seconds": int(s["start_seconds"])} if s.get("start_seconds") else {}),
             }
             for s in trip["stops"]
         ],

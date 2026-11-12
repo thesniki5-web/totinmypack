@@ -44,6 +44,13 @@
     });
   }
 
+  function formatTime(sec) {
+    sec = Math.floor(Number(sec) || 0);
+    var m = Math.floor(sec / 60);
+    var s = sec % 60;
+    return m + ":" + (s < 10 ? "0" : "") + s;
+  }
+
   function markerIcon(num, spur) {
     return window.L.divIcon({
       className: "trip-marker" + (spur ? " is-spur" : ""),
@@ -131,6 +138,12 @@
           place.textContent = stop.place;
           popup.appendChild(place);
         }
+        if (stop.start_seconds > 0) {
+          var at = document.createElement("p");
+          at.className = "trip-popup-start";
+          at.textContent = "Starts at " + formatTime(stop.start_seconds);
+          popup.appendChild(at);
+        }
         if (primary) {
           var btn = document.createElement("button");
           btn.type = "button";
@@ -138,6 +151,9 @@
           btn.setAttribute("data-video-id", primary.id);
           btn.setAttribute("data-title", primary.title);
           btn.setAttribute("data-kind", primary.kind);
+          if (stop.start_seconds > 0) {
+            btn.setAttribute("data-start", String(stop.start_seconds));
+          }
           btn.textContent = "Watch the film";
           popup.appendChild(btn);
         }
@@ -150,6 +166,9 @@
             });
             row.classList.add("is-active");
           }
+          // Clicking the pin opens the film at this stop's moment, if known.
+          var watchBtn = popup.querySelector(".trip-popup-watch");
+          if (watchBtn) watchBtn.click();
         });
         markers[stop.id] = marker;
       });

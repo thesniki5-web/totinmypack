@@ -102,7 +102,8 @@
         "Whbt1fpVyUE"
       ],
       "thumb": "Whbt1fpVyUE",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 41
     },
     {
       "id": "fire-tower",
@@ -115,7 +116,8 @@
       ],
       "thumb": "ONbdk7yflpM",
       "on_map": false,
-      "focus": "itamos"
+      "focus": "itamos",
+      "start_seconds": 100
     },
     {
       "id": "itamos-tree",
@@ -129,7 +131,8 @@
       ],
       "thumb": "fdVL-Z72EKM",
       "on_map": false,
-      "focus": "itamos"
+      "focus": "itamos",
+      "start_seconds": 228
     },
     {
       "id": "skopelos",

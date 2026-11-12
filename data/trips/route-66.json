@@ -126,7 +126,8 @@
         "DHxZueP0Z04"
       ],
       "thumb": "DHxZueP0Z04",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 71
     },
     {
       "id": "rainbow-bridge",
@@ -140,7 +141,8 @@
         "DHxZueP0Z04"
       ],
       "thumb": "DHxZueP0Z04",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 71
     },
     {
       "id": "baxter-springs",
@@ -370,7 +372,8 @@
         "DHxZueP0Z04"
       ],
       "thumb": "egYLfHGUae4",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 16
     },
     {
       "id": "tucumcari",
@@ -385,7 +388,8 @@
         "DHxZueP0Z04"
       ],
       "thumb": "egYLfHGUae4",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 26
     },
     {
       "id": "blue-hole",
@@ -400,7 +404,8 @@
         "DHxZueP0Z04"
       ],
       "thumb": "egYLfHGUae4",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 36
     },
     {
       "id": "lucero-canyon",
@@ -412,7 +417,8 @@
         "egYLfHGUae4"
       ],
       "thumb": "egYLfHGUae4",
-      "on_map": false
+      "on_map": false,
+      "start_seconds": 62
     },
     {
       "id": "pecos",
@@ -427,7 +433,8 @@
       ],
       "thumb": "egYLfHGUae4",
       "on_map": true,
-      "spur": true
+      "spur": true,
+      "start_seconds": 89
     },
     {
       "id": "petrified-forest",
@@ -441,7 +448,8 @@
         "DHxZueP0Z04"
       ],
       "thumb": "DHxZueP0Z04",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 288
     },
     {
       "id": "winslow",
@@ -469,7 +477,8 @@
         "DHxZueP0Z04"
       ],
       "thumb": "DHxZueP0Z04",
-      "on_map": true
+      "on_map": true,
+      "start_seconds": 288
     },
     {
       "id": "santa-monica",
@@ -484,7 +493,8 @@
       "thumb": "DHxZueP0Z04",
       "on_map": true,
       "lat": 34.0089,
-      "lon": -118.4974
+      "lon": -118.4974,
+      "start_seconds": 380
     }
   ],
   "route": [
