@@ -1,0 +1,270 @@
+{
+  "slug": "plains",
+  "name": "Oklahoma, Arkansas & the Plains",
+  "title": "Oklahoma, Arkansas & the Plains",
+  "description": "12 films and shorts from places named in the titles, including the Talimena Scenic Byway, Carhenge, Devils Tower, and the Ozarks.",
+  "kicker": "A journey",
+  "lede": "12 films and shorts from places named in the titles.",
+  "hero": "3cFk5Tf7nOg",
+  "hero_pos": "100% 48%",
+  "dest_slug": "plains",
+  "dest_label": "All Oklahoma, Arkansas & the Plains films",
+  "video_group": "plains",
+  "overview_film": "3cFk5Tf7nOg",
+  "map_kicker": "The places",
+  "map_heading": "The places they filmed",
+  "map_aria": "Map of filmed places in Oklahoma, Arkansas, and the Plains",
+  "legs_heading": "Place by place",
+  "films_heading": "Watch along the way",
+  "index_blurb": "12 films and shorts",
+  "legend": [
+    {
+      "type": "pin",
+      "label": "Filmed place"
+    }
+  ],
+  "intro": [
+    "12 films and shorts from places named in the titles.",
+    "The map marks the places that can be located from those titles; it is not a record of one continuous drive."
+  ],
+  "states": [
+    {
+      "id": "oklahoma",
+      "name": "Oklahoma"
+    },
+    {
+      "id": "arkansas",
+      "name": "Arkansas"
+    },
+    {
+      "id": "nebraska",
+      "name": "Nebraska"
+    },
+    {
+      "id": "wyoming",
+      "name": "Wyoming"
+    }
+  ],
+  "stops": [
+    {
+      "id": "talimena",
+      "state": "oklahoma",
+      "name": "Talimena Scenic Byway",
+      "place": "Oklahoma and Arkansas",
+      "lat": 34.7541607,
+      "lon": -95.0516118,
+      "videos": [
+        "3cFk5Tf7nOg",
+        "2f-wKhlW_PE",
+        "5P7y5tmslhQ"
+      ],
+      "thumb": "3cFk5Tf7nOg",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Talimena Scenic Drive, Oklahoma",
+        "osm_type": "way",
+        "osm_id": 14832994,
+        "display_name": "Talimena Scenic Drive, LeFlore County, Oklahoma, 74571, United States",
+        "url": "https://www.openstreetmap.org/way/14832994",
+        "note": "Pin is a point on the OSM way for Talimena Scenic Drive in LeFlore County, Oklahoma, not a specific overlook."
+      }
+    },
+    {
+      "id": "mount-scott",
+      "state": "oklahoma",
+      "name": "Mount Scott",
+      "place": "Oklahoma",
+      "lat": 34.7445126,
+      "lon": -98.5320037,
+      "videos": [
+        "vcucLYAUPAQ"
+      ],
+      "thumb": "vcucLYAUPAQ",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Mount Scott, Oklahoma, USA",
+        "osm_type": "node",
+        "osm_id": 357411691,
+        "display_name": "Mount Scott, Comanche County, Oklahoma, 73557, United States",
+        "url": "https://www.openstreetmap.org/node/357411691"
+      }
+    },
+    {
+      "id": "chickasha-leg-lamp",
+      "state": "oklahoma",
+      "name": "World’s Largest Leg Lamp",
+      "place": "Chickasha, Oklahoma",
+      "lat": 35.0512185,
+      "lon": -97.9324264,
+      "videos": [
+        "3bheRk_JsVk"
+      ],
+      "thumb": "3bheRk_JsVk",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Leg Lamp, Chickasha, Oklahoma, USA",
+        "osm_type": "node",
+        "osm_id": 11028861195,
+        "display_name": "Chickasha Leg Lamp, South 1st Street, Chickasha, Grady County, Oklahoma, 73018, United States",
+        "url": "https://www.openstreetmap.org/node/11028861195"
+      }
+    },
+    {
+      "id": "fort-smith",
+      "state": "arkansas",
+      "name": "Fort Smith",
+      "place": "Arkansas",
+      "lat": 35.3880338,
+      "lon": -94.4265011,
+      "videos": [
+        "FmwMcGvxNrE"
+      ],
+      "thumb": "FmwMcGvxNrE",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Fort Smith, Arkansas, USA",
+        "osm_type": "relation",
+        "osm_id": 111293,
+        "display_name": "Fort Smith, Sebastian County, Arkansas, United States",
+        "url": "https://www.openstreetmap.org/relation/111293"
+      }
+    },
+    {
+      "id": "rogers",
+      "state": "arkansas",
+      "name": "Rogers",
+      "place": "Arkansas",
+      "lat": 36.334857,
+      "lon": -94.1193816,
+      "videos": [
+        "FmwMcGvxNrE"
+      ],
+      "thumb": "FmwMcGvxNrE",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Rogers, Arkansas, USA",
+        "osm_type": "relation",
+        "osm_id": 111547,
+        "display_name": "Rogers, Benton County, Arkansas, United States",
+        "url": "https://www.openstreetmap.org/relation/111547"
+      }
+    },
+    {
+      "id": "eureka-springs",
+      "state": "arkansas",
+      "name": "Eureka Springs",
+      "place": "Arkansas",
+      "lat": 36.4000796,
+      "lon": -93.7392419,
+      "videos": [
+        "WduI4TDWmn4"
+      ],
+      "thumb": "WduI4TDWmn4",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Eureka Springs, Arkansas, USA",
+        "osm_type": "relation",
+        "osm_id": 111514,
+        "display_name": "Eureka Springs, Carroll County, Arkansas, 72632, United States",
+        "url": "https://www.openstreetmap.org/relation/111514"
+      }
+    },
+    {
+      "id": "war-eagle-mill",
+      "state": "arkansas",
+      "name": "War Eagle Mill",
+      "place": "Arkansas",
+      "lat": 36.2672855,
+      "lon": -93.943182,
+      "videos": [
+        "WduI4TDWmn4"
+      ],
+      "thumb": "WduI4TDWmn4",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "War Eagle Mill, Arkansas, USA",
+        "osm_type": "way",
+        "osm_id": 1002957133,
+        "display_name": "War Eagle Mill, 11045, War Eagle Road, War Eagle, Benton County, Arkansas, 72738, United States",
+        "url": "https://www.openstreetmap.org/way/1002957133"
+      }
+    },
+    {
+      "id": "bella-vista",
+      "state": "arkansas",
+      "name": "Bella Vista",
+      "place": "Arkansas",
+      "lat": 36.4678036,
+      "lon": -94.2669727,
+      "videos": [
+        "Zy74kbpTBF8"
+      ],
+      "thumb": "Zy74kbpTBF8",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Bella Vista, Arkansas, USA",
+        "osm_type": "relation",
+        "osm_id": 111562,
+        "display_name": "Bella Vista, Benton County, Arkansas, 72715, United States",
+        "url": "https://www.openstreetmap.org/relation/111562"
+      }
+    },
+    {
+      "id": "carhenge",
+      "state": "nebraska",
+      "name": "Carhenge",
+      "place": "Alliance, Nebraska",
+      "lat": 42.1422706,
+      "lon": -102.8579548,
+      "videos": [
+        "V7cVxfXdDqQ"
+      ],
+      "thumb": "V7cVxfXdDqQ",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Carhenge, Alliance, Nebraska, USA",
+        "osm_type": "way",
+        "osm_id": 128118680,
+        "display_name": "Carhenge, County Road 59, Trailerville Court, Alliance, Box Butte County, Nebraska, 69301, United States",
+        "url": "https://www.openstreetmap.org/way/128118680"
+      }
+    },
+    {
+      "id": "devils-tower",
+      "state": "wyoming",
+      "name": "Devils Tower",
+      "place": "Wyoming",
+      "lat": 44.5906122,
+      "lon": -104.715103,
+      "videos": [
+        "EgpjjRVXfWs"
+      ],
+      "thumb": "EgpjjRVXfWs",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Devils Tower, Wyoming, USA",
+        "osm_type": "way",
+        "osm_id": 1210470181,
+        "display_name": "Devils Tower, Crook County, Wyoming, United States",
+        "url": "https://www.openstreetmap.org/way/1210470181"
+      }
+    }
+  ],
+  "route": [],
+  "spur": [],
+  "map_max_zoom": 5,
+  "restaurants": [
+    "calico-county-fort-smith"
+  ],
+  "hotels": []
+}

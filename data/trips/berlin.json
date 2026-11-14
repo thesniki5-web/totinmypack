@@ -1,0 +1,85 @@
+{
+  "slug": "berlin",
+  "name": "Berlin",
+  "title": "Berlin",
+  "description": "1 film from a 2012 trip, from places named in the title: Brandenburg Gate, the Reichstag, and the Berlin Wall.",
+  "kicker": "A journey",
+  "lede": "1 film from a 2012 trip, from places named in the title.",
+  "hero": "VeKh55kDqeg",
+  "hero_pos": "50% 50%",
+  "dest_slug": "berlin",
+  "dest_label": "All Berlin films",
+  "video_group": "berlin",
+  "overview_film": "VeKh55kDqeg",
+  "map_kicker": "The places",
+  "map_heading": "The places they filmed",
+  "map_aria": "Map of filmed places in Berlin",
+  "legs_heading": "Place by place",
+  "films_heading": "Watch along the way",
+  "index_blurb": "1 film from 2012",
+  "legend": [
+    {
+      "type": "pin",
+      "label": "Filmed place"
+    }
+  ],
+  "intro": [
+    "1 film from a 2012 trip, from places named in the title.",
+    "The map marks the places that can be located from that title; it is not a record of one continuous walk."
+  ],
+  "states": [
+    {
+      "id": "berlin",
+      "name": "Berlin"
+    }
+  ],
+  "stops": [
+    {
+      "id": "brandenburg-gate",
+      "state": "berlin",
+      "name": "Brandenburg Gate",
+      "place": "Berlin, Germany",
+      "lat": 52.5162699,
+      "lon": 13.3777034,
+      "videos": [
+        "VeKh55kDqeg"
+      ],
+      "thumb": "VeKh55kDqeg",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Brandenburg Gate, Berlin, Germany",
+        "osm_type": "way",
+        "osm_id": 518071791,
+        "display_name": "Brandenburger Tor, 1, Pariser Platz, Friedrich-Wilhelm-Stadt, Mitte, Berlin, 10117, Deutschland",
+        "url": "https://www.openstreetmap.org/way/518071791"
+      }
+    },
+    {
+      "id": "reichstag",
+      "state": "berlin",
+      "name": "Reichstag",
+      "place": "Berlin, Germany",
+      "lat": 52.5186538,
+      "lon": 13.3761015,
+      "videos": [
+        "VeKh55kDqeg"
+      ],
+      "thumb": "VeKh55kDqeg",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Reichstag, Berlin, Germany",
+        "osm_type": "relation",
+        "osm_id": 2201742,
+        "display_name": "Reichstagsgebäude, 1, Platz der Republik, Tiergarten, Mitte, Berlin, 11011, Deutschland",
+        "url": "https://www.openstreetmap.org/relation/2201742"
+      }
+    }
+  ],
+  "route": [],
+  "spur": [],
+  "map_max_zoom": 15,
+  "restaurants": [],
+  "hotels": []
+}

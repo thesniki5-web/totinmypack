@@ -1,0 +1,128 @@
+{
+  "slug": "dallas",
+  "name": "Dallas & close to home",
+  "title": "Dallas & close to home",
+  "description": "15 films and shorts from places named in the Dallas titles, including White Rock Lake and The Lakes at The Village.",
+  "kicker": "A journey",
+  "lede": "15 films and shorts from places named in the Dallas titles.",
+  "hero": "e6Wr9Cpg0y8",
+  "hero_pos": "80% 40%",
+  "dest_slug": "dallas",
+  "dest_label": "All Dallas films",
+  "video_group": "dallas",
+  "overview_film": "e6Wr9Cpg0y8",
+  "map_kicker": "The places",
+  "map_heading": "The places they filmed",
+  "map_aria": "Map of filmed places in Dallas",
+  "legs_heading": "Place by place",
+  "films_heading": "Watch along the way",
+  "index_blurb": "15 films and shorts",
+  "legend": [
+    {
+      "type": "pin",
+      "label": "Filmed place"
+    }
+  ],
+  "intro": [
+    "15 films and shorts from places named in the Dallas titles.",
+    "The map marks the places that can be located from those titles; it is not a record of one continuous drive."
+  ],
+  "states": [
+    {
+      "id": "dallas",
+      "name": "Dallas"
+    }
+  ],
+  "stops": [
+    {
+      "id": "white-rock-lake",
+      "state": "dallas",
+      "name": "White Rock Lake",
+      "place": "Dallas, Texas",
+      "lat": 32.8350014,
+      "lon": -96.7194526,
+      "videos": [
+        "IAWKwGGkmuo",
+        "eLENrH_cRhg",
+        "q7nWd0ujrco"
+      ],
+      "thumb": "IAWKwGGkmuo",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "White Rock Lake, Dallas, Texas, USA",
+        "osm_type": "way",
+        "osm_id": 27089872,
+        "display_name": "White Rock Lake, Dallas, Dallas County, Texas, United States",
+        "url": "https://www.openstreetmap.org/way/27089872"
+      }
+    },
+    {
+      "id": "the-lakes-at-the-village",
+      "state": "dallas",
+      "name": "The Lakes at The Village",
+      "place": "Dallas, Texas",
+      "lat": 32.857622,
+      "lon": -96.7629862,
+      "videos": [
+        "K6H6o_XyXJ0"
+      ],
+      "thumb": "K6H6o_XyXJ0",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "The Village, Dallas, Texas, USA",
+        "osm_type": "node",
+        "osm_id": 6360962474,
+        "display_name": "The Village, Dallas, Dallas County, Texas, 75026, United States",
+        "url": "https://www.openstreetmap.org/node/6360962474",
+        "note": "The Lakes complex was not a separate OSM object; the pin is the Village neighbourhood in Dallas named in the title."
+      }
+    }
+  ],
+  "route": [],
+  "spur": [],
+  "map_max_zoom": 12,
+  "restaurants": [
+    "celebration-restaurant-dallas",
+    "rodeo-goat-dallas",
+    "the-mercury-dallas",
+    "front-room-tavern-dallas",
+    "mariano-s-dallas",
+    "cafe-brazil-dallas",
+    "ephesus-mediterranean-grill-dallas",
+    "mexican-sugar-cocina-dallas",
+    "haywire-dallas",
+    "knox-bistro-dallas",
+    "ellen-s-southern-kitchen-dallas",
+    "princi-italia-dallas",
+    "hudson-house-dallas",
+    "steakyard-dallas",
+    "may-dragon-chinese-restaurant-addison",
+    "the-tipsy-oak-arlington",
+    "aboca-s-italian-grill-richardson",
+    "nate-s-seafood-steakhouse-addison",
+    "steve-fields-steakhouse-plano",
+    "frilly-s-seafood-bayou-kitchen-denton",
+    "rooster-s-roadhouse-denton",
+    "hanaya-hibachi-sushi-and-asian-fusion-flower-mound",
+    "lucile-s-fort-worth",
+    "the-post-at-river-east-fort-worth",
+    "reata-fort-worth",
+    "delucca-gaucho-pizza-wine-fort-worth",
+    "cattlemen-s-steakhouse-fort-worth",
+    "great-wall-super-buffet-frisco",
+    "farina-s-winery-café-grapevine",
+    "mac-s-on-main-grapevine",
+    "blue-goose-cantina-grapevine",
+    "dino-s-steak-and-claw-house-grapevine",
+    "cavalli-pizzeria-napoletana-mckinney",
+    "super-shack-mckinney",
+    "mangia-bistro-plano",
+    "bankhead-brewing-rowlett",
+    "sammy-lou-s-home-cooking-and-bbq-rowlett"
+  ],
+  "hotels": [
+    "the-sinclair-fort-worth"
+  ]
+}

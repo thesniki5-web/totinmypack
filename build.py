@@ -860,7 +860,18 @@ def page_about() -> str:
 
 def _trip_slugs() -> list[str]:
     names = [p.stem for p in (ROOT / "data" / "trips").glob("*.json")]
-    preferred = ["route-66", "greece"]
+    preferred = [
+        "route-66",
+        "greece",
+        "texas",
+        "dallas",
+        "plains",
+        "virginia-2024",
+        "southeast",
+        "california",
+        "southwest",
+        "berlin",
+    ]
     ordered = [s for s in preferred if s in names]
     ordered += sorted(s for s in names if s not in ordered)
     return ordered
@@ -889,7 +900,7 @@ def page_trips_index() -> str:
             f"<p>{esc(blurb)}</p></span></a>"
         )
     hero = trips[0]
-    return f"""{head("Trips — Totin My Pack", desc, "/trips/", "logo", prefix, og_logo=True)}
+    return f"""{head("Trips — Totin My Pack", desc, "/trips/", "logo", prefix, og_logo=True, robots="noindex")}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "trips")}
@@ -907,6 +918,7 @@ def page_trips_index() -> str:
   </section>
   <section class="section">
     <div class="wrap">
+      {PREVIEW_BANNER}
       <div class="trips-list dest-grid">
         {''.join(cards)}
       </div>
@@ -1067,6 +1079,13 @@ def _trip_place_sections(places: list[tuple[str, dict]], prefix: str) -> str:
     )
 
 
+PREVIEW_BANNER = (
+    '<div class="draft-banner" role="status">'
+    "<p><strong>Preview only.</strong> These trip pages are not on the live site yet.</p>"
+    "</div>"
+)
+
+
 def page_trip(slug: str) -> str:
     prefix = "../"
     trip = _trip_data(slug)
@@ -1107,14 +1126,18 @@ def page_trip(slug: str) -> str:
     overview = BY_ID[trip["overview_film"]] if trip.get("overview_film") in BY_ID else None
 
     seen: list[str] = []
-    if trip.get("overview_film"):
+    if trip.get("films"):
+        for vid in trip["films"]:
+            if vid not in seen:
+                seen.append(vid)
+    if trip.get("overview_film") and trip["overview_film"] not in seen:
         seen.append(trip["overview_film"])
     for s in trip["stops"]:
         for vid in s.get("videos") or []:
             if vid not in seen:
                 seen.append(vid)
     group = trip.get("video_group")
-    if group:
+    if group and not trip.get("films"):
         for v in VIDEOS:
             if group in v["groups"] and v["id"] not in seen:
                 seen.append(v["id"])
@@ -1239,7 +1262,7 @@ def page_trip(slug: str) -> str:
     extra_js = f'<script src="{prefix}js/trip-map.js" defer></script>'
     map_aria = trip.get("map_aria") or f"Map of filmed places in {trip['name']}"
     places_html = _trip_place_sections(along, prefix)
-    return f"""{head(trip["title"] + " — Totin My Pack", trip["description"], f"/trips/{slug}.html", trip["hero"], prefix, extra=hero_preload(trip["hero"], prefix))}
+    return f"""{head(trip["title"] + " — Totin My Pack", trip["description"], f"/trips/{slug}.html", trip["hero"], prefix, extra=hero_preload(trip["hero"], prefix), robots="noindex")}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "trips")}
@@ -1261,6 +1284,7 @@ def page_trip(slug: str) -> str:
   </section>
   <section class="section trip-map-section" aria-labelledby="map-heading">
     <div class="wrap">
+      {PREVIEW_BANNER}
       <div class="section-head">
         <div class="section-intro">
           <p class="kicker">{esc(trip.get("map_kicker") or "The places")}</p>
