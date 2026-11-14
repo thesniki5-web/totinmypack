@@ -882,89 +882,94 @@ def _trip_data(slug: str) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+PREVIEW_BANNER = (
+    '<div class="draft-banner" role="status">'
+    "<p><strong>Preview only.</strong> These trip pages are not on the live site yet.</p>"
+    "</div>"
+)
+
+
+def _trip_intro_line(trip: dict) -> str:
+    """A short existing line only — lede, or the first intro sentence that is not about the map."""
+    lede = (trip.get("lede") or "").strip()
+    if lede:
+        return lede
+    for para in trip.get("intro") or []:
+        text = (para or "").strip()
+        if text and "the map" not in text.lower() and "map line" not in text.lower():
+            return text
+    return ""
+
+
+def _trip_place_city(place: dict) -> str:
+    city = (place.get("city") or "").strip()
+    region = (place.get("region") or "").strip()
+    if city and region:
+        return f"{city}, {region}"
+    return city or region
+
+
+def _trip_simple_place_list(heading: str, heading_id: str, items: list[dict], *, kind: str) -> str:
+    if not items:
+        return ""
+    rows = []
+    for item in items:
+        name = item.get("name") or ""
+        place = _trip_place_city(item)
+        website = (item.get("website") or "").strip()
+        if website:
+            label = f"Website for {name}"
+            name_html = (
+                f'<a class="trip-where-name" href="{esc(website)}" '
+                f'target="_blank" rel="noopener noreferrer" '
+                f'aria-label="{esc(label)}"{_goat_click_attrs(website, kind=f"{kind}-website", name=name, title=label)}>'
+                f"{esc(name)}</a>"
+            )
+        else:
+            name_html = f'<span class="trip-where-name">{esc(name)}</span>'
+        place_html = f'<span class="trip-where-place">{esc(place)}</span>' if place else ""
+        rows.append(f"<li>{name_html}{place_html}</li>")
+    return (
+        f'<section class="trip-where" aria-labelledby="{esc(heading_id)}">'
+        f'<h2 id="{esc(heading_id)}">{esc(heading)}</h2>'
+        f'<ul>{"".join(rows)}</ul></section>'
+    )
+
+
 def page_trips_index() -> str:
     prefix = "../"
     trips = [_trip_data(slug) for slug in _trip_slugs()]
     desc = "Travel journeys from Totin My Pack, from the places named in the films — including Route 66 and Greece."
-    cards = []
+    items = []
     for trip in trips:
-        n_stops = sum(1 for s in trip["stops"] if s.get("on_map"))
-        blurb = trip.get("index_blurb") or (f"{n_stops} filmed stops" if n_stops else "Filmed places")
-        if not trip.get("index_blurb") and n_stops:
-            blurb = f"{n_stops} filmed stops"
-        cards.append(
-            f'<a class="dest-card" href="{esc(trip["slug"])}.html">'
-            f'<img {thumb_srcset(trip["hero"], sizes="(max-width: 560px) 92vw, 45vw", prefix=prefix)} '
-            f'alt="{esc(trip.get("hero_alt") or trip["name"])}" loading="lazy" decoding="async">'
-            f'<span class="dest-copy"><h2>{esc(trip["name"])}</h2>'
-            f"<p>{esc(blurb)}</p></span></a>"
+        blurb = (trip.get("index_blurb") or "").strip()
+        blurb_html = f'<span class="trips-index-blurb">{esc(blurb)}</span>' if blurb else ""
+        items.append(
+            "<li>"
+            f'<a href="{esc(trip["slug"])}.html">'
+            f'<span class="trips-index-name">{esc(trip["name"])}</span>'
+            f"{blurb_html}</a></li>"
         )
-    hero = trips[0]
-    return f"""{head("Trips — Totin My Pack", desc, "/trips/", "logo", prefix, og_logo=True)}
-<body>
+    return f"""{head("Trips — Totin My Pack", desc, "/trips/", "logo", prefix, og_logo=True, robots="noindex")}
+<body class="trip-simple-page">
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "trips")}
 <main id="content">
-  <section class="page-hero" aria-label="Trips">
-    <div class="hero-media">
-      {hero_img(hero["hero"], hero.get("hero_alt") or hero["name"], prefix, style=f"object-position:{esc(hero.get('hero_pos') or '50% 50%')}")}
-    </div>
-    <div class="hero-shade" aria-hidden="true"></div>
-    <div class="hero-copy">
-      <p class="kicker">Journeys</p>
+  <div class="trip-simple">
+    {PREVIEW_BANNER}
+    <header class="trip-simple-head">
       <h1>Trips</h1>
-      <p class="lede">Films arranged as a journey, one road at a time, from the places named in the videos.</p>
-    </div>
-  </section>
-  <section class="section">
-    <div class="wrap">
-      <div class="trips-list dest-grid">
-        {''.join(cards)}
-      </div>
-    </div>
-  </section>
+      <p class="trip-simple-intro">Films arranged as a journey, one road at a time, from the places named in the videos.</p>
+    </header>
+    <ul class="trips-index-list">
+      {''.join(items)}
+    </ul>
+  </div>
 </main>
 {footer(prefix)}
 </body>
 </html>"""
 
-
-def _stop_photo(stop: dict, prefix: str) -> str | None:
-    photo = (stop.get("photo") or stop.get("chapter_photo") or "").strip()
-    if not photo:
-        return None
-    return f"{prefix}assets/{photo}"
-
-
-def _then_and_now(stop: dict) -> dict | None:
-    raw = stop.get("then_and_now") or {}
-    text = (raw.get("text") or "").strip()
-    if not text:
-        return None
-    out = {"text": text}
-    if raw.get("source_name"):
-        out["source_name"] = raw["source_name"]
-    if raw.get("source_url"):
-        out["source_url"] = raw["source_url"]
-    return out
-
-
-def _then_and_now_html(stop: dict) -> str:
-    info = _then_and_now(stop)
-    if not info:
-        return ""
-    src = ""
-    if info.get("source_url") and info.get("source_name"):
-        src = (
-            f'<p class="trip-then-source">Source: '
-            f'<a href="{esc(info["source_url"])}" rel="noopener noreferrer"{_goat_click_attrs(info["source_url"])}>'
-            f"{esc(info['source_name'])}</a></p>"
-        )
-    return (
-        f'<div class="trip-then">'
-        f'<p class="trip-then-label">Then and now</p>'
-        f"<p>{esc(info['text'])}</p>{src}</div>"
-    )
 
 
 def _stop_videos(stop: dict) -> list[dict]:
@@ -974,42 +979,6 @@ def _stop_videos(stop: dict) -> list[dict]:
         if v:
             out.append({"id": v["id"], "title": v["title"], "kind": v["kind"]})
     return out
-
-
-def _watch_label(v: dict, videos: list, trip: dict) -> str:
-    if len(videos) == 1:
-        return "Watch the Short" if v["kind"] == "short" else "Watch the film"
-    short_title = v["title"].split(" | ")[0]
-    if v["kind"] == "short":
-        return short_title
-    if v["id"] == trip.get("overview_film") and trip.get("overview_watch_label"):
-        return trip["overview_watch_label"]
-    return short_title
-
-
-def _photo_strip(trip: dict, prefix: str) -> str:
-    items = []
-    for s in trip["stops"]:
-        src = _stop_photo(s, prefix)
-        if not src:
-            continue
-        num = s.get("number")
-        label = f"{num}. {s['name']}" if num else s["name"]
-        items.append(
-            "<li>"
-            f'<button type="button" class="trip-photo" data-stop-play="{esc(s["id"])}">'
-            f'<img src="{esc(src)}" alt="{esc(s["name"])}" width="480" height="270" '
-            f'loading="lazy" decoding="async">'
-            f"<span>{esc(label)}</span></button></li>"
-        )
-    if not items:
-        return ""
-    return (
-        '<div class="trip-photos" id="trip-photos">'
-        '<p class="trip-photos-label">Stills from the films</p>'
-        f'<ul class="trip-photos-list">{"".join(items)}</ul></div>'
-    )
-
 
 
 def _trip_places(trip: dict) -> list[tuple[str, dict]]:
@@ -1028,305 +997,115 @@ def _trip_places(trip: dict) -> list[tuple[str, dict]]:
     return out
 
 
-def _trip_places_payload(places: list[tuple[str, dict]]) -> list[dict]:
-    payload = []
-    for kind, r in places:
-        item = {
-            "id": r.get("id") or "",
-            "kind": kind,
-            "name": r.get("name") or "",
-            "place": _restaurant_place(r),
-            "lat": r.get("lat"),
-            "lng": r.get("lng"),
-            "address": r.get("address") or "",
-            "website": r.get("website") or "",
-        }
-        if r.get("cuisine"):
-            item["cuisine"] = r["cuisine"]
-        payload.append(item)
-    return payload
+def _trip_postcard_video(trip: dict) -> str | None:
+    candidates: list[str] = []
+    for key in ("hero", "overview_film"):
+        if trip.get(key):
+            candidates.append(trip[key])
+    candidates.extend(trip.get("films") or [])
+    for stop in trip.get("stops") or []:
+        candidates.extend(stop.get("videos") or [])
+    seen: set[str] = set()
+    for vid in candidates:
+        if not vid or vid in seen:
+            continue
+        seen.add(vid)
+        if vid in BY_ID or _local_thumb_widths(vid):
+            return vid
+    return None
 
 
-def _trip_place_sections(places: list[tuple[str, dict]], prefix: str) -> str:
-    if not places:
+def _trip_postcard_alt(trip: dict, vid: str) -> str:
+    if vid == trip.get("hero"):
+        alt = (trip.get("hero_alt") or "").strip()
+        if alt:
+            return alt
+    video = BY_ID.get(vid) or {}
+    title = (video.get("title") or "").strip()
+    if title:
+        return f"A still from {title}"
+    return trip.get("name") or "Trip still"
+
+
+def _trip_postcard(trip: dict, prefix: str) -> str:
+    vid = _trip_postcard_video(trip)
+    if not vid:
         return ""
-    rest_cards = []
-    hotel_cards = []
-    for i, (kind, r) in enumerate(places):
-        if kind == "hotel":
-            hotel_cards.append(_hotel_card(r, i, prefix))
-        else:
-            rest_cards.append(_restaurant_card(r, i, prefix))
-
-    def block(heading: str, hid: str, kicker: str, cards: list[str]) -> str:
-        if not cards:
-            return ""
-        return (
-            f'<section class="section" aria-labelledby="{esc(hid)}" style="padding-top:0">'
-            f'<div class="wrap">'
-            f'<div class="section-head"><div class="section-intro">'
-            f'<p class="kicker">{esc(kicker)}</p>'
-            f'<h2 id="{esc(hid)}">{esc(heading)}</h2>'
-            f"</div></div>"
-            f'<div class="restaurant-list"><div class="restaurant-city-cards">'
-            + "".join(cards)
-            + "</div></div></div></section>"
-        )
-
-    return block("Restaurants", "trip-restaurants-heading", "Along the way", rest_cards) + block(
-        "Hotels", "trip-hotels-heading", "Along the way", hotel_cards
+    alt = _trip_postcard_alt(trip, vid)
+    img_attrs = thumb_srcset(
+        vid,
+        sizes="(max-width: 42rem) 92vw, 42rem",
+        prefix=prefix,
+    )
+    return (
+        f'<figure class="trip-postcard">'
+        f'<img {img_attrs} alt="{esc(alt)}" decoding="async">'
+        f"</figure>"
     )
 
 
 def page_trip(slug: str) -> str:
     prefix = "../"
     trip = _trip_data(slug)
-    number = 0
-    for stop in trip["stops"]:
-        if stop.get("on_map"):
-            number += 1
-            stop["number"] = number
-        else:
-            stop["number"] = None
-
     along = _trip_places(trip)
-    map_payload = {
-        "route": trip.get("route") or [],
-        "spur": trip.get("spur") or [],
-        "maxZoom": trip.get("map_max_zoom") or 7,
-        "places": _trip_places_payload(along),
-        "stops": [
-            {
-                "id": s["id"],
-                "name": s["name"],
-                "place": s.get("place") or "",
-                "lat": s.get("lat"),
-                "lon": s.get("lon"),
-                "on_map": bool(s.get("on_map")),
-                "spur": bool(s.get("spur")),
-                "number": s.get("number"),
-                "videos": _stop_videos(s),
-                **({"start_seconds": int(s["start_seconds"])} if s.get("start_seconds") else {}),
-                **({"then_and_now": _then_and_now(s)} if _then_and_now(s) else {}),
-                **({"photo": _stop_photo(s, prefix)} if _stop_photo(s, prefix) else {}),
-            }
-            for s in trip["stops"]
-        ],
-    }
-    map_json = json.dumps(map_payload, ensure_ascii=False)
-    intro = "".join(f"<p>{esc(p)}</p>" for p in trip.get("intro") or [])
-    overview = BY_ID[trip["overview_film"]] if trip.get("overview_film") in BY_ID else None
+    hotels = [p for k, p in along if k == "hotel"]
+    restaurants = [p for k, p in along if k == "restaurant"]
 
-    seen: list[str] = []
-    if trip.get("films"):
-        for vid in trip["films"]:
-            if vid not in seen:
-                seen.append(vid)
-    if trip.get("overview_film") and trip["overview_film"] not in seen:
-        seen.append(trip["overview_film"])
-    for s in trip["stops"]:
-        for vid in s.get("videos") or []:
-            if vid not in seen:
-                seen.append(vid)
-    group = trip.get("video_group")
-    if group and not trip.get("films"):
-        for v in VIDEOS:
-            if group in v["groups"] and v["id"] not in seen:
-                seen.append(v["id"])
-    film_cards = "".join(film_card(BY_ID[i], lazy=True, prefix=prefix) for i in seen if i in BY_ID)
-
-    by_state: dict[str, list] = {}
-    for s in trip["stops"]:
-        by_state.setdefault(s["state"], []).append(s)
-
-    state_blocks = []
-    for state in trip["states"]:
-        rows = []
-        for s in by_state.get(state["id"], []):
-            videos = _stop_videos(s)
-            primary = videos[0] if videos else None
-            thumb_id = s.get("thumb") or (primary["id"] if primary else trip["hero"])
-            photo_src = _stop_photo(s, prefix)
-            num = s.get("number")
-            if num:
-                num_html = f'<span class="trip-stop-num" aria-hidden="true">{num}</span>'
-            else:
-                num_html = '<span class="trip-stop-num is-off" aria-hidden="true">–</span>'
-            chapter = (
-                f'<p class="trip-stop-chapter">{esc(s["chapter_text"])}</p>'
-                if (s.get("chapter_text") or "").strip()
-                else ""
+    stops_html = []
+    for stop in trip.get("stops") or []:
+        name = stop.get("name") or ""
+        place = (stop.get("place") or "").strip()
+        videos = _stop_videos(stop)
+        if videos:
+            href = f"https://www.youtube.com/watch?v={videos[0]['id']}"
+            label = f"Watch the film for {name}" if videos[0]["kind"] != "short" else f"Watch the Short for {name}"
+            if len(videos) == 1:
+                # keep the label short; the visible text is the stop name
+                label = videos[0]["title"]
+            name_html = (
+                f'<a class="trip-stop-name" href="{esc(href)}" '
+                f'target="_blank" rel="noopener noreferrer" '
+                f'aria-label="{esc(label)}"{_goat_click_attrs(href)}>{esc(name)}</a>'
             )
-            note = f'<p>{esc(s["note"])}</p>' if s.get("note") else ""
-            then_html = _then_and_now_html(s)
-            locate_id = s["id"] if s.get("on_map") else s.get("focus")
-            locate = ""
-            if locate_id:
-                locate = (
-                    f'<button type="button" class="trip-stop-locate" data-stop-focus="{esc(locate_id)}">'
-                    "Show on the map</button>"
-                )
-            watch_btns = []
-            for v in videos:
-                label = _watch_label(v, videos, trip)
-                watch_btns.append(
-                    "<li>"
-                    f'<button type="button" class="trip-watch" data-video-id="{esc(v["id"])}" '
-                    f'data-title="{esc(v["title"])}" data-kind="{esc(v["kind"])}">{esc(label)}</button>'
-                    "</li>"
-                )
-            watch = f'<ul class="trip-watch-list">{"".join(watch_btns)}</ul>' if watch_btns else ""
-            photo_alt = (s.get("photo_alt") or s["name"]).strip()
-            unique_photo = (s.get("photo") or "").strip()
-            chapter_photo = (s.get("chapter_photo") or "").strip()
-            thumb_from_file = ""
-            for candidate in (chapter_photo, unique_photo):
-                if candidate.startswith("thumbs/") and candidate.endswith(".webp"):
-                    # thumbs/<videoId>-<width>.webp
-                    thumb_from_file = candidate[len("thumbs/"):].rsplit("-", 1)[0]
-                    break
-            if unique_photo and not thumb_from_file:
-                img = (
-                    f'<img src="{esc(photo_src)}" alt="{esc(photo_alt)}" width="480" height="270" loading="lazy" '
-                    f'decoding="async">'
-                )
-            else:
-                img = (
-                    f'<img {thumb_srcset(thumb_from_file or thumb_id, prefix=prefix)} alt="{esc(photo_alt)}" '
-                    f'loading="lazy" decoding="async">'
-                )
-            if primary:
-                thumb_btn = (
-                    f'<button class="trip-stop-thumb" type="button" data-video-id="{esc(primary["id"])}" '
-                    f'data-title="{esc(primary["title"])}" data-kind="{esc(primary["kind"])}" '
-                    f'aria-label="Play {esc(primary["title"])}">'
-                    f"{img}{play_icon()}</button>"
-                )
-            else:
-                thumb_btn = f'<div class="trip-stop-thumb">{img}</div>'
-            sep = " is-separate" if (s.get("separate") or not s.get("on_map")) else ""
-            rows.append(
-                f'<article class="trip-stop{sep}" id="stop-{esc(s["id"])}">'
-                f"{thumb_btn}<div class=\"trip-stop-copy\">"
-                f"<h3>{num_html}{esc(s['name'])}</h3>"
-                f'<p class="trip-stop-place">{esc(s.get("place") or "")}</p>'
-                f"{chapter}{note}{then_html}{watch}{locate}</div></article>"
-            )
-        state_note = f'<p>{esc(state["note"])}</p>' if state.get("note") else ""
-        state_blocks.append(
-            f'<div class="trip-state" id="leg-{esc(state["id"])}">'
-            f'<div class="trip-state-head"><p class="kicker">{esc(state.get("kicker") or "")}</p>'
-            f"<h2>{esc(state['name'])}</h2>{state_note}</div>"
-            f"{''.join(rows)}</div>"
-        )
+        else:
+            name_html = f'<span class="trip-stop-name">{esc(name)}</span>'
+        place_html = f'<span class="trip-stop-place">{esc(place)}</span>' if place else ""
+        stops_html.append(f"<li><div>{name_html}{place_html}</div></li>")
 
-    legend_bits = []
-    for item in trip.get("legend") or [{"type": "pin", "label": "Filmed place"}]:
-        cls = {
-            "pin": "trip-legend-pin",
-            "line": "trip-legend-line",
-            "spur": "trip-legend-spur",
-            "restaurant": "trip-legend-restaurant",
-            "hotel": "trip-legend-hotel",
-        }.get(item["type"], "trip-legend-pin")
-        legend_bits.append(
-            f'<li><span class="{cls}" aria-hidden="true"></span> {esc(item["label"])}</li>'
-        )
-    if any(k == "restaurant" for k, _ in along):
-        legend_bits.append(
-            '<li><span class="trip-legend-restaurant" aria-hidden="true"></span>Restaurant</li>'
-        )
-    if any(k == "hotel" for k, _ in along):
-        legend_bits.append(
-            '<li><span class="trip-legend-hotel" aria-hidden="true"></span>Hotel</li>'
-        )
-    legend = f'<ul class="trip-legend">{"".join(legend_bits)}</ul>' if legend_bits else ""
-
-    dest_slug = trip.get("dest_slug") or slug
-    dest_label = trip.get("dest_label") or "All films"
-    dest_link = f'<a class="link-arrow" href="{prefix}destinations/{esc(dest_slug)}.html">{esc(dest_label)}</a>'
-    watch_btn = ""
-    if overview:
-        watch_btn = (
-            f'<button class="btn btn-ghost" type="button" data-video-id="{esc(overview["id"])}" '
-            f'data-title="{esc(overview["title"])}" data-kind="{esc(overview["kind"])}">Watch the film</button>'
-        )
-    extra_js = f'<script src="{prefix}js/trip-map.js" defer></script>'
-    map_aria = trip.get("map_aria") or f"Map of filmed places in {trip['name']}"
-    places_html = _trip_place_sections(along, prefix)
-    return f"""{head(trip["title"] + " — Totin My Pack", trip["description"], f"/trips/{slug}.html", trip["hero"], prefix, extra=hero_preload(trip["hero"], prefix))}
-<body>
+    # add a route-line dot on each stop
+    stops_html = [
+        item.replace("<li><div>", '<li><span class="trip-stop-dot" aria-hidden="true"></span><div>', 1)
+        for item in stops_html
+    ]
+    intro = _trip_intro_line(trip)
+    intro_html = f'<p class="trip-simple-intro">{esc(intro)}</p>' if intro else ""
+    postcard = _trip_postcard(trip, prefix)
+    stops_block = (
+        f'<ol class="trip-stops">{"".join(stops_html)}</ol>' if stops_html else ""
+    )
+    stayed = _trip_simple_place_list("Where we stayed", "trip-stayed-heading", hotels, kind="hotel")
+    ate = _trip_simple_place_list("Where we ate", "trip-ate-heading", restaurants, kind="restaurant")
+    desc = trip.get("description") or trip["name"]
+    og = trip.get("hero") or "logo"
+    og_logo = not trip.get("hero")
+    return f"""{head(trip["title"] + " — Totin My Pack", desc, f"/trips/{slug}.html", og if not og_logo else "logo", prefix, og_logo=og_logo, robots="noindex")}
+<body class="trip-simple-page">
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "trips")}
 <main id="content">
-  <section class="page-hero" aria-label="{esc(trip['name'])}">
-    <div class="hero-media">
-      {hero_img(trip["hero"], trip.get("hero_alt") or trip["name"], prefix, style=f"object-position:{esc(trip.get('hero_pos') or '50% 50%')}")}
-    </div>
-    <div class="hero-shade" aria-hidden="true"></div>
-    <div class="hero-copy">
-      <p class="kicker">{esc(trip.get("kicker") or "A journey")}</p>
+  <article class="trip-simple">
+    {PREVIEW_BANNER}
+    {postcard}
+    <header class="trip-simple-head">
       <h1>{esc(trip["name"])}</h1>
-      <p class="lede">{esc(trip.get("lede") or "")}</p>
-      <div class="hero-actions">
-        <a class="btn btn-gold" href="#trip-map">View the map</a>
-        {watch_btn}
-      </div>
-    </div>
-  </section>
-  <section class="section trip-map-section" aria-labelledby="map-heading">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-intro">
-          <p class="kicker">{esc(trip.get("map_kicker") or "The places")}</p>
-          <h2 id="map-heading">{esc(trip.get("map_heading") or "The places they filmed")}</h2>
-          {intro}
-        </div>
-        {dest_link}
-      </div>
-      <div class="trip-map-frame">
-        <div id="trip-map" class="trip-map" role="region" aria-label="{esc(map_aria)}">
-          <p class="trip-map-placeholder">The map loads when you scroll to it. The stops are listed below.</p>
-        </div>
-      </div>
-      <p class="map-attrib">Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer"{_goat_click_attrs("https://www.openstreetmap.org/copyright")}>OpenStreetMap</a></p>
-      <div class="trip-tour" id="trip-tour" hidden>
-        <button type="button" class="btn btn-ghost trip-tour-btn" id="trip-tour-prev" disabled>Previous stop</button>
-        <p class="trip-tour-status" id="trip-tour-status" aria-live="polite">Step through the stops</p>
-        <button type="button" class="btn btn-gold trip-tour-btn" id="trip-tour-next">Next stop</button>
-      </div>
-      {_photo_strip(trip, prefix)}
-      {legend}
-    </div>
-  </section>
-  <section class="section" aria-labelledby="legs-heading" style="padding-top:0">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-intro">
-          <p class="kicker">{esc(trip.get("legs_kicker") or "")}</p>
-          <h2 id="legs-heading">{esc(trip.get("legs_heading") or "Stop by stop")}</h2>
-        </div>
-      </div>
-      {"".join(state_blocks)}
-    </div>
-  </section>
-  {places_html}
-  <section class="section" aria-labelledby="trip-films-heading" style="padding-top:0">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-intro">
-          <p class="kicker">{esc(trip.get("films_kicker") or "The films")}</p>
-          <h2 id="trip-films-heading">{esc(trip.get("films_heading") or "Watch along the way")}</h2>
-        </div>
-      </div>
-      <div class="film-grid">
-        {film_cards}
-      </div>
-    </div>
-  </section>
+      {intro_html}
+    </header>
+    {stops_block}
+    {stayed}
+    {ate}
+  </article>
 </main>
-{footer(prefix, extra_js)}
-<script type="application/json" id="trip-map-data">{map_json}</script>
+{footer(prefix)}
 </body>
 </html>"""
 
