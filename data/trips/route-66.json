@@ -72,7 +72,26 @@
       "thumb": "bwhDxYsaBT4",
       "on_map": true,
       "start_seconds": 5,
-      "photo": "stops/route-66/fanning.webp"
+      "photo": "stops/route-66/fanning.webp",
+      "chapter_text": "The film Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus lists the World’s Largest Rocking Chair in Fanning, a 42-foot steel-framed chair at the Route 66 Fanning Outpost. The short The Roadside Characters of Route 66 also names a giant rocking chair.",
+      "chapter_sources": [
+        {
+          "kind": "video title",
+          "video_id": "bwhDxYsaBT4",
+          "excerpt": "Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus"
+        },
+        {
+          "kind": "video description",
+          "video_id": "bwhDxYsaBT4",
+          "excerpt": "World’s Largest Rocking Chair (Fanning, MO) • 42 feet tall and steel-framed — built in 2008 as a Guinness Record breaker • Located at the Route 66 Fanning Outpost"
+        },
+        {
+          "kind": "video description",
+          "video_id": "E9TIfpZ69NU",
+          "excerpt": "A giant rocking chair, a blue whale, Buck Atom, Cadillac Ranch, and more from our separate Route 66 trips."
+        }
+      ],
+      "photo_alt": "World’s Largest Rocking Chair — still from the film Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus"
     },
     {
       "id": "mule-trading-post",
@@ -88,7 +107,21 @@
       "thumb": "bwhDxYsaBT4",
       "on_map": true,
       "start_seconds": 23,
-      "photo": "stops/route-66/mule-trading-post.webp"
+      "photo": "stops/route-66/mule-trading-post.webp",
+      "chapter_text": "This stop is listed with the film Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus.",
+      "chapter_sources": [
+        {
+          "kind": "data/trips/route-66.json videos",
+          "video_id": "bwhDxYsaBT4",
+          "excerpt": "mule-trading-post.videos includes bwhDxYsaBT4"
+        },
+        {
+          "kind": "video title",
+          "video_id": "bwhDxYsaBT4",
+          "excerpt": "Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus"
+        }
+      ],
+      "photo_alt": "Mule Trading Post — still from the film Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus"
     },
     {
       "id": "totem-pole-trading-post",
@@ -110,7 +143,21 @@
         "source_url": "https://www.route66news.com/2025/05/14/totem-pole-trading-post-in-rolla-one-of-twin-bridges-near-catoosa-torn-down/",
         "source_note": "Ron Warnick, “Totem Pole Trading Post in Rolla, one of Twin Bridges near Catoosa torn down,” Route 66 News, May 14, 2025: Josh Thompson photographed the demolition on May 7, 2025; the post closed in late September 2024. Closure on Sept. 30, 2024 also reported by Allison Skinner, Phelps County Focus, Sept. 23, 2024, https://phelpscountyfocus.com/2024/09/23/open-since-1933-totem-pole-trading-post-doors-closing-sept-30/."
       },
-      "photo": "stops/route-66/totem-pole-trading-post.webp"
+      "photo": "stops/route-66/totem-pole-trading-post.webp",
+      "chapter_text": "This stop is listed with the film Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus.",
+      "chapter_sources": [
+        {
+          "kind": "data/trips/route-66.json videos",
+          "video_id": "bwhDxYsaBT4",
+          "excerpt": "totem-pole-trading-post.videos includes bwhDxYsaBT4"
+        },
+        {
+          "kind": "video title",
+          "video_id": "bwhDxYsaBT4",
+          "excerpt": "Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus"
+        }
+      ],
+      "photo_alt": "Totem Pole Trading Post — still from the film Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus"
     },
     {
       "id": "devils-elbow",
@@ -126,7 +173,21 @@
       "thumb": "bwhDxYsaBT4",
       "on_map": true,
       "start_seconds": 61,
-      "photo": "stops/route-66/devils-elbow.webp"
+      "photo": "stops/route-66/devils-elbow.webp",
+      "chapter_text": "The film Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus names Devil’s Elbow as a featured stop: a sharp bend in the Big Piney River that gave this community its name, with the historic Devil’s Elbow Bridge.",
+      "chapter_sources": [
+        {
+          "kind": "video title",
+          "video_id": "bwhDxYsaBT4",
+          "excerpt": "Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus"
+        },
+        {
+          "kind": "video description",
+          "video_id": "bwhDxYsaBT4",
+          "excerpt": "Devil’s Elbow • A sharp bend in the Big Piney River that gave this community its name • Features the historic Devil’s Elbow Bridge — a Route 66 icon"
+        }
+      ],
+      "photo_alt": "Devil’s Elbow — still from the film Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus"
     },
     {
       "id": "uranus",
@@ -142,7 +203,21 @@
       "thumb": "bwhDxYsaBT4",
       "on_map": true,
       "start_seconds": 111,
-      "photo": "stops/route-66/uranus.webp"
+      "photo": "stops/route-66/uranus.webp",
+      "chapter_text": "The same Missouri film names Uranus as home to the Uranus Fudge Factory & General Store, a humorous roadside stop with gift shops, photo ops, and novelty fun.",
+      "chapter_sources": [
+        {
+          "kind": "video title",
+          "video_id": "bwhDxYsaBT4",
+          "excerpt": "Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus"
+        },
+        {
+          "kind": "video description",
+          "video_id": "bwhDxYsaBT4",
+          "excerpt": "Uranus, Missouri • Home to the Uranus Fudge Factory & General Store • A humorous roadside stop with gift shops, photo ops, and novelty fun"
+        }
+      ],
+      "photo_alt": "Uranus Fudge Factory & General Store — still from the film Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus"
     },
     {
       "id": "marshfield",
@@ -158,7 +233,16 @@
       "thumb": "bwhDxYsaBT4",
       "on_map": true,
       "start_seconds": 128,
-      "photo": "stops/route-66/marshfield.webp"
+      "photo": "stops/route-66/marshfield.webp",
+      "chapter_text": "The Missouri film’s featured stops include Marshfield, with a scale replica of the Hubble Space Telescope honoring local legend Edwin Hubble.",
+      "chapter_sources": [
+        {
+          "kind": "video description",
+          "video_id": "bwhDxYsaBT4",
+          "excerpt": "Marshfield • Scale replica of the Hubble Space Telescope • Honors local legend Edwin Hubble, who revolutionized astronomy"
+        }
+      ],
+      "photo_alt": "Marshfield — still from the film Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus"
     },
     {
       "id": "galena",
@@ -173,7 +257,22 @@
       ],
       "thumb": "DHxZueP0Z04",
       "on_map": true,
-      "start_seconds": 71
+      "start_seconds": 71,
+      "chapter_text": "In Route 66, One Stop at a Time | Our Roadside Memories, the chapter “Kansas — Galena and Rainbow Bridge” names Galena.",
+      "chapter_sources": [
+        {
+          "kind": "video chapter title",
+          "video_id": "DHxZueP0Z04",
+          "excerpt": "01:11 Kansas — Galena and Rainbow Bridge"
+        },
+        {
+          "kind": "video title",
+          "video_id": "DHxZueP0Z04",
+          "excerpt": "Route 66, One Stop at a Time | Our Roadside Memories"
+        }
+      ],
+      "chapter_photo": "thumbs/DHxZueP0Z04-960.webp",
+      "photo_alt": "YouTube thumbnail for Route 66, One Stop at a Time | Our Roadside Memories, used for Galena"
     },
     {
       "id": "cars-on-the-route",
@@ -189,7 +288,21 @@
       "thumb": "bwhDxYsaBT4",
       "on_map": true,
       "start_seconds": 146,
-      "photo": "stops/route-66/cars-on-the-route.webp"
+      "photo": "stops/route-66/cars-on-the-route.webp",
+      "chapter_text": "This stop is listed with the film Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus.",
+      "chapter_sources": [
+        {
+          "kind": "data/trips/route-66.json videos",
+          "video_id": "bwhDxYsaBT4",
+          "excerpt": "cars-on-the-route.videos includes bwhDxYsaBT4"
+        },
+        {
+          "kind": "video title",
+          "video_id": "bwhDxYsaBT4",
+          "excerpt": "Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus"
+        }
+      ],
+      "photo_alt": "Cars on the Route — still from the film Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus"
     },
     {
       "id": "rainbow-bridge",
@@ -204,7 +317,22 @@
       ],
       "thumb": "DHxZueP0Z04",
       "on_map": true,
-      "start_seconds": 71
+      "start_seconds": 71,
+      "chapter_text": "In Route 66, One Stop at a Time | Our Roadside Memories, the chapter “Kansas — Galena and Rainbow Bridge” names Rainbow Bridge.",
+      "chapter_sources": [
+        {
+          "kind": "video chapter title",
+          "video_id": "DHxZueP0Z04",
+          "excerpt": "01:11 Kansas — Galena and Rainbow Bridge"
+        },
+        {
+          "kind": "video title",
+          "video_id": "DHxZueP0Z04",
+          "excerpt": "Route 66, One Stop at a Time | Our Roadside Memories"
+        }
+      ],
+      "chapter_photo": "thumbs/DHxZueP0Z04-960.webp",
+      "photo_alt": "YouTube thumbnail for Route 66, One Stop at a Time | Our Roadside Memories, used for Rainbow Bridge"
     },
     {
       "id": "baxter-springs",
@@ -220,7 +348,16 @@
       "thumb": "bwhDxYsaBT4",
       "on_map": true,
       "start_seconds": 167,
-      "photo": "stops/route-66/baxter-springs.webp"
+      "photo": "stops/route-66/baxter-springs.webp",
+      "chapter_text": "The Missouri film’s featured stops include Baxter Springs, Kansas, just over the border, and a restored 1930s Phillips 66 gas station now a Route 66 Visitors’ Center.",
+      "chapter_sources": [
+        {
+          "kind": "video description",
+          "video_id": "bwhDxYsaBT4",
+          "excerpt": "Baxter Springs, Kansas (just over the border) • Restored 1930s Phillips 66 Gas Station, now a Route 66 Visitors’ Center • Run by volunteers with memorabilia, souvenirs, and road trip advice"
+        }
+      ],
+      "photo_alt": "Phillips 66 Visitors’ Center — still from the film Missouri on Route 66 | Devil’s Elbow, Rocking Chairs & Fudge in Uranus"
     },
     {
       "id": "totem-pole-park",
@@ -236,7 +373,21 @@
       "thumb": "MEWEWz0Ny9M",
       "on_map": true,
       "start_seconds": 42,
-      "photo": "stops/route-66/totem-pole-park.webp"
+      "photo": "stops/route-66/totem-pole-park.webp",
+      "chapter_text": "This stop is listed with the film Oklahoma Route 66 | Roadside Stops & Mother Road Memories.",
+      "chapter_sources": [
+        {
+          "kind": "data/trips/route-66.json videos",
+          "video_id": "MEWEWz0Ny9M",
+          "excerpt": "totem-pole-park.videos includes MEWEWz0Ny9M"
+        },
+        {
+          "kind": "video title",
+          "video_id": "MEWEWz0Ny9M",
+          "excerpt": "Oklahoma Route 66 | Roadside Stops & Mother Road Memories"
+        }
+      ],
+      "photo_alt": "Ed Galloway’s Totem Pole Park — still from the film Oklahoma Route 66 | Roadside Stops & Mother Road Memories"
     },
     {
       "id": "catoosa",
@@ -253,7 +404,21 @@
       "thumb": "MEWEWz0Ny9M",
       "on_map": true,
       "start_seconds": 16,
-      "photo": "stops/route-66/catoosa.webp"
+      "photo": "stops/route-66/catoosa.webp",
+      "chapter_text": "The Oklahoma film names Catoosa and the iconic Blue Whale as a featured stop. The short The Roadside Characters of Route 66 also names a blue whale.",
+      "chapter_sources": [
+        {
+          "kind": "video description",
+          "video_id": "MEWEWz0Ny9M",
+          "excerpt": "Catoosa – The iconic Blue Whale, a Route 66 must-see"
+        },
+        {
+          "kind": "video description",
+          "video_id": "E9TIfpZ69NU",
+          "excerpt": "A giant rocking chair, a blue whale, Buck Atom, Cadillac Ranch, and more from our separate Route 66 trips."
+        }
+      ],
+      "photo_alt": "The Blue Whale — still from the film Oklahoma Route 66 | Roadside Stops & Mother Road Memories"
     },
     {
       "id": "route-66-rising",
@@ -269,7 +434,21 @@
       "thumb": "MEWEWz0Ny9M",
       "on_map": true,
       "start_seconds": 13,
-      "photo": "stops/route-66/route-66-rising.webp"
+      "photo": "stops/route-66/route-66-rising.webp",
+      "chapter_text": "The film Oklahoma Route 66 | Roadside Stops & Mother Road Memories names Tulsa as the starting point of the Oklahoma Route 66 journey, including the Cyrus Avery Route 66 Memorial Bridge.",
+      "chapter_sources": [
+        {
+          "kind": "video title",
+          "video_id": "MEWEWz0Ny9M",
+          "excerpt": "Oklahoma Route 66 | Roadside Stops & Mother Road Memories"
+        },
+        {
+          "kind": "video description",
+          "video_id": "MEWEWz0Ny9M",
+          "excerpt": "Tulsa – Starting point of the Oklahoma Route 66 journey • Cyrus Avery Route 66 Memorial Bridge • Blue Dome District • Tulsa Route 66 Main Street"
+        }
+      ],
+      "photo_alt": "Route 66 Rising — still from the film Oklahoma Route 66 | Roadside Stops & Mother Road Memories"
     },
     {
       "id": "golden-driller",
@@ -284,7 +463,26 @@
       ],
       "thumb": "MEWEWz0Ny9M",
       "on_map": true,
-      "photo": "stops/route-66/golden-driller.webp"
+      "photo": "stops/route-66/golden-driller.webp",
+      "chapter_text": "This stop is listed with the film Oklahoma Route 66 | Roadside Stops & Mother Road Memories, which names Tulsa as the starting point of the Oklahoma Route 66 journey.",
+      "chapter_sources": [
+        {
+          "kind": "data/trips/route-66.json videos",
+          "video_id": "MEWEWz0Ny9M",
+          "excerpt": "golden-driller.videos includes MEWEWz0Ny9M"
+        },
+        {
+          "kind": "video title",
+          "video_id": "MEWEWz0Ny9M",
+          "excerpt": "Oklahoma Route 66 | Roadside Stops & Mother Road Memories"
+        },
+        {
+          "kind": "video description",
+          "video_id": "MEWEWz0Ny9M",
+          "excerpt": "Tulsa – Starting point of the Oklahoma Route 66 journey"
+        }
+      ],
+      "photo_alt": "The Golden Driller — still from the film Oklahoma Route 66 | Roadside Stops & Mother Road Memories"
     },
     {
       "id": "buck-atom",
@@ -298,7 +496,22 @@
         "E9TIfpZ69NU"
       ],
       "thumb": "E9TIfpZ69NU",
-      "on_map": true
+      "on_map": true,
+      "chapter_text": "The short The Roadside Characters of Route 66 names Buck Atom among roadside characters from separate Route 66 trips.",
+      "chapter_sources": [
+        {
+          "kind": "video title",
+          "video_id": "E9TIfpZ69NU",
+          "excerpt": "The Roadside Characters of Route 66"
+        },
+        {
+          "kind": "video description",
+          "video_id": "E9TIfpZ69NU",
+          "excerpt": "A giant rocking chair, a blue whale, Buck Atom, Cadillac Ranch, and more from our separate Route 66 trips."
+        }
+      ],
+      "chapter_photo": "thumbs/E9TIfpZ69NU-960.webp",
+      "photo_alt": "YouTube thumbnail for The Roadside Characters of Route 66, used for Buck Atom’s Cosmic Curios"
     },
     {
       "id": "pops",
@@ -314,7 +527,21 @@
       "thumb": "MEWEWz0Ny9M",
       "on_map": true,
       "start_seconds": 78,
-      "photo": "stops/route-66/pops.webp"
+      "photo": "stops/route-66/pops.webp",
+      "chapter_text": "This stop is listed with the film Oklahoma Route 66 | Roadside Stops & Mother Road Memories.",
+      "chapter_sources": [
+        {
+          "kind": "data/trips/route-66.json videos",
+          "video_id": "MEWEWz0Ny9M",
+          "excerpt": "pops.videos includes MEWEWz0Ny9M"
+        },
+        {
+          "kind": "video title",
+          "video_id": "MEWEWz0Ny9M",
+          "excerpt": "Oklahoma Route 66 | Roadside Stops & Mother Road Memories"
+        }
+      ],
+      "photo_alt": "Pops 66 — still from the film Oklahoma Route 66 | Roadside Stops & Mother Road Memories"
     },
     {
       "id": "braums-milk-bottle",
@@ -330,7 +557,21 @@
       "thumb": "MEWEWz0Ny9M",
       "on_map": true,
       "start_seconds": 74,
-      "photo": "stops/route-66/braums-milk-bottle.webp"
+      "photo": "stops/route-66/braums-milk-bottle.webp",
+      "chapter_text": "This stop is listed with the film Oklahoma Route 66 | Roadside Stops & Mother Road Memories.",
+      "chapter_sources": [
+        {
+          "kind": "data/trips/route-66.json videos",
+          "video_id": "MEWEWz0Ny9M",
+          "excerpt": "braums-milk-bottle.videos includes MEWEWz0Ny9M"
+        },
+        {
+          "kind": "video title",
+          "video_id": "MEWEWz0Ny9M",
+          "excerpt": "Oklahoma Route 66 | Roadside Stops & Mother Road Memories"
+        }
+      ],
+      "photo_alt": "Braum’s Giant Milk Bottle — still from the film Oklahoma Route 66 | Roadside Stops & Mother Road Memories"
     },
     {
       "id": "lucilles",
@@ -346,7 +587,21 @@
       "thumb": "MEWEWz0Ny9M",
       "on_map": true,
       "start_seconds": 68,
-      "photo": "stops/route-66/lucilles.webp"
+      "photo": "stops/route-66/lucilles.webp",
+      "chapter_text": "This stop is listed with the film Oklahoma Route 66 | Roadside Stops & Mother Road Memories.",
+      "chapter_sources": [
+        {
+          "kind": "data/trips/route-66.json videos",
+          "video_id": "MEWEWz0Ny9M",
+          "excerpt": "lucilles.videos includes MEWEWz0Ny9M"
+        },
+        {
+          "kind": "video title",
+          "video_id": "MEWEWz0Ny9M",
+          "excerpt": "Oklahoma Route 66 | Roadside Stops & Mother Road Memories"
+        }
+      ],
+      "photo_alt": "Lucille’s Service Station — still from the film Oklahoma Route 66 | Roadside Stops & Mother Road Memories"
     },
     {
       "id": "cadillac-ranch",
@@ -363,7 +618,32 @@
         "E9TIfpZ69NU"
       ],
       "thumb": "6dM9uO6qR5I",
-      "on_map": true
+      "on_map": true,
+      "chapter_text": "The film Route 66: Texas to New Mexico | Cadillac Ranch to Pecos opens with a chapter titled Cadillac Ranch. The short Cadillac Ranch at Sunrise | Route 66, Texas describes sunrise at Cadillac Ranch in Texas, captured during the Route 66 road trip.",
+      "chapter_sources": [
+        {
+          "kind": "video title + chapter title",
+          "video_id": "egYLfHGUae4",
+          "excerpt": "Route 66: Texas to New Mexico | Cadillac Ranch to Pecos; chapter 00:00 Cadillac Ranch"
+        },
+        {
+          "kind": "video title + description",
+          "video_id": "6dM9uO6qR5I",
+          "excerpt": "Cadillac Ranch at Sunrise | Route 66, Texas — “Sunrise at Cadillac Ranch in Texas, captured during our Route 66 road trip.”"
+        },
+        {
+          "kind": "video description",
+          "video_id": "E9TIfpZ69NU",
+          "excerpt": "A giant rocking chair, a blue whale, Buck Atom, Cadillac Ranch, and more from our separate Route 66 trips."
+        },
+        {
+          "kind": "video chapter title",
+          "video_id": "DHxZueP0Z04",
+          "excerpt": "03:53 Texas — Amarillo, Cadillac Ranch and the midpoint"
+        }
+      ],
+      "chapter_photo": "thumbs/egYLfHGUae4-960.webp",
+      "photo_alt": "YouTube thumbnail for Route 66: Texas to New Mexico | Cadillac Ranch to Pecos, used for Cadillac Ranch"
     },
     {
       "id": "midpoint",
@@ -379,7 +659,22 @@
       ],
       "thumb": "egYLfHGUae4",
       "on_map": true,
-      "start_seconds": 16
+      "start_seconds": 16,
+      "chapter_text": "The film Route 66: Texas to New Mexico | Cadillac Ranch to Pecos has a chapter titled Route 66 Midpoint. The east-to-west film’s Texas chapter is titled “Amarillo, Cadillac Ranch and the midpoint.”",
+      "chapter_sources": [
+        {
+          "kind": "video chapter title",
+          "video_id": "egYLfHGUae4",
+          "excerpt": "00:16 Route 66 Midpoint"
+        },
+        {
+          "kind": "video chapter title",
+          "video_id": "DHxZueP0Z04",
+          "excerpt": "03:53 Texas — Amarillo, Cadillac Ranch and the midpoint"
+        }
+      ],
+      "chapter_photo": "thumbs/egYLfHGUae4-960.webp",
+      "photo_alt": "YouTube thumbnail for Route 66: Texas to New Mexico | Cadillac Ranch to Pecos, used for Route 66 Midpoint"
     },
     {
       "id": "tucumcari",
@@ -395,7 +690,22 @@
       ],
       "thumb": "egYLfHGUae4",
       "on_map": true,
-      "start_seconds": 26
+      "start_seconds": 26,
+      "chapter_text": "The film Route 66: Texas to New Mexico | Cadillac Ranch to Pecos has a chapter titled Tucumcari. The east-to-west film’s New Mexico chapter is titled “Tucumcari and the Blue Hole.”",
+      "chapter_sources": [
+        {
+          "kind": "video chapter title",
+          "video_id": "egYLfHGUae4",
+          "excerpt": "00:26 Tucumcari"
+        },
+        {
+          "kind": "video chapter title",
+          "video_id": "DHxZueP0Z04",
+          "excerpt": "04:17 New Mexico — Tucumcari and the Blue Hole"
+        }
+      ],
+      "chapter_photo": "thumbs/egYLfHGUae4-960.webp",
+      "photo_alt": "YouTube thumbnail for Route 66: Texas to New Mexico | Cadillac Ranch to Pecos, used for Tucumcari"
     },
     {
       "id": "blue-hole",
@@ -411,7 +721,27 @@
       ],
       "thumb": "egYLfHGUae4",
       "on_map": true,
-      "start_seconds": 36
+      "start_seconds": 36,
+      "chapter_text": "The film Route 66: Texas to New Mexico | Cadillac Ranch to Pecos has a chapter titled Blue Hole. The east-to-west film also names the Blue Hole in its New Mexico chapter and in its description.",
+      "chapter_sources": [
+        {
+          "kind": "video chapter title",
+          "video_id": "egYLfHGUae4",
+          "excerpt": "00:36 Blue Hole"
+        },
+        {
+          "kind": "video chapter title",
+          "video_id": "DHxZueP0Z04",
+          "excerpt": "04:17 New Mexico — Tucumcari and the Blue Hole"
+        },
+        {
+          "kind": "video description",
+          "video_id": "DHxZueP0Z04",
+          "excerpt": "These are our roadside memories from Missouri to Arizona: small towns, old bridges, Oklahoma neon, Cadillac Ranch, the Blue Hole, Lowell Observatory—where Pluto was discovered in 1930—and the people and places we wanted to remember."
+        }
+      ],
+      "chapter_photo": "thumbs/egYLfHGUae4-960.webp",
+      "photo_alt": "YouTube thumbnail for Route 66: Texas to New Mexico | Cadillac Ranch to Pecos, used for The Blue Hole"
     },
     {
       "id": "lucero-canyon",
@@ -424,14 +754,29 @@
       ],
       "thumb": "egYLfHGUae4",
       "on_map": false,
-      "start_seconds": 62
+      "start_seconds": 62,
+      "chapter_text": "The film Route 66: Texas to New Mexico | Cadillac Ranch to Pecos has a chapter titled Lucero Canyon.",
+      "chapter_sources": [
+        {
+          "kind": "video chapter title",
+          "video_id": "egYLfHGUae4",
+          "excerpt": "01:02 Lucero Canyon"
+        },
+        {
+          "kind": "video title",
+          "video_id": "egYLfHGUae4",
+          "excerpt": "Route 66: Texas to New Mexico | Cadillac Ranch to Pecos"
+        }
+      ],
+      "chapter_photo": "thumbs/egYLfHGUae4-960.webp",
+      "photo_alt": "YouTube thumbnail for Route 66: Texas to New Mexico | Cadillac Ranch to Pecos, used for Lucero Canyon"
     },
     {
       "id": "pecos",
       "state": "new-mexico",
       "name": "Pecos National Historical Park",
       "place": "New Mexico",
-      "lat": 35.55110,
+      "lat": 35.5511,
       "lon": -105.68972,
       "note": "The last stop in the Texas to New Mexico film. The dotted line on the map is a spur off the main Route 66 corridor.",
       "videos": [
@@ -440,7 +785,22 @@
       "thumb": "egYLfHGUae4",
       "on_map": true,
       "spur": true,
-      "start_seconds": 89
+      "start_seconds": 89,
+      "chapter_text": "The film Route 66: Texas to New Mexico | Cadillac Ranch to Pecos has a chapter titled Pecos National Historical Park.",
+      "chapter_sources": [
+        {
+          "kind": "video chapter title",
+          "video_id": "egYLfHGUae4",
+          "excerpt": "01:29 Pecos National Historical Park"
+        },
+        {
+          "kind": "video title",
+          "video_id": "egYLfHGUae4",
+          "excerpt": "Route 66: Texas to New Mexico | Cadillac Ranch to Pecos"
+        }
+      ],
+      "chapter_photo": "thumbs/egYLfHGUae4-960.webp",
+      "photo_alt": "YouTube thumbnail for Route 66: Texas to New Mexico | Cadillac Ranch to Pecos, used for Pecos National Historical Park"
     },
     {
       "id": "petrified-forest",
@@ -455,7 +815,22 @@
       ],
       "thumb": "DHxZueP0Z04",
       "on_map": true,
-      "start_seconds": 288
+      "start_seconds": 288,
+      "chapter_text": "In Route 66, One Stop at a Time | Our Roadside Memories, the chapter “Arizona — Petrified Forest to Flagstaff” names Petrified Forest.",
+      "chapter_sources": [
+        {
+          "kind": "video chapter title",
+          "video_id": "DHxZueP0Z04",
+          "excerpt": "04:48 Arizona — Petrified Forest to Flagstaff"
+        },
+        {
+          "kind": "video title",
+          "video_id": "DHxZueP0Z04",
+          "excerpt": "Route 66, One Stop at a Time | Our Roadside Memories"
+        }
+      ],
+      "chapter_photo": "thumbs/DHxZueP0Z04-960.webp",
+      "photo_alt": "YouTube thumbnail for Route 66, One Stop at a Time | Our Roadside Memories, used for Petrified Forest"
     },
     {
       "id": "winslow",
@@ -469,7 +844,22 @@
         "PGW3p9qo6aA"
       ],
       "thumb": "PGW3p9qo6aA",
-      "on_map": true
+      "on_map": true,
+      "chapter_text": "The short Standin’ on the Corner | Winslow, Arizona Route 66 describes a stop at the famous corner in Winslow, Arizona, during the Route 66 travels.",
+      "chapter_sources": [
+        {
+          "kind": "video title",
+          "video_id": "PGW3p9qo6aA",
+          "excerpt": "Standin’ on the Corner | Winslow, Arizona Route 66"
+        },
+        {
+          "kind": "video description",
+          "video_id": "PGW3p9qo6aA",
+          "excerpt": "A stop at the famous corner in Winslow, Arizona, during our Route 66 travels."
+        }
+      ],
+      "chapter_photo": "thumbs/PGW3p9qo6aA-960.webp",
+      "photo_alt": "YouTube thumbnail for Standin’ on the Corner | Winslow, Arizona Route 66, used for Standin’ on the Corner"
     },
     {
       "id": "flagstaff",
@@ -484,7 +874,22 @@
       ],
       "thumb": "DHxZueP0Z04",
       "on_map": true,
-      "start_seconds": 288
+      "start_seconds": 288,
+      "chapter_text": "In Route 66, One Stop at a Time | Our Roadside Memories, the chapter “Arizona — Petrified Forest to Flagstaff” names Flagstaff. The film’s description also names Lowell Observatory, where Pluto was discovered in 1930.",
+      "chapter_sources": [
+        {
+          "kind": "video chapter title",
+          "video_id": "DHxZueP0Z04",
+          "excerpt": "04:48 Arizona — Petrified Forest to Flagstaff"
+        },
+        {
+          "kind": "video description",
+          "video_id": "DHxZueP0Z04",
+          "excerpt": "Lowell Observatory—where Pluto was discovered in 1930"
+        }
+      ],
+      "chapter_photo": "thumbs/DHxZueP0Z04-960.webp",
+      "photo_alt": "YouTube thumbnail for Route 66, One Stop at a Time | Our Roadside Memories, used for Lowell Observatory"
     },
     {
       "id": "santa-monica",
@@ -500,7 +905,22 @@
       "on_map": true,
       "lat": 34.0089,
       "lon": -118.4974,
-      "start_seconds": 380
+      "start_seconds": 380,
+      "chapter_text": "The east-to-west film’s last chapter is titled “Santa Monica — a separate memory.” The short We Haven’t Driven Every Mile of Route 66—Yet says the Santa Monica photo is from a separate visit.",
+      "chapter_sources": [
+        {
+          "kind": "video chapter title",
+          "video_id": "DHxZueP0Z04",
+          "excerpt": "06:20 Santa Monica — a separate memory"
+        },
+        {
+          "kind": "video title + description",
+          "video_id": "OkjZP-cKp6o",
+          "excerpt": "We Haven’t Driven Every Mile of Route 66—Yet #Shorts — “The Santa Monica photo is from a separate visit; one day we hope to drive the miles between.”"
+        }
+      ],
+      "chapter_photo": "thumbs/DHxZueP0Z04-960.webp",
+      "photo_alt": "YouTube thumbnail for Route 66, One Stop at a Time | Our Roadside Memories, used for Santa Monica Pier"
     }
   ],
   "route": [
@@ -647,7 +1067,7 @@
       -104.67325
     ],
     [
-      35.55110,
+      35.5511,
       -105.68972
     ]
   ],
