@@ -1,0 +1,4 @@
+{
+  "description": "Places Teddy and Asia have eaten and liked. Looked-up facts (address, coordinates, cuisine, website, status) must include a sources list. teddy_note must be Teddy's own words, or left blank. Do not invent names, quotes, ratings, or dates. This file is loaded by build.py; keep restaurants empty until a real entry is ready.",
+  "restaurants": []
+}

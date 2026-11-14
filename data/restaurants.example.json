@@ -1,0 +1,25 @@
+{
+  "description": "EXAMPLE ONLY. This file is a schema sample. It is not loaded by the site and must never be copied onto the live page.",
+  "restaurants": [
+    {
+      "id": "example-placeholder",
+      "name": "Example Restaurant (placeholder — not a real place)",
+      "city": "Example City",
+      "region": "Example State",
+      "country": "United States",
+      "lat": 0,
+      "lng": 0,
+      "cuisine": "Example cuisine",
+      "address": "123 Example Street, Example City, Example State",
+      "website": "https://www.example.com/",
+      "status": "unverified",
+      "teddy_note": "",
+      "visited": "",
+      "video_id": "",
+      "start_seconds": null,
+      "sources": [
+        "https://www.example.com/"
+      ]
+    }
+  ]
+}

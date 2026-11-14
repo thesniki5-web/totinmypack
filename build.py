@@ -249,7 +249,7 @@ def footer(prefix: str, extra_js: str = "") -> str:
 {extra_js}"""
 
 
-def head(title: str, description: str, path: str, og_id: str, prefix: str, extra: str = "", og_logo: bool = False) -> str:
+def head(title: str, description: str, path: str, og_id: str, prefix: str, extra: str = "", og_logo: bool = False, robots: str | None = None) -> str:
     canon = SITE + path
     if og_logo or og_id == "logo":
         image = f"{SITE}/assets/og-image.jpg"
@@ -257,6 +257,9 @@ def head(title: str, description: str, path: str, og_id: str, prefix: str, extra
     else:
         image = thumb(og_id)
         og_w, og_h = 1280, 720
+    robots_tag = (
+        f'  <meta name="robots" content="{esc(robots)}">\n' if robots else ""
+    )
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -264,7 +267,7 @@ def head(title: str, description: str, path: str, og_id: str, prefix: str, extra
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{esc(title)}</title>
   <meta name="description" content="{esc(description)}">
-  <link rel="canonical" href="{esc(canon)}">
+{robots_tag}  <link rel="canonical" href="{esc(canon)}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Totin My Pack">
   <meta property="og:title" content="{esc(title)}">
@@ -1094,6 +1097,211 @@ def page_trip(slug: str) -> str:
 def page_trip_route66() -> str:
     return page_trip("route-66")
 
+
+def _restaurant_data() -> dict:
+    path = ROOT / "data" / "restaurants.json"
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _restaurant_place(r: dict) -> str:
+    parts = [r.get("city") or "", r.get("region") or "", r.get("country") or ""]
+    seen: list[str] = []
+    for part in parts:
+        part = part.strip()
+        if part and part not in seen:
+            seen.append(part)
+    return ", ".join(seen)
+
+
+def _restaurant_slug(r: dict, index: int) -> str:
+    raw = (r.get("id") or "").strip()
+    if raw:
+        return raw
+    base = "-".join(x for x in [(r.get("name") or "").strip(), (r.get("city") or "").strip()] if x)
+    slug = "".join(ch.lower() if ch.isalnum() else "-" for ch in base).strip("-")
+    while "--" in slug:
+        slug = slug.replace("--", "-")
+    return slug or f"restaurant-{index + 1}"
+
+
+def _restaurant_card(r: dict, index: int, prefix: str) -> str:
+    rid = esc(_restaurant_slug(r, index))
+    place = _restaurant_place(r)
+    status = (r.get("status") or "").strip().lower()
+    status_label = {"open": "Open", "closed": "Closed", "unverified": "Unverified"}.get(status, "")
+    status_html = (
+        f'<p class="restaurant-status is-{esc(status)}">{esc(status_label)}</p>'
+        if status_label
+        else ""
+    )
+    cuisine = f'<p class="restaurant-cuisine">{esc(r["cuisine"])}</p>' if r.get("cuisine") else ""
+    address = f'<p class="restaurant-address">{esc(r["address"])}</p>' if r.get("address") else ""
+    note = (
+        f'<p class="restaurant-note">{esc(r["teddy_note"])}</p>'
+        if (r.get("teddy_note") or "").strip()
+        else ""
+    )
+    visited = (
+        f'<p class="restaurant-visited">Visited {esc(r["visited"])}</p>'
+        if (r.get("visited") or "").strip()
+        else ""
+    )
+    actions: list[str] = []
+    if r.get("website"):
+        actions.append(
+            f'<a href="{esc(r["website"])}" rel="noopener noreferrer">Website</a>'
+        )
+    if r.get("lat") is not None and r.get("lng") is not None:
+        actions.append(
+            f'<button type="button" class="trip-stop-locate" data-restaurant-focus="{rid}">'
+            "Show on the map</button>"
+        )
+    video_id = (r.get("video_id") or "").strip()
+    if video_id:
+        v = BY_ID.get(video_id)
+        title = v["title"] if v else r.get("name") or "the film"
+        kind = v["kind"] if v else "film"
+        start = r.get("start_seconds")
+        start_attr = f' data-start="{int(start)}"' if start else ""
+        actions.append(
+            f'<button type="button" class="trip-watch" data-video-id="{esc(video_id)}" '
+            f'data-title="{esc(title)}" data-kind="{esc(kind)}"{start_attr}>'
+            "Watch the film</button>"
+        )
+    actions_html = (
+        f'<p class="restaurant-card-actions">{"".join(actions)}</p>' if actions else ""
+    )
+    sources = [s for s in (r.get("sources") or []) if s]
+    if sources:
+        links = ", ".join(
+            f'<a href="{esc(s)}" rel="noopener noreferrer">{esc(s)}</a>' for s in sources
+        )
+        sources_html = f'<p class="restaurant-sources">Sources: {links}</p>'
+    else:
+        sources_html = ""
+    place_html = f'<p class="restaurant-place">{esc(place)}</p>' if place else ""
+    return (
+        f'<article class="restaurant-card" id="restaurant-{rid}">'
+        f"<h3>{esc(r.get('name') or 'Restaurant')}</h3>"
+        f"{place_html}{cuisine}{address}{status_html}{note}{visited}{actions_html}{sources_html}"
+        "</article>"
+    )
+
+
+def page_restaurants() -> str:
+    prefix = ""
+    data = _restaurant_data()
+    restaurants = list(data.get("restaurants") or [])
+    payload_places = []
+    cards = []
+    number = 0
+    for i, r in enumerate(restaurants):
+        rid = _restaurant_slug(r, i)
+        has_pin = r.get("lat") is not None and r.get("lng") is not None
+        if has_pin:
+            number += 1
+        video_id = (r.get("video_id") or "").strip()
+        v = BY_ID.get(video_id) if video_id else None
+        item = {
+            "id": rid,
+            "name": r.get("name") or "",
+            "place": _restaurant_place(r),
+            "lat": r.get("lat"),
+            "lng": r.get("lng"),
+            "cuisine": r.get("cuisine") or "",
+            "address": r.get("address") or "",
+            "website": r.get("website") or "",
+            "status": r.get("status") or "",
+            "teddy_note": (r.get("teddy_note") or "").strip(),
+        }
+        if has_pin:
+            item["number"] = number
+        if video_id:
+            item["video_id"] = video_id
+            if v:
+                item["video_title"] = v["title"]
+                item["video_kind"] = v["kind"]
+            if r.get("start_seconds"):
+                item["start_seconds"] = int(r["start_seconds"])
+        payload_places.append(item)
+        cards.append(_restaurant_card(r, i, prefix))
+
+    if cards:
+        list_html = f'<div class="restaurant-list">{"".join(cards)}</div>'
+    else:
+        list_html = (
+            '<div class="restaurant-empty" role="status">'
+            "<p><strong>Coming soon.</strong> When restaurants are added, they will appear "
+            "on the map and in this list.</p>"
+            "</div>"
+        )
+
+    map_payload = {
+        "default_bounds": [[24.5, -125.0], [49.4, 28.3]],
+        "maxZoom": 12,
+        "restaurants": payload_places,
+    }
+    map_json = json.dumps(map_payload, ensure_ascii=False)
+    extra_js = f'<script src="{prefix}js/restaurant-map.js" defer></script>'
+    title = "Restaurants — Totin My Pack"
+    desc = (
+        "A draft page of restaurants we have eaten at and liked. "
+        "The list is not yet filled."
+    )
+    return f"""{head(title, desc, "/restaurants.html", "logo", prefix, og_logo=True, robots="noindex")}
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+{nav(prefix, "")}
+<main id="content">
+  <section class="page-hero" aria-label="Restaurants">
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <p class="kicker">A draft</p>
+      <h1>Restaurants</h1>
+      <p class="lede">Places we have eaten and liked, shown on a map the same way as the trips.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#restaurant-map">View the map</a>
+      </div>
+    </div>
+  </section>
+  <section class="section restaurant-map-section" aria-labelledby="map-heading">
+    <div class="wrap">
+      <div class="draft-banner" role="status">
+        <p><strong>Draft.</strong> This page is a starting point only. It is not in the menu yet, and it will stay out of search results until the list is ready. Nothing on the map or in the list is a recommendation we have not actually made.</p>
+      </div>
+      <div class="section-head">
+        <div class="section-intro">
+          <p class="kicker">The places</p>
+          <h2 id="map-heading">The map</h2>
+          <p>Each pin will sit at the restaurant’s true location. The map is ready; the pins will appear when places are added.</p>
+        </div>
+      </div>
+      <div class="trip-map-frame restaurant-map-frame">
+        <div id="restaurant-map" class="trip-map" role="region" aria-label="Map of restaurants">
+          <p class="trip-map-placeholder">The map loads when you scroll to it. The list is below.</p>
+        </div>
+      </div>
+      <p class="map-attrib">Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer">OpenStreetMap</a></p>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="list-heading" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-intro">
+          <p class="kicker">The list</p>
+          <h2 id="list-heading">Places</h2>
+        </div>
+      </div>
+      {list_html}
+    </div>
+  </section>
+</main>
+{footer(prefix, extra_js)}
+<script type="application/json" id="restaurant-map-data">{map_json}</script>
+</body>
+</html>"""
+
+
 def robots_and_sitemap() -> None:
     pages = [
         "/",
@@ -1157,6 +1365,7 @@ def main() -> None:
     write(ROOT / "videos.html", page_videos())
     write(ROOT / "shorts.html", page_shorts())
     write(ROOT / "about.html", page_about())
+    write(ROOT / "restaurants.html", page_restaurants())
     write(ROOT / "404.html", page_404())
     shutil.copyfile(ROOT / "assets" / "favicon.ico", ROOT / "favicon.ico")
     write(ROOT / "trips" / "index.html", page_trips_index())
