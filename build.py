@@ -1231,7 +1231,8 @@ def _restaurant_card(r: dict, index: int, prefix: str) -> str:
         )
     if r.get("lat") is not None and r.get("lng") is not None:
         actions.append(
-            f'<button type="button" class="trip-stop-locate" data-restaurant-focus="{rid}">'
+            f'<button type="button" class="trip-stop-locate" data-restaurant-focus="{rid}" '
+            f'aria-label="Show {esc(name)} on the map">'
             "Show on the map</button>"
         )
     video_id = (r.get("video_id") or "").strip()

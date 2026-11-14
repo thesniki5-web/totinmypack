@@ -4,6 +4,33 @@
   if (!mount || !dataEl) return;
 
   var started = false;
+  var readyResolve = null;
+  var readyPromise = null;
+  var showRestaurantOnMap = null;
+
+  function whenMapReady() {
+    if (showRestaurantOnMap) return Promise.resolve(showRestaurantOnMap);
+    if (!readyPromise) {
+      readyPromise = new Promise(function (resolve) {
+        readyResolve = function (fn) {
+          showRestaurantOnMap = fn;
+          resolve(fn);
+        };
+      });
+      init();
+    }
+    return readyPromise;
+  }
+
+  document.addEventListener("click", function (ev) {
+    var el = ev.target.closest("[data-restaurant-focus]");
+    if (!el) return;
+    ev.preventDefault();
+    var id = el.getAttribute("data-restaurant-focus");
+    whenMapReady().then(function (show) {
+      show(id);
+    });
+  });
   var leafletCss = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
   var leafletJs = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
   var leafletIntegrityCss =
@@ -191,13 +218,13 @@
         marker.bindPopup(popup, { maxWidth: 280 });
         marker.on("click", function () {
           var hits = overlappingStops(place);
-          if (hits.length > 1) {
+          if (hits.length > 1 && canSeparate(hits)) {
             map.closePopup();
             zoomToSeparate(hits);
             return;
           }
           highlight(place);
-          marker.openPopup();
+          revealMarker(marker);
         });
         markers[place.id] = marker;
         mapped.push(place);
@@ -239,24 +266,32 @@
         return hits;
       }
 
+      function minSeparation(hits, zTry) {
+        var minPx = Infinity;
+        var i, j;
+        for (i = 0; i < hits.length; i++) {
+          for (j = i + 1; j < hits.length; j++) {
+            var p1 = map.project(markers[hits[i].id].getLatLng(), zTry);
+            var p2 = map.project(markers[hits[j].id].getLatLng(), zTry);
+            var d = p1.distanceTo(p2);
+            if (d < minPx) minPx = d;
+          }
+        }
+        return minPx;
+      }
+
+      function canSeparate(hits) {
+        return minSeparation(hits, 18) >= markerSizeForZoom(18) + 10;
+      }
+
       function zoomToSeparate(hits) {
         var z = map.getZoom();
         var maxZ = 18;
         var target = Math.min(z + 2, maxZ);
-        var zTry, i, j;
+        var zTry;
         for (zTry = z + 1; zTry <= maxZ; zTry++) {
-          var size = markerSizeForZoom(zTry);
-          var minPx = Infinity;
-          for (i = 0; i < hits.length; i++) {
-            for (j = i + 1; j < hits.length; j++) {
-              var p1 = map.project(markers[hits[i].id].getLatLng(), zTry);
-              var p2 = map.project(markers[hits[j].id].getLatLng(), zTry);
-              var d = p1.distanceTo(p2);
-              if (d < minPx) minPx = d;
-            }
-          }
           target = zTry;
-          if (minPx >= size + 10) break;
+          if (minSeparation(hits, zTry) >= markerSizeForZoom(zTry) + 10) break;
         }
         var area = L.latLngBounds(
           hits.map(function (s) {
@@ -286,32 +321,82 @@
         if (card) card.classList.add("is-active");
       }
 
+      function reduceMotion() {
+        return (
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        );
+      }
+
+      function focusPopup(marker) {
+        var popup = marker.getPopup();
+        var el = popup && popup.getElement();
+        if (!el) return;
+        var target =
+          el.querySelector(".trip-popup-name") ||
+          el.querySelector(".leaflet-popup-content");
+        if (!target) return;
+        if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+        try {
+          target.focus({ preventScroll: true });
+        } catch (err) {
+          target.focus();
+        }
+      }
+
+      function revealMarker(marker, zoom) {
+        map.invalidateSize();
+        var ll = marker.getLatLng();
+        var targetZoom = Math.max(map.getZoom(), zoom || 16);
+        var already =
+          map.getZoom() === targetZoom &&
+          map.getCenter().equals(ll, 0.00005);
+        function open() {
+          marker.openPopup();
+          focusPopup(marker);
+        }
+        if (already) {
+          open();
+          return;
+        }
+        map.once("moveend", open);
+        map.setView(ll, targetZoom, { animate: !reduceMotion() });
+        window.setTimeout(function () {
+          if (!marker.isPopupOpen()) open();
+        }, 900);
+      }
+
+      function showRestaurant(id) {
+        var marker = markers[id];
+        var place = null;
+        mapped.forEach(function (s) {
+          if (s.id === id) place = s;
+        });
+        if (!marker || !place) return;
+        highlight(place);
+        mount.scrollIntoView({
+          behavior: reduceMotion() ? "auto" : "smooth",
+          block: "center"
+        });
+        window.setTimeout(function () {
+          revealMarker(marker, 16);
+        }, reduceMotion() ? 50 : 450);
+      }
+
       updateMarkerSizes();
       map.on("zoomend", updateMarkerSizes);
-
-      document.querySelectorAll("[data-restaurant-focus]").forEach(function (el) {
-        el.addEventListener("click", function () {
-          var id = el.getAttribute("data-restaurant-focus");
-          var marker = markers[id];
-          if (!marker) return;
-          var place = null;
-          mapped.forEach(function (s) {
-            if (s.id === id) place = s;
-          });
-          highlight(place);
-          map.panTo(marker.getLatLng());
-          marker.openPopup();
-        });
-      });
 
       map.invalidateSize();
       setTimeout(function () {
         map.invalidateSize();
         updateMarkerSizes();
       }, 250);
+
+      if (readyResolve) readyResolve(showRestaurant);
     }).catch(function () {
       mount.innerHTML =
         '<p class="trip-map-fallback">The map could not be loaded. The list is below.</p>';
+      if (readyResolve) readyResolve(function () {});
     });
   }
 
@@ -321,7 +406,7 @@
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             io.disconnect();
-            init();
+            whenMapReady();
           }
         });
       },
@@ -329,6 +414,6 @@
     );
     io.observe(mount);
   } else {
-    init();
+    whenMapReady();
   }
 })();
