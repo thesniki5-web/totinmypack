@@ -11,6 +11,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -201,10 +202,42 @@ def set_output(name: str, value: str) -> None:
             fh.write(f"{name}={value}\n")
 
 
-def fetch(url: str, timeout: int = 30) -> bytes:
+def fetch(url: str, timeout: int = 30, attempts: int = 3) -> bytes:
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "*/*"})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return resp.read()
+    last: BaseException | None = None
+    for attempt in range(1, attempts + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.read()
+        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, OSError) as exc:
+            last = exc
+            if attempt < attempts:
+                wait = attempt
+                log(
+                    f"  warning: fetch attempt {attempt}/{attempts} failed "
+                    f"for {url}: {exc}; retrying in {wait}s"
+                )
+                time.sleep(wait)
+    assert last is not None
+    raise last
+
+
+def _is_skipable_feed_error(exc: BaseException) -> bool:
+    """True for 404, 5xx, or timeout — leave the catalog unchanged."""
+    if isinstance(exc, TimeoutError):
+        return True
+    if isinstance(exc, urllib.error.HTTPError):
+        return exc.code == 404 or exc.code >= 500
+    if isinstance(exc, urllib.error.URLError):
+        reason = exc.reason
+        if isinstance(reason, TimeoutError):
+            return True
+        text = str(reason).lower()
+        if "timed out" in text or "timeout" in text:
+            return True
+    if isinstance(exc, OSError) and "timed out" in str(exc).lower():
+        return True
+    return False
 
 
 def parse_feed(xml_bytes: bytes) -> list[dict]:
@@ -369,7 +402,18 @@ def main(argv: list[str] | None = None) -> int:
         log(f"Reading feed from {args.feed}")
     else:
         log(f"Fetching {FEED_URL}")
-        xml_bytes = fetch(FEED_URL)
+        try:
+            xml_bytes = fetch(FEED_URL)
+        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, OSError) as exc:
+            if _is_skipable_feed_error(exc):
+                log(
+                    f"warning: YouTube feed unavailable ({exc}); "
+                    "leaving video data unchanged."
+                )
+                set_output("changed", "false")
+                set_output("added", "")
+                return 0
+            raise
     entries = parse_feed(xml_bytes)
     log(f"Feed has {len(entries)} entries; catalog has {len(videos)} videos")
 
