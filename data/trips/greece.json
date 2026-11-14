@@ -57,7 +57,27 @@
         "mk44NdLZgQs"
       ],
       "thumb": "mk44NdLZgQs",
-      "on_map": true
+      "on_map": true,
+      "chapter_text": "The film Swimming in Gerakini, Greece | Crystal Clear Water & Marine Life is described as his favorite beach in all of Greece and the place where he grew up, with a chapter titled “Life under the sea.”",
+      "chapter_sources": [
+        {
+          "kind": "video title",
+          "video_id": "mk44NdLZgQs",
+          "excerpt": "Swimming in Gerakini, Greece | Crystal Clear Water & Marine Life"
+        },
+        {
+          "kind": "video description",
+          "video_id": "mk44NdLZgQs",
+          "excerpt": "This is my favorite beach in all of Greece — and the place where I grew up. Located in Gerakini, Halkidiki… I take you below the surface to see what life looks like underwater."
+        },
+        {
+          "kind": "video chapter title",
+          "video_id": "mk44NdLZgQs",
+          "excerpt": "00:20 Life under the sea"
+        }
+      ],
+      "chapter_photo": "thumbs/mk44NdLZgQs-960.webp",
+      "photo_alt": "YouTube thumbnail for Swimming in Gerakini, Greece | Crystal Clear Water & Marine Life, used for Gerakini"
     },
     {
       "id": "agios-nikolaos",
@@ -71,7 +91,22 @@
         "is4VhiJbrPU"
       ],
       "thumb": "is4VhiJbrPU",
-      "on_map": true
+      "on_map": true,
+      "chapter_text": "The film ΧΑΝΘ Κατασκήνωση Αγίου Νικολάου | My Summer Camp Tribute in Halkidiki is described as a tribute to the place where he spent childhood summers, with beaches, paths, and memories, at Agios Nikolaos, Halkidiki.",
+      "chapter_sources": [
+        {
+          "kind": "video title",
+          "video_id": "is4VhiJbrPU",
+          "excerpt": "ΧΑΝΘ Κατασκήνωση Αγίου Νικολάου | My Summer Camp Tribute in Halkidiki"
+        },
+        {
+          "kind": "video description",
+          "video_id": "is4VhiJbrPU",
+          "excerpt": "My tribute to one of the most beautiful places I’ve ever lived. This is where I spent my childhood summers — filled with beaches, laughter, games, and unforgettable memories. Location: Agios Nikolaos, Halkidiki"
+        }
+      ],
+      "chapter_photo": "thumbs/is4VhiJbrPU-960.webp",
+      "photo_alt": "YouTube thumbnail for ΧΑΝΘ Κατασκήνωση Αγίου Νικολάου | My Summer Camp Tribute in Halkidiki, used for Summer camp at Agios Nikolaos"
     },
     {
       "id": "itamos",
@@ -87,7 +122,22 @@
         "RWvKeHEqRVM"
       ],
       "thumb": "ONbdk7yflpM",
-      "on_map": true
+      "on_map": true,
+      "chapter_text": "The film Mount Itamos, Greece | Hiking to an Ancient Tree describes a hike on Mount Itamos (Dragoudeli) in Sithonia, Halkidiki, to the ancient Itamos tree. The short A Greek Mountain Overlooking the Aegean shows a view from Mount Itamos toward the Aegean Sea.",
+      "chapter_sources": [
+        {
+          "kind": "video title + description",
+          "video_id": "ONbdk7yflpM",
+          "excerpt": "Mount Itamos, Greece | Hiking to an Ancient Tree — “Explore Mount Itamos (Dragoudeli) in Sithonia, Halkidiki, Greece, on a hike to the ancient Itamos tree.”"
+        },
+        {
+          "kind": "video title + description",
+          "video_id": "674bBByn45U",
+          "excerpt": "A Greek Mountain Overlooking the Aegean #Shorts — “A view from Mount Itamos, where the mountain landscape opens toward the Aegean Sea.”"
+        }
+      ],
+      "chapter_photo": "thumbs/ONbdk7yflpM-960.webp",
+      "photo_alt": "YouTube thumbnail for Mount Itamos, Greece | Hiking to an Ancient Tree, used for Mount Itamos"
     },
     {
       "id": "profitis-ilias",
@@ -103,7 +153,22 @@
       ],
       "thumb": "Whbt1fpVyUE",
       "on_map": true,
-      "start_seconds": 41
+      "start_seconds": 41,
+      "chapter_text": "The Mount Itamos film has a chapter titled Profítis Ilias Church. The short Mount Dragoudeli, Greece | Profítis Ilias Church describes a stop at Profítis Ilias Church on Mount Dragoudeli in Halkidiki.",
+      "chapter_sources": [
+        {
+          "kind": "video chapter title",
+          "video_id": "ONbdk7yflpM",
+          "excerpt": "00:41 Profítis Ilias Church"
+        },
+        {
+          "kind": "video title + description",
+          "video_id": "Whbt1fpVyUE",
+          "excerpt": "Mount Dragoudeli, Greece | Profítis Ilias Church — “A stop at Profítis Ilias Church on Mount Dragoudeli in Halkidiki, Greece.”"
+        }
+      ],
+      "chapter_photo": "thumbs/ONbdk7yflpM-960.webp",
+      "photo_alt": "YouTube thumbnail for Mount Itamos, Greece | Hiking to an Ancient Tree, used for Profítis Ilias Church"
     },
     {
       "id": "fire-tower",
@@ -117,7 +182,22 @@
       "thumb": "ONbdk7yflpM",
       "on_map": false,
       "focus": "itamos",
-      "start_seconds": 100
+      "start_seconds": 100,
+      "chapter_text": "The Mount Itamos film has a chapter titled Pyrofylakio / Fire Tower, and its description includes the fire tower on the route.",
+      "chapter_sources": [
+        {
+          "kind": "video chapter title",
+          "video_id": "ONbdk7yflpM",
+          "excerpt": "01:40 Pyrofylakio / Fire Tower"
+        },
+        {
+          "kind": "video description",
+          "video_id": "ONbdk7yflpM",
+          "excerpt": "Our route includes Profítis Ilias Church, the fire tower, forest scenery, and views across the surrounding landscape."
+        }
+      ],
+      "chapter_photo": "thumbs/ONbdk7yflpM-960.webp",
+      "photo_alt": "YouTube thumbnail for Mount Itamos, Greece | Hiking to an Ancient Tree, used for Pyrofylakio / Fire Tower"
     },
     {
       "id": "itamos-tree",
@@ -132,7 +212,22 @@
       "thumb": "fdVL-Z72EKM",
       "on_map": false,
       "focus": "itamos",
-      "start_seconds": 228
+      "start_seconds": 228,
+      "chapter_text": "The Mount Itamos film has a chapter titled Itamos Tree. The short The Ancient Itamos Tree | Halkidiki, Greece describes a closer look at the ancient Itamos tree from the Mount Itamos hike.",
+      "chapter_sources": [
+        {
+          "kind": "video chapter title",
+          "video_id": "ONbdk7yflpM",
+          "excerpt": "03:48 Itamos Tree"
+        },
+        {
+          "kind": "video title + description",
+          "video_id": "fdVL-Z72EKM",
+          "excerpt": "The Ancient Itamos Tree | Halkidiki, Greece — “A closer look at the ancient Itamos tree in Halkidiki, Greece, from our Mount Itamos hike.”"
+        }
+      ],
+      "chapter_photo": "thumbs/ONbdk7yflpM-960.webp",
+      "photo_alt": "YouTube thumbnail for Mount Itamos, Greece | Hiking to an Ancient Tree, used for The ancient Itamos tree"
     },
     {
       "id": "skopelos",
@@ -148,7 +243,21 @@
       "thumb": "vQvsLO0F0tE",
       "on_map": true,
       "start_seconds": 49,
-      "photo": "stops/greece/skopelos.webp"
+      "photo": "stops/greece/skopelos.webp",
+      "chapter_text": "The film Greece with Tres & Teddy | Skopelos, Meteora & Mount Olympus (2008) names island life in Skopelos among its destinations.",
+      "chapter_sources": [
+        {
+          "kind": "video title",
+          "video_id": "vQvsLO0F0tE",
+          "excerpt": "Greece with Tres & Teddy | Skopelos, Meteora & Mount Olympus (2008)"
+        },
+        {
+          "kind": "video description",
+          "video_id": "vQvsLO0F0tE",
+          "excerpt": "From island life in Skopelos to the peaks of Mount Olympus… Destinations: • Skopelos"
+        }
+      ],
+      "photo_alt": "Skopelos — still from the film Greece with Tres & Teddy | Skopelos, Meteora & Mount Olympus (2008)"
     },
     {
       "id": "olympus",
@@ -164,7 +273,21 @@
       "thumb": "vQvsLO0F0tE",
       "on_map": true,
       "start_seconds": 142,
-      "photo": "stops/greece/olympus.webp"
+      "photo": "stops/greece/olympus.webp",
+      "chapter_text": "The same 2008 film is titled in part Mount Olympus and describes the peaks of Mount Olympus among its destinations.",
+      "chapter_sources": [
+        {
+          "kind": "video title",
+          "video_id": "vQvsLO0F0tE",
+          "excerpt": "Greece with Tres & Teddy | Skopelos, Meteora & Mount Olympus (2008)"
+        },
+        {
+          "kind": "video description",
+          "video_id": "vQvsLO0F0tE",
+          "excerpt": "From island life in Skopelos to the peaks of Mount Olympus… Destinations: • Mount Olympus"
+        }
+      ],
+      "photo_alt": "Mount Olympus — still from the film Greece with Tres & Teddy | Skopelos, Meteora & Mount Olympus (2008)"
     },
     {
       "id": "pella",
@@ -180,7 +303,21 @@
       "thumb": "vQvsLO0F0tE",
       "on_map": true,
       "start_seconds": 170,
-      "photo": "stops/greece/pella.webp"
+      "photo": "stops/greece/pella.webp",
+      "chapter_text": "The 2008 film’s description names ancient ruins in Pella among its destinations.",
+      "chapter_sources": [
+        {
+          "kind": "video title",
+          "video_id": "vQvsLO0F0tE",
+          "excerpt": "Greece with Tres & Teddy | Skopelos, Meteora & Mount Olympus (2008)"
+        },
+        {
+          "kind": "video description",
+          "video_id": "vQvsLO0F0tE",
+          "excerpt": "from ancient ruins in Pella to the surreal monasteries of Meteora… Destinations: • Pella"
+        }
+      ],
+      "photo_alt": "Pella — still from the film Greece with Tres & Teddy | Skopelos, Meteora & Mount Olympus (2008)"
     },
     {
       "id": "meteora",
@@ -196,7 +333,21 @@
       "thumb": "vQvsLO0F0tE",
       "on_map": true,
       "start_seconds": 176,
-      "photo": "stops/greece/meteora.webp"
+      "photo": "stops/greece/meteora.webp",
+      "chapter_text": "The 2008 film is titled in part Meteora and describes the monasteries of Meteora among its destinations.",
+      "chapter_sources": [
+        {
+          "kind": "video title",
+          "video_id": "vQvsLO0F0tE",
+          "excerpt": "Greece with Tres & Teddy | Skopelos, Meteora & Mount Olympus (2008)"
+        },
+        {
+          "kind": "video description",
+          "video_id": "vQvsLO0F0tE",
+          "excerpt": "the surreal monasteries of Meteora… Destinations: • Meteora"
+        }
+      ],
+      "photo_alt": "Meteora — still from the film Greece with Tres & Teddy | Skopelos, Meteora & Mount Olympus (2008)"
     },
     {
       "id": "thessaloniki",
@@ -212,7 +363,21 @@
       "thumb": "vQvsLO0F0tE",
       "on_map": true,
       "start_seconds": 183,
-      "photo": "stops/greece/thessaloniki.webp"
+      "photo": "stops/greece/thessaloniki.webp",
+      "chapter_text": "The 2008 film’s destination list includes Thessaloniki.",
+      "chapter_sources": [
+        {
+          "kind": "video title",
+          "video_id": "vQvsLO0F0tE",
+          "excerpt": "Greece with Tres & Teddy | Skopelos, Meteora & Mount Olympus (2008)"
+        },
+        {
+          "kind": "video description",
+          "video_id": "vQvsLO0F0tE",
+          "excerpt": "Destinations: • Thessaloniki"
+        }
+      ],
+      "photo_alt": "Thessaloniki — still from the film Greece with Tres & Teddy | Skopelos, Meteora & Mount Olympus (2008)"
     }
   ],
   "route": [],

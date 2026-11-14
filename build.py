@@ -861,7 +861,7 @@ def page_trips_index() -> str:
 
 
 def _stop_photo(stop: dict, prefix: str) -> str | None:
-    photo = (stop.get("photo") or "").strip()
+    photo = (stop.get("photo") or stop.get("chapter_photo") or "").strip()
     if not photo:
         return None
     return f"{prefix}assets/{photo}"
@@ -1010,6 +1010,11 @@ def page_trip(slug: str) -> str:
                 num_html = f'<span class="trip-stop-num" aria-hidden="true">{num}</span>'
             else:
                 num_html = '<span class="trip-stop-num is-off" aria-hidden="true">–</span>'
+            chapter = (
+                f'<p class="trip-stop-chapter">{esc(s["chapter_text"])}</p>'
+                if (s.get("chapter_text") or "").strip()
+                else ""
+            )
             note = f'<p>{esc(s["note"])}</p>' if s.get("note") else ""
             then_html = _then_and_now_html(s)
             locate_id = s["id"] if s.get("on_map") else s.get("focus")
@@ -1030,13 +1035,15 @@ def page_trip(slug: str) -> str:
                 )
             watch = f'<ul class="trip-watch-list">{"".join(watch_btns)}</ul>' if watch_btns else ""
             if photo_src:
+                photo_alt = (s.get("photo_alt") or s["name"]).strip()
                 img = (
-                    f'<img src="{esc(photo_src)}" alt="" width="480" height="270" loading="lazy" '
+                    f'<img src="{esc(photo_src)}" alt="{esc(photo_alt)}" width="480" height="270" loading="lazy" '
                     f'decoding="async">'
                 )
             else:
+                photo_alt = (s.get("photo_alt") or s["name"]).strip()
                 img = (
-                    f'<img {thumb_srcset(thumb_id, prefix=prefix)} alt="" loading="lazy" decoding="async">'
+                    f'<img {thumb_srcset(thumb_id, prefix=prefix)} alt="{esc(photo_alt)}" loading="lazy" decoding="async">'
                 )
             if primary:
                 thumb_btn = (
@@ -1053,7 +1060,7 @@ def page_trip(slug: str) -> str:
                 f"{thumb_btn}<div class=\"trip-stop-copy\">"
                 f"<h3>{num_html}{esc(s['name'])}</h3>"
                 f'<p class="trip-stop-place">{esc(s.get("place") or "")}</p>'
-                f"{note}{then_html}{watch}{locate}</div></article>"
+                f"{chapter}{note}{then_html}{watch}{locate}</div></article>"
             )
         state_note = f'<p>{esc(state["note"])}</p>' if state.get("note") else ""
         state_blocks.append(
@@ -1082,7 +1089,11 @@ def page_trip(slug: str) -> str:
         )
     extra_js = f'<script src="{prefix}js/trip-map.js" defer></script>'
     map_aria = trip.get("map_aria") or f"Map of filmed places in {trip['name']}"
-    return f"""{head(trip["title"] + " — Totin My Pack", trip["description"], f"/trips/{slug}.html", trip["hero"], prefix, extra=hero_preload(trip["hero"], prefix))}
+    preview_banner = """
+      <div class="draft-banner" role="status">
+        <p><strong>Preview only.</strong> Chapter short text and photos on this page are a draft for review. They are not published on the live site.</p>
+      </div>"""
+    return f"""{head(trip["title"] + " — Totin My Pack", trip["description"], f"/trips/{slug}.html", trip["hero"], prefix, extra=hero_preload(trip["hero"], prefix), robots="noindex")}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "trips")}
@@ -1104,6 +1115,7 @@ def page_trip(slug: str) -> str:
   </section>
   <section class="section trip-map-section" aria-labelledby="map-heading">
     <div class="wrap">
+      {preview_banner}
       <div class="section-head">
         <div class="section-intro">
           <p class="kicker">{esc(trip.get("map_kicker") or "The places")}</p>
