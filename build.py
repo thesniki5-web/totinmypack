@@ -8,7 +8,7 @@ import shutil
 import unicodedata
 from collections import OrderedDict
 from pathlib import Path
-from urllib.parse import quote, urlparse
+from urllib.parse import parse_qs, quote, urlparse
 
 ROOT = Path(__file__).resolve().parent
 SITE = "https://totinmypack.com"
@@ -237,6 +237,59 @@ def film_card(v: dict, *, featured: bool = False, lazy: bool = True, prefix: str
 </article>"""
 
 
+
+def _goat_event_path(href: str, *, kind: str | None = None, name: str | None = None) -> str:
+    """Readable GoatCounter event path for an outbound link. Must not start with /."""
+    if kind and name:
+        return f"{kind}: {name}"
+    try:
+        parsed = urlparse(href)
+    except ValueError:
+        return "out: link"
+    host = (parsed.hostname or "").lower()
+    if host.startswith("www."):
+        host = host[4:]
+    path = parsed.path or ""
+    if host in {"youtube.com", "m.youtube.com", "youtu.be", "youtube-nocookie.com"}:
+        vid = ""
+        if host == "youtu.be":
+            vid = path.strip("/").split("/")[0] if path.strip("/") else ""
+        else:
+            vid = (parse_qs(parsed.query).get("v") or [""])[0]
+            parts = [part for part in path.split("/") if part]
+            if not vid and parts and parts[0] in {"embed", "shorts", "live", "v"} and len(parts) > 1:
+                vid = parts[1]
+            elif not vid and parts and parts[0].startswith("@"):
+                return f"out: youtube.com/{parts[0]}"
+            elif not vid and "playlist" in parts:
+                return "out: youtube.com/playlist"
+        if vid:
+            return f"out: youtube.com/{vid}"
+        return "out: youtube.com"
+    label = host or "link"
+    if path and path != "/":
+        short = path.rstrip("/")
+        if len(short) > 48:
+            short = short[:45] + "..."
+        label = f"{host}{short}"
+    return f"out: {label}"
+
+
+def _goat_click_attrs(
+    href: str,
+    *,
+    kind: str | None = None,
+    name: str | None = None,
+    title: str | None = None,
+) -> str:
+    path = _goat_event_path(href, kind=kind, name=name)
+    label = title or path
+    return (
+        f' data-goatcounter-click="{esc(path)}"'
+        f' data-goatcounter-title="{esc(label)}"'
+    )
+
+
 def nav(prefix: str, current: str) -> str:
     def cur(name: str) -> str:
         return ' aria-current="page"' if current == name else ""
@@ -271,7 +324,7 @@ def nav(prefix: str, current: str) -> str:
         <li><a href="{prefix}restaurants.html"{cur("restaurants")}>Restaurants</a></li>
         <li><a href="{prefix}about.html"{cur("about")}>About</a></li>
       </ul>
-      <a class="btn btn-gold nav-cta" href="{CHANNEL}" rel="noopener noreferrer">Subscribe on YouTube</a>
+      <a class="btn btn-gold nav-cta" href="{CHANNEL}" rel="noopener noreferrer"{_goat_click_attrs(CHANNEL)}>Subscribe on YouTube</a>
     </nav>
   </div>
 </header>"""
@@ -295,7 +348,7 @@ def footer(prefix: str, extra_js: str = "") -> str:
       <a href="{prefix}shorts.html">Shorts</a>
       <a href="{prefix}restaurants.html">Restaurants</a>
       <a href="{prefix}about.html">About</a>
-      <a href="{CHANNEL}" rel="noopener noreferrer">YouTube</a>
+      <a href="{CHANNEL}" rel="noopener noreferrer"{_goat_click_attrs(CHANNEL)}>YouTube</a>
     </nav>
   </div>
 </footer>
@@ -325,6 +378,12 @@ def head(title: str, description: str, path: str, og_id: str, prefix: str, extra
     robots_tag = (
         f'  <meta name="robots" content="{esc(robots)}">\n' if robots else ""
     )
+    goat = ""
+    if not (robots and "noindex" in robots.lower()):
+        goat = (
+            '\n  <script data-goatcounter="https://totinmypack.goatcounter.com/count" '
+            'async src="https://gc.zgo.at/count.js"></script>'
+        )
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -354,7 +413,7 @@ def head(title: str, description: str, path: str, og_id: str, prefix: str, extra
   <link rel="preload" href="{prefix}assets/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preconnect" href="https://i.ytimg.com">
   <link rel="stylesheet" href="{prefix}css/styles.css">
-  {extra}
+  {extra}{goat}
 </head>"""
 
 
@@ -431,7 +490,7 @@ def page_home() -> str:
       <p class="lede">{esc(CHANNEL_DESC)}</p>
       <div class="hero-actions">
         <a class="btn btn-gold" href="#start-here">Start here</a>
-        <a class="btn btn-ghost" href="{CHANNEL}" rel="noopener noreferrer">Subscribe on YouTube</a>
+        <a class="btn btn-ghost" href="{CHANNEL}" rel="noopener noreferrer"{_goat_click_attrs(CHANNEL)}>Subscribe on YouTube</a>
       </div>
     </div>
   </section>
@@ -444,7 +503,7 @@ def page_home() -> str:
           <h2 id="start-heading">Start Here</h2>
           <p>Five short travel films chosen as a first look: a historic Texas church, an ancient tree in Greece, autumn in the mountains, turquoise river water, and a cypress swamp.</p>
         </div>
-        <a class="link-arrow" href="{PLAYLIST}" rel="noopener noreferrer">Play all on YouTube</a>
+        <a class="link-arrow" href="{PLAYLIST}" rel="noopener noreferrer"{_goat_click_attrs(PLAYLIST)}>Play all on YouTube</a>
       </div>
       <div class="film-grid featured">
         {start_cards}
@@ -504,7 +563,7 @@ def page_home() -> str:
       <h2 id="subscribe-heading">Watch the next film on YouTube</h2>
       <p>New travel films and Shorts are published on the Totin My Pack channel.</p>
     </div>
-    <a class="btn btn-gold" href="{CHANNEL}" rel="noopener noreferrer">Subscribe on YouTube</a>
+    <a class="btn btn-gold" href="{CHANNEL}" rel="noopener noreferrer"{_goat_click_attrs(CHANNEL)}>Subscribe on YouTube</a>
   </section>
 </main>
 {footer(prefix)}
@@ -635,7 +694,7 @@ def page_destination(d: dict) -> str:
       <h2 id="subscribe-heading">Subscribe on YouTube</h2>
       <p>Watch these films, and new ones as they are published, on the Totin My Pack channel.</p>
     </div>
-    <a class="btn btn-gold" href="{CHANNEL}" rel="noopener noreferrer">Subscribe on YouTube</a>
+    <a class="btn btn-gold" href="{CHANNEL}" rel="noopener noreferrer"{_goat_click_attrs(CHANNEL)}>Subscribe on YouTube</a>
   </section>
 </main>
 {footer(prefix)}
@@ -744,7 +803,7 @@ def page_shorts() -> str:
       <h2 id="subscribe-heading">Subscribe on YouTube</h2>
       <p>New Shorts are published on the Totin My Pack channel.</p>
     </div>
-    <a class="btn btn-gold" href="{CHANNEL}" rel="noopener noreferrer">Subscribe on YouTube</a>
+    <a class="btn btn-gold" href="{CHANNEL}" rel="noopener noreferrer"{_goat_click_attrs(CHANNEL)}>Subscribe on YouTube</a>
   </section>
 </main>
 {footer(prefix)}
@@ -784,12 +843,12 @@ def page_about() -> str:
         <p class="lead">Teddy (Theodore) films his trips under the name Totin My Pack.</p>
         <p>The films follow places in Greece and the United States. They are published on two YouTube channels:</p>
         <ul>
-          <li><a href="{totin}" rel="noopener noreferrer">Totin My Pack</a> — @totinmypack</li>
-          <li><a href="{unscripted}" rel="noopener noreferrer">Teddy Unscripted</a> — @TeddyUnscripted</li>
+          <li><a href="{totin}" rel="noopener noreferrer"{_goat_click_attrs(totin)}>Totin My Pack</a> — @totinmypack</li>
+          <li><a href="{unscripted}" rel="noopener noreferrer"{_goat_click_attrs(unscripted)}>Teddy Unscripted</a> — @TeddyUnscripted</li>
         </ul>
         <p class="about-actions">
-          <a class="btn btn-gold" href="{totin}" rel="noopener noreferrer">Totin My Pack on YouTube</a>
-          <a class="btn btn-ghost" href="{unscripted}" rel="noopener noreferrer">Teddy Unscripted</a>
+          <a class="btn btn-gold" href="{totin}" rel="noopener noreferrer"{_goat_click_attrs(totin)}>Totin My Pack on YouTube</a>
+          <a class="btn btn-ghost" href="{unscripted}" rel="noopener noreferrer"{_goat_click_attrs(unscripted)}>Teddy Unscripted</a>
         </p>
       </div>
     </div>
@@ -888,7 +947,7 @@ def _then_and_now_html(stop: dict) -> str:
     if info.get("source_url") and info.get("source_name"):
         src = (
             f'<p class="trip-then-source">Source: '
-            f'<a href="{esc(info["source_url"])}" rel="noopener noreferrer">'
+            f'<a href="{esc(info["source_url"])}" rel="noopener noreferrer"{_goat_click_attrs(info["source_url"])}>'
             f"{esc(info['source_name'])}</a></p>"
         )
     return (
@@ -1117,7 +1176,7 @@ def page_trip(slug: str) -> str:
           <p class="trip-map-placeholder">The map loads when you scroll to it. The stops are listed below.</p>
         </div>
       </div>
-      <p class="map-attrib">Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer">OpenStreetMap</a></p>
+      <p class="map-attrib">Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer"{_goat_click_attrs("https://www.openstreetmap.org/copyright")}>OpenStreetMap</a></p>
       <div class="trip-tour" id="trip-tour" hidden>
         <button type="button" class="btn btn-ghost trip-tour-btn" id="trip-tour-prev" disabled>Previous stop</button>
         <p class="trip-tour-status" id="trip-tour-status" aria-live="polite">Step through the stops</p>
@@ -1250,10 +1309,11 @@ def _directions_url(r: dict) -> str:
     return ""
 
 
-def _external_link(href: str, label: str, aria: str) -> str:
+def _external_link(href: str, label: str, aria: str, *, kind: str | None = None, name: str | None = None) -> str:
     return (
         f'<a href="{esc(href)}" target="_blank" rel="noopener noreferrer" '
-        f'aria-label="{esc(aria)}">{esc(label)}</a>'
+        f'aria-label="{esc(aria)}"{_goat_click_attrs(href, kind=kind, name=name, title=aria)}>'
+        f"{esc(label)}</a>"
     )
 
 
@@ -1283,12 +1343,12 @@ def _restaurant_card(r: dict, index: int, prefix: str) -> str:
     actions: list[str] = []
     if r.get("website"):
         actions.append(
-            _external_link(r["website"], "Website", f"Website for {name}")
+            _external_link(r["website"], "Website", f"Website for {name}", kind="restaurant-website", name=name)
         )
     directions = _directions_url(r)
     if directions:
         actions.append(
-            _external_link(directions, "Directions", f"Directions to {name}")
+            _external_link(directions, "Directions", f"Directions to {name}", kind="restaurant-directions", name=name)
         )
     if r.get("lat") is not None and r.get("lng") is not None:
         actions.append(
@@ -1314,7 +1374,7 @@ def _restaurant_card(r: dict, index: int, prefix: str) -> str:
     sources = [s for s in (r.get("sources") or []) if s]
     if sources:
         items = "".join(
-            f"<li>{_external_link(s, _source_label(s), f'Source for {name}: {_source_label(s)}')}</li>"
+            f"<li>{_external_link(s, _source_label(s), f'Source for {name}: {_source_label(s)}', kind='restaurant-source', name=name)}</li>"
             for s in sources
         )
         sources_html = (
@@ -1449,7 +1509,7 @@ def page_restaurants() -> str:
           <p class="trip-map-placeholder">The map loads when you scroll to it. The list is below.</p>
         </div>
       </div>
-      <p class="map-attrib">Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer">OpenStreetMap</a></p>
+      <p class="map-attrib">Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer"{_goat_click_attrs("https://www.openstreetmap.org/copyright")}>OpenStreetMap</a></p>
     </div>
   </section>
   <section class="section" aria-labelledby="list-heading" style="padding-top:0">
@@ -1579,7 +1639,7 @@ def page_hotels() -> str:
           <p class="trip-map-placeholder">The map loads when you scroll to it. The list is below.</p>
         </div>
       </div>
-      <p class="map-attrib">Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer">OpenStreetMap</a></p>
+      <p class="map-attrib">Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer"{_goat_click_attrs("https://www.openstreetmap.org/copyright")}>OpenStreetMap</a></p>
     </div>
   </section>
   <section class="section" aria-labelledby="list-heading" style="padding-top:0">
