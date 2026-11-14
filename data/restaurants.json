@@ -510,29 +510,6 @@
       ]
     },
     {
-      "id": "folk-s-folly-prime-steak-house-memphis",
-      "name": "Folk's Folly Prime Steak House",
-      "listed_as": "Folk’s Folly Steakhouse",
-      "city": "Memphis",
-      "region": "Tennessee",
-      "country": "United States",
-      "lat": 35.1159809,
-      "lng": -89.896075,
-      "cuisine": "Steakhouse",
-      "address": "551 South Mendenhall Road, Memphis, TN 38117",
-      "website": "https://www.folksfolly.com/",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://www.folksfolly.com/contact",
-        "https://www.folksfolly.com/",
-        "https://www.openstreetmap.org/node/?lat=35.1159809&lon=-89.8960750"
-      ]
-    },
-    {
       "id": "gibson-s-donuts-memphis",
       "name": "Gibson's Donuts",
       "listed_as": "Gibson Donuts",
@@ -623,29 +600,6 @@
         "https://www.arlington.org/listings/the-tipsy-oak/3174/",
         "https://www.facebook.com/thetipsyoak",
         "https://www.openstreetmap.org/node/13701080001"
-      ]
-    },
-    {
-      "id": "wade-s-place-chandler",
-      "name": "Wade's Place",
-      "listed_as": "Wade's",
-      "city": "Chandler",
-      "region": "Texas",
-      "country": "United States",
-      "lat": 32.3064041,
-      "lng": -95.4793275,
-      "cuisine": "American",
-      "address": "104 East Main Street, Chandler, TX 75758",
-      "website": "http://www.wadesplacechandler.com",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://www.facebook.com/WadesPlaceChandler",
-        "https://www.sirved.com/restaurant/chandler-texas-usa/wades-place/454581/menus",
-        "https://maps.apple.com/place?place-id=I5644DC58B1709848"
       ]
     },
     {
