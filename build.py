@@ -813,45 +813,46 @@ def page_shorts() -> str:
 </html>"""
 
 
+def _about_source_text() -> str:
+    path = ROOT / "data" / "about-source-teddy-2026-11-14.txt"
+    return path.read_text(encoding="utf-8")
+
+
+def _about_paragraphs(text: str) -> list[str]:
+    parts = [p.strip() for p in text.strip("\n").split("\n\n")]
+    return [p for p in parts if p]
+
+
 def page_about() -> str:
     prefix = ""
-    totin = "https://www.youtube.com/@totinmypack"
-    unscripted = "https://www.youtube.com/@TeddyUnscripted"
-    desc = (
-        "Teddy (Theodore) films his trips under the name Totin My Pack. "
-        "A draft about page, for him to personalize."
-    )
-    return f"""{head("About — Totin My Pack", desc, "/about.html", "logo", prefix, og_logo=True)}
+    paragraphs = _about_paragraphs(_about_source_text())
+    first = paragraphs[0] if paragraphs else ""
+    # Meta description is Teddy's first sentence, verbatim.
+    desc = first.split(". ", 1)[0] + "." if ". " in first else first
+    body = []
+    for i, para in enumerate(paragraphs):
+        cls = ' class="lead"' if i == 0 else ""
+        body.append(f"<p{cls}>{esc(para)}</p>")
+    body_html = "\n        ".join(body)
+    return f"""{head("About — Totin My Pack", desc, "/about.html", "logo", prefix, og_logo=True, robots="noindex")}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "about")}
 <main id="content">
   <section class="page-hero" aria-label="About">
-    <div class="hero-media">
-      {hero_img("is4VhiJbrPU", "", prefix, style="object-position:60% 40%")}
-    </div>
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="hero-copy">
-      <p class="kicker">A draft</p>
+      <p class="kicker">Preview only</p>
       <h1>About</h1>
     </div>
   </section>
   <section class="section">
     <div class="wrap">
       <div class="draft-banner" role="status">
-        <p><strong>Draft.</strong> This page is a starting point only. Please replace it with your own words when you are ready.</p>
+        <p><strong>Preview only.</strong> This About text is not on the live site yet.</p>
       </div>
       <div class="prose">
-        <p class="lead">Teddy (Theodore) films his trips under the name Totin My Pack.</p>
-        <p>The films follow places in Greece and the United States. They are published on two YouTube channels:</p>
-        <ul>
-          <li><a href="{totin}" rel="noopener noreferrer"{_goat_click_attrs(totin)}>Totin My Pack</a> — @totinmypack</li>
-          <li><a href="{unscripted}" rel="noopener noreferrer"{_goat_click_attrs(unscripted)}>Teddy Unscripted</a> — @TeddyUnscripted</li>
-        </ul>
-        <p class="about-actions">
-          <a class="btn btn-gold" href="{totin}" rel="noopener noreferrer"{_goat_click_attrs(totin)}>Totin My Pack on YouTube</a>
-          <a class="btn btn-ghost" href="{unscripted}" rel="noopener noreferrer"{_goat_click_attrs(unscripted)}>Teddy Unscripted</a>
-        </p>
+        {body_html}
       </div>
     </div>
   </section>
