@@ -1800,50 +1800,6 @@
       ]
     },
     {
-      "id": "babe-s-chicken-dinner-house-texas-several-locations",
-      "name": "Babe's Chicken Dinner House",
-      "listed_as": "Babes Chicken",
-      "city": "Texas, several locations",
-      "region": "Texas",
-      "country": "United States",
-      "lat": null,
-      "lng": null,
-      "cuisine": "American / fried chicken",
-      "address": "",
-      "website": "https://babeschicken.com/locations/",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://babeschicken.com/locations/"
-      ],
-      "location_note": "Several locations in Texas."
-    },
-    {
-      "id": "flying-fish-texas-several-locations",
-      "name": "Flying Fish",
-      "listed_as": "Flying Fish",
-      "city": "Texas, several locations",
-      "region": "Texas",
-      "country": "United States",
-      "lat": null,
-      "lng": null,
-      "cuisine": "Seafood",
-      "address": "",
-      "website": "https://www.flyingfishinthe.net/",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://www.flyingfishinthe.net/"
-      ],
-      "location_note": "Several locations in Texas."
-    },
-    {
       "id": "simon-pearce-restaurant-quechee",
       "name": "Simon Pearce Restaurant",
       "listed_as": "Simon Pearce",

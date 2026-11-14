@@ -208,6 +208,7 @@ def nav(prefix: str, current: str) -> str:
         <li><a href="{prefix}trips/index.html"{cur("trips")}>Trips</a></li>
         <li><a href="{prefix}videos.html"{cur("videos")}>Films</a></li>
         <li><a href="{prefix}shorts.html"{cur("shorts")}>Shorts</a></li>
+        <li><a href="{prefix}restaurants.html"{cur("restaurants")}>Restaurants</a></li>
         <li><a href="{prefix}about.html"{cur("about")}>About</a></li>
       </ul>
       <a class="btn btn-gold nav-cta" href="{CHANNEL}" rel="noopener noreferrer">Subscribe on YouTube</a>
@@ -232,6 +233,7 @@ def footer(prefix: str, extra_js: str = "") -> str:
       <a href="{prefix}trips/index.html">Trips</a>
       <a href="{prefix}videos.html">Films</a>
       <a href="{prefix}shorts.html">Shorts</a>
+      <a href="{prefix}restaurants.html">Restaurants</a>
       <a href="{prefix}about.html">About</a>
       <a href="{CHANNEL}" rel="noopener noreferrer">YouTube</a>
     </nav>
@@ -1357,21 +1359,18 @@ def page_restaurants() -> str:
     map_json = json.dumps(map_payload, ensure_ascii=False)
     extra_js = f'<script src="{prefix}js/restaurant-map.js" defer></script>'
     title = "Restaurants — Totin My Pack"
-    desc = (
-        "A draft page of restaurants we have eaten at and liked, "
-        "grouped by place and shown on a map."
-    )
-    return f"""{head(title, desc, "/restaurants.html", "logo", prefix, og_logo=True, robots="noindex")}
+    desc = "Places we’ve eaten and liked along the way."
+    return f"""{head(title, desc, "/restaurants.html", "logo", prefix, og_logo=True)}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
-{nav(prefix, "")}
+{nav(prefix, "restaurants")}
 <main id="content">
   <section class="page-hero" aria-label="Restaurants">
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="hero-copy">
-      <p class="kicker">A draft</p>
+      <p class="kicker">Along the way</p>
       <h1>Restaurants</h1>
-      <p class="lede">Places we have eaten and liked, shown on a map the same way as the trips.</p>
+      <p class="lede">Places we’ve eaten and liked along the way.</p>
       <div class="hero-actions">
         <a class="btn btn-gold" href="#restaurant-map">View the map</a>
       </div>
@@ -1379,14 +1378,11 @@ def page_restaurants() -> str:
   </section>
   <section class="section restaurant-map-section" aria-labelledby="map-heading">
     <div class="wrap">
-      <div class="draft-banner" role="status">
-        <p><strong>Draft.</strong> This page is a starting point only. It is not in the menu yet, and it will stay out of search results until the list is ready. Nothing on the map or in the list is a recommendation we have not actually made.</p>
-      </div>
       <div class="section-head">
         <div class="section-intro">
           <p class="kicker">The places</p>
           <h2 id="map-heading">The map</h2>
-          <p>Each pin sits at the restaurant’s true location. If a name has more than one possible address, it stays in the list without a pin until we know which one.</p>
+          <p>Each pin sits at the restaurant’s true location. Local restaurants with more than one location are pinned at the city center. Places without a precise point stay in the list without a pin.</p>
         </div>
       </div>
       <div class="trip-map-frame restaurant-map-frame">
@@ -1415,12 +1411,152 @@ def page_restaurants() -> str:
 </html>"""
 
 
+def _hotel_data() -> dict:
+    path = ROOT / "data" / "hotels.json"
+    if not path.exists():
+        return {"hotels": []}
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def page_hotels() -> str:
+    prefix = ""
+    data = _hotel_data()
+    hotels = list(data.get("hotels") or [])
+    payload_places = []
+    number = 0
+    groups: OrderedDict[str, OrderedDict[str, list[tuple[int, dict]]]] = OrderedDict()
+    for i, r in enumerate(hotels):
+        rid = _restaurant_slug(r, i)
+        has_pin = r.get("lat") is not None and r.get("lng") is not None
+        if has_pin:
+            number += 1
+        item = {
+            "id": rid,
+            "name": r.get("name") or "",
+            "place": _restaurant_place(r),
+            "lat": r.get("lat"),
+            "lng": r.get("lng"),
+            "address": r.get("address") or "",
+            "website": r.get("website") or "",
+            "teddy_note": (r.get("teddy_note") or "").strip(),
+        }
+        if has_pin:
+            item["number"] = number
+        payload_places.append(item)
+        region = _restaurant_region(r) or "Other"
+        city = (r.get("city") or "").strip() or "Unspecified"
+        groups.setdefault(region, OrderedDict()).setdefault(city, []).append((i, r))
+
+    if groups:
+        sections = []
+        for region, cities in groups.items():
+            region_id = esc(_fold_slug(f"region-{region}") or "region")
+            city_blocks = []
+            for city, items in cities.items():
+                cards = "".join(_hotel_card(r, i, prefix) for i, r in items)
+                city_blocks.append(
+                    '<div class="restaurant-city-group">'
+                    f'<p class="restaurant-city-label">{esc(city)}</p>'
+                    f'<div class="restaurant-city-cards">{cards}</div>'
+                    "</div>"
+                )
+            sections.append(
+                f'<section class="restaurant-region" aria-labelledby="{region_id}">'
+                f'<h3 id="{region_id}">{esc(region)}</h3>'
+                + "".join(city_blocks)
+                + "</section>"
+            )
+        list_html = f'<div class="restaurant-list">{"".join(sections)}</div>'
+    else:
+        list_html = (
+            '<div class="restaurant-empty" role="status">'
+            "<p><strong>Coming soon.</strong> When hotels are added, they will appear "
+            "on the map and in this list.</p>"
+            "</div>"
+        )
+
+    map_payload = {
+        "default_bounds": [[24.5, -125.0], [49.4, 28.3]],
+        "maxZoom": 12,
+        "hotels": payload_places,
+    }
+    map_json = json.dumps(map_payload, ensure_ascii=False)
+    extra_js = f'<script src="{prefix}js/restaurant-map.js" defer></script>'
+    title = "Hotels — Totin My Pack"
+    desc = (
+        "A draft page of unique, independent places we have stayed, "
+        "grouped by place and shown on a map."
+    )
+    return f"""{head(title, desc, "/hotels.html", "logo", prefix, og_logo=True, robots="noindex")}
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+{nav(prefix, "")}
+<main id="content">
+  <section class="page-hero" aria-label="Hotels">
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <p class="kicker">A draft</p>
+      <h1>Hotels</h1>
+      <p class="lede">Unique, independent places we have stayed, shown on a map the same way as the restaurants.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#hotel-map">View the map</a>
+      </div>
+    </div>
+  </section>
+  <section class="section restaurant-map-section" aria-labelledby="map-heading">
+    <div class="wrap">
+      <div class="draft-banner" role="status">
+        <p><strong>Draft.</strong> This page is a starting point only. It is not in the menu yet, and it will stay out of search results until the list is ready.</p>
+      </div>
+      <div class="section-head">
+        <div class="section-intro">
+          <p class="kicker">The places</p>
+          <h2 id="map-heading">The map</h2>
+          <p>When hotels are added, each pin will sit at the stay’s true location. Places without a precise point will stay in the list without a pin.</p>
+        </div>
+      </div>
+      <div class="trip-map-frame restaurant-map-frame">
+        <div id="hotel-map" class="trip-map" role="region" aria-label="Map of hotels">
+          <p class="trip-map-placeholder">The map loads when you scroll to it. The list is below.</p>
+        </div>
+      </div>
+      <p class="map-attrib">Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer">OpenStreetMap</a></p>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="list-heading" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-intro">
+          <p class="kicker">The list</p>
+          <h2 id="list-heading">Places</h2>
+        </div>
+      </div>
+      {list_html}
+    </div>
+  </section>
+</main>
+{footer(prefix, extra_js)}
+<script type="application/json" id="hotel-map-data">{map_json}</script>
+</body>
+</html>"""
+
+
+def _hotel_card(r: dict, index: int, prefix: str) -> str:
+    # Same card markup as restaurants, with hotel IDs so the shared map script can focus a pin.
+    html = _restaurant_card(r, index, prefix)
+    html = html.replace('class="restaurant-card"', 'class="restaurant-card hotel-card"', 1)
+    html = html.replace('id="restaurant-', 'id="hotel-', 1)
+    html = html.replace("data-restaurant-focus=", "data-hotel-focus=", 1)
+    return html
+
+
 def robots_and_sitemap() -> None:
     pages = [
         "/",
         "/destinations/",
         "/videos.html",
         "/shorts.html",
+        "/restaurants.html",
         "/about.html",
         "/trips/",
     ] + [f"/trips/{slug}.html" for slug in _trip_slugs()] + [
@@ -1479,6 +1615,7 @@ def main() -> None:
     write(ROOT / "shorts.html", page_shorts())
     write(ROOT / "about.html", page_about())
     write(ROOT / "restaurants.html", page_restaurants())
+    write(ROOT / "hotels.html", page_hotels())
     write(ROOT / "404.html", page_404())
     shutil.copyfile(ROOT / "assets" / "favicon.ico", ROOT / "favicon.ico")
     write(ROOT / "trips" / "index.html", page_trips_index())

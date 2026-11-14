@@ -1,7 +1,12 @@
 (function () {
-  var mount = document.getElementById("restaurant-map");
-  var dataEl = document.getElementById("restaurant-map-data");
+  var mount = document.getElementById("restaurant-map") || document.getElementById("hotel-map");
+  var dataEl = document.getElementById("restaurant-map-data") || document.getElementById("hotel-map-data");
   if (!mount || !dataEl) return;
+  var isHotel = mount.id === "hotel-map";
+  var listKey = isHotel ? "hotels" : "restaurants";
+  var cardPrefix = isHotel ? "hotel-" : "restaurant-";
+  var focusSelector = isHotel ? "[data-hotel-focus]" : "[data-restaurant-focus]";
+  var focusAttr = isHotel ? "data-hotel-focus" : "data-restaurant-focus";
 
   var started = false;
   var readyResolve = null;
@@ -23,10 +28,10 @@
   }
 
   document.addEventListener("click", function (ev) {
-    var el = ev.target.closest("[data-restaurant-focus]");
+    var el = ev.target.closest(focusSelector);
     if (!el) return;
     ev.preventDefault();
-    var id = el.getAttribute("data-restaurant-focus");
+    var id = el.getAttribute(focusAttr);
     whenMapReady().then(function (show) {
       show(id);
     });
@@ -154,7 +159,7 @@
       var markers = {};
       var mapped = [];
 
-      (data.restaurants || []).forEach(function (place, index) {
+      (data[listKey] || []).forEach(function (place, index) {
         if (place.lat == null || place.lng == null) return;
         var latlng = [place.lat, place.lng];
         bounds.push(latlng);
@@ -313,11 +318,11 @@
       }
 
       function highlight(place) {
-        document.querySelectorAll(".restaurant-card.is-active").forEach(function (el) {
+        document.querySelectorAll(".restaurant-card.is-active, .hotel-card.is-active").forEach(function (el) {
           el.classList.remove("is-active");
         });
         if (!place) return;
-        var card = document.getElementById("restaurant-" + place.id);
+        var card = document.getElementById(cardPrefix + place.id);
         if (card) card.classList.add("is-active");
       }
 

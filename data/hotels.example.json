@@ -1,0 +1,23 @@
+{
+  "description": "EXAMPLE ONLY. This file is a schema sample. It is not loaded by the site and must never be copied onto the live page. Scope: unique, independent stays only — no chain hotels such as Hampton Inn.",
+  "hotels": [
+    {
+      "id": "example-placeholder",
+      "name": "Example Inn (placeholder — not a real place)",
+      "city": "Example City",
+      "region": "Example State",
+      "country": "United States",
+      "lat": 0,
+      "lng": 0,
+      "address": "123 Example Street, Example City, Example State",
+      "website": "https://www.example.com/",
+      "sources": [
+        "https://www.example.com/"
+      ],
+      "listed_as": "",
+      "location_note": "",
+      "teddy_note": "",
+      "visited": ""
+    }
+  ]
+}
