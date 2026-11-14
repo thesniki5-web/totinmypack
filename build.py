@@ -322,6 +322,7 @@ def nav(prefix: str, current: str) -> str:
         <li><a href="{prefix}videos.html"{cur("videos")}>Films</a></li>
         <li><a href="{prefix}shorts.html"{cur("shorts")}>Shorts</a></li>
         <li><a href="{prefix}restaurants.html"{cur("restaurants")}>Restaurants</a></li>
+        <li><a href="{prefix}hotels.html"{cur("hotels")}>Hotels</a></li>
         <li><a href="{prefix}about.html"{cur("about")}>About</a></li>
       </ul>
       <a class="btn btn-gold nav-cta" href="{CHANNEL}" rel="noopener noreferrer"{_goat_click_attrs(CHANNEL)}>Subscribe on YouTube</a>
@@ -347,6 +348,7 @@ def footer(prefix: str, extra_js: str = "") -> str:
       <a href="{prefix}videos.html">Films</a>
       <a href="{prefix}shorts.html">Shorts</a>
       <a href="{prefix}restaurants.html">Restaurants</a>
+      <a href="{prefix}hotels.html">Hotels</a>
       <a href="{prefix}about.html">About</a>
       <a href="{CHANNEL}" rel="noopener noreferrer"{_goat_click_attrs(CHANNEL)}>YouTube</a>
     </nav>
@@ -1332,7 +1334,7 @@ def _external_link(href: str, label: str, aria: str, *, kind: str | None = None,
     )
 
 
-def _restaurant_card(r: dict, index: int, prefix: str) -> str:
+def _restaurant_card(r: dict, index: int, prefix: str, *, link_kind: str = "restaurant") -> str:
     rid = esc(_restaurant_slug(r, index))
     name = r.get("name") or "Restaurant"
     place = _restaurant_place(r)
@@ -1358,12 +1360,12 @@ def _restaurant_card(r: dict, index: int, prefix: str) -> str:
     actions: list[str] = []
     if r.get("website"):
         actions.append(
-            _external_link(r["website"], "Website", f"Website for {name}", kind="restaurant-website", name=name)
+            _external_link(r["website"], "Website", f"Website for {name}", kind=f"{link_kind}-website", name=name)
         )
     directions = _directions_url(r)
     if directions:
         actions.append(
-            _external_link(directions, "Directions", f"Directions to {name}", kind="restaurant-directions", name=name)
+            _external_link(directions, "Directions", f"Directions to {name}", kind=f"{link_kind}-directions", name=name)
         )
     if r.get("lat") is not None and r.get("lng") is not None:
         actions.append(
@@ -1389,7 +1391,7 @@ def _restaurant_card(r: dict, index: int, prefix: str) -> str:
     sources = [s for s in (r.get("sources") or []) if s]
     if sources:
         items = "".join(
-            f"<li>{_external_link(s, _source_label(s), f'Source for {name}: {_source_label(s)}', kind='restaurant-source', name=name)}</li>"
+            f"<li>{_external_link(s, _source_label(s), f'Source for {name}: {_source_label(s)}', kind=f'{link_kind}-source', name=name)}</li>"
             for s in sources
         )
         sources_html = (
@@ -1617,18 +1619,16 @@ def page_hotels() -> str:
     map_json = json.dumps(map_payload, ensure_ascii=False)
     extra_js = f'<script src="{prefix}js/restaurant-map.js" defer></script>'
     title = "Hotels — Totin My Pack"
-    desc = (
-        "A draft page of places we’ve stayed and liked along the way."
-    )
-    return f"""{head(title, desc, "/hotels.html", "logo", prefix, og_logo=True, robots="noindex")}
+    desc = "Places we’ve stayed and liked along the way."
+    return f"""{head(title, desc, "/hotels.html", "logo", prefix, og_logo=True)}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
-{nav(prefix, "")}
+{nav(prefix, "hotels")}
 <main id="content">
   <section class="page-hero" aria-label="Hotels">
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="hero-copy">
-      <p class="kicker">A draft</p>
+      <p class="kicker">Along the way</p>
       <h1>Hotels</h1>
       <p class="lede">Places we’ve stayed and liked along the way.</p>
       <div class="hero-actions">
@@ -1638,9 +1638,6 @@ def page_hotels() -> str:
   </section>
   <section class="section restaurant-map-section" aria-labelledby="map-heading">
     <div class="wrap">
-      <div class="draft-banner" role="status">
-        <p><strong>Draft.</strong> This page is a starting point only. It is not in the menu yet, and it will stay out of search results until the list is ready.</p>
-      </div>
       <div class="section-head">
         <div class="section-intro">
           <p class="kicker">The places</p>
@@ -1676,7 +1673,7 @@ def page_hotels() -> str:
 
 def _hotel_card(r: dict, index: int, prefix: str) -> str:
     # Same card markup as restaurants, with hotel IDs so the shared map script can focus a pin.
-    html = _restaurant_card(r, index, prefix)
+    html = _restaurant_card(r, index, prefix, link_kind="hotel")
     html = html.replace('class="restaurant-card"', 'class="restaurant-card hotel-card"', 1)
     html = html.replace('id="restaurant-', 'id="hotel-', 1)
     html = html.replace("data-restaurant-focus=", "data-hotel-focus=", 1)
@@ -1690,6 +1687,7 @@ def robots_and_sitemap() -> None:
         "/videos.html",
         "/shorts.html",
         "/restaurants.html",
+        "/hotels.html",
         "/about.html",
         "/trips/",
     ] + [f"/trips/{slug}.html" for slug in _trip_slugs()] + [
