@@ -91,6 +91,25 @@
     });
   }
 
+  function placeIcon(kind, size) {
+    return window.L.divIcon({
+      className: "trip-marker is-place is-" + (kind === "hotel" ? "hotel" : "restaurant"),
+      html:
+        '<span class="trip-marker-num is-dot" style="width:' +
+        size +
+        "px;height:" +
+        size +
+        'px"></span>',
+      iconSize: [size, size],
+      iconAnchor: [size / 2, size / 2],
+      popupAnchor: [0, -Math.round(size / 2) - 2]
+    });
+  }
+
+  function reduceMotion() {
+    return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
   function init() {
     if (started) return;
     started = true;
@@ -239,6 +258,49 @@
         tourStops.push(stop);
       });
 
+      var placeMarkers = {};
+
+      (data.places || []).forEach(function (place) {
+        if (place.lat == null || place.lng == null) return;
+        var latlng = [place.lat, place.lng];
+        bounds.push(latlng);
+        var marker = L.marker(latlng, {
+          icon: placeIcon(place.kind, 12),
+          title: place.name,
+          keyboard: true,
+          riseOnHover: true
+        }).addTo(map);
+        var popup = document.createElement("div");
+        popup.className = "trip-popup";
+        var heading = document.createElement("p");
+        heading.className = "trip-popup-name";
+        heading.textContent = place.name;
+        popup.appendChild(heading);
+        if (place.place) {
+          var loc = document.createElement("p");
+          loc.className = "trip-popup-place";
+          loc.textContent = place.place;
+          popup.appendChild(loc);
+        }
+        if (place.address) {
+          var addr = document.createElement("p");
+          addr.className = "trip-popup-place";
+          addr.textContent = place.address;
+          popup.appendChild(addr);
+        }
+        if (place.website) {
+          var link = document.createElement("a");
+          link.className = "btn btn-ghost trip-popup-watch";
+          link.href = place.website;
+          link.rel = "noopener noreferrer";
+          link.target = "_blank";
+          link.textContent = "Website";
+          popup.appendChild(link);
+        }
+        marker.bindPopup(popup, { maxWidth: 280 });
+        placeMarkers[place.id] = marker;
+      });
+
       if (bounds.length) {
         var maxZoom = data.maxZoom || 9;
         map.fitBounds(bounds, { padding: [36, 36], maxZoom: maxZoom });
@@ -298,6 +360,36 @@
           var m = markers[stop.id];
           if (m) m.setIcon(markerIcon(stop.number, stop.spur, size));
         });
+        (data.places || []).forEach(function (place) {
+          var pm = placeMarkers[place.id];
+          if (pm) pm.setIcon(placeIcon(place.kind, size));
+        });
+      }
+
+      function revealPlace(marker) {
+        map.invalidateSize();
+        var ll = marker.getLatLng();
+        var targetZoom = Math.max(map.getZoom(), 16);
+        function open() {
+          marker.openPopup();
+        }
+        map.once("moveend", open);
+        map.setView(ll, targetZoom, { animate: !reduceMotion() });
+        window.setTimeout(function () {
+          if (!marker.isPopupOpen()) open();
+        }, 900);
+      }
+
+      function showPlace(id) {
+        var marker = placeMarkers[id];
+        if (!marker) return;
+        mount.scrollIntoView({
+          behavior: reduceMotion() ? "auto" : "smooth",
+          block: "center"
+        });
+        window.setTimeout(function () {
+          revealPlace(marker);
+        }, reduceMotion() ? 50 : 450);
       }
 
       updateMarkerSizes();
@@ -410,6 +502,13 @@
           var id = el.getAttribute("data-stop-play");
           var idx = indexOfStop(id);
           if (idx >= 0) goToStop(idx, { play: true });
+        });
+      });
+
+      document.querySelectorAll("[data-restaurant-focus], [data-hotel-focus]").forEach(function (el) {
+        el.addEventListener("click", function () {
+          var id = el.getAttribute("data-restaurant-focus") || el.getAttribute("data-hotel-focus");
+          if (id) showPlace(id);
         });
       });
 

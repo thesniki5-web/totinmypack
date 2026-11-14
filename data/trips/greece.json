@@ -382,5 +382,9 @@
   ],
   "route": [],
   "spur": [],
-  "map_max_zoom": 9
+  "map_max_zoom": 9,
+  "restaurants": [
+    "tzitzikas-porto-koufo"
+  ],
+  "hotels": []
 }
