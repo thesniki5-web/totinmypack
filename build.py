@@ -121,15 +121,48 @@ DESTINATIONS = [
 
 
 def thumb(vid: str, name: str = "maxresdefault") -> str:
+    """Absolute YouTube still URL. Used for Open Graph and JSON-LD."""
     return f"https://i.ytimg.com/vi/{vid}/{name}.jpg"
+
+
+THUMB_WIDTHS = (640, 960, 1280)
+
+
+def _local_thumb_widths(vid: str) -> list[int]:
+    return [w for w in THUMB_WIDTHS if (ROOT / "assets" / "thumbs" / f"{vid}-{w}.webp").exists()]
+
+
+def _thumb_srcset_attrs(
+    vid: str,
+    *,
+    sizes: str,
+    prefix: str,
+    default_width: int | None = None,
+) -> str | None:
+    widths = _local_thumb_widths(vid)
+    if not widths:
+        return None
+    if default_width not in widths:
+        default_width = 960 if 960 in widths else widths[0]
+    src = f"{prefix}assets/thumbs/{vid}-{default_width}.webp"
+    srcset = ", ".join(f"{prefix}assets/thumbs/{vid}-{w}.webp {w}w" for w in widths)
+    height = round(default_width * 9 / 16)
+    return (
+        f'src="{src}" srcset="{srcset}" sizes="{sizes}" '
+        f'width="{default_width}" height="{height}"'
+    )
 
 
 def thumb_srcset(
     vid: str,
     *,
     sizes: str = "(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 400px",
+    prefix: str = "",
 ) -> str:
-    """Card thumbnails: hqdefault as the default, with a srcset of smaller and larger YouTube stills."""
+    """Card thumbnails: local WebP when present, otherwise YouTube stills."""
+    local = _thumb_srcset_attrs(vid, sizes=sizes, prefix=prefix, default_width=640)
+    if local:
+        return local
     src = thumb(vid, "hqdefault")
     srcset = (
         f"{thumb(vid, 'mqdefault')} 320w, "
@@ -139,6 +172,33 @@ def thumb_srcset(
     return (
         f'src="{src}" srcset="{srcset}" sizes="{sizes}" '
         f'width="480" height="360" data-fallback="{esc(vid)}"'
+    )
+
+
+def hero_img(vid: str, alt: str, prefix: str = "", style: str = "") -> str:
+    style_attr = f" style=\"{style}\"" if style else ""
+    local = _thumb_srcset_attrs(vid, sizes="100vw", prefix=prefix, default_width=960)
+    if local:
+        return (
+            f'<img {local} alt="{esc(alt)}" '
+            f'fetchpriority="high" decoding="async"{style_attr}>'
+        )
+    return (
+        f'<img src="{thumb(vid)}" alt="{esc(alt)}" width="1280" height="720" '
+        f'fetchpriority="high" decoding="async"{style_attr}>'
+    )
+
+
+def hero_preload(vid: str, prefix: str = "") -> str:
+    widths = _local_thumb_widths(vid)
+    if not widths:
+        return ""
+    default = 960 if 960 in widths else widths[0]
+    href = f"{prefix}assets/thumbs/{vid}-{default}.webp"
+    srcset = ", ".join(f"{prefix}assets/thumbs/{vid}-{w}.webp {w}w" for w in widths)
+    return (
+        f'<link rel="preload" as="image" href="{href}" type="image/webp" '
+        f'imagesrcset="{srcset}" imagesizes="100vw" fetchpriority="high">'
     )
 
 
@@ -165,7 +225,7 @@ def film_card(v: dict, *, featured: bool = False, lazy: bool = True, prefix: str
 <article>
   <button class="{cls}" type="button" data-video-id="{esc(v['id'])}" data-title="{esc(v['title'])}" data-kind="{kind}" data-filter-item data-group="{esc(v['groups'][0]) if v.get('groups') else ''}">
     <span class="{thumb_cls}">
-      <img {thumb_srcset(v['id'])} alt="{alt}" loading="{loading}" decoding="async"{fetch}>
+      <img {thumb_srcset(v['id'], prefix=prefix)} alt="{alt}" loading="{loading}" decoding="async"{fetch}>
       {play_icon()}
       {f'<span class="chip">{esc(v["length"])}</span>' if v.get("length") else ""}
     </span>
@@ -348,7 +408,7 @@ def page_home() -> str:
         dest_cards.append(
             f"""
 <a class="dest-card" href="destinations/{slug}.html">
-  <img {thumb_srcset(img, sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px")} alt="{esc(name)}" loading="lazy" decoding="async">
+  <img {thumb_srcset(img, sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px", prefix=prefix)} alt="{esc(name)}" loading="lazy" decoding="async">
   <span class="dest-copy">
     <h3>{esc(name)}</h3>
     <p>{esc(label)}</p>
@@ -362,7 +422,7 @@ def page_home() -> str:
 <main id="content">
   <section class="hero" aria-label="Introduction">
     <div class="hero-media">
-      <img src="{thumb(HERO_ID)}" alt="Autumn cypress trees and moss reflected in still water at Caddo Lake, East Texas, from the film Caddo Lake in Fall." width="1280" height="720" fetchpriority="high" decoding="async">
+      {hero_img(HERO_ID, "Autumn cypress trees and moss reflected in still water at Caddo Lake, East Texas, from the film Caddo Lake in Fall.", prefix)}
     </div>
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="hero-copy">
@@ -465,7 +525,7 @@ def page_destinations_index() -> str:
         cards.append(
             f"""
 <a class="dest-card" href="{d['slug']}.html">
-  <img {thumb_srcset(d['hero'], sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px")} alt="{esc(d['name'])}" loading="lazy" decoding="async">
+  <img {thumb_srcset(d['hero'], sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px", prefix=prefix)} alt="{esc(d['name'])}" loading="lazy" decoding="async">
   <span class="dest-copy">
     <h2>{esc(d['name'])}</h2>
     <p>{n} {'film' if n == 1 else 'films'}</p>
@@ -480,7 +540,7 @@ def page_destinations_index() -> str:
 <main id="content">
   <section class="page-hero" aria-label="Destinations">
     <div class="hero-media">
-      <img src="{thumb('3cFk5Tf7nOg')}" alt="Autumn forest and ridgelines along the Talimena Scenic Byway." width="1280" height="720" fetchpriority="high" decoding="async" style="object-position:78% 45%">
+      {hero_img('3cFk5Tf7nOg', "Autumn forest and ridgelines along the Talimena Scenic Byway.", prefix, style="object-position:78% 45%")}
     </div>
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="hero-copy">
@@ -514,8 +574,8 @@ def page_destination(d: dict) -> str:
     films = [v for v in BY_ID.values() if key in v["groups"] and v["kind"] == "film"]
     shorts = [v for v in BY_ID.values() if key in v["groups"] and v["kind"] == "short"]
     # Keep plan order: films first as listed in VIDEOS
-    film_cards = "".join(film_card(v, featured=(i == 0), lazy=(i != 0)) for i, v in enumerate(films))
-    short_cards = "".join(film_card(v, lazy=True) for v in shorts)
+    film_cards = "".join(film_card(v, featured=(i == 0), lazy=(i != 0), prefix=prefix) for i, v in enumerate(films))
+    short_cards = "".join(film_card(v, lazy=True, prefix=prefix) for v in shorts)
     shorts_block = ""
     if shorts:
         shorts_block = f"""
@@ -540,7 +600,6 @@ def page_destination(d: dict) -> str:
         )
     title = f"{d['name']} — Totin My Pack"
     desc = d["blurb"]
-    style = f'style="object-position:{d["hero_pos"]}"'
     return f"""{head(title, desc, f"/destinations/{d['slug']}.html", d["og"], prefix)}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
@@ -548,7 +607,7 @@ def page_destination(d: dict) -> str:
 <main id="content">
   <section class="page-hero" aria-label="{esc(d['name'])}">
     <div class="hero-media">
-      <img src="{thumb(d['hero'])}" alt="{esc(d.get('hero_alt') or d['name'])}" width="1280" height="720" fetchpriority="high" decoding="async" {style}>
+      {hero_img(d["hero"], d.get("hero_alt") or d["name"], prefix, style=f"object-position:{d['hero_pos']}" if d.get("hero_pos") else "")}
     </div>
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="hero-copy">
@@ -613,14 +672,14 @@ def page_videos() -> str:
         for k, label in filters
     )
     desc = "All Totin My Pack travel films, from Greece, Texas, Route 66, and roads across the United States."
-    return f"""{head("Films — Totin My Pack", desc, "/videos.html", "logo", prefix, og_logo=True)}
+    return f"""{head("Films — Totin My Pack", desc, "/videos.html", "logo", prefix, extra=hero_preload("p9PXuj51NJs", prefix), og_logo=True)}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "videos")}
 <main id="content">
   <section class="page-hero" aria-label="Films">
     <div class="hero-media">
-      <img src="{thumb('p9PXuj51NJs')}" alt="Turquoise water of the Devils River in West Texas, seen from above." width="1280" height="720" fetchpriority="high" decoding="async" style="object-position:80% 50%">
+      {hero_img("p9PXuj51NJs", "Turquoise water of the Devils River in West Texas, seen from above.", prefix, style="object-position:80% 50%")}
     </div>
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="hero-copy">
@@ -664,7 +723,7 @@ def page_shorts() -> str:
 <main id="content">
   <section class="page-hero" aria-label="Shorts">
     <div class="hero-media">
-      <img src="{thumb('2f-wKhlW_PE')}" alt="" width="1280" height="720" fetchpriority="high" decoding="async" style="object-position:70% 40%">
+      {hero_img("2f-wKhlW_PE", "", prefix, style="object-position:70% 40%")}
     </div>
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="hero-copy">
@@ -708,7 +767,7 @@ def page_about() -> str:
 <main id="content">
   <section class="page-hero" aria-label="About">
     <div class="hero-media">
-      <img src="{thumb('is4VhiJbrPU')}" alt="" width="1280" height="720" fetchpriority="high" decoding="async" style="object-position:60% 40%">
+      {hero_img("is4VhiJbrPU", "", prefix, style="object-position:60% 40%")}
     </div>
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="hero-copy">
@@ -766,7 +825,7 @@ def page_trips_index() -> str:
             blurb = f"{n_stops} filmed stops"
         cards.append(
             f'<a class="dest-card" href="{esc(trip["slug"])}.html">'
-            f'<img {thumb_srcset(trip["hero"], sizes="(max-width: 560px) 92vw, 45vw")} '
+            f'<img {thumb_srcset(trip["hero"], sizes="(max-width: 560px) 92vw, 45vw", prefix=prefix)} '
             f'alt="{esc(trip.get("hero_alt") or trip["name"])}" loading="lazy" decoding="async">'
             f'<span class="dest-copy"><h2>{esc(trip["name"])}</h2>'
             f"<p>{esc(blurb)}</p></span></a>"
@@ -779,7 +838,7 @@ def page_trips_index() -> str:
 <main id="content">
   <section class="page-hero" aria-label="Trips">
     <div class="hero-media">
-      <img src="{thumb(hero['hero'])}" alt="{esc(hero.get('hero_alt') or hero['name'])}" width="1280" height="720" fetchpriority="high" decoding="async" style="object-position:{esc(hero.get('hero_pos') or '50% 50%')}">
+      {hero_img(hero["hero"], hero.get("hero_alt") or hero["name"], prefix, style=f"object-position:{esc(hero.get('hero_pos') or '50% 50%')}")}
     </div>
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="hero-copy">
@@ -932,7 +991,7 @@ def page_trip(slug: str) -> str:
         for v in VIDEOS:
             if group in v["groups"] and v["id"] not in seen:
                 seen.append(v["id"])
-    film_cards = "".join(film_card(BY_ID[i], lazy=True) for i in seen if i in BY_ID)
+    film_cards = "".join(film_card(BY_ID[i], lazy=True, prefix=prefix) for i in seen if i in BY_ID)
 
     by_state: dict[str, list] = {}
     for s in trip["stops"]:
@@ -977,7 +1036,7 @@ def page_trip(slug: str) -> str:
                 )
             else:
                 img = (
-                    f'<img {thumb_srcset(thumb_id)} alt="" loading="lazy" decoding="async">'
+                    f'<img {thumb_srcset(thumb_id, prefix=prefix)} alt="" loading="lazy" decoding="async">'
                 )
             if primary:
                 thumb_btn = (
@@ -1022,16 +1081,15 @@ def page_trip(slug: str) -> str:
             f'data-title="{esc(overview["title"])}" data-kind="{esc(overview["kind"])}">Watch the film</button>'
         )
     extra_js = f'<script src="{prefix}js/trip-map.js" defer></script>'
-    style = f'style="object-position:{esc(trip.get("hero_pos") or "50% 50%")}"'
     map_aria = trip.get("map_aria") or f"Map of filmed places in {trip['name']}"
-    return f"""{head(trip["title"] + " — Totin My Pack", trip["description"], f"/trips/{slug}.html", trip["hero"], prefix)}
+    return f"""{head(trip["title"] + " — Totin My Pack", trip["description"], f"/trips/{slug}.html", trip["hero"], prefix, extra=hero_preload(trip["hero"], prefix))}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "trips")}
 <main id="content">
   <section class="page-hero" aria-label="{esc(trip['name'])}">
     <div class="hero-media">
-      <img src="{thumb(trip['hero'])}" alt="{esc(trip.get('hero_alt') or trip['name'])}" width="1280" height="720" fetchpriority="high" decoding="async" {style}>
+      {hero_img(trip["hero"], trip.get("hero_alt") or trip["name"], prefix, style=f"object-position:{esc(trip.get('hero_pos') or '50% 50%')}")}
     </div>
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="hero-copy">
