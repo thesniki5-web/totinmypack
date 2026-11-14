@@ -115,7 +115,7 @@
       var L = window.L;
       var map = L.map(mapDiv, {
         scrollWheelZoom: false,
-        attributionControl: true
+        attributionControl: false
       });
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,

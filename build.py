@@ -1059,6 +1059,7 @@ def page_trip(slug: str) -> str:
           <p class="trip-map-placeholder">The map loads when you scroll to it. The stops are listed below.</p>
         </div>
       </div>
+      <p class="map-attrib">Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer">OpenStreetMap</a></p>
       <div class="trip-tour" id="trip-tour" hidden>
         <button type="button" class="btn btn-ghost trip-tour-btn" id="trip-tour-prev" disabled>Previous stop</button>
         <p class="trip-tour-status" id="trip-tour-status" aria-live="polite">Step through the stops</p>
@@ -1234,7 +1235,7 @@ def _restaurant_card(r: dict, index: int, prefix: str) -> str:
     if r.get("lat") is not None and r.get("lng") is not None:
         actions.append(
             f'<button type="button" class="trip-stop-locate" data-restaurant-focus="{rid}" '
-            f'aria-label="Show {esc(name)} on the map">'
+            f'aria-label="Show on the map: {esc(name)}">'
             "Show on the map</button>"
         )
     video_id = (r.get("video_id") or "").strip()
