@@ -1215,29 +1215,6 @@
       ]
     },
     {
-      "id": "shorty-s-place-falls-city",
-      "name": "Shorty's Place",
-      "listed_as": "Shorty’s",
-      "city": "Falls City",
-      "region": "Texas",
-      "country": "United States",
-      "lat": null,
-      "lng": null,
-      "cuisine": "American",
-      "address": "7901 U.S. Highway 181, Falls City, TX 78113",
-      "website": "https://shortysplacerestaurant.com/",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://shortysplacerestaurant.com/",
-        "https://www.wilsoncountynews.com/articles/shortys-place-celebrates-70-years/"
-      ],
-      "location_note": "Address confirmed; OpenStreetMap and the U.S. Census geocoder had no coordinates for a map pin."
-    },
-    {
       "id": "hanaya-hibachi-sushi-and-asian-fusion-flower-mound",
       "name": "Hanaya Hibachi Sushi and Asian Fusion",
       "listed_as": "Hanaya Hibachi",
