@@ -1099,5 +1099,16 @@
       "label": "Spur to Pecos National Historical Park"
     }
   ],
-  "map_max_zoom": 9
+  "map_max_zoom": 9,
+  "restaurants": [
+    "andolini-s-pizzeria-tulsa",
+    "pizzeria-gusto-oklahoma-city",
+    "sunnyside-diner-oklahoma-city",
+    "hideaway-pizza-oklahoma-city",
+    "dado-s-pizza-oklahoma-city"
+  ],
+  "hotels": [
+    "tulsa-club-hotel-tulsa",
+    "colcord-hotel-oklahoma-city"
+  ]
 }

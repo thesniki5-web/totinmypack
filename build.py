@@ -1000,6 +1000,73 @@ def _photo_strip(trip: dict, prefix: str) -> str:
     )
 
 
+
+def _trip_places(trip: dict) -> list[tuple[str, dict]]:
+    """Restaurants and hotels already in site data whose city matches a filmed stop."""
+    rests = {r["id"]: r for r in (_restaurant_data().get("restaurants") or [])}
+    hotels = {h["id"]: h for h in (_hotel_data().get("hotels") or [])}
+    out: list[tuple[str, dict]] = []
+    for rid in trip.get("restaurants") or []:
+        r = rests.get(rid)
+        if r:
+            out.append(("restaurant", r))
+    for hid in trip.get("hotels") or []:
+        h = hotels.get(hid)
+        if h:
+            out.append(("hotel", h))
+    return out
+
+
+def _trip_places_payload(places: list[tuple[str, dict]]) -> list[dict]:
+    payload = []
+    for kind, r in places:
+        item = {
+            "id": r.get("id") or "",
+            "kind": kind,
+            "name": r.get("name") or "",
+            "place": _restaurant_place(r),
+            "lat": r.get("lat"),
+            "lng": r.get("lng"),
+            "address": r.get("address") or "",
+            "website": r.get("website") or "",
+        }
+        if r.get("cuisine"):
+            item["cuisine"] = r["cuisine"]
+        payload.append(item)
+    return payload
+
+
+def _trip_place_sections(places: list[tuple[str, dict]], prefix: str) -> str:
+    if not places:
+        return ""
+    rest_cards = []
+    hotel_cards = []
+    for i, (kind, r) in enumerate(places):
+        if kind == "hotel":
+            hotel_cards.append(_hotel_card(r, i, prefix))
+        else:
+            rest_cards.append(_restaurant_card(r, i, prefix))
+
+    def block(heading: str, hid: str, kicker: str, cards: list[str]) -> str:
+        if not cards:
+            return ""
+        return (
+            f'<section class="section" aria-labelledby="{esc(hid)}" style="padding-top:0">'
+            f'<div class="wrap">'
+            f'<div class="section-head"><div class="section-intro">'
+            f'<p class="kicker">{esc(kicker)}</p>'
+            f'<h2 id="{esc(hid)}">{esc(heading)}</h2>'
+            f"</div></div>"
+            f'<div class="restaurant-list"><div class="restaurant-city-cards">'
+            + "".join(cards)
+            + "</div></div></div></section>"
+        )
+
+    return block("Restaurants", "trip-restaurants-heading", "Along the way", rest_cards) + block(
+        "Hotels", "trip-hotels-heading", "Along the way", hotel_cards
+    )
+
+
 def page_trip(slug: str) -> str:
     prefix = "../"
     trip = _trip_data(slug)
@@ -1011,10 +1078,12 @@ def page_trip(slug: str) -> str:
         else:
             stop["number"] = None
 
+    along = _trip_places(trip)
     map_payload = {
         "route": trip.get("route") or [],
         "spur": trip.get("spur") or [],
         "maxZoom": trip.get("map_max_zoom") or 7,
+        "places": _trip_places_payload(along),
         "stops": [
             {
                 "id": s["id"],
@@ -1138,9 +1207,23 @@ def page_trip(slug: str) -> str:
 
     legend_bits = []
     for item in trip.get("legend") or [{"type": "pin", "label": "Filmed place"}]:
-        cls = {"pin": "trip-legend-pin", "line": "trip-legend-line", "spur": "trip-legend-spur"}.get(item["type"], "trip-legend-pin")
+        cls = {
+            "pin": "trip-legend-pin",
+            "line": "trip-legend-line",
+            "spur": "trip-legend-spur",
+            "restaurant": "trip-legend-restaurant",
+            "hotel": "trip-legend-hotel",
+        }.get(item["type"], "trip-legend-pin")
         legend_bits.append(
             f'<li><span class="{cls}" aria-hidden="true"></span> {esc(item["label"])}</li>'
+        )
+    if any(k == "restaurant" for k, _ in along):
+        legend_bits.append(
+            '<li><span class="trip-legend-restaurant" aria-hidden="true"></span>Restaurant</li>'
+        )
+    if any(k == "hotel" for k, _ in along):
+        legend_bits.append(
+            '<li><span class="trip-legend-hotel" aria-hidden="true"></span>Hotel</li>'
         )
     legend = f'<ul class="trip-legend">{"".join(legend_bits)}</ul>' if legend_bits else ""
 
@@ -1155,6 +1238,7 @@ def page_trip(slug: str) -> str:
         )
     extra_js = f'<script src="{prefix}js/trip-map.js" defer></script>'
     map_aria = trip.get("map_aria") or f"Map of filmed places in {trip['name']}"
+    places_html = _trip_place_sections(along, prefix)
     return f"""{head(trip["title"] + " — Totin My Pack", trip["description"], f"/trips/{slug}.html", trip["hero"], prefix, extra=hero_preload(trip["hero"], prefix))}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
@@ -1211,6 +1295,7 @@ def page_trip(slug: str) -> str:
       {"".join(state_blocks)}
     </div>
   </section>
+  {places_html}
   <section class="section" aria-labelledby="trip-films-heading" style="padding-top:0">
     <div class="wrap">
       <div class="section-head">
