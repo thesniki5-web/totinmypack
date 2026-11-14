@@ -1,5 +1,5 @@
 {
-  "description": "EXAMPLE ONLY. This file is a schema sample. It is not loaded by the site and must never be copied onto the live page. Scope: unique, independent stays only — no chain hotels such as Hampton Inn.",
+  "description": "EXAMPLE ONLY. This file is a schema sample. It is not loaded by the site and must never be copied onto the live page. Schema sample only. Hotels follow the same premise as the restaurants list.",
   "hotels": [
     {
       "id": "example-placeholder",

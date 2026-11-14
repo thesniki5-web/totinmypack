@@ -1618,8 +1618,7 @@ def page_hotels() -> str:
     extra_js = f'<script src="{prefix}js/restaurant-map.js" defer></script>'
     title = "Hotels — Totin My Pack"
     desc = (
-        "A draft page of unique, independent places we have stayed, "
-        "grouped by place and shown on a map."
+        "A draft page of places we’ve stayed and liked along the way."
     )
     return f"""{head(title, desc, "/hotels.html", "logo", prefix, og_logo=True, robots="noindex")}
 <body>
@@ -1631,7 +1630,7 @@ def page_hotels() -> str:
     <div class="hero-copy">
       <p class="kicker">A draft</p>
       <h1>Hotels</h1>
-      <p class="lede">Unique, independent places we have stayed, shown on a map the same way as the restaurants.</p>
+      <p class="lede">Places we’ve stayed and liked along the way.</p>
       <div class="hero-actions">
         <a class="btn btn-gold" href="#hotel-map">View the map</a>
       </div>
@@ -1646,7 +1645,7 @@ def page_hotels() -> str:
         <div class="section-intro">
           <p class="kicker">The places</p>
           <h2 id="map-heading">The map</h2>
-          <p>When hotels are added, each pin will sit at the stay’s true location. Places without a precise point will stay in the list without a pin.</p>
+          <p>Each pin sits at the stay’s true location. Places without a precise point stay in the list without a pin.</p>
         </div>
       </div>
       <div class="trip-map-frame restaurant-map-frame">

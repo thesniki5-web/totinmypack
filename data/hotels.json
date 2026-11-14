@@ -1,4 +1,241 @@
 {
-  "description": "Unique, independent stays only. Do not add chain hotels (for example Hampton Inn or other branded chains). Looked-up facts (address, coordinates, website) include a sources list. teddy_note and visited are left blank until Teddy provides them. Do not invent names, dates, or addresses.",
-  "hotels": []
+  "description": "Places we’ve stayed and liked along the way, same premise as the restaurants list. Looked-up facts (address, coordinates, website) include a sources list. teddy_note and visited are left blank until Teddy provides them. Do not invent names, dates, or addresses.",
+  "hotels": [
+    {
+      "id": "bar-harbor-inn-bar-harbor",
+      "name": "Bar Harbor Inn",
+      "listed_as": "Bar Harbor Inn",
+      "city": "Bar Harbor",
+      "region": "Maine",
+      "country": "United States",
+      "lat": 44.39065,
+      "lng": -68.203598,
+      "address": "1 Newport Drive, Bar Harbor, ME 04609",
+      "website": "https://barharborinn.com/",
+      "sources": [
+        "https://barharborinn.com/",
+        "https://barharborinn.com/contact/",
+        "https://www.openstreetmap.org/way/292388102",
+        "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1%20Newport%20Drive%2C%20Bar%20Harbor%2C%20ME%2004609&benchmark=Public_AR_Current&format=json"
+      ],
+      "location_note": "",
+      "teddy_note": "",
+      "visited": ""
+    },
+    {
+      "id": "nonantum-resort-kennebunkport",
+      "name": "Nonantum Resort",
+      "listed_as": "Nonantum Resort",
+      "city": "Kennebunkport",
+      "region": "Maine",
+      "country": "United States",
+      "lat": 43.3525267,
+      "lng": -70.4728114,
+      "address": "95 Ocean Avenue, Kennebunkport, ME 04046",
+      "website": "https://www.nonantumresort.com/",
+      "sources": [
+        "https://www.nonantumresort.com/",
+        "https://www.nonantumresort.com/contact"
+      ],
+      "location_note": "",
+      "teddy_note": "",
+      "visited": ""
+    },
+    {
+      "id": "the-viewpoint-york",
+      "name": "The Viewpoint",
+      "listed_as": "The Viewpoint",
+      "city": "York",
+      "region": "Maine",
+      "country": "United States",
+      "lat": 43.1683718,
+      "lng": -70.5951432,
+      "address": "229 Nubble Road, York, ME 03909",
+      "website": "https://www.viewpointhotel.com/",
+      "sources": [
+        "https://www.viewpointhotel.com/",
+        "https://www.openstreetmap.org/node/7549043145",
+        "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=229%20Nubble%20Road%2C%20York%2C%20ME%2003909&benchmark=Public_AR_Current&format=json"
+      ],
+      "location_note": "",
+      "teddy_note": "",
+      "visited": ""
+    },
+    {
+      "id": "hotel-phillips-kansas-city",
+      "name": "Hotel Phillips",
+      "listed_as": "Hotel Phillips",
+      "city": "Kansas City",
+      "region": "Missouri",
+      "country": "United States",
+      "lat": 39.1001445,
+      "lng": -94.5846686,
+      "address": "106 W 12th Street, Kansas City, MO 64105",
+      "website": "https://www.hilton.com/en/hotels/mkccuqq-hotel-phillips-kansas-city/",
+      "sources": [
+        "https://www.hilton.com/en/hotels/mkccuqq-hotel-phillips-kansas-city/",
+        "https://www.openstreetmap.org/way/365593279",
+        "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=106%20W%2012th%20Street%2C%20Kansas%20City%2C%20MO%2064105&benchmark=Public_AR_Current&format=json"
+      ],
+      "location_note": "",
+      "teddy_note": "",
+      "visited": ""
+    },
+    {
+      "id": "mountain-view-grand-whitefield",
+      "name": "Mountain View Grand Resort & Spa",
+      "listed_as": "Mountain Grand View",
+      "city": "Whitefield",
+      "region": "New Hampshire",
+      "country": "United States",
+      "lat": 44.39794,
+      "lng": -71.5888,
+      "address": "101 Mountain View Road, Whitefield, NH 03598",
+      "website": "https://www.mountainviewgrand.com/",
+      "sources": [
+        "https://www.mountainviewgrand.com/",
+        "https://www.mountainviewgrand.com/contact-location"
+      ],
+      "location_note": "",
+      "teddy_note": "",
+      "visited": ""
+    },
+    {
+      "id": "colcord-hotel-oklahoma-city",
+      "name": "Colcord Hotel",
+      "listed_as": "Colcord",
+      "city": "Oklahoma City",
+      "region": "Oklahoma",
+      "country": "United States",
+      "lat": 35.466795,
+      "lng": -97.5166443,
+      "address": "15 N Robinson Ave, Oklahoma City, OK 73102",
+      "website": "https://www.colcordhotel.com/",
+      "sources": [
+        "https://www.colcordhotel.com/",
+        "https://www.colcordhotel.com/contact"
+      ],
+      "location_note": "",
+      "teddy_note": "",
+      "visited": ""
+    },
+    {
+      "id": "tulsa-club-hotel-tulsa",
+      "name": "Tulsa Club Hotel",
+      "listed_as": "Tulsa Club Hotel Curio",
+      "city": "Tulsa",
+      "region": "Oklahoma",
+      "country": "United States",
+      "lat": 36.1523784,
+      "lng": -95.9881447,
+      "address": "115 E. 5th St., Tulsa, OK 74103",
+      "website": "https://tulsaclub.com/",
+      "sources": [
+        "https://tulsaclub.com/",
+        "https://tulsaclub.com/contact/",
+        "https://www.openstreetmap.org/way/60965502"
+      ],
+      "location_note": "",
+      "teddy_note": "",
+      "visited": ""
+    },
+    {
+      "id": "the-sinclair-fort-worth",
+      "name": "The Sinclair, Autograph Collection",
+      "listed_as": "The Sinclair Autograph Collection",
+      "city": "Fort Worth",
+      "region": "Texas",
+      "country": "United States",
+      "lat": 32.7542975,
+      "lng": -97.331103,
+      "address": "512 Main Street, Fort Worth, TX 76102",
+      "website": "https://www.thesinclairhotel.com/",
+      "sources": [
+        "https://www.thesinclairhotel.com/",
+        "https://www.openstreetmap.org/way/250894765",
+        "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=512%20Main%20Street%2C%20Fort%20Worth%2C%20TX%2076102&benchmark=Public_AR_Current&format=json"
+      ],
+      "location_note": "",
+      "teddy_note": "",
+      "visited": ""
+    },
+    {
+      "id": "the-jackson-woodstock",
+      "name": "The Jackson",
+      "listed_as": "The Jackson",
+      "city": "Woodstock",
+      "region": "Vermont",
+      "country": "United States",
+      "lat": 43.6122692,
+      "lng": -72.5494575,
+      "address": "43 Senior Lane, Woodstock, VT 05091",
+      "website": "https://jacksonwoodstock.com/",
+      "sources": [
+        "https://jacksonwoodstock.com/",
+        "https://www.openstreetmap.org/way/593744408",
+        "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=43%20Senior%20Ln%2C%20Woodstock%2C%20VT%2005091&benchmark=Public_AR_Current&format=json"
+      ],
+      "location_note": "",
+      "teddy_note": "",
+      "visited": ""
+    },
+    {
+      "id": "the-virginian-hotel-lynchburg",
+      "name": "The Virginian Hotel",
+      "listed_as": "Virginian Hotel",
+      "city": "Lynchburg",
+      "region": "Virginia",
+      "country": "United States",
+      "lat": 37.4155486,
+      "lng": -79.1440471,
+      "address": "712 Church Street, Lynchburg, VA 24504",
+      "website": "https://thevirginianhotel.com/",
+      "sources": [
+        "https://thevirginianhotel.com/",
+        "https://www.openstreetmap.org/way/594764517",
+        "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=712%20Church%20Street%2C%20Lynchburg%2C%20VA%2024504&benchmark=Public_AR_Current&format=json"
+      ],
+      "location_note": "",
+      "teddy_note": "",
+      "visited": ""
+    },
+    {
+      "id": "hilton-norfolk-the-main-norfolk",
+      "name": "Hilton Norfolk The Main",
+      "listed_as": "Hilton Norfolk",
+      "city": "Norfolk",
+      "region": "Virginia",
+      "country": "United States",
+      "lat": 36.846448,
+      "lng": -76.291858,
+      "address": "100 E. Main Street, Norfolk, VA 23510",
+      "website": "https://www.themainnorfolk.com/",
+      "sources": [
+        "https://www.themainnorfolk.com/",
+        "https://www.themainnorfolk.com/location"
+      ],
+      "location_note": "",
+      "teddy_note": "",
+      "visited": ""
+    },
+    {
+      "id": "hotel-roanoke-roanoke",
+      "name": "The Hotel Roanoke & Conference Center",
+      "listed_as": "Hotel Roanoke",
+      "city": "Roanoke",
+      "region": "Virginia",
+      "country": "United States",
+      "lat": 37.2746891,
+      "lng": -79.9396514,
+      "address": "110 Shenandoah Ave NW, Roanoke, VA 24016",
+      "website": "https://www.hotelroanoke.com/",
+      "sources": [
+        "https://www.hotelroanoke.com/",
+        "https://www.hotelroanoke.com/contact_us/"
+      ],
+      "location_note": "",
+      "teddy_note": "",
+      "visited": ""
+    }
+  ]
 }
