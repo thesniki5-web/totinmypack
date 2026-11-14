@@ -25,10 +25,10 @@ Tennessee,Alamo,Alamo Steakhouse,Gatlinburg,open,yes,,https://www.alamosteakhous
 Tennessee,Owen Brennan’s,Owen Brennan's,Memphis,open,yes,,https://www.brennansmemphis.com/
 Tennessee,Folk’s Folly Steakhouse,Folk's Folly Prime Steak House,Memphis,open,yes,,https://www.folksfolly.com/contact
 Tennessee,Gibson Donuts,Gibson's Donuts,Memphis,open,yes,,https://www.eater.com/venue/115989/gibson-s-donuts
-Tennessee,Hagy's Catfish Hotel,Hagy's Catfish Hotel,Shiloh,open,no,"Address is confirmed at 1140 Hagy Lane, but OpenStreetMap had no coordinates for a map pin. All right to leave it in the list without a pin for now?",https://www.catfishhotel.com/visit
+Tennessee,Hagy's Catfish Hotel,Hagy's Catfish Hotel,Shiloh,open,yes,,https://www.catfishhotel.com/visit
 Texas,May Dragon,May Dragon Chinese Restaurant,Addison,open,yes,,https://www.maydragonaddison.com/
 Texas,Tipsy Oak,The Tipsy Oak,Arlington,open,yes,,https://www.arlington.org/listings/the-tipsy-oak/3174/
-Texas,Wade's,Wade's Place,Chandler,open,no,"Address is confirmed at 104 East Main Street, but OpenStreetMap had no coordinates for a map pin. All right to leave it in the list without a pin for now?",https://www.facebook.com/WadesPlaceChandler
+Texas,Wade's,Wade's Place,Chandler,open,yes,,https://maps.apple.com/place?place-id=I5644DC58B1709848
 Texas,Fuego Tex Mex,Fuego Tortilla Grill,College Station,open,yes,,https://fuegotortillagrill.com/collegestation
 Texas,Celebration,Celebration Restaurant,Dallas,open,yes,,https://celebrationrestaurant.com/
 Texas,Rodeo Goat,Rodeo Goat,Dallas,open,yes,,https://www.rodeogoat.com/dallas/
@@ -59,7 +59,7 @@ Texas,Las Palmas,Las Palmas,El Paso,open,yes,,https://laspalmasep.com/
 Texas,Ambar,Ámbar Restaurante,El Paso,open,yes,,https://www.ambarelpaso.com/contact-reservations
 Texas,Sam’s Restaurant,Sam's Original Restaurant,Fairfield,open,yes,,https://samsoriginal.com/contact/
 Texas,Paula Deen’s,Paula Deen's Family Kitchen,Fairview,closed,yes,"removed – closed, per Teddy",https://www.fox4news.com/news/paula-deens-restaurant-in-north-texas-unexpectedly-closes
-Texas,Shorty’s,Shorty's Place,Falls City,open,no,"Address is confirmed at 7901 U.S. Highway 181, but OpenStreetMap had no coordinates for a map pin. All right to leave it in the list without a pin for now?",https://shortysplacerestaurant.com/
+Texas,Shorty’s,Shorty's Place,Falls City,open,no,"Address is confirmed at 7901 U.S. Highway 181, but OpenStreetMap and the U.S. Census geocoder had no coordinates for a map pin. All right to leave it in the list without a pin for now?",https://shortysplacerestaurant.com/
 Texas,Hanaya Hibachi,Hanaya Hibachi Sushi and Asian Fusion,Flower Mound,open,yes,,https://hanayafm.com/contact/
 Texas,Kincaids Burger,Kincaid's Hamburgers,Flower Mound,unverified,no,"removed – chain, per Teddy",https://www.kincaidshamburgers.com/locations
 Texas,Charleston’s,Charleston's Restaurant,Fort Worth,open,yes,"removed – chain, per Teddy",https://charlestons.com/locations/charlestons-ft-worth/
@@ -79,10 +79,10 @@ Texas,Dino’s Claw and Steakhouse,Dino's Steak and Claw House,Grapevine,open,ye
 Texas,Rib Crib,RibCrib BBQ,Greenville,open,yes,"removed – chain, per Teddy",https://ribcrib.com/locations/
 Texas,Lonestar Cafe,Lone Star Cafe,Hillsboro,open,yes,,https://bubbalikesit.com/contact-us/
 Texas,Aspen Creek,Aspen Creek Grill,Irving,open,yes,"removed – chain, per Teddy",https://aspencreekgrill.com/irving/
-Texas,Hula Hut,Hula Hut,Little Elm,open,yes,,https://www.hulahut.com/locations/little-elm/
+Texas,Hula Hut,Hula Hut,Little Elm,open,yes,"removed – closed, per Teddy",https://www.hulahut.com/locations/little-elm/
 Texas,Mellow Mushroom,Mellow Mushroom,McKinney,open,yes,"removed – chain, per Teddy",https://www.mellowmushroom.com/locations/tx/mckinney/218-e-louisiana-st/
 Texas,Cavalli Pizza,Cavalli Pizzeria Napoletana,McKinney,open,yes,,https://cavallipizzeria.com/contact/
-Texas,Supershack,Super Shack,McKinney,open,no,"Address is confirmed at 2901 South Central Expressway, but OpenStreetMap had no coordinates for a map pin. All right to leave it in the list without a pin for now?",https://www.visitmckinney.com/listing/super-shack-mckinney-383
+Texas,Supershack,Super Shack,McKinney,open,yes,,https://www.visitmckinney.com/listing/super-shack-mckinney-383
 Texas,Mangia Bistro,Mangia Bistro,Plano,open,yes,,https://www.visitplano.com/dining/mangia-bistro/
 Texas,The Pizza Guy,The Pizza Guy,Plano,unverified,no,"removed – chain, per Teddy",https://www.pizzaguys.com/plano/
 Texas,Virginia’s,Virginia's by the Bay,Port Aransas,open,yes,,https://virginiasonthebay.com/contact-us/

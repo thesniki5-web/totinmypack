@@ -1472,11 +1472,13 @@ main { display: block; }
   align-items: center;
 }
 .restaurant-card-actions a,
-.restaurant-card-actions .trip-watch {
+.restaurant-card-actions .trip-watch,
+.restaurant-card-actions .trip-stop-locate {
   color: var(--gold);
   background: none;
   border: 0;
   padding: 0;
+  margin: 0;
   font: inherit;
   font-size: 0.85rem;
   cursor: pointer;
@@ -1484,10 +1486,23 @@ main { display: block; }
   text-underline-offset: 0.15em;
 }
 .restaurant-card-actions a:hover,
-.restaurant-card-actions .trip-watch:hover { color: var(--gold-soft); }
+.restaurant-card-actions .trip-watch:hover,
+.restaurant-card-actions .trip-stop-locate:hover { color: var(--gold-soft); }
 .restaurant-sources {
   margin-top: 0.7rem;
-  font-size: 0.78rem;
-  word-break: break-word;
+  font-size: 0.85rem;
 }
+.restaurant-sources summary {
+  width: fit-content;
+  cursor: pointer;
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.restaurant-sources summary:hover { color: var(--gold-soft); }
+.restaurant-sources ul {
+  margin: 0.4rem 0 0;
+  padding: 0 0 0 1.1rem;
+}
+.restaurant-sources li { margin: 0 0 0.2rem; }
 .restaurant-sources a { color: var(--gold-soft); }

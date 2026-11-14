@@ -8,6 +8,7 @@ import shutil
 import unicodedata
 from collections import OrderedDict
 from pathlib import Path
+from urllib.parse import quote, urlparse
 
 ROOT = Path(__file__).resolve().parent
 SITE = "https://totinmypack.com"
@@ -1153,8 +1154,51 @@ def _names_differ(listed: str, official: str) -> bool:
     return bool((listed or "").strip()) and norm(listed) != norm(official)
 
 
+
+def _source_label(url: str) -> str:
+    host = (urlparse(url).netloc or "").lower()
+    if host.startswith("www."):
+        host = host[4:]
+    labels = {
+        "openstreetmap.org": "OpenStreetMap",
+        "facebook.com": "Facebook",
+        "maps.apple.com": "Apple Maps",
+        "geocoding.geo.census.gov": "U.S. Census geocoder",
+        "visitmckinney.com": "Visit McKinney",
+        "catfishhotel.com": "Official visit page",
+        "sirved.com": "Sirved",
+        "wilsoncountynews.com": "Wilson County News",
+        "visitfrisco.com": "Visit Frisco",
+        "yelp.com": "Yelp",
+    }
+    if host in labels:
+        return labels[host]
+    for key, label in labels.items():
+        if host == key or host.endswith("." + key):
+            return label
+    return host or "Source"
+
+
+def _directions_url(r: dict) -> str:
+    lat, lng = r.get("lat"), r.get("lng")
+    if lat is not None and lng is not None:
+        return f"https://www.openstreetmap.org/?mlat={lat}&mlon={lng}#map=18/{lat}/{lng}"
+    addr = (r.get("address") or "").strip()
+    if addr:
+        return f"https://www.openstreetmap.org/search?query={quote(addr)}"
+    return ""
+
+
+def _external_link(href: str, label: str, aria: str) -> str:
+    return (
+        f'<a href="{esc(href)}" target="_blank" rel="noopener noreferrer" '
+        f'aria-label="{esc(aria)}">{esc(label)}</a>'
+    )
+
+
 def _restaurant_card(r: dict, index: int, prefix: str) -> str:
     rid = esc(_restaurant_slug(r, index))
+    name = r.get("name") or "Restaurant"
     place = _restaurant_place(r)
     status = (r.get("status") or "").strip().lower()
     status_label = {"open": "Open", "closed": "Closed", "unverified": "Unverified"}.get(status, "")
@@ -1178,7 +1222,12 @@ def _restaurant_card(r: dict, index: int, prefix: str) -> str:
     actions: list[str] = []
     if r.get("website"):
         actions.append(
-            f'<a href="{esc(r["website"])}" rel="noopener noreferrer">Website</a>'
+            _external_link(r["website"], "Website", f"Website for {name}")
+        )
+    directions = _directions_url(r)
+    if directions:
+        actions.append(
+            _external_link(directions, "Directions", f"Directions to {name}")
         )
     if r.get("lat") is not None and r.get("lng") is not None:
         actions.append(
@@ -1188,7 +1237,7 @@ def _restaurant_card(r: dict, index: int, prefix: str) -> str:
     video_id = (r.get("video_id") or "").strip()
     if video_id:
         v = BY_ID.get(video_id)
-        title = v["title"] if v else r.get("name") or "the film"
+        title = v["title"] if v else name
         kind = v["kind"] if v else "film"
         start = r.get("start_seconds")
         start_attr = f' data-start="{int(start)}"' if start else ""
@@ -1202,24 +1251,30 @@ def _restaurant_card(r: dict, index: int, prefix: str) -> str:
     )
     sources = [s for s in (r.get("sources") or []) if s]
     if sources:
-        links = ", ".join(
-            f'<a href="{esc(s)}" rel="noopener noreferrer">{esc(s)}</a>' for s in sources
+        items = "".join(
+            f"<li>{_external_link(s, _source_label(s), f'Source for {name}: {_source_label(s)}')}</li>"
+            for s in sources
         )
-        sources_html = f'<p class="restaurant-sources">Sources: {links}</p>'
+        sources_html = (
+            f'<details class="restaurant-sources">'
+            f'<summary aria-label="Sources for {esc(name)}">Sources</summary>'
+            f'<ul>{items}</ul>'
+            f"</details>"
+        )
     else:
         sources_html = ""
     place_html = f'<p class="restaurant-place">{esc(place)}</p>' if place else ""
     listed = (r.get("listed_as") or "").strip()
     listed_html = (
         f'<p class="restaurant-listed">Listed as: {esc(listed)}</p>'
-        if _names_differ(listed, r.get("name") or "")
+        if _names_differ(listed, name)
         else ""
     )
     loc_note = (r.get("location_note") or "").strip()
     loc_html = f'<p class="restaurant-location-note">{esc(loc_note)}</p>' if loc_note else ""
     return (
         f'<article class="restaurant-card" id="restaurant-{rid}">'
-        f"<h4>{esc(r.get('name') or 'Restaurant')}</h4>"
+        f"<h4>{esc(name)}</h4>"
         f"{place_html}{listed_html}{cuisine}{address}{status_html}{loc_html}{note}{visited}{actions_html}{sources_html}"
         "</article>"
     )

@@ -563,8 +563,8 @@
       "city": "Shiloh",
       "region": "Tennessee",
       "country": "United States",
-      "lat": null,
-      "lng": null,
+      "lat": 35.1405,
+      "lng": -88.3177,
       "cuisine": "Southern / seafood",
       "address": "1140 Hagy Lane, Shiloh, TN 38376",
       "website": "https://www.catfishhotel.com/",
@@ -575,9 +575,9 @@
       "start_seconds": null,
       "sources": [
         "https://www.catfishhotel.com/visit",
-        "https://www.catfishhotel.com/"
-      ],
-      "location_note": "Address confirmed; OpenStreetMap had no coordinates for a map pin."
+        "https://www.catfishhotel.com/",
+        "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1140%20Hagy%20Lane%2C%20Shiloh%2C%20TN%2038376&benchmark=Public_AR_Current&format=json"
+      ]
     },
     {
       "id": "may-dragon-chinese-restaurant-addison",
@@ -632,8 +632,8 @@
       "city": "Chandler",
       "region": "Texas",
       "country": "United States",
-      "lat": null,
-      "lng": null,
+      "lat": 32.3064041,
+      "lng": -95.4793275,
       "cuisine": "American",
       "address": "104 East Main Street, Chandler, TX 75758",
       "website": "http://www.wadesplacechandler.com",
@@ -644,9 +644,9 @@
       "start_seconds": null,
       "sources": [
         "https://www.facebook.com/WadesPlaceChandler",
-        "https://www.sirved.com/restaurant/chandler-texas-usa/wades-place/454581/menus"
-      ],
-      "location_note": "Address confirmed; OpenStreetMap had no coordinates for a map pin."
+        "https://www.sirved.com/restaurant/chandler-texas-usa/wades-place/454581/menus",
+        "https://maps.apple.com/place?place-id=I5644DC58B1709848"
+      ]
     },
     {
       "id": "fuego-tortilla-grill-college-station",
@@ -1235,7 +1235,7 @@
         "https://shortysplacerestaurant.com/",
         "https://www.wilsoncountynews.com/articles/shortys-place-celebrates-70-years/"
       ],
-      "location_note": "Address confirmed; OpenStreetMap had no coordinates for a map pin."
+      "location_note": "Address confirmed; OpenStreetMap and the U.S. Census geocoder had no coordinates for a map pin."
     },
     {
       "id": "hanaya-hibachi-sushi-and-asian-fusion-flower-mound",
@@ -1595,31 +1595,6 @@
       ]
     },
     {
-      "id": "hula-hut-little-elm",
-      "name": "Hula Hut",
-      "listed_as": "Hula Hut",
-      "city": "Little Elm",
-      "region": "Texas",
-      "country": "United States",
-      "lat": 33.1626194,
-      "lng": -96.9375051,
-      "cuisine": "American / Tex-Mex",
-      "address": "",
-      "website": "https://www.hulahut.com/",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://www.hulahut.com/locations/little-elm/",
-        "https://www.hulahut.com/",
-        "https://www.hulahut.com/locations/austin/",
-        "https://www.openstreetmap.org/relation/6563699"
-      ],
-      "location_note": "Several locations in Little Elm."
-    },
-    {
       "id": "cavalli-pizzeria-napoletana-mckinney",
       "name": "Cavalli Pizzeria Napoletana",
       "listed_as": "Cavalli Pizza",
@@ -1648,8 +1623,8 @@
       "city": "McKinney",
       "region": "Texas",
       "country": "United States",
-      "lat": null,
-      "lng": null,
+      "lat": 33.172806,
+      "lng": -96.639317,
       "cuisine": "Seafood",
       "address": "2901 South Central Expressway, McKinney, TX 75070",
       "website": "https://www.supershack-mckinney.com/",
@@ -1660,9 +1635,9 @@
       "start_seconds": null,
       "sources": [
         "https://www.visitmckinney.com/listing/super-shack-mckinney-383",
-        "https://www.supershack-mckinney.com/"
-      ],
-      "location_note": "Address confirmed; OpenStreetMap had no coordinates for a map pin."
+        "https://www.supershack-mckinney.com/",
+        "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2901%20South%20Central%20Expressway%2C%20McKinney%2C%20TX%2075070&benchmark=Public_AR_Current&format=json"
+      ]
     },
     {
       "id": "mangia-bistro-plano",
