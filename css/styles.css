@@ -1388,11 +1388,34 @@ main { display: block; }
   color: var(--gold-soft);
 }
 .restaurant-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+.restaurant-region h3 {
+  margin: 0 0 1rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.7rem;
+  color: var(--text);
+}
+.restaurant-city-group { margin: 0 0 1.4rem; }
+.restaurant-city-group:last-child { margin-bottom: 0; }
+.restaurant-city-label {
+  margin: 0 0 0.7rem;
+  font-family: var(--sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: var(--gold-soft);
+}
+.restaurant-city-cards {
   display: grid;
   gap: 1.1rem;
 }
 @media (min-width: 720px) {
-  .restaurant-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .restaurant-city-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 .restaurant-card {
   margin: 0;
@@ -1402,7 +1425,7 @@ main { display: block; }
   background: var(--bg-soft);
 }
 .restaurant-card.is-active { border-color: var(--gold); }
-.restaurant-card h3 {
+.restaurant-card h4 {
   margin: 0 0 0.25rem;
   font-family: var(--serif);
   font-style: italic;
@@ -1410,13 +1433,18 @@ main { display: block; }
   font-size: 1.45rem;
 }
 .restaurant-place,
+.restaurant-listed,
 .restaurant-cuisine,
 .restaurant-address,
 .restaurant-visited,
-.restaurant-sources {
+.restaurant-sources,
+.restaurant-location-note {
   margin: 0 0 0.35rem;
   color: var(--text-dim);
   font-size: 0.95rem;
+}
+.restaurant-location-note {
+  color: var(--text);
 }
 .restaurant-note {
   margin: 0.55rem 0 0.5rem;

@@ -5,6 +5,8 @@ from __future__ import annotations
 import html
 import json
 import shutil
+import unicodedata
+from collections import OrderedDict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -1113,15 +1115,42 @@ def _restaurant_place(r: dict) -> str:
     return ", ".join(seen)
 
 
+def _fold_slug(text: str) -> str:
+    folded = "".join(
+        ch for ch in unicodedata.normalize("NFKD", text) if not unicodedata.combining(ch)
+    )
+    slug = "".join(ch.lower() if ch.isalnum() else "-" for ch in folded).strip("-")
+    while "--" in slug:
+        slug = slug.replace("--", "-")
+    return slug
+
+
 def _restaurant_slug(r: dict, index: int) -> str:
-    raw = (r.get("id") or "").strip()
+    raw = _fold_slug((r.get("id") or "").strip())
     if raw:
         return raw
     base = "-".join(x for x in [(r.get("name") or "").strip(), (r.get("city") or "").strip()] if x)
-    slug = "".join(ch.lower() if ch.isalnum() else "-" for ch in base).strip("-")
-    while "--" in slug:
-        slug = slug.replace("--", "-")
-    return slug or f"restaurant-{index + 1}"
+    return _fold_slug(base) or f"restaurant-{index + 1}"
+
+
+def _restaurant_region(r: dict) -> str:
+    country = (r.get("country") or "").strip()
+    if country and country not in {"United States", "USA", "US"}:
+        return country
+    return (r.get("region") or country or "").strip()
+
+
+def _names_differ(listed: str, official: str) -> bool:
+    def norm(s: str) -> str:
+        return (
+            (s or "")
+            .replace("’", "'")
+            .replace("‘", "'")
+            .replace("`", "'")
+            .strip()
+        )
+
+    return bool((listed or "").strip()) and norm(listed) != norm(official)
 
 
 def _restaurant_card(r: dict, index: int, prefix: str) -> str:
@@ -1180,10 +1209,18 @@ def _restaurant_card(r: dict, index: int, prefix: str) -> str:
     else:
         sources_html = ""
     place_html = f'<p class="restaurant-place">{esc(place)}</p>' if place else ""
+    listed = (r.get("listed_as") or "").strip()
+    listed_html = (
+        f'<p class="restaurant-listed">Listed as: {esc(listed)}</p>'
+        if _names_differ(listed, r.get("name") or "")
+        else ""
+    )
+    loc_note = (r.get("location_note") or "").strip()
+    loc_html = f'<p class="restaurant-location-note">{esc(loc_note)}</p>' if loc_note else ""
     return (
         f'<article class="restaurant-card" id="restaurant-{rid}">'
-        f"<h3>{esc(r.get('name') or 'Restaurant')}</h3>"
-        f"{place_html}{cuisine}{address}{status_html}{note}{visited}{actions_html}{sources_html}"
+        f"<h4>{esc(r.get('name') or 'Restaurant')}</h4>"
+        f"{place_html}{listed_html}{cuisine}{address}{status_html}{loc_html}{note}{visited}{actions_html}{sources_html}"
         "</article>"
     )
 
@@ -1193,8 +1230,8 @@ def page_restaurants() -> str:
     data = _restaurant_data()
     restaurants = list(data.get("restaurants") or [])
     payload_places = []
-    cards = []
     number = 0
+    groups: OrderedDict[str, OrderedDict[str, list[tuple[int, dict]]]] = OrderedDict()
     for i, r in enumerate(restaurants):
         rid = _restaurant_slug(r, i)
         has_pin = r.get("lat") is not None and r.get("lng") is not None
@@ -1224,10 +1261,30 @@ def page_restaurants() -> str:
             if r.get("start_seconds"):
                 item["start_seconds"] = int(r["start_seconds"])
         payload_places.append(item)
-        cards.append(_restaurant_card(r, i, prefix))
+        region = _restaurant_region(r) or "Other"
+        city = (r.get("city") or "").strip() or "Unspecified"
+        groups.setdefault(region, OrderedDict()).setdefault(city, []).append((i, r))
 
-    if cards:
-        list_html = f'<div class="restaurant-list">{"".join(cards)}</div>'
+    if groups:
+        sections = []
+        for region, cities in groups.items():
+            region_id = esc(_fold_slug(f"region-{region}") or "region")
+            city_blocks = []
+            for city, items in cities.items():
+                cards = "".join(_restaurant_card(r, i, prefix) for i, r in items)
+                city_blocks.append(
+                    '<div class="restaurant-city-group">'
+                    f'<p class="restaurant-city-label">{esc(city)}</p>'
+                    f'<div class="restaurant-city-cards">{cards}</div>'
+                    "</div>"
+                )
+            sections.append(
+                f'<section class="restaurant-region" aria-labelledby="{region_id}">'
+                f'<h3 id="{region_id}">{esc(region)}</h3>'
+                + "".join(city_blocks)
+                + "</section>"
+            )
+        list_html = f'<div class="restaurant-list">{"".join(sections)}</div>'
     else:
         list_html = (
             '<div class="restaurant-empty" role="status">'
@@ -1245,8 +1302,8 @@ def page_restaurants() -> str:
     extra_js = f'<script src="{prefix}js/restaurant-map.js" defer></script>'
     title = "Restaurants — Totin My Pack"
     desc = (
-        "A draft page of restaurants we have eaten at and liked. "
-        "The list is not yet filled."
+        "A draft page of restaurants we have eaten at and liked, "
+        "grouped by place and shown on a map."
     )
     return f"""{head(title, desc, "/restaurants.html", "logo", prefix, og_logo=True, robots="noindex")}
 <body>
@@ -1273,7 +1330,7 @@ def page_restaurants() -> str:
         <div class="section-intro">
           <p class="kicker">The places</p>
           <h2 id="map-heading">The map</h2>
-          <p>Each pin will sit at the restaurant’s true location. The map is ready; the pins will appear when places are added.</p>
+          <p>Each pin sits at the restaurant’s true location. If a name has more than one possible address, it stays in the list without a pin until we know which one.</p>
         </div>
       </div>
       <div class="trip-map-frame restaurant-map-frame">
