@@ -47,29 +47,6 @@
       ]
     },
     {
-      "id": "ruby-s-diner-laguna-beach",
-      "name": "Ruby's Diner",
-      "listed_as": "Ruby’s Autodiner",
-      "city": "Laguna Beach",
-      "region": "California",
-      "country": "United States",
-      "lat": 33.5185592,
-      "lng": -117.7591028,
-      "cuisine": "American diner",
-      "address": "30622 South Coast Highway, Laguna Beach, CA 92651",
-      "website": "https://www.rubys.com/location/laguna-beach/",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://www.rubys.com/location/laguna-beach/",
-        "https://www.visitlagunabeach.com/directory/rubys-auto-diner/",
-        "https://www.openstreetmap.org/?mlat=33.5185592&mlon=-117.7591028"
-      ]
-    },
-    {
       "id": "flow-restaurant-lounge-mendocino",
       "name": "Flow Restaurant & Lounge",
       "listed_as": "Flow",
@@ -99,11 +76,11 @@
       "city": "Santa Rosa",
       "region": "California",
       "country": "United States",
-      "lat": 38.438883,
-      "lng": -122.7197736,
+      "lat": 38.4404925,
+      "lng": -122.7141049,
       "cuisine": "American / breakfast and lunch",
-      "address": "205 5th Street, Suite A, Santa Rosa, CA 95401",
-      "website": "https://americanasonomacounty.com/santa-rosa/",
+      "address": "",
+      "website": "https://americanasonomacounty.com/",
       "status": "open",
       "teddy_note": "",
       "visited": "",
@@ -112,8 +89,9 @@
       "sources": [
         "https://americanasonomacounty.com/santa-rosa/",
         "https://americanasonomacounty.com/",
-        "https://www.openstreetmap.org/?mlat=38.4388830&mlon=-122.7197736"
-      ]
+        "https://www.openstreetmap.org/relation/113158"
+      ],
+      "location_note": "Several locations in Santa Rosa."
     },
     {
       "id": "lighthouse-cafe-sausalito",
@@ -122,11 +100,11 @@
       "city": "Sausalito",
       "region": "California",
       "country": "United States",
-      "lat": 37.8596981,
-      "lng": -122.486406,
+      "lat": 37.8590272,
+      "lng": -122.485469,
       "cuisine": "American / breakfast and lunch",
-      "address": "1311 Bridgeway, Sausalito, CA 94965",
-      "website": "https://lighthouse-restaurants.com/lighthouse-cafe-sausalito",
+      "address": "",
+      "website": "https://lighthouse-restaurants.com/",
       "status": "open",
       "teddy_note": "",
       "visited": "",
@@ -134,8 +112,10 @@
       "start_seconds": null,
       "sources": [
         "https://lighthouse-restaurants.com/lighthouse-cafe-sausalito",
-        "https://www.openstreetmap.org/node/6317144100"
-      ]
+        "https://lighthouse-restaurants.com/",
+        "https://www.openstreetmap.org/relation/2829689"
+      ],
+      "location_note": "Several locations in Sausalito."
     },
     {
       "id": "bistro-jeanty-yountville",
@@ -166,11 +146,11 @@
       "city": "Bossier City",
       "region": "Louisiana",
       "country": "United States",
-      "lat": 32.516064,
-      "lng": -93.716133,
+      "lat": 32.515887,
+      "lng": -93.7336536,
       "cuisine": "Seafood",
-      "address": "1700 Old Minden Road #141, Bossier City, LA 71111",
-      "website": "https://ralphandkacoos.com/bossier/",
+      "address": "",
+      "website": "https://ralphandkacoos.com/locations/",
       "status": "open",
       "teddy_note": "",
       "visited": "",
@@ -179,32 +159,9 @@
       "sources": [
         "https://ralphandkacoos.com/bossier/",
         "https://ralphandkacoos.com/locations/",
-        "https://www.openstreetmap.org/?mlat=32.5160640&mlon=-93.7161330"
-      ]
-    },
-    {
-      "id": "cane-river-bar-grill-natchitoches",
-      "name": "Cane River Bar & Grill",
-      "listed_as": "Cane River Bar and Grill",
-      "city": "Natchitoches",
-      "region": "Louisiana",
-      "country": "United States",
-      "lat": 31.7692576,
-      "lng": -93.0859409,
-      "cuisine": "American / bar and grill",
-      "address": "1125 Washington Street, Natchitoches, LA 71457",
-      "website": "",
-      "status": "closed",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://closeddownrestaurants.com/natchitoches-louisiana-restaurant-closures-and-closed-restaurants/",
-        "https://restaurantguru.com/Cane-River-Bar-and-Grill-Natchitoches",
-        "https://natchitochesparishjournal.com/2017/12/07/cane-river-bar-grill-celebrates-ten-years-with-customer-appreciation-day/",
-        "https://www.openstreetmap.org/?mlat=31.7692576&mlon=-93.0859409"
-      ]
+        "https://www.openstreetmap.org/relation/132145"
+      ],
+      "location_note": "Several locations in Bossier City."
     },
     {
       "id": "dimillo-s-portland",
@@ -281,8 +238,8 @@
       "city": "Kansas City",
       "region": "Missouri",
       "country": "United States",
-      "lat": null,
-      "lng": null,
+      "lat": 39.100105,
+      "lng": -94.5781416,
       "cuisine": "Barbecue",
       "address": "",
       "website": "https://gatesbbq.com/locations/",
@@ -292,9 +249,10 @@
       "video_id": "",
       "start_seconds": null,
       "sources": [
-        "https://gatesbbq.com/locations/"
+        "https://gatesbbq.com/locations/",
+        "https://www.openstreetmap.org/relation/141008"
       ],
-      "location_note": "Several locations in Kansas City; which one?"
+      "location_note": "Several locations in Kansas City."
     },
     {
       "id": "schilling-beer-company-littleton",
@@ -349,11 +307,11 @@
       "city": "Portsmouth",
       "region": "New Hampshire",
       "country": "United States",
-      "lat": 43.0774012,
-      "lng": -70.760539,
+      "lat": 43.0751306,
+      "lng": -70.7601826,
       "cuisine": "Seafood",
-      "address": "5 Portwalk Place, Portsmouth, NH 03801",
-      "website": "https://www.row34.com/location/row34-portsmouth/",
+      "address": "",
+      "website": "https://www.row34.com/",
       "status": "open",
       "teddy_note": "",
       "visited": "",
@@ -361,8 +319,10 @@
       "start_seconds": null,
       "sources": [
         "https://www.row34.com/location/row34-portsmouth/",
-        "https://www.openstreetmap.org/?mlat=43.0774012&mlon=-70.7605390"
-      ]
+        "https://www.row34.com/",
+        "https://www.openstreetmap.org/relation/70967"
+      ],
+      "location_note": "Several locations in Portsmouth."
     },
     {
       "id": "two-frogs-grill-ardmore",
@@ -416,8 +376,8 @@
       "city": "Oklahoma City",
       "region": "Oklahoma",
       "country": "United States",
-      "lat": null,
-      "lng": null,
+      "lat": 35.4729886,
+      "lng": -97.5170536,
       "cuisine": "Breakfast / diner",
       "address": "",
       "website": "https://www.eatatsunnyside.com/",
@@ -427,9 +387,11 @@
       "video_id": "",
       "start_seconds": null,
       "sources": [
-        "https://www.eatatsunnyside.com/"
+        "https://www.eatatsunnyside.com/",
+        "https://www.eatatsunnyside.com/contact-us",
+        "https://www.openstreetmap.org/relation/185048"
       ],
-      "location_note": "Several locations in Oklahoma City; which one?"
+      "location_note": "Several locations in Oklahoma City."
     },
     {
       "id": "hideaway-pizza-oklahoma-city",
@@ -438,8 +400,8 @@
       "city": "Oklahoma City",
       "region": "Oklahoma",
       "country": "United States",
-      "lat": null,
-      "lng": null,
+      "lat": 35.4729886,
+      "lng": -97.5170536,
       "cuisine": "Pizza",
       "address": "",
       "website": "https://www.hideawaypizza.com/locations",
@@ -451,9 +413,10 @@
       "sources": [
         "https://www.hideawaypizza.com/locations",
         "https://www.hideawaypizza.com/locations/western-ave",
-        "https://www.hideawaypizza.com/locations/downtown-oklahoma-city"
+        "https://www.hideawaypizza.com/locations/downtown-oklahoma-city",
+        "https://www.openstreetmap.org/relation/185048"
       ],
-      "location_note": "Several locations in Oklahoma City; which one?"
+      "location_note": "Several locations in Oklahoma City."
     },
     {
       "id": "dado-s-pizza-oklahoma-city",
@@ -484,8 +447,8 @@
       "city": "Tulsa",
       "region": "Oklahoma",
       "country": "United States",
-      "lat": null,
-      "lng": null,
+      "lat": 36.1563122,
+      "lng": -95.9927516,
       "cuisine": "Pizza / Italian",
       "address": "",
       "website": "https://andopizza.com/location/",
@@ -496,9 +459,10 @@
       "start_seconds": null,
       "sources": [
         "https://andopizza.com/location/",
-        "https://andolinisworldwide.com/pages/andolinis-pizzeria"
+        "https://andolinisworldwide.com/pages/andolinis-pizzeria",
+        "https://www.openstreetmap.org/relation/184985"
       ],
-      "location_note": "Several locations in Tulsa; which one?"
+      "location_note": "Several locations in Tulsa."
     },
     {
       "id": "alamo-steakhouse-gatlinburg",
@@ -507,10 +471,10 @@
       "city": "Gatlinburg",
       "region": "Tennessee",
       "country": "United States",
-      "lat": 35.7212835,
-      "lng": -83.4986008,
+      "lat": 35.714259,
+      "lng": -83.5101638,
       "cuisine": "Steakhouse",
-      "address": "705 East Parkway, Gatlinburg, TN 37738",
+      "address": "",
       "website": "https://www.alamosteakhouse.com/",
       "status": "open",
       "teddy_note": "",
@@ -519,8 +483,9 @@
       "start_seconds": null,
       "sources": [
         "https://www.alamosteakhouse.com/",
-        "https://www.openstreetmap.org/?mlat=35.7212835&mlon=-83.4986008"
-      ]
+        "https://www.openstreetmap.org/relation/197143"
+      ],
+      "location_note": "Several locations in Gatlinburg."
     },
     {
       "id": "owen-brennan-s-memphis",
@@ -690,11 +655,11 @@
       "city": "College Station",
       "region": "Texas",
       "country": "United States",
-      "lat": 30.62791,
-      "lng": -96.3334337,
+      "lat": 30.6183939,
+      "lng": -96.3455991,
       "cuisine": "Tex-Mex",
-      "address": "108 Poplar Street, College Station, TX 77840",
-      "website": "https://fuegotortillagrill.com/collegestation",
+      "address": "",
+      "website": "https://fuegotortillagrill.com/",
       "status": "open",
       "teddy_note": "",
       "visited": "",
@@ -703,8 +668,10 @@
       "sources": [
         "https://fuegotortillagrill.com/collegestation",
         "https://visit.cstx.gov/directory/fuego-tortilla-grill/",
-        "https://www.openstreetmap.org/?mlat=30.6279100&mlon=-96.3334337"
-      ]
+        "https://fuegotortillagrill.com/",
+        "https://www.openstreetmap.org/relation/6605762"
+      ],
+      "location_note": "Several locations in College Station."
     },
     {
       "id": "celebration-restaurant-dallas",
@@ -735,11 +702,11 @@
       "city": "Dallas",
       "region": "Texas",
       "country": "United States",
-      "lat": null,
-      "lng": null,
+      "lat": 32.7762719,
+      "lng": -96.7968559,
       "cuisine": "Burgers",
       "address": "",
-      "website": "https://www.rodeogoat.com/dallas/",
+      "website": "https://www.rodeogoat.com/",
       "status": "open",
       "teddy_note": "",
       "visited": "",
@@ -747,9 +714,11 @@
       "start_seconds": null,
       "sources": [
         "https://www.rodeogoat.com/dallas/",
-        "https://www.rodeogoat.com/casa-linda/"
+        "https://www.rodeogoat.com/casa-linda/",
+        "https://www.rodeogoat.com/",
+        "https://www.openstreetmap.org/relation/6571629"
       ],
-      "location_note": "Several locations in Dallas; which one?"
+      "location_note": "Several locations in Dallas."
     },
     {
       "id": "the-mercury-dallas",
@@ -771,29 +740,6 @@
       "sources": [
         "https://themercurydallas.com/",
         "https://www.openstreetmap.org/node/13265794478"
-      ]
-    },
-    {
-      "id": "moxies-dallas",
-      "name": "Moxies",
-      "listed_as": "Moxies",
-      "city": "Dallas",
-      "region": "Texas",
-      "country": "United States",
-      "lat": 32.7940157,
-      "lng": -96.8029418,
-      "cuisine": "American",
-      "address": "100 Crescent Court, Suite 140, Dallas, TX 75201",
-      "website": "https://moxies.com/restaurants/dallas-uptown/",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://moxies.com/restaurants/dallas-uptown/",
-        "https://moxies.com/restaurants/",
-        "https://www.openstreetmap.org/?mlat=32.7940157&mlon=-96.8029418"
       ]
     },
     {
@@ -826,8 +772,8 @@
       "city": "Dallas",
       "region": "Texas",
       "country": "United States",
-      "lat": null,
-      "lng": null,
+      "lat": 32.7762719,
+      "lng": -96.7968559,
       "cuisine": "Mexican / Tex-Mex",
       "address": "",
       "website": "https://laharanch.com/page/locations",
@@ -838,9 +784,10 @@
       "start_seconds": null,
       "sources": [
         "https://laharanch.com/page/locations",
-        "https://laharanch.com/dallas"
+        "https://laharanch.com/dallas",
+        "https://www.openstreetmap.org/relation/6571629"
       ],
-      "location_note": "Several locations in Dallas; which one?"
+      "location_note": "Several locations in Dallas."
     },
     {
       "id": "cafe-brazil-dallas",
@@ -849,8 +796,8 @@
       "city": "Dallas",
       "region": "Texas",
       "country": "United States",
-      "lat": null,
-      "lng": null,
+      "lat": 32.7762719,
+      "lng": -96.7968559,
       "cuisine": "Breakfast / cafe",
       "address": "",
       "website": "https://cafebrazil.com/locations/",
@@ -860,33 +807,10 @@
       "video_id": "",
       "start_seconds": null,
       "sources": [
-        "https://cafebrazil.com/locations/"
+        "https://cafebrazil.com/locations/",
+        "https://www.openstreetmap.org/relation/6571629"
       ],
-      "location_note": "Several locations in Dallas; which one?"
-    },
-    {
-      "id": "saltgrass-steak-house-dallas",
-      "name": "Saltgrass Steak House",
-      "listed_as": "Salt Grass",
-      "city": "Dallas",
-      "region": "Texas",
-      "country": "United States",
-      "lat": null,
-      "lng": null,
-      "cuisine": "Steakhouse",
-      "address": "",
-      "website": "https://www.saltgrass.com/store-locator/",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://www.saltgrass.com/store-locator/",
-        "https://www.saltgrass.com/location/saltgrass-richardson-dallas-n-central-expressway/",
-        "https://www.saltgrass.com/location/saltgrass-midway-dallas-lbj-frwy/"
-      ],
-      "location_note": "Several locations in Dallas; which one?"
+      "location_note": "Several locations in Dallas."
     },
     {
       "id": "ephesus-mediterranean-grill-dallas",
@@ -918,11 +842,11 @@
       "city": "Dallas",
       "region": "Texas",
       "country": "United States",
-      "lat": 32.7914012,
-      "lng": -96.80429,
+      "lat": 32.7762719,
+      "lng": -96.7968559,
       "cuisine": "Mexican",
-      "address": "2355 Olive Street #155, Dallas, TX 75201",
-      "website": "https://www.mexicansugarcocina.com/locations/uptown",
+      "address": "",
+      "website": "https://www.mexicansugarcocina.com/locations",
       "status": "open",
       "teddy_note": "",
       "visited": "",
@@ -931,8 +855,9 @@
       "sources": [
         "https://www.mexicansugarcocina.com/locations",
         "https://www.mexicansugarcocina.com/locations/uptown",
-        "https://www.openstreetmap.org/?mlat=32.7914012&mlon=-96.80429"
-      ]
+        "https://www.openstreetmap.org/relation/6571629"
+      ],
+      "location_note": "Several locations in Dallas."
     },
     {
       "id": "haywire-dallas",
@@ -941,11 +866,11 @@
       "city": "Dallas",
       "region": "Texas",
       "country": "United States",
-      "lat": 32.7903246,
-      "lng": -96.8033366,
+      "lat": 32.7762719,
+      "lng": -96.7968559,
       "cuisine": "American / Texas",
-      "address": "1920 McKinney Avenue, Suite 100, Dallas, TX 75201",
-      "website": "https://www.haywirerestaurant.com/locations/uptown-dallas",
+      "address": "",
+      "website": "https://www.haywirerestaurant.com/",
       "status": "open",
       "teddy_note": "",
       "visited": "",
@@ -954,8 +879,13 @@
       "sources": [
         "https://www.haywirerestaurant.com/locations/uptown-dallas",
         "https://www.opentable.com/r/haywire-uptown-dallas-dallas",
-        "https://www.openstreetmap.org/node/11835288743"
-      ]
+        "https://www.haywirerestaurant.com/",
+        "https://www.haywirerestaurant.com/locations/legacy-west-plano",
+        "https://www.haywirerestaurant.com/locations/memorial-city-houston",
+        "https://www.haywirerestaurant.com/locations/la-cantera-san-antonio",
+        "https://www.openstreetmap.org/relation/6571629"
+      ],
+      "location_note": "Several locations in Dallas."
     },
     {
       "id": "knox-bistro-dallas",
@@ -987,8 +917,8 @@
       "city": "Dallas",
       "region": "Texas",
       "country": "United States",
-      "lat": null,
-      "lng": null,
+      "lat": 32.7762719,
+      "lng": -96.7968559,
       "cuisine": "Southern / breakfast and brunch",
       "address": "",
       "website": "https://ellens.com/locations",
@@ -999,9 +929,10 @@
       "start_seconds": null,
       "sources": [
         "https://ellens.com/locations",
-        "https://ellens.com/"
+        "https://ellens.com/",
+        "https://www.openstreetmap.org/relation/6571629"
       ],
-      "location_note": "Several locations in Dallas; which one?"
+      "location_note": "Several locations in Dallas."
     },
     {
       "id": "aboca-s-italian-grill-richardson",
@@ -1034,11 +965,11 @@
       "city": "Dallas",
       "region": "Texas",
       "country": "United States",
-      "lat": 32.8950475,
-      "lng": -96.8045163,
+      "lat": 32.7762719,
+      "lng": -96.7968559,
       "cuisine": "Italian",
-      "address": "5959 Royal Lane #707, Dallas, TX 75230",
-      "website": "https://princiitalia.com/dallas",
+      "address": "",
+      "website": "https://princiitalia.com/page/our-locations",
       "status": "open",
       "teddy_note": "",
       "visited": "",
@@ -1047,30 +978,9 @@
       "sources": [
         "https://princiitalia.com/page/our-locations",
         "https://princiitalia.com/dallas",
-        "https://www.openstreetmap.org/node/2830114227"
-      ]
-    },
-    {
-      "id": "joey-dallas-dallas",
-      "name": "JOEY Dallas",
-      "listed_as": "Joey Dallas",
-      "city": "Dallas",
-      "region": "Texas",
-      "country": "United States",
-      "lat": 32.8668766,
-      "lng": -96.7736313,
-      "cuisine": "American",
-      "address": "8687 North Central Expressway, Suite 307, Dallas, TX 75225",
-      "website": "https://joeyrestaurants.com/location/joey-dallas",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://joeyrestaurants.com/location/joey-dallas",
-        "https://www.openstreetmap.org/node/6747671299"
-      ]
+        "https://www.openstreetmap.org/relation/6571629"
+      ],
+      "location_note": "Several locations in Dallas."
     },
     {
       "id": "nate-s-seafood-steakhouse-addison",
@@ -1118,38 +1028,14 @@
       ]
     },
     {
-      "id": "grand-lux-cafe-dallas",
-      "name": "Grand Lux Cafe",
-      "listed_as": "Gran Lux",
-      "city": "Dallas",
-      "region": "Texas",
-      "country": "United States",
-      "lat": 32.9309654,
-      "lng": -96.8211256,
-      "cuisine": "American",
-      "address": "13420 North Dallas Parkway, Dallas, TX 75240",
-      "website": "https://locations.grandluxcafe.com/tx/dallas/4/",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://locations.grandluxcafe.com/tx/dallas/4/",
-        "https://galleriadallas.com/directory/food/grand-lux-cafe",
-        "https://www.openstreetmap.org/?mlat=32.9900786&mlon=-96.8287662",
-        "https://www.openstreetmap.org/?mlat=32.9309654&mlon=-96.8211256"
-      ]
-    },
-    {
       "id": "hudson-house-dallas",
       "name": "Hudson House",
       "listed_as": "Hudson House",
       "city": "Dallas",
       "region": "Texas",
       "country": "United States",
-      "lat": null,
-      "lng": null,
+      "lat": 32.7762719,
+      "lng": -96.7968559,
       "cuisine": "American / seafood",
       "address": "",
       "website": "https://www.hudsonhouse.com/hours-and-locations/",
@@ -1161,9 +1047,10 @@
       "sources": [
         "https://www.hudsonhouse.com/hours-and-locations/",
         "https://www.hudsonhouse.com/location/west-village/",
-        "https://www.hudsonhouse.com/location/lakewood/"
+        "https://www.hudsonhouse.com/location/lakewood/",
+        "https://www.openstreetmap.org/relation/6571629"
       ],
-      "location_note": "Several locations in Dallas; which one?"
+      "location_note": "Several locations in Dallas."
     },
     {
       "id": "steakyard-dallas",
@@ -1210,29 +1097,6 @@
         "https://sweetiepiesribeyes.com/",
         "https://www.openstreetmap.org/way/480689815"
       ]
-    },
-    {
-      "id": "horny-toad-cafe-denton",
-      "name": "Horny Toad Cafe",
-      "listed_as": "Horny Toad",
-      "city": "Denton",
-      "region": "Texas",
-      "country": "United States",
-      "lat": 33.2540076,
-      "lng": -97.1764949,
-      "cuisine": "American",
-      "address": "5812 North Interstate 35, Denton, TX 76207",
-      "website": "",
-      "status": "closed",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://dentonrc.com/business/horny-toad-cafe-to-close-after-nearly-10-years-in-denton/article_3c5c0389-94a3-5252-9082-c93a59bfd005.html",
-        "https://www.openstreetmap.org/way/260823106"
-      ],
-      "location_note": "Closed after July 30, 2023."
     },
     {
       "id": "frilly-s-seafood-bayou-kitchen-denton",
@@ -1287,8 +1151,8 @@
       "city": "El Paso",
       "region": "Texas",
       "country": "United States",
-      "lat": null,
-      "lng": null,
+      "lat": 31.7601001,
+      "lng": -106.4870476,
       "cuisine": "Mexican",
       "address": "",
       "website": "https://laspalmasep.com/",
@@ -1298,9 +1162,11 @@
       "video_id": "",
       "start_seconds": null,
       "sources": [
-        "https://laspalmasep.com/"
+        "https://laspalmasep.com/",
+        "https://laspalmasep.com/contact/",
+        "https://www.openstreetmap.org/relation/113919"
       ],
-      "location_note": "Several locations in El Paso; which one?"
+      "location_note": "Several locations in El Paso."
     },
     {
       "id": "ambar-restaurante-el-paso",
@@ -1349,31 +1215,6 @@
       ]
     },
     {
-      "id": "paula-deen-s-family-kitchen-fairview",
-      "name": "Paula Deen's Family Kitchen",
-      "listed_as": "Paula Deen’s",
-      "city": "Fairview",
-      "region": "Texas",
-      "country": "United States",
-      "lat": 33.132919,
-      "lng": -96.6503913,
-      "cuisine": "Southern",
-      "address": "163 Fountain Court, Fairview, TX 75069",
-      "website": "",
-      "status": "closed",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://www.fox4news.com/news/paula-deens-restaurant-in-north-texas-unexpectedly-closes",
-        "https://dallas.eater.com/2019/8/20/20813878/paula-deens-southern-restaurant-closed-shaynas-place-annex-open-craftworks-kitchen-opening-plano",
-        "https://www.fairviewtowncenter.com/news-room/2017/12/19/paula-deens-family-kitchen-coming-to-fairview-town-center",
-        "https://www.openstreetmap.org/?mlat=33.132919&mlon=-96.6503913"
-      ],
-      "location_note": "Closed in August 2019."
-    },
-    {
       "id": "shorty-s-place-falls-city",
       "name": "Shorty's Place",
       "listed_as": "Shorty’s",
@@ -1419,52 +1260,6 @@
       ]
     },
     {
-      "id": "kincaid-s-hamburgers-flower-mound",
-      "name": "Kincaid's Hamburgers",
-      "listed_as": "Kincaids Burger",
-      "city": "Flower Mound",
-      "region": "Texas",
-      "country": "United States",
-      "lat": null,
-      "lng": null,
-      "cuisine": "Burgers",
-      "address": "",
-      "website": "https://www.kincaidshamburgers.com/locations",
-      "status": "unverified",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://www.kincaidshamburgers.com/locations",
-        "https://www.kincaidshamburgers.com/"
-      ],
-      "location_note": "No Kincaid's location is listed in Flower Mound; which one?"
-    },
-    {
-      "id": "charleston-s-restaurant-fort-worth",
-      "name": "Charleston's Restaurant",
-      "listed_as": "Charleston’s",
-      "city": "Fort Worth",
-      "region": "Texas",
-      "country": "United States",
-      "lat": 32.7070455,
-      "lng": -97.3879191,
-      "cuisine": "American",
-      "address": "3020 South Hulen Street, Fort Worth, TX 76109",
-      "website": "https://charlestons.com/locations/charlestons-ft-worth/",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://charlestons.com/locations/charlestons-ft-worth/",
-        "https://charlestons.com/locations/",
-        "https://www.openstreetmap.org/?mlat=32.7070455&mlon=-97.3879191"
-      ]
-    },
-    {
       "id": "lucile-s-fort-worth",
       "name": "Lucile's",
       "listed_as": "Lucille’s",
@@ -1497,7 +1292,7 @@
       "lng": -97.3563396,
       "cuisine": "American / bar",
       "address": "2736 West 6th Street, Fort Worth, TX 76107",
-      "website": "https://thepostatrivereast.com/",
+      "website": "https://www.thepostfw.com/",
       "status": "open",
       "teddy_note": "",
       "visited": "",
@@ -1507,7 +1302,9 @@
         "https://thepostatrivereast.com/",
         "https://www.openstreetmap.org/?mlat=32.7523185&mlon=-97.3563396",
         "https://fortworth.culturemap.com/news/entertainment/the-post-lolas-saloon/",
-        "https://www.fwweekly.com/2025/02/10/the-post-returns/"
+        "https://www.fwweekly.com/2025/02/10/the-post-returns/",
+        "https://www.thepostfw.com/",
+        "https://www.thepostfw.com/contact"
       ],
       "location_note": "Now at 2736 West 6th Street (the former Lola's Saloon); previously at River East on Race Street."
     },
@@ -1518,10 +1315,10 @@
       "city": "Fort Worth",
       "region": "Texas",
       "country": "United States",
-      "lat": 32.7534859,
-      "lng": -97.3326482,
+      "lat": 32.753177,
+      "lng": -97.3327459,
       "cuisine": "Texas / steakhouse",
-      "address": "530 Throckmorton Street, Fort Worth, TX 76102",
+      "address": "",
       "website": "https://reata.net/",
       "status": "open",
       "teddy_note": "",
@@ -1531,8 +1328,10 @@
       "sources": [
         "https://reata.net/reata-fort-worth/directions-parking/",
         "https://reata.net/",
-        "https://www.openstreetmap.org/?mlat=32.7534859&mlon=-97.3326482"
-      ]
+        "https://reata.net/alpine/",
+        "https://www.openstreetmap.org/relation/115274"
+      ],
+      "location_note": "Several locations in Fort Worth."
     },
     {
       "id": "delucca-gaucho-pizza-wine-fort-worth",
@@ -1541,8 +1340,8 @@
       "city": "Fort Worth",
       "region": "Texas",
       "country": "United States",
-      "lat": null,
-      "lng": null,
+      "lat": 32.753177,
+      "lng": -97.3327459,
       "cuisine": "Pizza",
       "address": "",
       "website": "https://www.delucca.com/",
@@ -1554,9 +1353,10 @@
       "sources": [
         "https://www.delucca.com/",
         "https://www.delucca.com/location/delucca-fort-worth/",
-        "https://www.delucca.com/location/fort-worth-alliance-center/"
+        "https://www.delucca.com/location/fort-worth-alliance-center/",
+        "https://www.openstreetmap.org/relation/115274"
       ],
-      "location_note": "Several locations in Fort Worth; which one?"
+      "location_note": "Several locations in Fort Worth."
     },
     {
       "id": "cattlemen-s-steakhouse-fort-worth",
@@ -1680,10 +1480,10 @@
       "city": "Grapevine",
       "region": "Texas",
       "country": "United States",
-      "lat": 32.9369807,
-      "lng": -97.0784485,
+      "lat": 32.9337381,
+      "lng": -97.0788754,
       "cuisine": "American / cafe",
-      "address": "420 South Main Street, Grapevine, TX 76051",
+      "address": "",
       "website": "https://www.farinaswinery.com/",
       "status": "open",
       "teddy_note": "",
@@ -1693,8 +1493,10 @@
       "sources": [
         "https://www.farinaswinery.com/",
         "https://grapevinetexas.com/business/farinas-winery-cafe-grapevine",
-        "https://www.openstreetmap.org/?mlat=32.9369807&mlon=-97.0784485"
-      ]
+        "https://www.farinaswinery.com/about",
+        "https://www.openstreetmap.org/relation/114452"
+      ],
+      "location_note": "Several locations in Grapevine."
     },
     {
       "id": "mac-s-on-main-grapevine",
@@ -1703,11 +1505,11 @@
       "city": "Grapevine",
       "region": "Texas",
       "country": "United States",
-      "lat": 32.9323351,
-      "lng": -97.0780866,
+      "lat": 32.9337381,
+      "lng": -97.0788754,
       "cuisine": "Steakhouse",
-      "address": "909 South Main Street, Suite 110, Grapevine, TX 76051",
-      "website": "https://macsteak.com/macs-on-main-grapevine-reservations/",
+      "address": "",
+      "website": "https://macsteak.com/locations/",
       "status": "open",
       "teddy_note": "",
       "visited": "",
@@ -1716,8 +1518,9 @@
       "sources": [
         "https://macsteak.com/locations/",
         "https://macsteak.com/",
-        "https://www.openstreetmap.org/node/9709772725"
-      ]
+        "https://www.openstreetmap.org/relation/114452"
+      ],
+      "location_note": "Several locations in Grapevine."
     },
     {
       "id": "blue-goose-cantina-grapevine",
@@ -1726,11 +1529,11 @@
       "city": "Grapevine",
       "region": "Texas",
       "country": "United States",
-      "lat": 32.9637927,
-      "lng": -97.0393881,
+      "lat": 32.9337381,
+      "lng": -97.0788754,
       "cuisine": "Mexican / Tex-Mex",
-      "address": "2455 Grapevine Mills Circle East, Suite 2048, Grapevine, TX 76051",
-      "website": "https://www.bluegoosecantina.com/grapevine-tx/",
+      "address": "",
+      "website": "https://www.bluegoosecantina.com/locations/",
       "status": "open",
       "teddy_note": "",
       "visited": "",
@@ -1739,8 +1542,10 @@
       "sources": [
         "https://www.bluegoosecantina.com/grapevine-tx/",
         "https://business.grapevinechamber.org/list/member/blue-goose-cantina-grapevine-14924.htm",
-        "https://www.openstreetmap.org/?mlat=32.9637927&mlon=-97.0393881"
-      ]
+        "https://www.bluegoosecantina.com/locations/",
+        "https://www.openstreetmap.org/relation/114452"
+      ],
+      "location_note": "Several locations in Grapevine."
     },
     {
       "id": "dino-s-steak-and-claw-house-grapevine",
@@ -1767,30 +1572,6 @@
       ]
     },
     {
-      "id": "ribcrib-bbq-greenville",
-      "name": "RibCrib BBQ",
-      "listed_as": "Rib Crib",
-      "city": "Greenville",
-      "region": "Texas",
-      "country": "United States",
-      "lat": 33.0996645,
-      "lng": -96.1038813,
-      "cuisine": "Barbecue",
-      "address": "6815 I-30, Greenville, TX 75402",
-      "website": "https://ribcrib.com/locations/",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://ribcrib.com/locations/",
-        "https://www.facebook.com/ribcrib.greenville",
-        "https://www.openstreetmap.org/?mlat=33.0809792&mlon=-96.134947",
-        "https://www.openstreetmap.org/?mlat=33.0996645&mlon=-96.1038813"
-      ]
-    },
-    {
       "id": "lone-star-cafe-hillsboro",
       "name": "Lone Star Cafe",
       "listed_as": "Lonestar Cafe",
@@ -1814,39 +1595,17 @@
       ]
     },
     {
-      "id": "aspen-creek-grill-irving",
-      "name": "Aspen Creek Grill",
-      "listed_as": "Aspen Creek",
-      "city": "Irving",
-      "region": "Texas",
-      "country": "United States",
-      "lat": 32.835703,
-      "lng": -97.0121598,
-      "cuisine": "American",
-      "address": "4300 West Airport Freeway, Irving, TX 75062",
-      "website": "https://aspencreekgrill.com/irving/",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://aspencreekgrill.com/irving/",
-        "https://www.openstreetmap.org/way/61698106"
-      ]
-    },
-    {
       "id": "hula-hut-little-elm",
       "name": "Hula Hut",
       "listed_as": "Hula Hut",
       "city": "Little Elm",
       "region": "Texas",
       "country": "United States",
-      "lat": 33.1686038,
-      "lng": -96.907178,
+      "lat": 33.1626194,
+      "lng": -96.9375051,
       "cuisine": "American / Tex-Mex",
-      "address": "210 East Eldorado Parkway, Little Elm, TX 75068",
-      "website": "https://www.hulahut.com/locations/little-elm/",
+      "address": "",
+      "website": "https://www.hulahut.com/",
       "status": "open",
       "teddy_note": "",
       "visited": "",
@@ -1854,30 +1613,11 @@
       "start_seconds": null,
       "sources": [
         "https://www.hulahut.com/locations/little-elm/",
-        "https://www.openstreetmap.org/?mlat=33.1686038&mlon=-96.907178"
-      ]
-    },
-    {
-      "id": "mellow-mushroom-mckinney",
-      "name": "Mellow Mushroom",
-      "listed_as": "Mellow Mushroom",
-      "city": "McKinney",
-      "region": "Texas",
-      "country": "United States",
-      "lat": 33.1970822,
-      "lng": -96.6147129,
-      "cuisine": "Pizza",
-      "address": "218 East Louisiana Street, McKinney, TX 75069",
-      "website": "https://www.mellowmushroom.com/locations/tx/mckinney/218-e-louisiana-st/",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://www.mellowmushroom.com/locations/tx/mckinney/218-e-louisiana-st/",
-        "https://www.openstreetmap.org/?mlat=33.1970822&mlon=-96.6147129"
-      ]
+        "https://www.hulahut.com/",
+        "https://www.hulahut.com/locations/austin/",
+        "https://www.openstreetmap.org/relation/6563699"
+      ],
+      "location_note": "Several locations in Little Elm."
     },
     {
       "id": "cavalli-pizzeria-napoletana-mckinney",
@@ -1948,29 +1688,6 @@
       ]
     },
     {
-      "id": "the-pizza-guy-plano",
-      "name": "The Pizza Guy",
-      "listed_as": "The Pizza Guy",
-      "city": "Plano",
-      "region": "Texas",
-      "country": "United States",
-      "lat": null,
-      "lng": null,
-      "cuisine": "",
-      "address": "",
-      "website": "",
-      "status": "unverified",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://www.pizzaguys.com/plano/",
-        "http://www.thepizzaguydallas.com/"
-      ],
-      "location_note": "Could not confirm this exact name in Plano; which one?"
-    },
-    {
       "id": "virginia-s-by-the-bay-port-aransas",
       "name": "Virginia's by the Bay",
       "listed_as": "Virginia’s",
@@ -2023,10 +1740,10 @@
       "city": "Rowlett",
       "region": "Texas",
       "country": "United States",
-      "lat": 32.902922,
-      "lng": -96.5661671,
+      "lat": 32.9029017,
+      "lng": -96.56388,
       "cuisine": "Brewpub",
-      "address": "3840 Main Street, Rowlett, TX 75088",
+      "address": "",
       "website": "https://www.bankheadbrewing.com/",
       "status": "open",
       "teddy_note": "",
@@ -2036,8 +1753,9 @@
       "sources": [
         "https://www.bankheadbrewing.com/contact",
         "https://www.bankheadbrewing.com/",
-        "https://www.openstreetmap.org/?mlat=32.902922&mlon=-96.5661671"
-      ]
+        "https://www.openstreetmap.org/relation/113954"
+      ],
+      "location_note": "Several locations in Rowlett."
     },
     {
       "id": "sammy-lou-s-home-cooking-and-bbq-rowlett",
@@ -2084,53 +1802,6 @@
       ]
     },
     {
-      "id": "redrock-canyon-grill-southlake",
-      "name": "Redrock Canyon Grill",
-      "listed_as": "Redrock Canyon",
-      "city": "Southlake",
-      "region": "Texas",
-      "country": "United States",
-      "lat": 32.9404454,
-      "lng": -97.117384,
-      "cuisine": "American",
-      "address": "2221 East Southlake Boulevard, Suite 360, Southlake, TX 76092",
-      "website": "https://www.redrockcanyongrill.com/",
-      "status": "closed",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://www.restaurantji.com/tx/southlake/redrock-canyon-grill-/",
-        "https://www.yelp.com/biz/redrock-canyon-grill-southlake",
-        "https://www.redrockcanyongrill.com/",
-        "https://www.openstreetmap.org/?mlat=32.9404454&mlon=-97.117384"
-      ]
-    },
-    {
-      "id": "joe-s-german-restaurant-sulphur-springs",
-      "name": "Joe's German Restaurant",
-      "listed_as": "Joe's German Restaurant",
-      "city": "Sulphur Springs",
-      "region": "Texas",
-      "country": "United States",
-      "lat": 33.1376248,
-      "lng": -95.6023047,
-      "cuisine": "German",
-      "address": "224 Main Street, Sulphur Springs, TX 75482",
-      "website": "",
-      "status": "closed",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://www.restaurantji.com/tx/sulphur-springs/joes-german-restaurant-/",
-        "https://closeddownrestaurants.com/sulphur-springs-texas-restaurant-closures-and-closed-restaurants/",
-        "https://www.openstreetmap.org/?mlat=33.1376248&mlon=-95.6023047"
-      ]
-    },
-    {
       "id": "arturo-s-wood-fired-pizza-gallery-sulphur-springs",
       "name": "Arturo's Wood Fired Pizza Gallery",
       "listed_as": "Arturo’s Pizza",
@@ -2173,7 +1844,7 @@
       "sources": [
         "https://babeschicken.com/locations/"
       ],
-      "location_note": "Several locations in Texas; which one?"
+      "location_note": "Several locations in Texas."
     },
     {
       "id": "flying-fish-texas-several-locations",
@@ -2195,53 +1866,7 @@
       "sources": [
         "https://www.flyingfishinthe.net/"
       ],
-      "location_note": "Several locations in Texas; which one?"
-    },
-    {
-      "id": "kona-grill-texas-several-locations",
-      "name": "Kona Grill",
-      "listed_as": "Kona Grill",
-      "city": "Texas, several locations",
-      "region": "Texas",
-      "country": "United States",
-      "lat": null,
-      "lng": null,
-      "cuisine": "American / sushi",
-      "address": "",
-      "website": "https://konagrill.com/locations/",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://konagrill.com/locations/",
-        "https://konagrill.com/location/dallas-tx/"
-      ],
-      "location_note": "Several locations in Texas; which one?"
-    },
-    {
-      "id": "ruth-s-chris-steak-house-texas-several-locations",
-      "name": "Ruth's Chris Steak House",
-      "listed_as": "Ruth’s Chris Steakhouse",
-      "city": "Texas, several locations",
-      "region": "Texas",
-      "country": "United States",
-      "lat": null,
-      "lng": null,
-      "cuisine": "Steakhouse",
-      "address": "",
-      "website": "https://www.ruthschris.com/reservations",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "https://www.ruthschris.com/reservations",
-        "https://www.ruthschris.com/locations/tx/dallas/dallas/7312"
-      ],
-      "location_note": "Several locations in Texas; which one?"
+      "location_note": "Several locations in Texas."
     },
     {
       "id": "simon-pearce-restaurant-quechee",
