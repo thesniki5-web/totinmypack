@@ -1,0 +1,239 @@
+{
+  "slug": "southeast",
+  "name": "Southeast",
+  "title": "Southeast",
+  "description": "6 films from places named in the titles, including Gatlinburg, Key West, Savannah and Tybee Island, Myrtle Beach, Athens, Meridian, and Moundville.",
+  "kicker": "A journey",
+  "lede": "6 films from places named in the titles.",
+  "hero": "aVUb43ZTMrI",
+  "dest_slug": "southeast",
+  "dest_label": "All Southeast & Mid-Atlantic films",
+  "films": [
+    "AVvLeGSLk50",
+    "aVUb43ZTMrI",
+    "g6QLNAGmNDk",
+    "qMI9-rGlwD4",
+    "VnSlljuciTI",
+    "qbXorgrsIi4"
+  ],
+  "overview_film": "aVUb43ZTMrI",
+  "map_kicker": "The places",
+  "map_heading": "The places they filmed",
+  "map_aria": "Map of filmed places in the Southeast",
+  "legs_heading": "Place by place",
+  "films_heading": "Watch along the way",
+  "index_blurb": "6 films",
+  "legend": [
+    {
+      "type": "pin",
+      "label": "Filmed place"
+    }
+  ],
+  "intro": [
+    "6 films from places named in the titles. The 2024 Virginia road trip is on its own trip page.",
+    "The map marks the places that can be located from those titles; it is not a record of one continuous drive."
+  ],
+  "states": [
+    {
+      "id": "tennessee",
+      "name": "Tennessee"
+    },
+    {
+      "id": "florida",
+      "name": "Florida"
+    },
+    {
+      "id": "georgia",
+      "name": "Georgia"
+    },
+    {
+      "id": "south-carolina",
+      "name": "South Carolina"
+    },
+    {
+      "id": "mississippi",
+      "name": "Mississippi"
+    },
+    {
+      "id": "alabama",
+      "name": "Alabama"
+    }
+  ],
+  "stops": [
+    {
+      "id": "gatlinburg",
+      "state": "tennessee",
+      "name": "Gatlinburg",
+      "place": "Tennessee",
+      "lat": 35.714259,
+      "lon": -83.5101638,
+      "videos": [
+        "AVvLeGSLk50"
+      ],
+      "thumb": "AVvLeGSLk50",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Gatlinburg, Tennessee, USA",
+        "osm_type": "relation",
+        "osm_id": 197143,
+        "display_name": "Gatlinburg, Sevier County, East Tennessee, Tennessee, United States",
+        "url": "https://www.openstreetmap.org/relation/197143"
+      }
+    },
+    {
+      "id": "key-west",
+      "state": "florida",
+      "name": "Key West",
+      "place": "Florida",
+      "lat": 24.5548262,
+      "lon": -81.8020722,
+      "videos": [
+        "aVUb43ZTMrI"
+      ],
+      "thumb": "aVUb43ZTMrI",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Key West, Florida, USA",
+        "osm_type": "relation",
+        "osm_id": 3661510,
+        "display_name": "Key West, Monroe County, Florida, United States",
+        "url": "https://www.openstreetmap.org/relation/3661510"
+      }
+    },
+    {
+      "id": "savannah",
+      "state": "georgia",
+      "name": "Savannah",
+      "place": "Georgia",
+      "lat": 32.0790074,
+      "lon": -81.0921335,
+      "videos": [
+        "g6QLNAGmNDk"
+      ],
+      "thumb": "g6QLNAGmNDk",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Savannah, Georgia, USA",
+        "osm_type": "relation",
+        "osm_id": 119867,
+        "display_name": "Savannah, Chatham County, Georgia, United States",
+        "url": "https://www.openstreetmap.org/relation/119867"
+      }
+    },
+    {
+      "id": "tybee-island",
+      "state": "georgia",
+      "name": "Tybee Island",
+      "place": "Georgia",
+      "lat": 31.9987321,
+      "lon": -80.8469427,
+      "videos": [
+        "g6QLNAGmNDk"
+      ],
+      "thumb": "g6QLNAGmNDk",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Tybee Island, Georgia, USA",
+        "osm_type": "relation",
+        "osm_id": 119866,
+        "display_name": "Tybee Island, Chatham County, Georgia, 31328, United States",
+        "url": "https://www.openstreetmap.org/relation/119866"
+      }
+    },
+    {
+      "id": "athens-ga",
+      "state": "georgia",
+      "name": "Athens",
+      "place": "Georgia",
+      "lat": 33.9597677,
+      "lon": -83.376398,
+      "videos": [
+        "VnSlljuciTI"
+      ],
+      "thumb": "VnSlljuciTI",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Athens, Georgia, USA",
+        "osm_type": "relation",
+        "osm_id": 119353,
+        "display_name": "Athens, Clarke County, Georgia, United States",
+        "url": "https://www.openstreetmap.org/relation/119353"
+      }
+    },
+    {
+      "id": "myrtle-beach",
+      "state": "south-carolina",
+      "name": "Myrtle Beach",
+      "place": "South Carolina",
+      "lat": 33.6956461,
+      "lon": -78.8900409,
+      "videos": [
+        "qMI9-rGlwD4"
+      ],
+      "thumb": "qMI9-rGlwD4",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Myrtle Beach, South Carolina, USA",
+        "osm_type": "relation",
+        "osm_id": 193842,
+        "display_name": "Myrtle Beach, Horry County, South Carolina, United States",
+        "url": "https://www.openstreetmap.org/relation/193842"
+      }
+    },
+    {
+      "id": "meridian",
+      "state": "mississippi",
+      "name": "Meridian",
+      "place": "Mississippi",
+      "lat": 32.3643098,
+      "lon": -88.703656,
+      "videos": [
+        "qbXorgrsIi4"
+      ],
+      "thumb": "qbXorgrsIi4",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Meridian, Mississippi, USA",
+        "osm_type": "relation",
+        "osm_id": 7144428,
+        "display_name": "Meridian, Lauderdale County, Mississippi, United States",
+        "url": "https://www.openstreetmap.org/relation/7144428"
+      }
+    },
+    {
+      "id": "moundville",
+      "state": "alabama",
+      "name": "Moundville",
+      "place": "Alabama",
+      "lat": 33.0059672,
+      "lon": -87.6322959,
+      "videos": [
+        "qbXorgrsIi4"
+      ],
+      "thumb": "qbXorgrsIi4",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Moundville Archaeological Park, Alabama, USA",
+        "osm_type": "way",
+        "osm_id": 508634946,
+        "display_name": "Moundville Archaeological Park;Mound State Monument, Moundville, Tuscaloosa County, Alabama, United States",
+        "url": "https://www.openstreetmap.org/way/508634946"
+      }
+    }
+  ],
+  "route": [],
+  "spur": [],
+  "map_max_zoom": 5,
+  "restaurants": [
+    "alamo-steakhouse-gatlinburg"
+  ],
+  "hotels": []
+}

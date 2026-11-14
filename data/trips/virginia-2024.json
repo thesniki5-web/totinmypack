@@ -1,0 +1,202 @@
+{
+  "slug": "virginia-2024",
+  "name": "Virginia 2024",
+  "title": "Virginia 2024",
+  "description": "3 films from a 2024 road trip named in the titles: Norfolk, Virginia Beach, and Cape Charles; Appomattox, Roanoke, and New River Gorge; and The Waltons and Monticello.",
+  "kicker": "A journey",
+  "lede": "3 films from a 2024 road trip named in the titles.",
+  "hero": "jNoREzI7-B0",
+  "hero_pos": "80% 50%",
+  "dest_slug": "southeast",
+  "dest_label": "All Southeast & Mid-Atlantic films",
+  "films": [
+    "jNoREzI7-B0",
+    "y0EhqN3QnnY",
+    "S_K-LyRann0"
+  ],
+  "overview_film": "jNoREzI7-B0",
+  "map_kicker": "The places",
+  "map_heading": "The places they filmed",
+  "map_aria": "Map of filmed places on the 2024 Virginia road trip",
+  "legs_heading": "Place by place",
+  "films_heading": "Watch along the way",
+  "index_blurb": "3 films from a 2024 road trip",
+  "legend": [
+    {
+      "type": "pin",
+      "label": "Filmed place"
+    }
+  ],
+  "intro": [
+    "3 films from a 2024 road trip named in the titles.",
+    "The map marks the places that can be located from those titles; it is not a record of one continuous drive."
+  ],
+  "states": [
+    {
+      "id": "virginia",
+      "name": "Virginia"
+    },
+    {
+      "id": "west-virginia",
+      "name": "West Virginia"
+    }
+  ],
+  "stops": [
+    {
+      "id": "norfolk",
+      "state": "virginia",
+      "name": "Norfolk",
+      "place": "Virginia",
+      "lat": 36.8493695,
+      "lon": -76.2899539,
+      "videos": [
+        "jNoREzI7-B0"
+      ],
+      "thumb": "jNoREzI7-B0",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Norfolk, Virginia, USA",
+        "osm_type": "relation",
+        "osm_id": 206672,
+        "display_name": "Norfolk, Virginia, United States",
+        "url": "https://www.openstreetmap.org/relation/206672"
+      }
+    },
+    {
+      "id": "virginia-beach",
+      "state": "virginia",
+      "name": "Virginia Beach",
+      "place": "Virginia",
+      "lat": 36.8496579,
+      "lon": -75.9760751,
+      "videos": [
+        "jNoREzI7-B0"
+      ],
+      "thumb": "jNoREzI7-B0",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Virginia Beach, Virginia, USA",
+        "osm_type": "relation",
+        "osm_id": 206670,
+        "display_name": "Virginia Beach, Virginia, United States",
+        "url": "https://www.openstreetmap.org/relation/206670"
+      }
+    },
+    {
+      "id": "cape-charles",
+      "state": "virginia",
+      "name": "Cape Charles",
+      "place": "Virginia",
+      "lat": 37.2671674,
+      "lon": -76.0176986,
+      "videos": [
+        "jNoREzI7-B0"
+      ],
+      "thumb": "jNoREzI7-B0",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Cape Charles, Virginia, USA",
+        "osm_type": "relation",
+        "osm_id": 206890,
+        "display_name": "Cape Charles, Northampton County, Virginia, United States",
+        "url": "https://www.openstreetmap.org/relation/206890"
+      }
+    },
+    {
+      "id": "appomattox",
+      "state": "virginia",
+      "name": "Appomattox",
+      "place": "Virginia",
+      "lat": 37.3535463,
+      "lon": -78.8272687,
+      "videos": [
+        "y0EhqN3QnnY"
+      ],
+      "thumb": "y0EhqN3QnnY",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Appomattox, Virginia, USA",
+        "osm_type": "relation",
+        "osm_id": 206930,
+        "display_name": "Appomattox, Appomattox County, Virginia, 24522, United States",
+        "url": "https://www.openstreetmap.org/relation/206930"
+      }
+    },
+    {
+      "id": "roanoke",
+      "state": "virginia",
+      "name": "Roanoke",
+      "place": "Virginia",
+      "lat": 37.270973,
+      "lon": -79.9414313,
+      "videos": [
+        "y0EhqN3QnnY"
+      ],
+      "thumb": "y0EhqN3QnnY",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Roanoke, Virginia, USA",
+        "osm_type": "relation",
+        "osm_id": 206561,
+        "display_name": "Roanoke, Virginia, United States",
+        "url": "https://www.openstreetmap.org/relation/206561"
+      }
+    },
+    {
+      "id": "monticello",
+      "state": "virginia",
+      "name": "Monticello",
+      "place": "Virginia",
+      "lat": 38.0103192,
+      "lon": -78.452333,
+      "videos": [
+        "S_K-LyRann0"
+      ],
+      "thumb": "S_K-LyRann0",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Monticello, Albemarle County, Virginia, United States",
+        "osm_type": "way",
+        "osm_id": 96930225,
+        "display_name": "Monticello, West Lawn, Albemarle County, Virginia, 22092, United States",
+        "url": "https://www.openstreetmap.org/way/96930225"
+      }
+    },
+    {
+      "id": "new-river-gorge",
+      "state": "west-virginia",
+      "name": "New River Gorge",
+      "place": "West Virginia",
+      "lat": 38.0696067,
+      "lon": -81.080174,
+      "videos": [
+        "y0EhqN3QnnY"
+      ],
+      "thumb": "y0EhqN3QnnY",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "New River Gorge National Park, West Virginia, USA",
+        "osm_type": "relation",
+        "osm_id": 18298779,
+        "display_name": "New River Gorge National Park, Fayetteville, Fayette County, West Virginia, 25936, United States",
+        "url": "https://www.openstreetmap.org/relation/18298779"
+      }
+    }
+  ],
+  "route": [],
+  "spur": [],
+  "map_max_zoom": 7,
+  "restaurants": [],
+  "hotels": [
+    "hilton-norfolk-the-main-norfolk",
+    "hotel-roanoke-roanoke",
+    "the-virginian-hotel-lynchburg"
+  ]
+}

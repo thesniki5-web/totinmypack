@@ -1,0 +1,370 @@
+{
+  "slug": "texas",
+  "name": "Texas",
+  "title": "Texas",
+  "description": "22 films and shorts from places named in the Texas titles, including Big Bend, Devils River, Caddo Lake, and Enchanted Rock.",
+  "kicker": "A journey",
+  "lede": "22 films and shorts from places named in the Texas titles.",
+  "hero": "_pAqzkL05D8",
+  "hero_pos": "16% 100%",
+  "hero_alt": "A hiker on the granite slope of Enchanted Rock in Texas.",
+  "dest_slug": "texas",
+  "dest_label": "All Texas films",
+  "video_group": "texas",
+  "overview_film": "_pAqzkL05D8",
+  "map_kicker": "The places",
+  "map_heading": "The places they filmed",
+  "map_aria": "Map of filmed places in Texas",
+  "legs_heading": "Place by place",
+  "films_heading": "Watch along the way",
+  "index_blurb": "22 films and shorts",
+  "legend": [
+    {
+      "type": "pin",
+      "label": "Filmed place"
+    }
+  ],
+  "intro": [
+    "22 films and shorts from places named in the Texas titles.",
+    "The map marks the places that can be located from those titles; it is not a record of one continuous drive."
+  ],
+  "states": [
+    {
+      "id": "texas",
+      "name": "Texas"
+    }
+  ],
+  "stops": [
+    {
+      "id": "st-johns-bomarton",
+      "state": "texas",
+      "name": "St. John’s in Bomarton",
+      "place": "Bomarton, Texas",
+      "lat": 33.5054746,
+      "lon": -99.4204818,
+      "videos": [
+        "mC0ZWATfzvc",
+        "SuYFwuJCK70",
+        "UVgpgOu0iMY"
+      ],
+      "thumb": "mC0ZWATfzvc",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "St. John's Church, Bomarton, Texas, USA",
+        "osm_type": "node",
+        "osm_id": 1686194757,
+        "display_name": "St. John's Catholic Church (Abandoned), South Street, Bomarton, Baylor County, Texas, United States",
+        "url": "https://www.openstreetmap.org/node/1686194757"
+      }
+    },
+    {
+      "id": "devils-river",
+      "state": "texas",
+      "name": "Devils River",
+      "place": "Texas",
+      "lat": 29.9352097,
+      "lon": -100.9336075,
+      "videos": [
+        "p9PXuj51NJs",
+        "EBnbggUsdMw",
+        "mJdj_aKcp5U"
+      ],
+      "thumb": "p9PXuj51NJs",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Devils River State Natural Area, Texas, USA",
+        "osm_type": "relation",
+        "osm_id": 19890538,
+        "display_name": "Devils River State Natural Area, Val Verde County, Texas, United States",
+        "url": "https://www.openstreetmap.org/relation/19890538"
+      }
+    },
+    {
+      "id": "caddo-lake",
+      "state": "texas",
+      "name": "Caddo Lake",
+      "place": "East Texas",
+      "lat": 32.687171,
+      "lon": -94.1873641,
+      "videos": [
+        "ZKI-PbPRraw"
+      ],
+      "thumb": "ZKI-PbPRraw",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Caddo Lake State Park, Texas, USA",
+        "osm_type": "relation",
+        "osm_id": 16948617,
+        "display_name": "Caddo Lake State Park, 245, Harrison County, Texas, 75661, United States",
+        "url": "https://www.openstreetmap.org/relation/16948617",
+        "note": "Used Caddo Lake State Park in Texas. A query for the lake itself returned a point labeled in Caddo Parish, Louisiana; the title names East Texas."
+      }
+    },
+    {
+      "id": "big-bend",
+      "state": "texas",
+      "name": "Big Bend",
+      "place": "Texas",
+      "lat": 29.3332484,
+      "lon": -103.1943284,
+      "videos": [
+        "QWMI7iZEz1I"
+      ],
+      "thumb": "QWMI7iZEz1I",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Big Bend National Park, Texas, USA",
+        "osm_type": "relation",
+        "osm_id": 16056592,
+        "display_name": "Big Bend National Park, Brewster County, Texas, 79834, United States",
+        "url": "https://www.openstreetmap.org/relation/16056592"
+      }
+    },
+    {
+      "id": "el-paso",
+      "state": "texas",
+      "name": "El Paso",
+      "place": "Texas",
+      "lat": 31.7601001,
+      "lon": -106.4870476,
+      "videos": [
+        "_JLdOGsAiLU"
+      ],
+      "thumb": "_JLdOGsAiLU",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "El Paso, Texas, USA",
+        "osm_type": "relation",
+        "osm_id": 113919,
+        "display_name": "El Paso, El Paso County, Texas, United States",
+        "url": "https://www.openstreetmap.org/relation/113919"
+      }
+    },
+    {
+      "id": "new-sweden",
+      "state": "texas",
+      "name": "New Sweden Lutheran Church",
+      "place": "Texas",
+      "lat": 30.4058705,
+      "lon": -97.4866051,
+      "videos": [
+        "vlZ-VTkCJWc"
+      ],
+      "thumb": "vlZ-VTkCJWc",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "New Sweden Lutheran Church, Texas, USA",
+        "osm_type": "way",
+        "osm_id": 382127145,
+        "display_name": "New Sweden Lutheran Church, 12809, New Sweden Church Road, Manor, Travis County, Texas, 78653, United States",
+        "url": "https://www.openstreetmap.org/way/382127145"
+      }
+    },
+    {
+      "id": "daingerfield",
+      "state": "texas",
+      "name": "Daingerfield State Park",
+      "place": "East Texas",
+      "lat": 33.0096333,
+      "lon": -94.6950539,
+      "videos": [
+        "MUVr2dNxiJU"
+      ],
+      "thumb": "MUVr2dNxiJU",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Daingerfield State Park, Texas, USA",
+        "osm_type": "way",
+        "osm_id": 28660932,
+        "display_name": "Daingerfield State Park, 455, Daingerfield, Morris County, Texas, 75638, United States",
+        "url": "https://www.openstreetmap.org/way/28660932"
+      }
+    },
+    {
+      "id": "purtis-creek",
+      "state": "texas",
+      "name": "Purtis Creek State Park",
+      "place": "Texas",
+      "lat": 32.3652065,
+      "lon": -95.9950489,
+      "videos": [
+        "nKqIFBJJD5Q"
+      ],
+      "thumb": "nKqIFBJJD5Q",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Purtis Creek State Park, Texas, USA",
+        "osm_type": "way",
+        "osm_id": 28662753,
+        "display_name": "Purtis Creek State Park, 14225, Eustace, Van Zandt County, Texas, 75124, United States",
+        "url": "https://www.openstreetmap.org/way/28662753"
+      }
+    },
+    {
+      "id": "st-olaf-cranfills-gap",
+      "state": "texas",
+      "name": "St. Olaf Rock Church",
+      "place": "Cranfills Gap, Texas",
+      "lat": 31.7737659,
+      "lon": -97.8258602,
+      "videos": [
+        "8ISaQKSOX2I"
+      ],
+      "thumb": "8ISaQKSOX2I",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Cranfills Gap, Texas, USA",
+        "osm_type": "relation",
+        "osm_id": 6584703,
+        "display_name": "Cranfills Gap, Bosque County, Texas, United States",
+        "url": "https://www.openstreetmap.org/relation/6584703",
+        "note": "The church was not found in OSM; the pin is Cranfills Gap, the town named in the title."
+      }
+    },
+    {
+      "id": "mother-neff",
+      "state": "texas",
+      "name": "Mother Neff State Park",
+      "place": "Texas",
+      "lat": 31.3245065,
+      "lon": -97.4770981,
+      "videos": [
+        "NVj-nf5WV3s"
+      ],
+      "thumb": "NVj-nf5WV3s",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Mother Neff State Park, Texas, USA",
+        "osm_type": "way",
+        "osm_id": 28712834,
+        "display_name": "Mother Neff State Park, 1921, Moody, Coryell County, Texas, 76557, United States",
+        "url": "https://www.openstreetmap.org/way/28712834"
+      }
+    },
+    {
+      "id": "seminole-canyon",
+      "state": "texas",
+      "name": "Seminole Canyon",
+      "place": "Texas",
+      "lat": 29.6849431,
+      "lon": -101.2980323,
+      "videos": [
+        "u-07NbxVSmg",
+        "NPsozGVaW_M"
+      ],
+      "thumb": "u-07NbxVSmg",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Seminole Canyon State Park, Texas, USA",
+        "osm_type": "relation",
+        "osm_id": 19861074,
+        "display_name": "Seminole Canyon State Park and Historic Site, Comstock, Val Verde County, Texas, 78837, United States",
+        "url": "https://www.openstreetmap.org/relation/19861074"
+      }
+    },
+    {
+      "id": "judge-roy-bean",
+      "state": "texas",
+      "name": "Judge Roy Bean",
+      "place": "Langtry, Texas",
+      "lat": 29.8092246,
+      "lon": -101.560466,
+      "videos": [
+        "u-07NbxVSmg"
+      ],
+      "thumb": "u-07NbxVSmg",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Judge Roy Bean Visitor Center, Langtry, Texas, USA",
+        "osm_type": "way",
+        "osm_id": 596243680,
+        "display_name": "Judge Roy Bean Visitor Center, Loop 25, Langtry, Val Verde County, Texas, 78871, United States",
+        "url": "https://www.openstreetmap.org/way/596243680"
+      }
+    },
+    {
+      "id": "pecos-high-bridge",
+      "state": "texas",
+      "name": "Pecos High Bridge",
+      "place": "Texas",
+      "lat": 29.7584452,
+      "lon": -101.3575282,
+      "videos": [
+        "u-07NbxVSmg"
+      ],
+      "thumb": "u-07NbxVSmg",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Pecos High Bridge, Texas, USA",
+        "osm_type": "way",
+        "osm_id": 321568214,
+        "display_name": "Pecos River High Bridge, US 90, Shumla, Val Verde County, Texas, United States",
+        "url": "https://www.openstreetmap.org/way/321568214"
+      }
+    },
+    {
+      "id": "downtown-beaumont",
+      "state": "texas",
+      "name": "Downtown Beaumont",
+      "place": "Beaumont, Texas",
+      "lat": 30.0829344,
+      "lon": -94.0984277,
+      "videos": [
+        "iAX9HuobAG4"
+      ],
+      "thumb": "iAX9HuobAG4",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Beaumont, Texas, USA",
+        "osm_type": "relation",
+        "osm_id": 8464621,
+        "display_name": "Beaumont, Jefferson County, Texas, United States",
+        "url": "https://www.openstreetmap.org/relation/8464621",
+        "note": "Downtown was not a separate OSM place; the pin is the city of Beaumont."
+      }
+    },
+    {
+      "id": "enchanted-rock",
+      "state": "texas",
+      "name": "Enchanted Rock",
+      "place": "Texas",
+      "lat": 30.5046347,
+      "lon": -98.8232209,
+      "videos": [
+        "_pAqzkL05D8"
+      ],
+      "thumb": "_pAqzkL05D8",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Enchanted Rock State Natural Area, Texas, USA",
+        "osm_type": "way",
+        "osm_id": 28714788,
+        "display_name": "Enchanted Rock State Natural Area, Llano County, Texas, United States",
+        "url": "https://www.openstreetmap.org/way/28714788"
+      }
+    }
+  ],
+  "route": [],
+  "spur": [],
+  "map_max_zoom": 6,
+  "restaurants": [
+    "las-palmas-el-paso",
+    "ambar-restaurante-el-paso"
+  ],
+  "hotels": []
+}

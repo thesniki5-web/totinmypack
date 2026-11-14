@@ -860,7 +860,18 @@ def page_about() -> str:
 
 def _trip_slugs() -> list[str]:
     names = [p.stem for p in (ROOT / "data" / "trips").glob("*.json")]
-    preferred = ["route-66", "greece"]
+    preferred = [
+        "route-66",
+        "greece",
+        "texas",
+        "dallas",
+        "plains",
+        "virginia-2024",
+        "southeast",
+        "california",
+        "southwest",
+        "berlin",
+    ]
     ordered = [s for s in preferred if s in names]
     ordered += sorted(s for s in names if s not in ordered)
     return ordered
@@ -1107,14 +1118,18 @@ def page_trip(slug: str) -> str:
     overview = BY_ID[trip["overview_film"]] if trip.get("overview_film") in BY_ID else None
 
     seen: list[str] = []
-    if trip.get("overview_film"):
+    if trip.get("films"):
+        for vid in trip["films"]:
+            if vid not in seen:
+                seen.append(vid)
+    if trip.get("overview_film") and trip["overview_film"] not in seen:
         seen.append(trip["overview_film"])
     for s in trip["stops"]:
         for vid in s.get("videos") or []:
             if vid not in seen:
                 seen.append(vid)
     group = trip.get("video_group")
-    if group:
+    if group and not trip.get("films"):
         for v in VIDEOS:
             if group in v["groups"] and v["id"] not in seen:
                 seen.append(v["id"])

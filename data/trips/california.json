@@ -1,0 +1,132 @@
+{
+  "slug": "california",
+  "name": "California",
+  "title": "California",
+  "description": "2 films from places named in the titles: Santa Rosa, Mendocino, and Napa, and the Chandelier Tree.",
+  "kicker": "A journey",
+  "lede": "2 films from places named in the titles.",
+  "hero": "lbhHR6MpSlA",
+  "hero_pos": "75% 50%",
+  "dest_slug": "california",
+  "dest_label": "All California films",
+  "video_group": "california",
+  "overview_film": "lbhHR6MpSlA",
+  "map_kicker": "The places",
+  "map_heading": "The places they filmed",
+  "map_aria": "Map of filmed places in California",
+  "legs_heading": "Place by place",
+  "films_heading": "Watch along the way",
+  "index_blurb": "2 films",
+  "legend": [
+    {
+      "type": "pin",
+      "label": "Filmed place"
+    }
+  ],
+  "intro": [
+    "2 films from places named in the titles.",
+    "The map marks the places that can be located from those titles; it is not a record of one continuous drive."
+  ],
+  "states": [
+    {
+      "id": "california",
+      "name": "California"
+    }
+  ],
+  "stops": [
+    {
+      "id": "santa-rosa",
+      "state": "california",
+      "name": "Santa Rosa",
+      "place": "California",
+      "lat": 38.4404925,
+      "lon": -122.7141049,
+      "videos": [
+        "YfS65RVDiXY"
+      ],
+      "thumb": "YfS65RVDiXY",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Santa Rosa, California, USA",
+        "osm_type": "relation",
+        "osm_id": 113158,
+        "display_name": "Santa Rosa, Sonoma County, California, United States",
+        "url": "https://www.openstreetmap.org/relation/113158"
+      }
+    },
+    {
+      "id": "mendocino",
+      "state": "california",
+      "name": "Mendocino",
+      "place": "California",
+      "lat": 39.3076744,
+      "lon": -123.799459,
+      "videos": [
+        "YfS65RVDiXY"
+      ],
+      "thumb": "YfS65RVDiXY",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Mendocino, California, USA",
+        "osm_type": "node",
+        "osm_id": 141042156,
+        "display_name": "Mendocino, Mendocino County, California, 95460, United States",
+        "url": "https://www.openstreetmap.org/node/141042156"
+      }
+    },
+    {
+      "id": "napa",
+      "state": "california",
+      "name": "Napa",
+      "place": "California",
+      "lat": 38.2971367,
+      "lon": -122.2855293,
+      "videos": [
+        "YfS65RVDiXY"
+      ],
+      "thumb": "YfS65RVDiXY",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Napa, California, USA",
+        "osm_type": "relation",
+        "osm_id": 111735,
+        "display_name": "Napa, Napa County, California, United States",
+        "url": "https://www.openstreetmap.org/relation/111735"
+      }
+    },
+    {
+      "id": "chandelier-tree",
+      "state": "california",
+      "name": "Chandelier Tree",
+      "place": "California",
+      "lat": 39.8583984,
+      "lon": -123.7192347,
+      "videos": [
+        "lbhHR6MpSlA"
+      ],
+      "thumb": "lbhHR6MpSlA",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Chandelier Tree, Leggett, California, USA",
+        "osm_type": "node",
+        "osm_id": 469605599,
+        "display_name": "Chandelier Tree, Drive Thru Tree Road, Leggett, Mendocino County, California, 95585, United States",
+        "url": "https://www.openstreetmap.org/node/469605599"
+      }
+    }
+  ],
+  "route": [],
+  "spur": [],
+  "map_max_zoom": 7,
+  "restaurants": [
+    "flow-restaurant-lounge-mendocino",
+    "americana-santa-rosa",
+    "underwood-bar-and-bistro-graton",
+    "bistro-jeanty-yountville"
+  ],
+  "hotels": []
+}

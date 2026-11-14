@@ -1,0 +1,454 @@
+{
+  "slug": "southwest",
+  "name": "The Southwest",
+  "title": "The Southwest",
+  "description": "11 films and shorts from places named in the titles, including the Grand Canyon, Sedona, Santa Fe, Monument Valley, and Roswell.",
+  "kicker": "A journey",
+  "lede": "11 films and shorts from places named in the titles.",
+  "hero": "5cLy5YOaPW8",
+  "hero_pos": "50% 85%",
+  "dest_slug": "southwest",
+  "dest_label": "All Southwest films",
+  "video_group": "southwest",
+  "overview_film": "5cLy5YOaPW8",
+  "map_kicker": "The places",
+  "map_heading": "The places they filmed",
+  "map_aria": "Map of filmed places in the Southwest",
+  "legs_heading": "Place by place",
+  "films_heading": "Watch along the way",
+  "index_blurb": "11 films and shorts",
+  "legend": [
+    {
+      "type": "pin",
+      "label": "Filmed place"
+    }
+  ],
+  "intro": [
+    "11 films and shorts from places named in the titles.",
+    "The map marks the places that can be located from those titles; it is not a record of one continuous drive."
+  ],
+  "states": [
+    {
+      "id": "arizona",
+      "name": "Arizona"
+    },
+    {
+      "id": "new-mexico",
+      "name": "New Mexico"
+    },
+    {
+      "id": "utah",
+      "name": "Utah"
+    }
+  ],
+  "stops": [
+    {
+      "id": "flagstaff",
+      "state": "arizona",
+      "name": "Flagstaff",
+      "place": "Arizona",
+      "lat": 35.1987522,
+      "lon": -111.651822,
+      "videos": [
+        "UEMTYT3kYA4",
+        "ixpaxmrlv1w"
+      ],
+      "thumb": "UEMTYT3kYA4",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Flagstaff, Arizona, USA",
+        "osm_type": "relation",
+        "osm_id": 110844,
+        "display_name": "Flagstaff, Coconino County, Arizona, United States",
+        "url": "https://www.openstreetmap.org/relation/110844"
+      }
+    },
+    {
+      "id": "sunset-crater",
+      "state": "arizona",
+      "name": "Sunset Crater",
+      "place": "Arizona",
+      "lat": 35.3711545,
+      "lon": -111.5113228,
+      "videos": [
+        "UEMTYT3kYA4"
+      ],
+      "thumb": "UEMTYT3kYA4",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Sunset Crater Volcano National Monument, Arizona, USA",
+        "osm_type": "relation",
+        "osm_id": 5813561,
+        "display_name": "Sunset Crater Volcano National Monument, Coconino County, Arizona, United States",
+        "url": "https://www.openstreetmap.org/relation/5813561"
+      }
+    },
+    {
+      "id": "wupatki",
+      "state": "arizona",
+      "name": "Wupatki",
+      "place": "Arizona",
+      "lat": 35.5649504,
+      "lon": -111.4058508,
+      "videos": [
+        "UEMTYT3kYA4"
+      ],
+      "thumb": "UEMTYT3kYA4",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Wupatki National Monument, Arizona, USA",
+        "osm_type": "relation",
+        "osm_id": 5813556,
+        "display_name": "Wupatki National Monument, Coconino County, Arizona, United States",
+        "url": "https://www.openstreetmap.org/relation/5813556"
+      }
+    },
+    {
+      "id": "oak-creek-canyon",
+      "state": "arizona",
+      "name": "Oak Creek Canyon",
+      "place": "Arizona",
+      "lat": 34.9657329,
+      "lon": -111.75319,
+      "videos": [
+        "UEMTYT3kYA4"
+      ],
+      "thumb": "UEMTYT3kYA4",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Oak Creek Canyon, Arizona, USA",
+        "osm_type": "way",
+        "osm_id": 818227313,
+        "display_name": "Oak Creek Canyon, Coconino County, Arizona, United States",
+        "url": "https://www.openstreetmap.org/way/818227313"
+      }
+    },
+    {
+      "id": "sedona",
+      "state": "arizona",
+      "name": "Sedona",
+      "place": "Arizona",
+      "lat": 34.8688613,
+      "lon": -111.7614394,
+      "videos": [
+        "UEMTYT3kYA4"
+      ],
+      "thumb": "UEMTYT3kYA4",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Sedona, Arizona, USA",
+        "osm_type": "relation",
+        "osm_id": 10693662,
+        "display_name": "Sedona, Coconino County, Arizona, United States",
+        "url": "https://www.openstreetmap.org/relation/10693662"
+      }
+    },
+    {
+      "id": "lipan-point",
+      "state": "arizona",
+      "name": "Lipan Point",
+      "place": "Grand Canyon, Arizona",
+      "lat": 36.0330872,
+      "lon": -111.8530089,
+      "videos": [
+        "ixpaxmrlv1w"
+      ],
+      "thumb": "ixpaxmrlv1w",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Lipan Point, Arizona, USA",
+        "osm_type": "node",
+        "osm_id": 359247877,
+        "display_name": "Lipan Point, Coconino County, Arizona, United States",
+        "url": "https://www.openstreetmap.org/node/359247877",
+        "note": "Used the OSM cliff node for Lipan Point (a nearby viewpoint node also exists)."
+      }
+    },
+    {
+      "id": "meteor-crater",
+      "state": "arizona",
+      "name": "Meteor Crater",
+      "place": "Arizona",
+      "lat": 35.0271324,
+      "lon": -111.0183783,
+      "videos": [
+        "cuwNyFySMzQ"
+      ],
+      "thumb": "cuwNyFySMzQ",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Meteor Crater, Arizona, USA",
+        "osm_type": "relation",
+        "osm_id": 9586720,
+        "display_name": "Barringer Crater, Meteor Crater Road, Coconino County, Arizona, United States",
+        "url": "https://www.openstreetmap.org/relation/9586720"
+      }
+    },
+    {
+      "id": "winslow",
+      "state": "arizona",
+      "name": "Winslow",
+      "place": "Arizona",
+      "lat": 35.02371,
+      "lon": -110.69826,
+      "videos": [
+        "cuwNyFySMzQ"
+      ],
+      "thumb": "cuwNyFySMzQ",
+      "on_map": true,
+      "coord_source": {
+        "kind": "existing trip data",
+        "path": "data/trips/route-66.json",
+        "stop_id": "winslow",
+        "name": "Standin’ on the Corner"
+      }
+    },
+    {
+      "id": "petrified-forest",
+      "state": "arizona",
+      "name": "Petrified Forest",
+      "place": "Arizona",
+      "lat": 35.06581,
+      "lon": -109.78088,
+      "videos": [
+        "cuwNyFySMzQ"
+      ],
+      "thumb": "cuwNyFySMzQ",
+      "on_map": true,
+      "coord_source": {
+        "kind": "existing trip data",
+        "path": "data/trips/route-66.json",
+        "stop_id": "petrified-forest",
+        "name": "Petrified Forest"
+      }
+    },
+    {
+      "id": "santa-fe",
+      "state": "new-mexico",
+      "name": "Santa Fe",
+      "place": "New Mexico",
+      "lat": 35.6876096,
+      "lon": -105.938456,
+      "videos": [
+        "N484V1EG0a0",
+        "7PROHmCUf_Q"
+      ],
+      "thumb": "N484V1EG0a0",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Santa Fe, New Mexico, USA",
+        "osm_type": "relation",
+        "osm_id": 171264,
+        "display_name": "Santa Fe, Santa Fe County, New Mexico, United States",
+        "url": "https://www.openstreetmap.org/relation/171264"
+      }
+    },
+    {
+      "id": "loretto-chapel",
+      "state": "new-mexico",
+      "name": "Loretto Chapel",
+      "place": "Santa Fe, New Mexico",
+      "lat": 35.6856264,
+      "lon": -105.9375144,
+      "videos": [
+        "7PROHmCUf_Q"
+      ],
+      "thumb": "7PROHmCUf_Q",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Loretto Chapel, Santa Fe, New Mexico, USA",
+        "osm_type": "way",
+        "osm_id": 244175262,
+        "display_name": "Loretto Chapel, 207, Old Santa Fe Trail, Barrio de Analco Historic District, Santa Fe, Santa Fe County, New Mexico, 87501, United States",
+        "url": "https://www.openstreetmap.org/way/244175262"
+      }
+    },
+    {
+      "id": "camel-rock",
+      "state": "new-mexico",
+      "name": "Camel Rock",
+      "place": "New Mexico",
+      "lat": 35.8246567,
+      "lon": -105.9794106,
+      "videos": [
+        "N484V1EG0a0"
+      ],
+      "thumb": "N484V1EG0a0",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Camel Rock, New Mexico, USA",
+        "osm_type": "node",
+        "osm_id": 6468792324,
+        "display_name": "Camel Rock, Taos Highway, Santa Fe County, New Mexico, 87506, United States",
+        "url": "https://www.openstreetmap.org/node/6468792324"
+      }
+    },
+    {
+      "id": "taos",
+      "state": "new-mexico",
+      "name": "Taos",
+      "place": "New Mexico",
+      "lat": 36.4072377,
+      "lon": -105.573284,
+      "videos": [
+        "N484V1EG0a0"
+      ],
+      "thumb": "N484V1EG0a0",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Taos, New Mexico, USA",
+        "osm_type": "relation",
+        "osm_id": 171267,
+        "display_name": "Taos, Taos County, New Mexico, 87571, United States",
+        "url": "https://www.openstreetmap.org/relation/171267"
+      }
+    },
+    {
+      "id": "rio-grande-gorge",
+      "state": "new-mexico",
+      "name": "Rio Grande Gorge",
+      "place": "New Mexico",
+      "lat": 36.4762518,
+      "lon": -105.73307,
+      "videos": [
+        "N484V1EG0a0",
+        "1_Wc9tugXdg"
+      ],
+      "thumb": "N484V1EG0a0",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Rio Grande Gorge Bridge, New Mexico, USA",
+        "osm_type": "way",
+        "osm_id": 1188324613,
+        "display_name": "Rio Grande Gorge Bridge, Taos County, New Mexico, 87571, United States",
+        "url": "https://www.openstreetmap.org/way/1188324613"
+      }
+    },
+    {
+      "id": "shiprock",
+      "state": "new-mexico",
+      "name": "Shiprock",
+      "place": "New Mexico",
+      "lat": 36.6879079,
+      "lon": -108.8359073,
+      "videos": [
+        "7PROHmCUf_Q",
+        "DZPAwk3lHsw"
+      ],
+      "thumb": "7PROHmCUf_Q",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Shiprock, New Mexico, USA",
+        "osm_type": "way",
+        "osm_id": 1137110018,
+        "display_name": "Shiprock / Tsé Bit'aí, San Juan County, New Mexico, United States",
+        "url": "https://www.openstreetmap.org/way/1137110018"
+      }
+    },
+    {
+      "id": "four-corners",
+      "state": "new-mexico",
+      "name": "Four Corners",
+      "place": "United States",
+      "lat": 36.9986376,
+      "lon": -109.0446766,
+      "videos": [
+        "7PROHmCUf_Q"
+      ],
+      "thumb": "7PROHmCUf_Q",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Four Corners Monument, USA",
+        "osm_type": "relation",
+        "osm_id": 19449632,
+        "display_name": "Four Corners Monument, 597, San Juan County, New Mexico, 86514, United States",
+        "url": "https://www.openstreetmap.org/relation/19449632"
+      }
+    },
+    {
+      "id": "roswell",
+      "state": "new-mexico",
+      "name": "Roswell",
+      "place": "New Mexico",
+      "lat": 33.3943282,
+      "lon": -104.5229518,
+      "videos": [
+        "cuwNyFySMzQ"
+      ],
+      "thumb": "cuwNyFySMzQ",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Roswell, New Mexico, USA",
+        "osm_type": "relation",
+        "osm_id": 171201,
+        "display_name": "Roswell, Chaves County, New Mexico, United States",
+        "url": "https://www.openstreetmap.org/relation/171201"
+      }
+    },
+    {
+      "id": "monument-valley",
+      "state": "arizona",
+      "name": "Monument Valley",
+      "place": "Utah and Arizona",
+      "lat": 36.9967542,
+      "lon": -110.1028562,
+      "videos": [
+        "7PROHmCUf_Q",
+        "5cLy5YOaPW8",
+        "nydMxizVhQw",
+        "h8lAvPv69wg"
+      ],
+      "thumb": "7PROHmCUf_Q",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Monument Valley, Utah, USA",
+        "osm_type": "way",
+        "osm_id": 1137789746,
+        "display_name": "Monument Valley Navajo Tribal Park, Navajo County, Arizona, United States",
+        "url": "https://www.openstreetmap.org/way/1137789746"
+      }
+    },
+    {
+      "id": "forrest-gump-point",
+      "state": "utah",
+      "name": "Forrest Gump Point",
+      "place": "Monument Valley",
+      "lat": 37.1014683,
+      "lon": -109.9908441,
+      "videos": [
+        "5cLy5YOaPW8"
+      ],
+      "thumb": "5cLy5YOaPW8",
+      "on_map": true,
+      "coord_source": {
+        "kind": "OpenStreetMap Nominatim",
+        "query": "Forrest Gump Point, Utah, USA",
+        "osm_type": "node",
+        "osm_id": 4337882953,
+        "display_name": "Forrest Gump Point, US 163, Halchita / Halchíítah, San Juan County, Utah, United States",
+        "url": "https://www.openstreetmap.org/node/4337882953"
+      }
+    }
+  ],
+  "route": [],
+  "spur": [],
+  "map_max_zoom": 6,
+  "restaurants": [],
+  "hotels": []
+}
