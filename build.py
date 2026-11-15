@@ -27,7 +27,7 @@ CHANNEL_META = (
 
 # Preview branches set this True so the built pages stay noindex, show a
 # banner, and omit GoatCounter. Production builds leave it False.
-PREVIEW = False
+PREVIEW = True
 PREVIEW_BANNER = (
     '<div class="draft-banner" role="status">'
     "<p><strong>Preview only.</strong> These changes are not on the live site yet.</p>"
@@ -310,12 +310,10 @@ def nav(prefix: str, current: str) -> str:
     def cur(name: str) -> str:
         return ' aria-current="page"' if current == name else ""
 
-    dest_links = "\n".join(
-        f'          <li><a href="{prefix}destinations/{d["slug"]}.html"{cur("dest-"+d["slug"])}>{esc(d["name"])}</a></li>'
-        for d in DESTINATIONS
-    )
-    gear_nav = (
-        f'<li><a href="{prefix}gear.html"{cur("gear")}>What I film with</a></li>'
+    dest_cur = (
+        ' aria-current="page"'
+        if current == "dest" or current.startswith("dest-")
+        else ""
     )
     html = f"""
 <header class="site-header">
@@ -329,21 +327,17 @@ def nav(prefix: str, current: str) -> str:
     </button>
     <nav class="site-nav" id="site-nav" aria-label="Primary">
       <ul>
-        <li><a href="{prefix}index.html"{cur("home")}>Home</a></li>
+        <li><a href="{prefix}videos.html"{cur("videos")}>Films</a></li>
+        <li><a href="{prefix}trips/index.html"{cur("trips")}>Trips</a></li>
+        <li><a href="{prefix}destinations/index.html"{dest_cur}>Destinations</a></li>
         <li class="has-sub">
-          <button class="nav-label" type="button" aria-expanded="false">Destinations</button>
-          <ul class="subnav">
-            <li><a href="{prefix}destinations/index.html"{cur("dest")}>All destinations</a></li>
-{dest_links}
+          <button class="nav-label" type="button" id="nav-food-stays-btn" aria-expanded="false" aria-haspopup="true" aria-controls="nav-food-stays">Food &amp; Stays</button>
+          <ul class="subnav" id="nav-food-stays" aria-labelledby="nav-food-stays-btn">
+            <li><a href="{prefix}restaurants.html"{cur("restaurants")}>Restaurants</a></li>
+            <li><a href="{prefix}hotels.html"{cur("hotels")}>Hotels</a></li>
           </ul>
         </li>
-        <li><a href="{prefix}trips/index.html"{cur("trips")}>Trips</a></li>
-        <li><a href="{prefix}videos.html"{cur("videos")}>Films</a></li>
-        <li><a href="{prefix}shorts.html"{cur("shorts")}>Shorts</a></li>
-        <li><a href="{prefix}restaurants.html"{cur("restaurants")}>Restaurants</a></li>
-        <li><a href="{prefix}hotels.html"{cur("hotels")}>Hotels</a></li>
         <li><a href="{prefix}about.html"{cur("about")}>About</a></li>
-        {gear_nav}
       </ul>
       <a class="btn btn-gold nav-cta" href="{CHANNEL}" rel="noopener noreferrer"{_goat_click_attrs(CHANNEL)}>Subscribe on YouTube</a>
     </nav>
@@ -361,8 +355,13 @@ def nav(prefix: str, current: str) -> str:
 
 
 def footer(prefix: str, extra_js: str = "") -> str:
-    gear_footer = (
-        f'<a href="{prefix}gear.html">What I film with</a>'
+    dest_links = "\n      ".join(
+        f'<a href="{prefix}destinations/{d["slug"]}.html">{esc(d["name"])}</a>'
+        for d in DESTINATIONS
+    )
+    trip_links = "\n      ".join(
+        f'<a href="{prefix}trips/{trip["slug"]}.html">{esc(trip["name"])}</a>'
+        for trip in (_trip_data(slug) for slug in _trip_slugs())
     )
     goat = _goat_script()
     return f"""
@@ -375,17 +374,34 @@ def footer(prefix: str, extra_js: str = "") -> str:
     </a>
       <p>Short travel films from Greece and the United States.</p>
     </div>
-    <nav class="footer-nav" aria-label="Footer">
-      <a href="{prefix}destinations/index.html">Destinations</a>
-      <a href="{prefix}trips/index.html">Trips</a>
+    <nav class="footer-navs" aria-label="Footer">
+    <div class="footer-nav-group">
+      <p class="footer-nav-label">The site</p>
+      <div class="footer-nav">
       <a href="{prefix}videos.html">Films</a>
-      <a href="{prefix}shorts.html">Shorts</a>
+      <a href="{prefix}trips/index.html">Trips</a>
+      <a href="{prefix}destinations/index.html">Destinations</a>
       <a href="{prefix}restaurants.html">Restaurants</a>
       <a href="{prefix}hotels.html">Hotels</a>
+      <a href="{prefix}shorts.html">Shorts</a>
+      <a href="{prefix}gear.html">What I film with</a>
       <a href="{prefix}about.html">About</a>
-      {gear_footer}
       <a href="{prefix}privacy.html">Privacy</a>
       <a href="{CHANNEL}" rel="noopener noreferrer"{_goat_click_attrs(CHANNEL)}>YouTube</a>
+      </div>
+    </div>
+    <div class="footer-nav-group">
+      <p class="footer-nav-label">Destinations</p>
+      <div class="footer-nav">
+      {dest_links}
+      </div>
+    </div>
+    <div class="footer-nav-group">
+      <p class="footer-nav-label">Trips</p>
+      <div class="footer-nav">
+      {trip_links}
+      </div>
+    </div>
     </nav>
   </div>
 </footer>
@@ -510,11 +526,17 @@ def page_home() -> str:
         key = "route66" if slug == "route-66" else slug.replace("-", "")
         n = sum(1 for v in BY_ID.values() if key in v["groups"])
         label = "1 film" if n == 1 else f"{n} films"
+        photo = ""
+        if img:
+            photo = (
+                f'<img {thumb_srcset(img, sizes="(max-width: 560px) 46vw, (max-width: 900px) 30vw, 280px", prefix=prefix)} '
+                f'alt="" loading="lazy" decoding="async">'
+            )
         dest_cards.append(
             f"""
-<a class="dest-card" href="destinations/{slug}.html">
-  <img {thumb_srcset(img, sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px", prefix=prefix)} alt="{esc(name)}" loading="lazy" decoding="async">
-  <span class="dest-copy">
+<a class="region-tile" href="destinations/{slug}.html">
+  {photo}
+  <span class="region-tile-copy">
     <h3>{esc(name)}</h3>
     <p>{esc(label)}</p>
   </span>
@@ -567,7 +589,7 @@ def page_home() -> str:
         </div>
         <a class="link-arrow" href="destinations/index.html">All destinations</a>
       </div>
-      <div class="dest-grid">
+      <div class="region-grid">
         {''.join(dest_cards)}
       </div>
     </div>
