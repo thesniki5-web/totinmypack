@@ -27,12 +27,12 @@
     toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     nav.classList.toggle("is-open", open);
     document.body.classList.toggle("nav-open", open);
-    if (isMobileNav()) {
+    if (!open) {
       document.querySelectorAll(".has-sub").forEach(function (item) {
         var btn = item.querySelector(":scope > .nav-label");
         if (!btn) return;
-        btn.setAttribute("aria-expanded", String(open));
-        item.classList.toggle("is-open", open);
+        btn.setAttribute("aria-expanded", "false");
+        item.classList.remove("is-open");
       });
     }
   }
@@ -59,10 +59,6 @@
     }
 
     btn.addEventListener("click", function () {
-      if (isMobileNav()) {
-        setSubOpen(true);
-        return;
-      }
       setSubOpen(btn.getAttribute("aria-expanded") !== "true");
     });
     item.addEventListener("mouseenter", function () {
@@ -70,9 +66,6 @@
     });
     item.addEventListener("mouseleave", function () {
       if (!isMobileNav()) setSubOpen(false);
-    });
-    item.addEventListener("focusin", function () {
-      if (!isMobileNav()) setSubOpen(true);
     });
     item.addEventListener("focusout", function (e) {
       if (item.contains(e.relatedTarget)) return;
