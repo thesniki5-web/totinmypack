@@ -1777,3 +1777,37 @@ a.trip-where-name:hover {
 body.gear-page .trip-simple > .trip-where:first-of-type {
   margin-top: 0;
 }
+
+/* Official-site photos on restaurant and hotel cards */
+.restaurant-card.has-photo {
+  padding: 0;
+  overflow: hidden;
+}
+.restaurant-photo {
+  margin: 0;
+}
+.restaurant-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: var(--bg);
+}
+.restaurant-photo-credit {
+  margin: 0.35rem 1.2rem 0;
+  font-size: 0.75rem;
+  color: var(--text-mute);
+}
+.restaurant-photo-credit a {
+  color: var(--text-mute);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.restaurant-photo-credit a:hover { color: var(--gold-soft); }
+.restaurant-card-body {
+  padding: 0;
+}
+.restaurant-card.has-photo .restaurant-card-body {
+  padding: 0.95rem 1.2rem 1.15rem;
+}

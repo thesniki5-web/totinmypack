@@ -22,7 +22,11 @@
         "https://calicocounty.net/",
         "https://calicocounty.net/contact/",
         "https://www.openstreetmap.org/?mlat=35.3598960&mlon=-94.3708044"
-      ]
+      ],
+      "photo": "places/calico-county-fort-smith.webp",
+      "photo_domain": "calicocounty.net",
+      "photo_width": 800,
+      "photo_height": 534
     },
     {
       "id": "underwood-bar-and-bistro-graton",
@@ -44,7 +48,11 @@
       "sources": [
         "https://underwoodgraton.com/",
         "https://www.openstreetmap.org/way/799484180"
-      ]
+      ],
+      "photo": "places/underwood-bar-and-bistro-graton.webp",
+      "photo_domain": "underwoodgraton.com",
+      "photo_width": 800,
+      "photo_height": 598
     },
     {
       "id": "flow-restaurant-lounge-mendocino",
@@ -67,7 +75,11 @@
         "https://www.mendocinoflow.com/",
         "https://www.mendocinoflow.com/contact.html",
         "https://www.openstreetmap.org/?mlat=39.3050885&mlon=-123.7998104"
-      ]
+      ],
+      "photo": "places/flow-restaurant-lounge-mendocino.webp",
+      "photo_domain": "mendocinoflow.com",
+      "photo_width": 450,
+      "photo_height": 265
     },
     {
       "id": "americana-santa-rosa",
@@ -115,7 +127,11 @@
         "https://lighthouse-restaurants.com/",
         "https://www.openstreetmap.org/relation/2829689"
       ],
-      "location_note": "Several locations in Sausalito."
+      "location_note": "Several locations in Sausalito.",
+      "photo": "places/lighthouse-cafe-sausalito.webp",
+      "photo_domain": "lighthouse-restaurants.com",
+      "photo_width": 800,
+      "photo_height": 533
     },
     {
       "id": "bistro-jeanty-yountville",
@@ -137,7 +153,11 @@
       "sources": [
         "https://bistrojeanty.com/",
         "https://www.openstreetmap.org/?mlat=38.4017430&mlon=-122.3607233"
-      ]
+      ],
+      "photo": "places/bistro-jeanty-yountville.webp",
+      "photo_domain": "bistrojeanty.com",
+      "photo_width": 800,
+      "photo_height": 533
     },
     {
       "id": "ralph-and-kacoo-s-bossier-city",
@@ -161,7 +181,11 @@
         "https://ralphandkacoos.com/locations/",
         "https://www.openstreetmap.org/relation/132145"
       ],
-      "location_note": "Several locations in Bossier City."
+      "location_note": "Several locations in Bossier City.",
+      "photo": "places/ralph-and-kacoo-s-bossier-city.webp",
+      "photo_domain": "ralphandkacoos.com",
+      "photo_width": 800,
+      "photo_height": 532
     },
     {
       "id": "dimillo-s-portland",
@@ -183,7 +207,11 @@
       "sources": [
         "https://www.dimillos.com/",
         "https://www.openstreetmap.org/way/30158699"
-      ]
+      ],
+      "photo": "places/dimillo-s-portland.webp",
+      "photo_domain": "dimillos.com",
+      "photo_width": 800,
+      "photo_height": 535
     },
     {
       "id": "1637-main-dining-room-at-york-harbor-inn-york",
@@ -206,7 +234,11 @@
         "https://yorkharborinn.com/dining/1637-main-dining-room/",
         "https://yorkharborinn.com/dining/",
         "https://www.openstreetmap.org/?mlat=43.1340797&mlon=-70.6380159"
-      ]
+      ],
+      "photo": "places/1637-main-dining-room-at-york-harbor-inn-york.webp",
+      "photo_domain": "yorkharborinn.com",
+      "photo_width": 800,
+      "photo_height": 419
     },
     {
       "id": "the-majestic-restaurant-kansas-city",
@@ -229,7 +261,11 @@
         "https://majestickc.com/location/",
         "https://majestickc.com/",
         "https://www.openstreetmap.org/?mlat=39.1026441&mlon=-94.5879463"
-      ]
+      ],
+      "photo": "places/the-majestic-restaurant-kansas-city.webp",
+      "photo_domain": "majestickc.com",
+      "photo_width": 300,
+      "photo_height": 400
     },
     {
       "id": "gates-bar-b-q-kansas-city",
@@ -252,7 +288,11 @@
         "https://gatesbbq.com/locations/",
         "https://www.openstreetmap.org/relation/141008"
       ],
-      "location_note": "Several locations in Kansas City."
+      "location_note": "Several locations in Kansas City.",
+      "photo": "places/gates-bar-b-q-kansas-city.webp",
+      "photo_domain": "gatesbbq.com",
+      "photo_width": 800,
+      "photo_height": 480
     },
     {
       "id": "schilling-beer-company-littleton",
@@ -275,7 +315,11 @@
         "https://www.schillingbeer.com/pages/visit-littleton",
         "https://www.schillingbeer.com/pages/about-us",
         "https://www.openstreetmap.org/way/389621475"
-      ]
+      ],
+      "photo": "places/schilling-beer-company-littleton.webp",
+      "photo_domain": "schillingbeer.com",
+      "photo_width": 800,
+      "photo_height": 534
     },
     {
       "id": "the-river-house-portsmouth",
@@ -298,7 +342,11 @@
         "https://riverhouse53bow.com/",
         "https://riverhouse53bow.com/contact-us/",
         "https://www.openstreetmap.org/?mlat=43.0787648&mlon=-70.7567009"
-      ]
+      ],
+      "photo": "places/the-river-house-portsmouth.webp",
+      "photo_domain": "riverhouse53bow.com",
+      "photo_width": 800,
+      "photo_height": 608
     },
     {
       "id": "row-34-portsmouth",
@@ -322,7 +370,11 @@
         "https://www.row34.com/",
         "https://www.openstreetmap.org/relation/70967"
       ],
-      "location_note": "Several locations in Portsmouth."
+      "location_note": "Several locations in Portsmouth.",
+      "photo": "places/row-34-portsmouth.webp",
+      "photo_domain": "row34.com",
+      "photo_width": 800,
+      "photo_height": 1200
     },
     {
       "id": "two-frogs-grill-ardmore",
@@ -367,7 +419,11 @@
       "sources": [
         "https://pizzeria-gusto.com/",
         "https://www.openstreetmap.org/?mlat=35.4934733&mlon=-97.5211473"
-      ]
+      ],
+      "photo": "places/pizzeria-gusto-oklahoma-city.webp",
+      "photo_domain": "pizzeria-gusto.com",
+      "photo_width": 800,
+      "photo_height": 420
     },
     {
       "id": "sunnyside-diner-oklahoma-city",
@@ -391,7 +447,11 @@
         "https://www.eatatsunnyside.com/contact-us",
         "https://www.openstreetmap.org/relation/185048"
       ],
-      "location_note": "Several locations in Oklahoma City."
+      "location_note": "Several locations in Oklahoma City.",
+      "photo": "places/sunnyside-diner-oklahoma-city.webp",
+      "photo_domain": "eatatsunnyside.com",
+      "photo_width": 800,
+      "photo_height": 450
     },
     {
       "id": "hideaway-pizza-oklahoma-city",
@@ -416,7 +476,11 @@
         "https://www.hideawaypizza.com/locations/downtown-oklahoma-city",
         "https://www.openstreetmap.org/relation/185048"
       ],
-      "location_note": "Several locations in Oklahoma City."
+      "location_note": "Several locations in Oklahoma City.",
+      "photo": "places/hideaway-pizza-oklahoma-city.webp",
+      "photo_domain": "hideawaypizza.com",
+      "photo_width": 800,
+      "photo_height": 533
     },
     {
       "id": "dado-s-pizza-oklahoma-city",
@@ -438,7 +502,11 @@
       "sources": [
         "https://dadospizzaokc.com/",
         "https://www.openstreetmap.org/way/370064381"
-      ]
+      ],
+      "photo": "places/dado-s-pizza-oklahoma-city.webp",
+      "photo_domain": "dadospizzaokc.com",
+      "photo_width": 800,
+      "photo_height": 450
     },
     {
       "id": "andolini-s-pizzeria-tulsa",
@@ -485,7 +553,11 @@
         "https://www.alamosteakhouse.com/",
         "https://www.openstreetmap.org/relation/197143"
       ],
-      "location_note": "Several locations in Gatlinburg."
+      "location_note": "Several locations in Gatlinburg.",
+      "photo": "places/alamo-steakhouse-gatlinburg.webp",
+      "photo_domain": "alamosteakhouse.com",
+      "photo_width": 446,
+      "photo_height": 335
     },
     {
       "id": "owen-brennan-s-memphis",
@@ -507,7 +579,11 @@
       "sources": [
         "https://www.brennansmemphis.com/",
         "https://www.openstreetmap.org/?mlat=35.1025459&mlon=-89.8573793"
-      ]
+      ],
+      "photo": "places/owen-brennan-s-memphis.webp",
+      "photo_domain": "brennansmemphis.com",
+      "photo_width": 800,
+      "photo_height": 420
     },
     {
       "id": "gibson-s-donuts-memphis",
@@ -554,7 +630,11 @@
         "https://www.catfishhotel.com/visit",
         "https://www.catfishhotel.com/",
         "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1140%20Hagy%20Lane%2C%20Shiloh%2C%20TN%2038376&benchmark=Public_AR_Current&format=json"
-      ]
+      ],
+      "photo": "places/hagy-s-catfish-hotel-shiloh.webp",
+      "photo_domain": "catfishhotel.com",
+      "photo_width": 800,
+      "photo_height": 534
     },
     {
       "id": "may-dragon-chinese-restaurant-addison",
@@ -577,7 +657,11 @@
         "https://www.maydragonaddison.com/",
         "https://maydragon.com/",
         "https://www.openstreetmap.org/node/2780496829"
-      ]
+      ],
+      "photo": "places/may-dragon-chinese-restaurant-addison.webp",
+      "photo_domain": "maydragonaddison.com",
+      "photo_width": 800,
+      "photo_height": 450
     },
     {
       "id": "the-tipsy-oak-arlington",
@@ -600,7 +684,11 @@
         "https://www.arlington.org/listings/the-tipsy-oak/3174/",
         "https://www.facebook.com/thetipsyoak",
         "https://www.openstreetmap.org/node/13701080001"
-      ]
+      ],
+      "photo": "places/the-tipsy-oak-arlington.webp",
+      "photo_domain": "thetipsyoak.com",
+      "photo_width": 800,
+      "photo_height": 533
     },
     {
       "id": "fuego-tortilla-grill-college-station",
@@ -625,7 +713,11 @@
         "https://fuegotortillagrill.com/",
         "https://www.openstreetmap.org/relation/6605762"
       ],
-      "location_note": "Several locations in College Station."
+      "location_note": "Several locations in College Station.",
+      "photo": "places/fuego-tortilla-grill-college-station.webp",
+      "photo_domain": "fuegotortillagrill.com",
+      "photo_width": 800,
+      "photo_height": 600
     },
     {
       "id": "celebration-restaurant-dallas",
@@ -647,7 +739,11 @@
       "sources": [
         "https://celebrationrestaurant.com/",
         "https://www.openstreetmap.org/node/2918063332"
-      ]
+      ],
+      "photo": "places/celebration-restaurant-dallas.webp",
+      "photo_domain": "celebrationrestaurant.com",
+      "photo_width": 800,
+      "photo_height": 450
     },
     {
       "id": "rodeo-goat-dallas",
@@ -672,7 +768,11 @@
         "https://www.rodeogoat.com/",
         "https://www.openstreetmap.org/relation/6571629"
       ],
-      "location_note": "Several locations in Dallas."
+      "location_note": "Several locations in Dallas.",
+      "photo": "places/rodeo-goat-dallas.webp",
+      "photo_domain": "rodeogoat.com",
+      "photo_width": 800,
+      "photo_height": 1201
     },
     {
       "id": "the-mercury-dallas",
@@ -694,7 +794,11 @@
       "sources": [
         "https://themercurydallas.com/",
         "https://www.openstreetmap.org/node/13265794478"
-      ]
+      ],
+      "photo": "places/the-mercury-dallas.webp",
+      "photo_domain": "themercurydallas.com",
+      "photo_width": 800,
+      "photo_height": 567
     },
     {
       "id": "front-room-tavern-dallas",
@@ -717,7 +821,11 @@
         "https://frontroomdallas.com/location/",
         "https://frontroomdallas.com/about-us/",
         "https://www.openstreetmap.org/?mlat=32.8410466&mlon=-96.787431"
-      ]
+      ],
+      "photo": "places/front-room-tavern-dallas.webp",
+      "photo_domain": "frontroomdallas.com",
+      "photo_width": 680,
+      "photo_height": 453
     },
     {
       "id": "mariano-s-dallas",
@@ -741,7 +849,11 @@
         "https://laharanch.com/dallas",
         "https://www.openstreetmap.org/relation/6571629"
       ],
-      "location_note": "Several locations in Dallas."
+      "location_note": "Several locations in Dallas.",
+      "photo": "places/mariano-s-dallas.webp",
+      "photo_domain": "laharanch.com",
+      "photo_width": 768,
+      "photo_height": 768
     },
     {
       "id": "cafe-brazil-dallas",
@@ -787,7 +899,11 @@
         "https://www.ephesusdallas.com/contact-us",
         "https://www.ephesusdallas.com/",
         "https://www.openstreetmap.org/?mlat=32.8894688&mlon=-96.7716816"
-      ]
+      ],
+      "photo": "places/ephesus-mediterranean-grill-dallas.webp",
+      "photo_domain": "ephesusdallas.com",
+      "photo_width": 449,
+      "photo_height": 299
     },
     {
       "id": "mexican-sugar-cocina-dallas",
@@ -811,7 +927,11 @@
         "https://www.mexicansugarcocina.com/locations/uptown",
         "https://www.openstreetmap.org/relation/6571629"
       ],
-      "location_note": "Several locations in Dallas."
+      "location_note": "Several locations in Dallas.",
+      "photo": "places/mexican-sugar-cocina-dallas.webp",
+      "photo_domain": "mexicansugarcocina.com",
+      "photo_width": 800,
+      "photo_height": 265
     },
     {
       "id": "haywire-dallas",
@@ -839,7 +959,11 @@
         "https://www.haywirerestaurant.com/locations/la-cantera-san-antonio",
         "https://www.openstreetmap.org/relation/6571629"
       ],
-      "location_note": "Several locations in Dallas."
+      "location_note": "Several locations in Dallas.",
+      "photo": "places/haywire-dallas.webp",
+      "photo_domain": "haywirerestaurant.com",
+      "photo_width": 800,
+      "photo_height": 533
     },
     {
       "id": "knox-bistro-dallas",
@@ -862,7 +986,11 @@
         "https://knoxbistro.com/contact/",
         "https://knoxbistro.com/",
         "https://www.openstreetmap.org/?mlat=32.8236378&mlon=-96.7890587"
-      ]
+      ],
+      "photo": "places/knox-bistro-dallas.webp",
+      "photo_domain": "knoxbistro.com",
+      "photo_width": 712,
+      "photo_height": 672
     },
     {
       "id": "ellen-s-southern-kitchen-dallas",
@@ -886,7 +1014,11 @@
         "https://ellens.com/",
         "https://www.openstreetmap.org/relation/6571629"
       ],
-      "location_note": "Several locations in Dallas."
+      "location_note": "Several locations in Dallas.",
+      "photo": "places/ellen-s-southern-kitchen-dallas.webp",
+      "photo_domain": "ellens.com",
+      "photo_width": 800,
+      "photo_height": 800
     },
     {
       "id": "aboca-s-italian-grill-richardson",
@@ -910,7 +1042,11 @@
         "https://www.abocas.com/contact",
         "https://www.opentable.com/r/abocas-italian-grill-richardson",
         "https://www.openstreetmap.org/?mlat=32.9483938&mlon=-96.7374605"
-      ]
+      ],
+      "photo": "places/aboca-s-italian-grill-richardson.webp",
+      "photo_domain": "abocas.com",
+      "photo_width": 800,
+      "photo_height": 420
     },
     {
       "id": "princi-italia-dallas",
@@ -957,7 +1093,11 @@
         "https://www.natesseafood.com/contact",
         "https://www.natesseafood.com/",
         "https://www.openstreetmap.org/?mlat=32.9535191&mlon=-96.8393466"
-      ]
+      ],
+      "photo": "places/nate-s-seafood-steakhouse-addison.webp",
+      "photo_domain": "natesseafood.com",
+      "photo_width": 653,
+      "photo_height": 593
     },
     {
       "id": "steve-fields-steakhouse-plano",
@@ -979,7 +1119,11 @@
       "sources": [
         "https://stevefields.com/",
         "https://www.openstreetmap.org/?mlat=33.0268606&mlon=-96.7921293"
-      ]
+      ],
+      "photo": "places/steve-fields-steakhouse-plano.webp",
+      "photo_domain": "stevefields.com",
+      "photo_width": 800,
+      "photo_height": 533
     },
     {
       "id": "hudson-house-dallas",
@@ -1004,7 +1148,11 @@
         "https://www.hudsonhouse.com/location/lakewood/",
         "https://www.openstreetmap.org/relation/6571629"
       ],
-      "location_note": "Several locations in Dallas."
+      "location_note": "Several locations in Dallas.",
+      "photo": "places/hudson-house-dallas.webp",
+      "photo_domain": "hudsonhouse.com",
+      "photo_width": 800,
+      "photo_height": 523
     },
     {
       "id": "steakyard-dallas",
@@ -1027,7 +1175,11 @@
         "https://www.steakyard.com/location/visit-us/",
         "https://www.steakyard.com/",
         "https://www.openstreetmap.org/?mlat=32.8681754&mlon=-96.7631254"
-      ]
+      ],
+      "photo": "places/steakyard-dallas.webp",
+      "photo_domain": "steakyard.com",
+      "photo_width": 800,
+      "photo_height": 1200
     },
     {
       "id": "sweetie-pie-s-ribeyes-decatur",
@@ -1073,7 +1225,11 @@
         "https://frillysdentontx.com/contact/",
         "https://frillysdentontx.com/",
         "https://www.openstreetmap.org/way/260489349"
-      ]
+      ],
+      "photo": "places/frilly-s-seafood-bayou-kitchen-denton.webp",
+      "photo_domain": "frillysdentontx.com",
+      "photo_width": 800,
+      "photo_height": 258
     },
     {
       "id": "rooster-s-roadhouse-denton",
@@ -1120,7 +1276,11 @@
         "https://laspalmasep.com/contact/",
         "https://www.openstreetmap.org/relation/113919"
       ],
-      "location_note": "Several locations in El Paso."
+      "location_note": "Several locations in El Paso.",
+      "photo": "places/las-palmas-el-paso.webp",
+      "photo_domain": "laspalmasep.com",
+      "photo_width": 767,
+      "photo_height": 363
     },
     {
       "id": "ambar-restaurante-el-paso",
@@ -1143,7 +1303,11 @@
         "https://www.ambarelpaso.com/contact-reservations",
         "https://www.plazahotelelpaso.com/ambar",
         "https://www.openstreetmap.org/node/13694327871"
-      ]
+      ],
+      "photo": "places/ambar-restaurante-el-paso.webp",
+      "photo_domain": "ambarelpaso.com",
+      "photo_width": 800,
+      "photo_height": 600
     },
     {
       "id": "sam-s-original-restaurant-fairfield",
@@ -1166,7 +1330,11 @@
         "https://samsoriginal.com/contact/",
         "https://samsoriginal.com/",
         "https://www.openstreetmap.org/?mlat=31.7174014&mlon=-96.1762037"
-      ]
+      ],
+      "photo": "places/sam-s-original-restaurant-fairfield.webp",
+      "photo_domain": "samsoriginal.com",
+      "photo_width": 800,
+      "photo_height": 533
     },
     {
       "id": "hanaya-hibachi-sushi-and-asian-fusion-flower-mound",
@@ -1188,7 +1356,11 @@
       "sources": [
         "https://hanayafm.com/contact/",
         "https://www.openstreetmap.org/node/13771347552"
-      ]
+      ],
+      "photo": "places/hanaya-hibachi-sushi-and-asian-fusion-flower-mound.webp",
+      "photo_domain": "hanayafm.com",
+      "photo_width": 800,
+      "photo_height": 359
     },
     {
       "id": "lucile-s-fort-worth",
@@ -1210,7 +1382,11 @@
       "sources": [
         "https://lucilesstatesidebistro.com/",
         "https://www.openstreetmap.org/?mlat=32.7393066&mlon=-97.3906693"
-      ]
+      ],
+      "photo": "places/lucile-s-fort-worth.webp",
+      "photo_domain": "lucilesstatesidebistro.com",
+      "photo_width": 781,
+      "photo_height": 586
     },
     {
       "id": "the-post-at-river-east-fort-worth",
@@ -1236,7 +1412,11 @@
         "https://www.thepostfw.com/",
         "https://www.thepostfw.com/contact"
       ],
-      "location_note": "Now at 2736 West 6th Street (the former Lola's Saloon); previously at River East on Race Street."
+      "location_note": "Now at 2736 West 6th Street (the former Lola's Saloon); previously at River East on Race Street.",
+      "photo": "places/the-post-at-river-east-fort-worth.webp",
+      "photo_domain": "thepostfw.com",
+      "photo_width": 800,
+      "photo_height": 512
     },
     {
       "id": "reata-fort-worth",
@@ -1261,7 +1441,11 @@
         "https://reata.net/alpine/",
         "https://www.openstreetmap.org/relation/115274"
       ],
-      "location_note": "Several locations in Fort Worth."
+      "location_note": "Several locations in Fort Worth.",
+      "photo": "places/reata-fort-worth.webp",
+      "photo_domain": "reata.net",
+      "photo_width": 800,
+      "photo_height": 401
     },
     {
       "id": "delucca-gaucho-pizza-wine-fort-worth",
@@ -1286,7 +1470,11 @@
         "https://www.delucca.com/location/fort-worth-alliance-center/",
         "https://www.openstreetmap.org/relation/115274"
       ],
-      "location_note": "Several locations in Fort Worth."
+      "location_note": "Several locations in Fort Worth.",
+      "photo": "places/delucca-gaucho-pizza-wine-fort-worth.webp",
+      "photo_domain": "delucca.com",
+      "photo_width": 800,
+      "photo_height": 985
     },
     {
       "id": "cattlemen-s-steakhouse-fort-worth",
@@ -1309,7 +1497,11 @@
         "https://cattlemenssteakhouse.com/contact",
         "https://www.cattlemenssteakhouse.com/",
         "https://www.openstreetmap.org/?mlat=32.7891558&mlon=-97.3490358"
-      ]
+      ],
+      "photo": "places/cattlemen-s-steakhouse-fort-worth.webp",
+      "photo_domain": "cattlemenssteakhouse.com",
+      "photo_width": 800,
+      "photo_height": 450
     },
     {
       "id": "great-wall-super-buffet-frisco",
@@ -1378,7 +1570,11 @@
         "https://www.visitgranbury.com/listing/stumpys-lakeside-grill/6243/",
         "https://stumpyslakegranbury.com/",
         "https://www.openstreetmap.org/?mlat=32.4180624&mlon=-97.78808"
-      ]
+      ],
+      "photo": "places/stumpy-s-lakeside-grill-granbury.webp",
+      "photo_domain": "stumpyslakegranbury.com",
+      "photo_width": 800,
+      "photo_height": 451
     },
     {
       "id": "ketzler-s-schnitzel-haus-biergarten-granbury",
@@ -1401,7 +1597,11 @@
         "https://ketzlersschnitzelhaus.com/about/",
         "https://ketzlersschnitzelhaus.com/",
         "https://www.openstreetmap.org/?mlat=32.442109&mlon=-97.786357"
-      ]
+      ],
+      "photo": "places/ketzler-s-schnitzel-haus-biergarten-granbury.webp",
+      "photo_domain": "ketzlersschnitzelhaus.com",
+      "photo_width": 800,
+      "photo_height": 878
     },
     {
       "id": "farina-s-winery-café-grapevine",
@@ -1426,7 +1626,11 @@
         "https://www.farinaswinery.com/about",
         "https://www.openstreetmap.org/relation/114452"
       ],
-      "location_note": "Several locations in Grapevine."
+      "location_note": "Several locations in Grapevine.",
+      "photo": "places/farina-s-winery-café-grapevine.webp",
+      "photo_domain": "farinaswinery.com",
+      "photo_width": 800,
+      "photo_height": 747
     },
     {
       "id": "mac-s-on-main-grapevine",
@@ -1450,7 +1654,11 @@
         "https://macsteak.com/",
         "https://www.openstreetmap.org/relation/114452"
       ],
-      "location_note": "Several locations in Grapevine."
+      "location_note": "Several locations in Grapevine.",
+      "photo": "places/mac-s-on-main-grapevine.webp",
+      "photo_domain": "macsteak.com",
+      "photo_width": 800,
+      "photo_height": 242
     },
     {
       "id": "blue-goose-cantina-grapevine",
@@ -1499,7 +1707,11 @@
         "https://dinossteakandclaw.net/contact/",
         "https://maps.apple.com/place?place-id=IDCD586862F839A77",
         "https://www.openstreetmap.org/?mlat=32.9383344&mlon=-97.078448"
-      ]
+      ],
+      "photo": "places/dino-s-steak-and-claw-house-grapevine.webp",
+      "photo_domain": "dinossteakandclaw.net",
+      "photo_width": 800,
+      "photo_height": 533
     },
     {
       "id": "lone-star-cafe-hillsboro",
@@ -1522,7 +1734,11 @@
         "https://bubbalikesit.com/contact-us/",
         "https://bubbalikesit.com/",
         "https://www.openstreetmap.org/?mlat=32.0177384&mlon=-97.0937279"
-      ]
+      ],
+      "photo": "places/lone-star-cafe-hillsboro.webp",
+      "photo_domain": "bubbalikesit.com",
+      "photo_width": 712,
+      "photo_height": 442
     },
     {
       "id": "cavalli-pizzeria-napoletana-mckinney",
@@ -1544,7 +1760,11 @@
       "sources": [
         "https://cavallipizzeria.com/contact/",
         "https://www.openstreetmap.org/node/5258718528"
-      ]
+      ],
+      "photo": "places/cavalli-pizzeria-napoletana-mckinney.webp",
+      "photo_domain": "cavallipizzeria.com",
+      "photo_width": 800,
+      "photo_height": 800
     },
     {
       "id": "super-shack-mckinney",
@@ -1567,7 +1787,11 @@
         "https://www.visitmckinney.com/listing/super-shack-mckinney-383",
         "https://www.supershack-mckinney.com/",
         "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2901%20South%20Central%20Expressway%2C%20McKinney%2C%20TX%2075070&benchmark=Public_AR_Current&format=json"
-      ]
+      ],
+      "photo": "places/super-shack-mckinney.webp",
+      "photo_domain": "supershack-mckinney.com",
+      "photo_width": 800,
+      "photo_height": 420
     },
     {
       "id": "mangia-bistro-plano",
@@ -1590,7 +1814,11 @@
         "https://www.visitplano.com/dining/mangia-bistro/",
         "https://www.mangiabistro.com/",
         "https://www.openstreetmap.org/?mlat=33.0186445&mlon=-96.7084498"
-      ]
+      ],
+      "photo": "places/mangia-bistro-plano.webp",
+      "photo_domain": "mangiabistro.com",
+      "photo_width": 800,
+      "photo_height": 420
     },
     {
       "id": "virginia-s-by-the-bay-port-aransas",
@@ -1613,7 +1841,11 @@
         "https://virginiasonthebay.com/contact-us/",
         "https://virginiasonthebay.com/",
         "https://www.openstreetmap.org/way/1049163700"
-      ]
+      ],
+      "photo": "places/virginia-s-by-the-bay-port-aransas.webp",
+      "photo_domain": "virginiasonthebay.com",
+      "photo_width": 400,
+      "photo_height": 516
     },
     {
       "id": "trout-street-bar-grill-port-aransas",
@@ -1636,7 +1868,11 @@
         "https://www.tsbag.com/contact",
         "https://www.tsbag.com/",
         "https://www.openstreetmap.org/?mlat=27.8380083&mlon=-97.0610057"
-      ]
+      ],
+      "photo": "places/trout-street-bar-grill-port-aransas.webp",
+      "photo_domain": "tsbag.com",
+      "photo_width": 800,
+      "photo_height": 534
     },
     {
       "id": "bankhead-brewing-rowlett",
@@ -1704,7 +1940,11 @@
       "sources": [
         "https://citylimits.cafe/",
         "https://www.openstreetmap.org/?mlat=33.683113&mlon=-96.584207"
-      ]
+      ],
+      "photo": "places/city-limits-sherman.webp",
+      "photo_domain": "citylimits.cafe",
+      "photo_width": 800,
+      "photo_height": 420
     },
     {
       "id": "arturo-s-wood-fired-pizza-gallery-sulphur-springs",
@@ -1750,7 +1990,11 @@
         "https://simonpearce.com/pages/restaurant",
         "https://simonpearce.com/pages/quechee-vt",
         "https://www.openstreetmap.org/node/8433490547"
-      ]
+      ],
+      "photo": "places/simon-pearce-restaurant-quechee.webp",
+      "photo_domain": "simonpearce.com",
+      "photo_width": 800,
+      "photo_height": 419
     },
     {
       "id": "tzitzikas-porto-koufo",
@@ -1773,7 +2017,11 @@
         "https://www.tzitzikas.eu/",
         "https://tzitzikas.eu/contact.php?l=en",
         "https://www.openstreetmap.org/node/5154917022"
-      ]
+      ],
+      "photo": "places/tzitzikas-porto-koufo.webp",
+      "photo_domain": "tzitzikas.eu",
+      "photo_width": 800,
+      "photo_height": 450
     }
   ]
 }

@@ -27,7 +27,7 @@ CHANNEL_META = (
 
 # Preview branches set this True so the built pages stay noindex, show a
 # banner, and omit GoatCounter. Production builds leave it False.
-PREVIEW = False
+PREVIEW = True
 PREVIEW_BANNER = (
     '<div class="draft-banner" role="status">'
     "<p><strong>Preview only.</strong> These changes are not on the live site yet.</p>"
@@ -1324,10 +1324,37 @@ def _restaurant_card(r: dict, index: int, prefix: str, *, link_kind: str = "rest
     )
     loc_note = (r.get("location_note") or "").strip()
     loc_html = f'<p class="restaurant-location-note">{esc(loc_note)}</p>' if loc_note else ""
+    photo = (r.get("photo") or "").strip()
+    photo_html = ""
+    card_class = "restaurant-card"
+    if photo:
+        domain = (r.get("photo_domain") or "").strip()
+        alt = f"{name}, photo from {domain}" if domain else f"{name}"
+        w = r.get("photo_width") or 800
+        h = r.get("photo_height") or ""
+        size_attrs = f' width="{int(w)}"' + (f' height="{int(h)}"' if h else "")
+        credit = ""
+        if domain and r.get("website"):
+            credit = (
+                f'<figcaption class="restaurant-photo-credit">'
+                f'{_external_link(r["website"], "Photo: " + domain, f"Photo of {name} from {domain}", kind=f"{link_kind}-photo", name=name)}'
+                f"</figcaption>"
+            )
+        elif domain:
+            credit = f'<figcaption class="restaurant-photo-credit">Photo: {esc(domain)}</figcaption>'
+        photo_html = (
+            f'<figure class="restaurant-photo">'
+            f'<img src="{prefix}assets/{esc(photo)}" alt="{esc(alt)}"{size_attrs} loading="lazy" decoding="async">'
+            f"{credit}</figure>"
+        )
+        card_class += " has-photo"
     return (
-        f'<article class="restaurant-card" id="restaurant-{rid}">'
+        f'<article class="{card_class}" id="restaurant-{rid}">'
+        f"{photo_html}"
+        f'<div class="restaurant-card-body">'
         f"<h4>{esc(name)}</h4>"
         f"{place_html}{listed_html}{cuisine}{address}{status_html}{loc_html}{note}{visited}{actions_html}{sources_html}"
+        f"</div>"
         "</article>"
     )
 
@@ -1587,6 +1614,7 @@ def page_hotels() -> str:
 def _hotel_card(r: dict, index: int, prefix: str) -> str:
     # Same card markup as restaurants, with hotel IDs so the shared map script can focus a pin.
     html = _restaurant_card(r, index, prefix, link_kind="hotel")
+    html = html.replace('class="restaurant-card has-photo"', 'class="restaurant-card hotel-card has-photo"', 1)
     html = html.replace('class="restaurant-card"', 'class="restaurant-card hotel-card"', 1)
     html = html.replace('id="restaurant-', 'id="hotel-', 1)
     html = html.replace("data-restaurant-focus=", "data-hotel-focus=", 1)
