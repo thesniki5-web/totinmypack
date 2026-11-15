@@ -27,7 +27,7 @@ CHANNEL_META = (
 
 # Preview branches set this True so the built pages stay noindex, show a
 # banner, and omit GoatCounter. Production builds leave it False.
-PREVIEW = False
+PREVIEW = True
 PREVIEW_BANNER = (
     '<div class="draft-banner" role="status">'
     "<p><strong>Preview only.</strong> These changes are not on the live site yet.</p>"
@@ -1247,7 +1247,20 @@ def _external_link(href: str, label: str, aria: str, *, kind: str | None = None,
     )
 
 
-def _restaurant_card(r: dict, index: int, prefix: str, *, link_kind: str = "restaurant") -> str:
+
+EAGER_PLACE_PHOTOS = 3
+
+
+def _place_photo_preload(prefix: str, photo: str | None) -> str:
+    if not photo:
+        return ""
+    return (
+        f'<link rel="preload" as="image" href="{prefix}assets/{esc(photo)}" '
+        f'type="image/webp" fetchpriority="high">'
+    )
+
+
+def _restaurant_card(r: dict, index: int, prefix: str, *, link_kind: str = "restaurant", photo_rank: int | None = None) -> str:
     rid = esc(_restaurant_slug(r, index))
     name = r.get("name") or "Restaurant"
     place = _restaurant_place(r)
@@ -1346,9 +1359,11 @@ def _restaurant_card(r: dict, index: int, prefix: str, *, link_kind: str = "rest
             )
         elif credit_label:
             credit = f'<figcaption class="restaurant-photo-credit">{esc(credit_label)}</figcaption>'
+        loading = "eager" if photo_rank is not None else "lazy"
+        fetch = ' fetchpriority="high"' if photo_rank == 0 else ""
         photo_html = (
             f'<figure class="restaurant-photo">'
-            f'<img src="{prefix}assets/{esc(photo)}" alt="{esc(alt)}"{size_attrs} loading="lazy" decoding="async">'
+            f'<img src="{prefix}assets/{esc(photo)}" alt="{esc(alt)}"{size_attrs} loading="{loading}" decoding="async"{fetch}">'
             f"{credit}</figure>"
         )
         card_class += " has-photo"
@@ -1403,13 +1418,26 @@ def page_restaurants() -> str:
         city = (r.get("city") or "").strip() or "Unspecified"
         groups.setdefault(region, OrderedDict()).setdefault(city, []).append((i, r))
 
+    photo_rank_counter = 0
+    first_photo = None
     if groups:
         sections = []
         for region, cities in groups.items():
             region_id = esc(_fold_slug(f"region-{region}") or "region")
             city_blocks = []
             for city, items in cities.items():
-                cards = "".join(_restaurant_card(r, i, prefix) for i, r in items)
+                cards_parts = []
+                for i, r in items:
+                    rank = None
+                    photo = (r.get("photo") or "").strip()
+                    if photo:
+                        if first_photo is None:
+                            first_photo = photo
+                        if photo_rank_counter < EAGER_PLACE_PHOTOS:
+                            rank = photo_rank_counter
+                        photo_rank_counter += 1
+                    cards_parts.append(_restaurant_card(r, i, prefix, photo_rank=rank))
+                cards = "".join(cards_parts)
                 city_blocks.append(
                     '<div class="restaurant-city-group">'
                     f'<p class="restaurant-city-label">{esc(city)}</p>'
@@ -1440,7 +1468,8 @@ def page_restaurants() -> str:
     extra_js = f'<script src="{prefix}js/restaurant-map.js" defer></script>'
     title = "Restaurants — Totin My Pack"
     desc = "Places we’ve eaten and liked along the way, from Greece and the United States. Each pin sits at the restaurant’s true location."
-    return f"""{head(title, desc, "/restaurants.html", "logo", prefix, og_logo=True)}
+    extra = _place_photo_preload(prefix, first_photo)
+    return f"""{head(title, desc, "/restaurants.html", "logo", prefix, extra=extra, og_logo=True)}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "restaurants")}
@@ -1527,13 +1556,26 @@ def page_hotels() -> str:
         city = (r.get("city") or "").strip() or "Unspecified"
         groups.setdefault(region, OrderedDict()).setdefault(city, []).append((i, r))
 
+    photo_rank_counter = 0
+    first_photo = None
     if groups:
         sections = []
         for region, cities in groups.items():
             region_id = esc(_fold_slug(f"region-{region}") or "region")
             city_blocks = []
             for city, items in cities.items():
-                cards = "".join(_hotel_card(r, i, prefix) for i, r in items)
+                cards_parts = []
+                for i, r in items:
+                    rank = None
+                    photo = (r.get("photo") or "").strip()
+                    if photo:
+                        if first_photo is None:
+                            first_photo = photo
+                        if photo_rank_counter < EAGER_PLACE_PHOTOS:
+                            rank = photo_rank_counter
+                        photo_rank_counter += 1
+                    cards_parts.append(_hotel_card(r, i, prefix, photo_rank=rank))
+                cards = "".join(cards_parts)
                 city_blocks.append(
                     '<div class="restaurant-city-group">'
                     f'<p class="restaurant-city-label">{esc(city)}</p>'
@@ -1564,7 +1606,8 @@ def page_hotels() -> str:
     extra_js = f'<script src="{prefix}js/restaurant-map.js" defer></script>'
     title = "Hotels — Totin My Pack"
     desc = "Places we’ve stayed and liked along the way, shown on the map at each stay’s true location when we have a precise point."
-    return f"""{head(title, desc, "/hotels.html", "logo", prefix, og_logo=True)}
+    extra = _place_photo_preload(prefix, first_photo)
+    return f"""{head(title, desc, "/hotels.html", "logo", prefix, extra=extra, og_logo=True)}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "hotels")}
@@ -1615,9 +1658,9 @@ def page_hotels() -> str:
 </html>"""
 
 
-def _hotel_card(r: dict, index: int, prefix: str) -> str:
+def _hotel_card(r: dict, index: int, prefix: str, *, photo_rank: int | None = None) -> str:
     # Same card markup as restaurants, with hotel IDs so the shared map script can focus a pin.
-    html = _restaurant_card(r, index, prefix, link_kind="hotel")
+    html = _restaurant_card(r, index, prefix, link_kind="hotel", photo_rank=photo_rank)
     html = html.replace('class="restaurant-card has-photo"', 'class="restaurant-card hotel-card has-photo"', 1)
     html = html.replace('class="restaurant-card"', 'class="restaurant-card hotel-card"', 1)
     html = html.replace('id="restaurant-', 'id="hotel-', 1)
