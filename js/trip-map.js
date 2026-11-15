@@ -52,9 +52,9 @@
   }
 
   function markerSizeForZoom(z) {
-    if (z < 6) return 12;
-    if (z < 7) return 16;
-    if (z < 8) return 22;
+    if (z < 6) return 18;
+    if (z < 7) return 20;
+    if (z < 8) return 24;
     if (z < 10) return 28;
     return 36;
   }
@@ -172,7 +172,7 @@
         var latlng = [stop.lat, stop.lon];
         bounds.push(latlng);
         var marker = L.marker(latlng, {
-          icon: markerIcon(stop.number, stop.spur, 12),
+          icon: markerIcon(stop.number, stop.spur, 18),
           title: stop.name,
           keyboard: true,
           riseOnHover: true
@@ -265,7 +265,7 @@
         var latlng = [place.lat, place.lng];
         bounds.push(latlng);
         var marker = L.marker(latlng, {
-          icon: placeIcon(place.kind, 12),
+          icon: placeIcon(place.kind, 18),
           title: place.name,
           keyboard: true,
           riseOnHover: true
