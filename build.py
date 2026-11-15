@@ -1329,19 +1329,23 @@ def _restaurant_card(r: dict, index: int, prefix: str, *, link_kind: str = "rest
     card_class = "restaurant-card"
     if photo:
         domain = (r.get("photo_domain") or "").strip()
-        alt = f"{name}, photo from {domain}" if domain else f"{name}"
+        alt = (r.get("photo_alt") or "").strip() or (
+            f"{name}, photo from {domain}" if domain else name
+        )
         w = r.get("photo_width") or 800
         h = r.get("photo_height") or ""
         size_attrs = f' width="{int(w)}"' + (f' height="{int(h)}"' if h else "")
         credit = ""
-        if domain and r.get("website"):
+        credit_href = (r.get("photo_credit_url") or r.get("website") or "").strip()
+        credit_label = (r.get("photo_credit") or (f"Photo: {domain}" if domain else "")).strip()
+        if credit_label and credit_href:
             credit = (
                 f'<figcaption class="restaurant-photo-credit">'
-                f'{_external_link(r["website"], "Photo: " + domain, f"Photo of {name} from {domain}", kind=f"{link_kind}-photo", name=name)}'
+                f'{_external_link(credit_href, credit_label, f"Photo of {name} from {domain or credit_label}", kind=f"{link_kind}-photo", name=name)}'
                 f"</figcaption>"
             )
-        elif domain:
-            credit = f'<figcaption class="restaurant-photo-credit">Photo: {esc(domain)}</figcaption>'
+        elif credit_label:
+            credit = f'<figcaption class="restaurant-photo-credit">{esc(credit_label)}</figcaption>'
         photo_html = (
             f'<figure class="restaurant-photo">'
             f'<img src="{prefix}assets/{esc(photo)}" alt="{esc(alt)}"{size_attrs} loading="lazy" decoding="async">'

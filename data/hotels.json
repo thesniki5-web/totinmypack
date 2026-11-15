@@ -91,7 +91,12 @@
       ],
       "location_note": "",
       "teddy_note": "",
-      "visited": ""
+      "visited": "",
+      "photo": "places/hotel-phillips-kansas-city.webp",
+      "photo_domain": "Wikimedia Commons",
+      "photo_credit_url": "https://commons.wikimedia.org/wiki/File:Hotel_Phillips_Kansas_City_Missouri.jpg",
+      "photo_width": 800,
+      "photo_height": 500
     },
     {
       "id": "mountain-view-grand-whitefield",
