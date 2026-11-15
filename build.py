@@ -19,6 +19,20 @@ CHANNEL_DESC = (
     "We share short travel films, scenic drives, state parks, historic places, "
     "and personal memories from our trips."
 )
+CHANNEL_META = (
+    "Travel with Totin My Pack through Greece and the United States: "
+    "short travel films, scenic drives, state parks, historic places, "
+    "and memories from our trips."
+)
+
+# Preview branches set this True so the built pages stay noindex, show a
+# banner, and omit GoatCounter. Production builds leave it False.
+PREVIEW = False
+PREVIEW_BANNER = (
+    '<div class="draft-banner" role="status">'
+    "<p><strong>Preview only.</strong> These changes are not on the live site yet.</p>"
+    "</div>"
+)
 
 # Dates are America/New_York. Eight early films use YouTube's published date only.
 # The catalog itself lives in data/videos.json and is updated from the channel RSS feed.
@@ -48,6 +62,7 @@ DESTINATIONS = [
         "hero": "_pAqzkL05D8",
         "hero_pos": "16% 100%",
         "blurb": "Road trips, state parks, country churches, and river country: Big Bend, Devils River, Caddo Lake, Enchanted Rock, Seminole Canyon, and small towns across the state.",
+        "meta": "Texas road trips, state parks, country churches, and river country, including Big Bend, Devils River, Caddo Lake, Enchanted Rock, and Seminole Canyon.",
         "og": "_pAqzkL05D8",
         "hero_alt": "A hiker on the granite slope of Enchanted Rock in Texas.",
     },
@@ -58,6 +73,7 @@ DESTINATIONS = [
         "hero": "e6Wr9Cpg0y8",
         "hero_pos": "80% 40%",
         "blurb": "Wildlife, weather, and the sky close to home — including the total solar eclipse of April 8, 2024, snow at White Rock Lake, and birds filmed on a Dallas balcony.",
+        "meta": "Wildlife, weather, and the sky close to home, including the total solar eclipse of April 8, 2024, snow at White Rock Lake, and birds on a Dallas balcony.",
         "og": "VktGvxzG4sU",
     },
     {
@@ -298,7 +314,7 @@ def nav(prefix: str, current: str) -> str:
         f'          <li><a href="{prefix}destinations/{d["slug"]}.html"{cur("dest-"+d["slug"])}>{esc(d["name"])}</a></li>'
         for d in DESTINATIONS
     )
-    return f"""
+    html = f"""
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="{prefix}index.html">
@@ -330,6 +346,15 @@ def nav(prefix: str, current: str) -> str:
   </div>
 </header>"""
 
+    if PREVIEW:
+        html = (
+            '\n<div class="preview-topbar" role="status">'
+            "<p><strong>Preview only.</strong> These changes are not on the live site yet.</p>"
+            "</div>"
+            + html
+        )
+    return html
+
 
 def footer(prefix: str, extra_js: str = "") -> str:
     return f"""
@@ -350,6 +375,7 @@ def footer(prefix: str, extra_js: str = "") -> str:
       <a href="{prefix}restaurants.html">Restaurants</a>
       <a href="{prefix}hotels.html">Hotels</a>
       <a href="{prefix}about.html">About</a>
+      <a href="{prefix}privacy.html">Privacy</a>
       <a href="{CHANNEL}" rel="noopener noreferrer"{_goat_click_attrs(CHANNEL)}>YouTube</a>
     </nav>
   </div>
@@ -377,6 +403,8 @@ def head(title: str, description: str, path: str, og_id: str, prefix: str, extra
     else:
         image = thumb(og_id)
         og_w, og_h = 1280, 720
+    if PREVIEW:
+        robots = robots or "noindex"
     robots_tag = (
         f'  <meta name="robots" content="{esc(robots)}">\n' if robots else ""
     )
@@ -476,7 +504,7 @@ def page_home() -> str:
   </span>
 </a>"""
         )
-    return f"""{head("Totin My Pack — Travel films from Greece and the United States", CHANNEL_DESC, "/", "logo", prefix, json_ld_home(), og_logo=True)}
+    return f"""{head("Totin My Pack — Travel films from Greece and the United States", CHANNEL_META, "/", "logo", prefix, json_ld_home(), og_logo=True)}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "home")}
@@ -660,7 +688,7 @@ def page_destination(d: dict) -> str:
             "</div>"
         )
     title = f"{d['name']} — Totin My Pack"
-    desc = d["blurb"]
+    desc = d.get("meta") or d["blurb"]
     return f"""{head(title, desc, f"/destinations/{d['slug']}.html", d["og"], prefix)}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
@@ -784,7 +812,7 @@ def page_shorts() -> str:
 <main id="content">
   <section class="page-hero" aria-label="Shorts">
     <div class="hero-media">
-      {hero_img("2f-wKhlW_PE", "", prefix, style="object-position:70% 40%")}
+      {hero_img("2f-wKhlW_PE", (BY_ID.get("2f-wKhlW_PE") or {}).get("title") or "Autumn From Above in Talimena #Shorts", prefix, style="object-position:70% 40%")}
     </div>
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="hero-copy">
@@ -827,8 +855,12 @@ def page_about() -> str:
     prefix = ""
     paragraphs = _about_paragraphs(_about_source_text())
     first = paragraphs[0] if paragraphs else ""
-    # Meta description is Teddy's first sentence, verbatim.
-    desc = first.split(". ", 1)[0] + "." if ". " in first else first
+    # Meta description uses sentences already on the About page, lengthened
+    # from the first line alone so it falls in the usual 120–160 character range.
+    desc = (
+        "Hi, I’m Teddy. Totin My Pack is where I share the places, roads, "
+        "and moments I want to remember, from Greece and across the United States."
+    )
     body = []
     for i, para in enumerate(paragraphs):
         cls = ' class="lead"' if i == 0 else ""
@@ -1080,7 +1112,11 @@ def page_trip(slug: str) -> str:
     desc = trip.get("description") or trip["name"]
     og = trip.get("hero") or "logo"
     og_logo = not trip.get("hero")
-    return f"""{head(trip["title"] + " — Totin My Pack", desc, f"/trips/{slug}.html", og if not og_logo else "logo", prefix, og_logo=og_logo)}
+    html_title = f'{trip["title"]} — Totin My Pack'
+    dest_titles = {f"{d['name']} — Totin My Pack" for d in DESTINATIONS}
+    if html_title in dest_titles:
+        html_title = f"{trip['name']} trip — Totin My Pack"
+    return f"""{head(html_title, desc, f"/trips/{slug}.html", og if not og_logo else "logo", prefix, og_logo=og_logo)}
 <body class="trip-simple-page">
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "trips")}
@@ -1362,7 +1398,7 @@ def page_restaurants() -> str:
     map_json = json.dumps(map_payload, ensure_ascii=False)
     extra_js = f'<script src="{prefix}js/restaurant-map.js" defer></script>'
     title = "Restaurants — Totin My Pack"
-    desc = "Places we’ve eaten and liked along the way."
+    desc = "Places we’ve eaten and liked along the way, from Greece and the United States. Each pin sits at the restaurant’s true location."
     return f"""{head(title, desc, "/restaurants.html", "logo", prefix, og_logo=True)}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
@@ -1486,7 +1522,7 @@ def page_hotels() -> str:
     map_json = json.dumps(map_payload, ensure_ascii=False)
     extra_js = f'<script src="{prefix}js/restaurant-map.js" defer></script>'
     title = "Hotels — Totin My Pack"
-    desc = "Places we’ve stayed and liked along the way."
+    desc = "Places we’ve stayed and liked along the way, shown on the map at each stay’s true location when we have a precise point."
     return f"""{head(title, desc, "/hotels.html", "logo", prefix, og_logo=True)}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
@@ -1547,7 +1583,42 @@ def _hotel_card(r: dict, index: int, prefix: str) -> str:
     return html
 
 
+def page_privacy() -> str:
+    prefix = ""
+    desc = (
+        "Totin My Pack uses GoatCounter to count visits. It does not use cookies "
+        "or collect personal data, and there is no email signup or contact form."
+    )
+    goat_privacy = "https://www.goatcounter.com/help/privacy"
+    return f"""{head("Privacy — Totin My Pack", desc, "/privacy.html", "logo", prefix, og_logo=True)}
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+{nav(prefix, "privacy")}
+<main id="content">
+  <section class="page-hero" aria-label="Privacy">
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <h1>Privacy</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="prose">
+        <p class="lead">This site uses GoatCounter to count visits. It does not have an email signup or a contact form.</p>
+        <p>GoatCounter is a privacy-friendly analytics service. Its own documentation says it does not track personal data: it does not store cookies, localStorage, or other data in your browser; it does not store IP addresses or a tracker ID; and it does not share information with third parties. It is not used here for advertising. You can read GoatCounter’s <a href="{goat_privacy}" rel="noopener noreferrer"{_goat_click_attrs(goat_privacy)}>privacy documentation</a>.</p>
+        <p>Visit counts for this site are public and can be read without signing in.</p>
+        <p>Pages on this site link out to YouTube, and to restaurant and hotel websites, when those addresses are listed.</p>
+      </div>
+    </div>
+  </section>
+</main>
+{footer(prefix)}
+</body>
+</html>"""
+
+
 def robots_and_sitemap() -> None:
+
     pages = [
         "/",
         "/destinations/",
@@ -1556,6 +1627,7 @@ def robots_and_sitemap() -> None:
         "/restaurants.html",
         "/hotels.html",
         "/about.html",
+        "/privacy.html",
         "/trips/",
     ] + [f"/trips/{slug}.html" for slug in _trip_slugs()] + [
         f"/destinations/{d['slug']}.html" for d in DESTINATIONS
@@ -1612,6 +1684,7 @@ def main() -> None:
     write(ROOT / "videos.html", page_videos())
     write(ROOT / "shorts.html", page_shorts())
     write(ROOT / "about.html", page_about())
+    write(ROOT / "privacy.html", page_privacy())
     write(ROOT / "restaurants.html", page_restaurants())
     write(ROOT / "hotels.html", page_hotels())
     write(ROOT / "404.html", page_404())

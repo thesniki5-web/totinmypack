@@ -520,7 +520,7 @@
       "lng": -89.8951361,
       "cuisine": "Donuts",
       "address": "760 Mount Moriah Road, Memphis, TN 38117",
-      "website": "http://www.gibsonsdonuts.com/",
+      "website": "https://www.gibsonsdonuts.com/",
       "status": "open",
       "teddy_note": "",
       "visited": "",
@@ -528,7 +528,7 @@
       "start_seconds": null,
       "sources": [
         "https://www.eater.com/venue/115989/gibson-s-donuts",
-        "http://www.gibsonsdonuts.com/",
+        "https://www.gibsonsdonuts.com/",
         "https://maps.apple.com/place?place-id=I61B952EFEB619CEC",
         "https://www.openstreetmap.org/?mlat=35.1104343&mlon=-89.8951361"
       ]
@@ -1230,7 +1230,6 @@
       "video_id": "",
       "start_seconds": null,
       "sources": [
-        "https://thepostatrivereast.com/",
         "https://www.openstreetmap.org/?mlat=32.7523185&mlon=-97.3563396",
         "https://fortworth.culturemap.com/news/entertainment/the-post-lolas-saloon/",
         "https://www.fwweekly.com/2025/02/10/the-post-returns/",
@@ -1764,14 +1763,14 @@
       "lng": 23.9183682,
       "cuisine": "Greek tavern",
       "address": "Porto Koufo, Chalkidiki 63072, Greece",
-      "website": "http://www.tzitzikas.eu/",
+      "website": "https://www.tzitzikas.eu/",
       "status": "open",
       "teddy_note": "",
       "visited": "",
       "video_id": "",
       "start_seconds": null,
       "sources": [
-        "http://www.tzitzikas.eu/",
+        "https://www.tzitzikas.eu/",
         "https://tzitzikas.eu/contact.php?l=en",
         "https://www.openstreetmap.org/node/5154917022"
       ]
