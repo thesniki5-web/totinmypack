@@ -405,28 +405,17 @@
     });
   }
 
-  function startMapAfterLoad() {
-    var begin = function () {
-      if ("requestIdleCallback" in window) {
-        requestIdleCallback(function () { whenMapReady(); }, { timeout: 2000 });
-      } else {
-        setTimeout(function () { whenMapReady(); }, 1);
-      }
-    };
-    if (document.readyState === "complete") begin();
-    else window.addEventListener("load", begin, { once: true });
-  }
-
-  // The map sits in or just under the first screen, so a 240px rootMargin
-  // started Leaflet and map tiles during LCP. Wait for load (and idle)
-  // before fetching them; "Show on the map" still calls whenMapReady() at once.
+  // Live LCP on these pages is an OpenStreetMap tile in the first screen.
+  // Waiting for window load delayed that tile (and, with eager card photos,
+  // waited on below-fold images too). Start Leaflet as soon as the map is
+  // visible; "Show on the map" still calls whenMapReady() at once.
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             io.disconnect();
-            startMapAfterLoad();
+            whenMapReady();
           }
         });
       },
@@ -434,6 +423,6 @@
     );
     io.observe(mount);
   } else {
-    startMapAfterLoad();
+    whenMapReady();
   }
 })();
