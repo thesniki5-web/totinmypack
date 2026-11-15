@@ -8,10 +8,12 @@
       "name": "Cameras",
       "items": [
         {
-          "name": "Canon EOS R7"
+          "name": "Canon EOS R7",
+          "asin": "B0B27KKNZV"
         },
         {
-          "name": "Sony FDR-AX53"
+          "name": "Sony FDR-AX53",
+          "asin": "B01950TCEU"
         }
       ]
     },
@@ -20,14 +22,17 @@
       "name": "Lenses",
       "items": [
         {
-          "name": "Canon RF24-105mm F4 L IS USM"
+          "name": "Canon RF24-105mm F4 L IS USM",
+          "asin": "B07H489XDQ"
         },
         {
           "name": "Sigma 16mm F1.4 DC DN | Contemporary",
-          "note": "Canon RF"
+          "note": "Canon RF",
+          "asin": "B0DNLPJQLW"
         },
         {
-          "name": "Canon RF24mm F1.8 MACRO IS STM"
+          "name": "Canon RF24mm F1.8 MACRO IS STM",
+          "asin": "B0B69QZ1DJ"
         },
         {
           "name": "Sigma 56mm F1.4 DC DN | Contemporary"
@@ -43,7 +48,8 @@
           "note": "with the Blackmagic Camera app"
         },
         {
-          "name": "Insta360 Flow 2 Pro"
+          "name": "Insta360 Flow 2 Pro",
+          "asin": "B0DT78Q347"
         }
       ]
     },
@@ -52,13 +58,16 @@
       "name": "Action/360/aerial",
       "items": [
         {
-          "name": "GoPro HERO12 Black"
+          "name": "GoPro HERO12 Black",
+          "asin": "B0CDDY8F9L"
         },
         {
-          "name": "Insta360 X3"
+          "name": "Insta360 X3",
+          "asin": "B0BDTJP8KK"
         },
         {
-          "name": "Insta360 ONE X2"
+          "name": "Insta360 ONE X2",
+          "asin": "B08M3B9754"
         },
         {
           "name": "DJI Mini 4 Pro"
@@ -86,11 +95,13 @@
       "items": [
         {
           "name": "Manfrotto PIXI EVO",
-          "note": "mini tripod"
+          "note": "mini tripod",
+          "asin": "B0149KBPB4"
         },
         {
           "name": "Anker Prime Power Bank",
-          "note": "20K, 220W"
+          "note": "20K, 220W",
+          "asin": "B0F66NH2ZX"
         }
       ]
     },
@@ -100,19 +111,23 @@
       "items": [
         {
           "name": "K&F Concept Nano-X Ultra Low Reflection CPL",
-          "note": "77mm"
+          "note": "77mm",
+          "asin": "B0CNSY4F66"
         },
         {
           "name": "K&F Concept Nano-X Soft GND8",
-          "note": "77mm"
+          "note": "77mm",
+          "asin": "B08YYC15GW"
         },
         {
           "name": "K&F Concept Nano-X ND1000",
-          "note": "77mm"
+          "note": "77mm",
+          "asin": "B01DLYIO7M"
         },
         {
           "name": "K&F Concept Nano-X PRO Variable ND2-32",
-          "note": "82mm"
+          "note": "82mm",
+          "asin": "B0BGH3Y891"
         }
       ]
     },

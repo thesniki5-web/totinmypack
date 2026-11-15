@@ -27,7 +27,7 @@ CHANNEL_META = (
 
 # Preview branches set this True so the built pages stay noindex, show a
 # banner, and omit GoatCounter. Production builds leave it False.
-PREVIEW = False
+PREVIEW = True
 PREVIEW_BANNER = (
     '<div class="draft-banner" role="status">'
     "<p><strong>Preview only.</strong> These changes are not on the live site yet.</p>"
@@ -1808,6 +1808,7 @@ def page_privacy() -> str:
         <p>GoatCounter is a privacy-friendly analytics service. Its own documentation says it does not track personal data: it does not store cookies, localStorage, or other data in your browser; it does not store IP addresses or a tracker ID; and it does not share information with third parties. It is not used here for advertising. You can read GoatCounter’s <a href="{goat_privacy}" rel="noopener noreferrer"{_goat_click_attrs(goat_privacy)}>privacy documentation</a>.</p>
         <p>Visit counts for this site are public and can be read without signing in.</p>
         <p>Pages on this site link out to YouTube, and to restaurant and hotel websites, when those addresses are listed.</p>
+        <p>The gear page has Amazon affiliate links.</p>
       </div>
     </div>
   </section>
@@ -1834,9 +1835,18 @@ def page_gear() -> str:
             name = item.get("name") or ""
             note = (item.get("note") or "").strip()
             note_html = f'<span class="trip-where-place">{esc(note)}</span>' if note else ""
-            rows.append(
-                f'<li><span class="trip-where-name">{esc(name)}</span>{note_html}</li>'
-            )
+            asin = (item.get("asin") or "").strip().upper()
+            if len(asin) == 10 and asin.isalnum():
+                href = f"https://www.amazon.com/dp/{asin}?tag=totinmypack-20"
+                name_html = (
+                    f'<a class="trip-where-name" href="{esc(href)}" '
+                    f'rel="sponsored nofollow noopener"'
+                    f'{_goat_click_attrs(href, kind="amazon", name=name, title=name)}>'
+                    f"{esc(name)}</a>"
+                )
+            else:
+                name_html = f'<span class="trip-where-name">{esc(name)}</span>'
+            rows.append(f"<li>{name_html}{note_html}</li>")
         if not rows:
             continue
         gid = esc(group.get("id") or "")
@@ -1856,6 +1866,7 @@ def page_gear() -> str:
     <header class="trip-simple-head">
       <h1>{esc(data["title"])}</h1>
       {intro_html}
+      <p class="gear-affiliate-disclosure">As an Amazon Associate I earn from qualifying purchases.</p>
     </header>
     {"".join(sections)}
   </article>

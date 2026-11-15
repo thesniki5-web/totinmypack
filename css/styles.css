@@ -1902,6 +1902,14 @@ body.gear-page .trip-simple > .trip-where:first-of-type {
   margin-top: 0;
 }
 
+body.gear-page .gear-affiliate-disclosure {
+  margin: 0.85rem 0 0;
+  max-width: 34rem;
+  color: var(--text-mute);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
 /* Official-site photos on restaurant and hotel cards */
 .restaurant-card.has-photo {
   padding: 0;
