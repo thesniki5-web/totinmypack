@@ -1688,6 +1688,14 @@ a.trip-stop-name:hover {
   font-size: 0.95rem;
   line-height: 1.45;
 }
+
+.trip-stop-desc {
+  margin: 0.55rem 0 0;
+  color: var(--text-dim);
+  font-size: 1.02rem;
+  line-height: 1.55;
+  max-width: 36rem;
+}
 .trip-where { margin: clamp(3.2rem, 8vw, 5rem) 0 0; }
 .trip-where h2 {
   font-family: var(--serif);
