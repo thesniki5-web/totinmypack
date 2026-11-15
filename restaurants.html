@@ -23,13 +23,11 @@
   <link rel="icon" href="assets/icon-512.png" type="image/png" sizes="512x512">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180">
   <link rel="shortcut icon" href="favicon.ico">
+  <link rel="preload" as="image" href="assets/maps/restaurants.webp" type="image/webp" fetchpriority="high">
   <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="preconnect" href="https://unpkg.com" crossorigin>
-  <link rel="preconnect" href="https://tile.openstreetmap.org">
-  <link rel="preload" as="style" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=">
-  <link rel="preload" as="script" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=">
+  
 </head>
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
@@ -83,9 +81,7 @@
         </div>
       </div>
       <div class="trip-map-frame restaurant-map-frame">
-        <div id="restaurant-map" class="trip-map" role="region" aria-label="Map of restaurants">
-          <p class="trip-map-placeholder">The map loads when you scroll to it. The list is below.</p>
-        </div>
+        <div id="restaurant-map" class="trip-map has-poster" role="region" aria-label="Map of restaurants"><img class="trip-map-poster" src="assets/maps/restaurants.webp" width="740" height="704" alt="" fetchpriority="high"><p class="trip-map-static-attrib">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" aria-label="OpenStreetMap copyright" data-goatcounter-click="out: openstreetmap.org/copyright" data-goatcounter-title="OpenStreetMap copyright">OpenStreetMap</a> contributors</p><p class="trip-map-placeholder">The map loads when you scroll to it. The list is below.</p></div>
       </div>
       <p class="map-attrib">Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer" data-goatcounter-click="out: openstreetmap.org/copyright" data-goatcounter-title="out: openstreetmap.org/copyright">OpenStreetMap</a></p>
     </div>

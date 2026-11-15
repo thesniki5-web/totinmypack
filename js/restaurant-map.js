@@ -134,11 +134,24 @@
       return;
     }
 
-    mount.innerHTML = "";
+    var hasPoster = !!mount.querySelector(".trip-map-poster");
+    if (!hasPoster) {
+      mount.innerHTML = "";
+    }
     var mapDiv = document.createElement("div");
     mapDiv.className = "trip-map-canvas restaurant-map-canvas";
     mapDiv.setAttribute("role", "presentation");
+    if (hasPoster) mapDiv.style.opacity = "0";
     mount.appendChild(mapDiv);
+
+    var revealed = false;
+    function revealLive() {
+      if (revealed) return;
+      revealed = true;
+      mapDiv.style.opacity = "1";
+      mount.classList.add("is-live");
+      mount.classList.remove("has-poster");
+    }
 
     Promise.all([
       loadCss(leafletCss, leafletIntegrityCss),
@@ -149,11 +162,12 @@
         scrollWheelZoom: false,
         attributionControl: true
       });
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      var tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(map);
+      window.setTimeout(revealLive, 4000);
 
       var bounds = [];
       var markers = {};
@@ -250,6 +264,23 @@
         ];
         fitOpts.maxZoom = 4;
         map.fitBounds(empty, fitOpts);
+      }
+
+      function revealWhenTilesReady() {
+        if (tiles.isLoading && tiles.isLoading()) {
+          tiles.once("load", function () {
+            map.invalidateSize({ animate: false });
+            revealLive();
+          });
+        } else {
+          map.invalidateSize({ animate: false });
+          revealLive();
+        }
+      }
+      if (window.requestAnimationFrame) {
+        requestAnimationFrame(revealWhenTilesReady);
+      } else {
+        setTimeout(revealWhenTilesReady, 0);
       }
 
       var appliedMarkerSize = 0;
@@ -397,31 +428,66 @@
         updateMarkerSizes();
       }, 250);
 
-      if (readyResolve) readyResolve(showRestaurant);
+      if (readyResolve) {
+        readyResolve(function (id) {
+          revealLive();
+          showRestaurant(id);
+        });
+      }
     }).catch(function () {
-      mount.innerHTML =
-        '<p class="trip-map-fallback">The map could not be loaded. The list is below.</p>';
+      if (mapDiv.parentNode) mapDiv.parentNode.removeChild(mapDiv);
+      // Keep the static first-view if Leaflet fails to load.
+      if (!mount.querySelector(".trip-map-poster")) {
+        mount.innerHTML =
+          '<p class="trip-map-fallback">The map could not be loaded. The list is below.</p>';
+      }
       if (readyResolve) readyResolve(function () {});
     });
   }
 
-  // Live LCP on these pages is an OpenStreetMap tile in the first screen.
-  // Waiting for window load delayed that tile (and, with eager card photos,
-  // waited on below-fold images too). Start Leaflet as soon as the map is
-  // visible; "Show on the map" still calls whenMapReady() at once.
+  // A static first-view poster is the LCP image. Start Leaflet after the
+  // first paint (and idle) so OSM tiles do not compete with it. "Show on
+  // the map" still calls whenMapReady() at once.
+  function startMapAfterFirstPaint() {
+    var kick = function () {
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(function () { whenMapReady(); }, { timeout: 2000 });
+      } else {
+        setTimeout(function () { whenMapReady(); }, 1);
+      }
+    };
+    var afterPaint = function () {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(kick);
+      });
+    };
+    var poster = mount.querySelector(".trip-map-poster");
+    if (poster && !poster.complete) {
+      poster.addEventListener("load", afterPaint, { once: true });
+      poster.addEventListener("error", afterPaint, { once: true });
+    } else {
+      afterPaint();
+    }
+  }
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             io.disconnect();
-            whenMapReady();
+            if (mount.querySelector(".trip-map-poster")) {
+              startMapAfterFirstPaint();
+            } else {
+              whenMapReady();
+            }
           }
         });
       },
       { rootMargin: "0px" }
     );
     io.observe(mount);
+  } else if (mount.querySelector(".trip-map-poster")) {
+    startMapAfterFirstPaint();
   } else {
     whenMapReady();
   }
