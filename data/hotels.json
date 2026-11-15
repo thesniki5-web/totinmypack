@@ -20,7 +20,11 @@
       ],
       "location_note": "",
       "teddy_note": "",
-      "visited": ""
+      "visited": "",
+      "photo": "places/bar-harbor-inn-bar-harbor.webp",
+      "photo_domain": "barharborinn.com",
+      "photo_width": 800,
+      "photo_height": 600
     },
     {
       "id": "nonantum-resort-kennebunkport",
@@ -39,7 +43,11 @@
       ],
       "location_note": "",
       "teddy_note": "",
-      "visited": ""
+      "visited": "",
+      "photo": "places/nonantum-resort-kennebunkport.webp",
+      "photo_domain": "nonantumresort.com",
+      "photo_width": 800,
+      "photo_height": 600
     },
     {
       "id": "the-viewpoint-york",
@@ -59,7 +67,11 @@
       ],
       "location_note": "",
       "teddy_note": "",
-      "visited": ""
+      "visited": "",
+      "photo": "places/the-viewpoint-york.webp",
+      "photo_domain": "viewpointhotel.com",
+      "photo_width": 800,
+      "photo_height": 420
     },
     {
       "id": "hotel-phillips-kansas-city",
@@ -98,7 +110,11 @@
       ],
       "location_note": "",
       "teddy_note": "",
-      "visited": ""
+      "visited": "",
+      "photo": "places/mountain-view-grand-whitefield.webp",
+      "photo_domain": "mountainviewgrand.com",
+      "photo_width": 640,
+      "photo_height": 471
     },
     {
       "id": "colcord-hotel-oklahoma-city",
@@ -117,7 +133,11 @@
       ],
       "location_note": "",
       "teddy_note": "",
-      "visited": ""
+      "visited": "",
+      "photo": "places/colcord-hotel-oklahoma-city.webp",
+      "photo_domain": "colcordhotel.com",
+      "photo_width": 800,
+      "photo_height": 356
     },
     {
       "id": "tulsa-club-hotel-tulsa",
@@ -137,7 +157,11 @@
       ],
       "location_note": "",
       "teddy_note": "",
-      "visited": ""
+      "visited": "",
+      "photo": "places/tulsa-club-hotel-tulsa.webp",
+      "photo_domain": "tulsaclub.com",
+      "photo_width": 768,
+      "photo_height": 512
     },
     {
       "id": "the-sinclair-fort-worth",
@@ -157,7 +181,11 @@
       ],
       "location_note": "",
       "teddy_note": "",
-      "visited": ""
+      "visited": "",
+      "photo": "places/the-sinclair-fort-worth.webp",
+      "photo_domain": "thesinclairhotel.com",
+      "photo_width": 800,
+      "photo_height": 560
     },
     {
       "id": "the-jackson-woodstock",
@@ -177,7 +205,11 @@
       ],
       "location_note": "",
       "teddy_note": "",
-      "visited": ""
+      "visited": "",
+      "photo": "places/the-jackson-woodstock.webp",
+      "photo_domain": "jacksonwoodstock.com",
+      "photo_width": 376,
+      "photo_height": 610
     },
     {
       "id": "the-virginian-hotel-lynchburg",
@@ -197,7 +229,11 @@
       ],
       "location_note": "",
       "teddy_note": "",
-      "visited": ""
+      "visited": "",
+      "photo": "places/the-virginian-hotel-lynchburg.webp",
+      "photo_domain": "thevirginianhotel.com",
+      "photo_width": 800,
+      "photo_height": 533
     },
     {
       "id": "hilton-norfolk-the-main-norfolk",
@@ -216,7 +252,11 @@
       ],
       "location_note": "",
       "teddy_note": "",
-      "visited": ""
+      "visited": "",
+      "photo": "places/hilton-norfolk-the-main-norfolk.webp",
+      "photo_domain": "themainnorfolk.com",
+      "photo_width": 800,
+      "photo_height": 500
     },
     {
       "id": "hotel-roanoke-roanoke",
@@ -235,7 +275,11 @@
       ],
       "location_note": "",
       "teddy_note": "",
-      "visited": ""
+      "visited": "",
+      "photo": "places/hotel-roanoke-roanoke.webp",
+      "photo_domain": "hotelroanoke.com",
+      "photo_width": 800,
+      "photo_height": 480
     }
   ]
 }
