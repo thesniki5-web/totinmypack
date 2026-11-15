@@ -27,7 +27,7 @@ CHANNEL_META = (
 
 # Preview branches set this True so the built pages stay noindex, show a
 # banner, and omit GoatCounter. Production builds leave it False.
-PREVIEW = False
+PREVIEW = True
 PREVIEW_BANNER = (
     '<div class="draft-banner" role="status">'
     "<p><strong>Preview only.</strong> These changes are not on the live site yet.</p>"
@@ -415,7 +415,7 @@ def _goat_script() -> str:
     )
 
 
-def head(title: str, description: str, path: str, og_id: str, prefix: str, extra: str = "", og_logo: bool = False, robots: str | None = None, preconnect_yt: bool = True) -> str:
+def head(title: str, description: str, path: str, og_id: str, prefix: str, extra: str = "", og_logo: bool = False, robots: str | None = None, preconnect_yt: bool = True, early_extra: str = "") -> str:
     canon = SITE + path
     if og_logo or og_id == "logo":
         image = f"{SITE}/assets/og-image.jpg"
@@ -456,6 +456,7 @@ def head(title: str, description: str, path: str, og_id: str, prefix: str, extra
   <link rel="icon" href="{prefix}assets/icon-512.png" type="image/png" sizes="512x512">
   <link rel="apple-touch-icon" href="{prefix}assets/apple-touch-icon.png" sizes="180x180">
   <link rel="shortcut icon" href="{prefix}favicon.ico">
+  {early_extra}
   <link rel="preload" href="{prefix}assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="{prefix}assets/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
   {yt_preconnect}<link rel="stylesheet" href="{prefix}css/styles.css">
@@ -1379,9 +1380,17 @@ LEAFLET_CSS_INTEGRITY = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
 LEAFLET_JS_INTEGRITY = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
 
 
-def _map_head_hints() -> str:
-    # The live LCP on these pages is an OpenStreetMap tile, which is not in the
-    # HTML. Open connections (and start Leaflet) as early as possible.
+def _map_poster_hints(prefix: str, poster: str) -> str:
+    # LCP is a same-origin static first-view of the map. Preload that image
+    # and do not preload Leaflet, so the poster wins the first paint.
+    return (
+        f'<link rel="preload" as="image" href="{prefix}assets/maps/{poster}" '
+        f'type="image/webp" fetchpriority="high">'
+    )
+
+
+def _map_leaflet_hints() -> str:
+    # Used on hotels, where a static poster hurt the live 98 score.
     return (
         '<link rel="preconnect" href="https://unpkg.com" crossorigin>\n'
         '  <link rel="preconnect" href="https://tile.openstreetmap.org">\n'
@@ -1389,6 +1398,27 @@ def _map_head_hints() -> str:
         f'integrity="{LEAFLET_CSS_INTEGRITY}">\n'
         f'  <link rel="preload" as="script" href="{LEAFLET_JS}" crossorigin '
         f'integrity="{LEAFLET_JS_INTEGRITY}">'
+    )
+
+
+def _map_mount(map_id: str, label: str, poster: str, prefix: str) -> str:
+    attrib = (
+        '<p class="trip-map-static-attrib">'
+        "© "
+        + _external_link(
+            "https://www.openstreetmap.org/copyright",
+            "OpenStreetMap",
+            "OpenStreetMap copyright",
+        )
+        + " contributors</p>"
+    )
+    return (
+        f'<div id="{map_id}" class="trip-map has-poster" role="region" aria-label="{label}">'
+        f'<img class="trip-map-poster" src="{prefix}assets/maps/{poster}" '
+        f'width="740" height="704" alt="" fetchpriority="high">'
+        f"{attrib}"
+        '<p class="trip-map-placeholder">The map loads when you scroll to it. The list is below.</p>'
+        "</div>"
     )
 
 
@@ -1469,8 +1499,8 @@ def page_restaurants() -> str:
     extra_js = f'<script src="{prefix}js/restaurant-map.js" defer></script>'
     title = "Restaurants — Totin My Pack"
     desc = "Places we’ve eaten and liked along the way, from Greece and the United States. Each pin sits at the restaurant’s true location."
-    extra = _map_head_hints()
-    return f"""{head(title, desc, "/restaurants.html", "logo", prefix, extra=extra, og_logo=True, preconnect_yt=False)}
+    early = _map_poster_hints(prefix, "restaurants.webp")
+    return f"""{head(title, desc, "/restaurants.html", "logo", prefix, early_extra=early, og_logo=True, preconnect_yt=False)}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "restaurants")}
@@ -1496,9 +1526,7 @@ def page_restaurants() -> str:
         </div>
       </div>
       <div class="trip-map-frame restaurant-map-frame">
-        <div id="restaurant-map" class="trip-map" role="region" aria-label="Map of restaurants">
-          <p class="trip-map-placeholder">The map loads when you scroll to it. The list is below.</p>
-        </div>
+        {_map_mount("restaurant-map", "Map of restaurants", "restaurants.webp", prefix)}
       </div>
       <p class="map-attrib">Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer"{_goat_click_attrs("https://www.openstreetmap.org/copyright")}>OpenStreetMap</a></p>
     </div>
@@ -1594,7 +1622,7 @@ def page_hotels() -> str:
     extra_js = f'<script src="{prefix}js/restaurant-map.js" defer></script>'
     title = "Hotels — Totin My Pack"
     desc = "Places we’ve stayed and liked along the way, shown on the map at each stay’s true location when we have a precise point."
-    extra = _map_head_hints()
+    extra = _map_leaflet_hints()
     return f"""{head(title, desc, "/hotels.html", "logo", prefix, extra=extra, og_logo=True, preconnect_yt=False)}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
