@@ -1094,7 +1094,9 @@ def page_trip(slug: str) -> str:
         else:
             name_html = f'<span class="trip-stop-name">{esc(name)}</span>'
         place_html = f'<span class="trip-stop-place">{esc(place)}</span>' if place else ""
-        stops_html.append(f"<li><div>{name_html}{place_html}</div></li>")
+        desc = (stop.get("description") or "").strip()
+        desc_html = f'<p class="trip-stop-desc">{esc(desc)}</p>' if desc else ""
+        stops_html.append(f"<li><div>{name_html}{place_html}{desc_html}</div></li>")
 
     # add a route-line dot on each stop
     stops_html = [
