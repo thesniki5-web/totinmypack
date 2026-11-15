@@ -191,27 +191,102 @@ def thumb_srcset(
     )
 
 
+HERO_WIDTHS = (640, 960, 1280)
+HERO_WEBP_QUALITY = 60
+
+
+def _hero_ids() -> list[str]:
+    ids: list[str] = [HERO_ID, "3cFk5Tf7nOg", "p9PXuj51NJs", "2f-wKhlW_PE"]
+    ids.extend(d["hero"] for d in DESTINATIONS)
+    seen: set[str] = set()
+    out: list[str] = []
+    for vid in ids:
+        if vid and vid not in seen:
+            seen.add(vid)
+            out.append(vid)
+    return out
+
+
+def ensure_hero_images(vid: str | None = None) -> None:
+    """Write right-sized, more tightly compressed WebP heroes from the largest local thumb."""
+    from PIL import Image
+
+    out_dir = ROOT / "assets" / "heroes"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for v in ([vid] if vid else _hero_ids()):
+        src_widths = _local_thumb_widths(v)
+        if not src_widths:
+            continue
+        src_path = ROOT / "assets" / "thumbs" / f"{v}-{src_widths[-1]}.webp"
+        try:
+            im = Image.open(src_path)
+            if im.mode not in ("RGB", "RGBA"):
+                im = im.convert("RGB")
+        except OSError:
+            continue
+        src_w, src_h = im.size
+        for w in HERO_WIDTHS:
+            dest = out_dir / f"{v}-{w}.webp"
+            if dest.exists() and dest.stat().st_mtime >= src_path.stat().st_mtime and dest.stat().st_size > 0:
+                continue
+            if w == src_w:
+                frame = im
+            else:
+                h = max(1, round(src_h * w / src_w))
+                frame = im.resize((w, h), Image.Resampling.LANCZOS)
+            frame.save(dest, format="WEBP", quality=HERO_WEBP_QUALITY, method=6)
+
+
+def _hero_local_widths(vid: str) -> list[int]:
+    return [w for w in HERO_WIDTHS if (ROOT / "assets" / "heroes" / f"{vid}-{w}.webp").exists()]
+
+
+def _hero_srcset_attrs(vid: str, prefix: str, default_width: int = 960) -> str | None:
+    ensure_hero_images(vid)
+    widths = _hero_local_widths(vid)
+    folder = "heroes"
+    if not widths:
+        widths = _local_thumb_widths(vid)
+        folder = "thumbs"
+    if not widths:
+        return None
+    if default_width not in widths:
+        default_width = 960 if 960 in widths else widths[0]
+    src = f"{prefix}assets/{folder}/{vid}-{default_width}.webp"
+    srcset = ", ".join(f"{prefix}assets/{folder}/{vid}-{w}.webp {w}w" for w in widths)
+    height = round(default_width * 9 / 16)
+    return (
+        f'src="{src}" srcset="{srcset}" sizes="100vw" '
+        f'width="{default_width}" height="{height}"'
+    )
+
+
 def hero_img(vid: str, alt: str, prefix: str = "", style: str = "") -> str:
     style_attr = f" style=\"{style}\"" if style else ""
-    local = _thumb_srcset_attrs(vid, sizes="100vw", prefix=prefix, default_width=960)
+    local = _hero_srcset_attrs(vid, prefix=prefix)
     if local:
         return (
             f'<img {local} alt="{esc(alt)}" '
-            f'fetchpriority="high" decoding="async"{style_attr}>'
+            f'fetchpriority="high" loading="eager" decoding="async"{style_attr}>'
         )
     return (
         f'<img src="{thumb(vid)}" alt="{esc(alt)}" width="1280" height="720" '
-        f'fetchpriority="high" decoding="async"{style_attr}>'
+        f'fetchpriority="high" loading="eager" decoding="async"{style_attr}>'
     )
 
 
 def hero_preload(vid: str, prefix: str = "") -> str:
-    widths = _local_thumb_widths(vid)
+    ensure_hero_images(vid)
+    widths = _hero_local_widths(vid)
+    folder = "heroes"
+    if not widths:
+        widths = _local_thumb_widths(vid)
+        folder = "thumbs"
     if not widths:
         return ""
     default = 960 if 960 in widths else widths[0]
-    href = f"{prefix}assets/thumbs/{vid}-{default}.webp"
-    srcset = ", ".join(f"{prefix}assets/thumbs/{vid}-{w}.webp {w}w" for w in widths)
+    href = f"{prefix}assets/{folder}/{vid}-{default}.webp"
+    srcset = ", ".join(f"{prefix}assets/{folder}/{vid}-{w}.webp {w}w" for w in widths)
     return (
         f'<link rel="preload" as="image" href="{href}" type="image/webp" '
         f'imagesrcset="{srcset}" imagesizes="100vw" fetchpriority="high">'
@@ -661,7 +736,7 @@ def page_destinations_index() -> str:
 </a>"""
         )
     desc = "Browse Totin My Pack travel films by place: Greece, Texas, Dallas, Route 66, the Plains, the Southeast, California, the Southwest, and Berlin."
-    return f"""{head("Destinations — Totin My Pack", desc, "/destinations/", "logo", prefix, og_logo=True)}
+    return f"""{head("Destinations — Totin My Pack", desc, "/destinations/", "logo", prefix, og_logo=True, early_extra=hero_preload("3cFk5Tf7nOg", prefix))}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "dest")}
@@ -702,7 +777,9 @@ def page_destination(d: dict) -> str:
     films = [v for v in BY_ID.values() if key in v["groups"] and v["kind"] == "film"]
     shorts = [v for v in BY_ID.values() if key in v["groups"] and v["kind"] == "short"]
     # Keep plan order: films first as listed in VIDEOS
-    film_cards = "".join(film_card(v, featured=(i == 0), lazy=(i != 0), prefix=prefix) for i, v in enumerate(films))
+    # The first film card sits below the page hero, so do not mark it featured:
+    # fetchpriority=high and eager loading would compete with the LCP image.
+    film_cards = "".join(film_card(v, featured=False, lazy=True, prefix=prefix) for v in films)
     short_cards = "".join(film_card(v, lazy=True, prefix=prefix) for v in shorts)
     shorts_block = ""
     if shorts:
@@ -728,7 +805,7 @@ def page_destination(d: dict) -> str:
         )
     title = f"{d['name']} — Totin My Pack"
     desc = d.get("meta") or d["blurb"]
-    return f"""{head(title, desc, f"/destinations/{d['slug']}.html", d["og"], prefix)}
+    return f"""{head(title, desc, f"/destinations/{d['slug']}.html", d["og"], prefix, early_extra=hero_preload(d["hero"], prefix))}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "dest-"+d["slug"])}
@@ -1850,6 +1927,7 @@ def page_404() -> str:
 
 
 def main() -> None:
+    ensure_hero_images()
     write(ROOT / "index.html", page_home())
     write(ROOT / "destinations" / "index.html", page_destinations_index())
     for d in DESTINATIONS:
