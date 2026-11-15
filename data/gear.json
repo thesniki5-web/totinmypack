@@ -1,0 +1,130 @@
+{
+  "title": "What I film with",
+  "intro": "The gear I use to film Totin My Pack.",
+  "description": "The gear I use to film Totin My Pack: cameras, lenses, a phone and gimbal, action and aerial cameras, audio, support and power, filters, and DaVinci Resolve.",
+  "groups": [
+    {
+      "id": "cameras",
+      "name": "Cameras",
+      "items": [
+        {
+          "name": "Canon EOS R7"
+        },
+        {
+          "name": "Sony FDR-AX53"
+        }
+      ]
+    },
+    {
+      "id": "lenses",
+      "name": "Lenses",
+      "items": [
+        {
+          "name": "Canon RF24-105mm F4 L IS USM"
+        },
+        {
+          "name": "Sigma 16mm F1.4 DC DN | Contemporary",
+          "note": "Canon RF"
+        },
+        {
+          "name": "Canon RF24mm F1.8 MACRO IS STM"
+        },
+        {
+          "name": "Sigma 56mm F1.4 DC DN | Contemporary"
+        }
+      ]
+    },
+    {
+      "id": "phone-gimbal",
+      "name": "Phone & gimbal",
+      "items": [
+        {
+          "name": "Apple iPhone 17 Pro Max",
+          "note": "with the Blackmagic Camera app"
+        },
+        {
+          "name": "Insta360 Flow 2 Pro"
+        }
+      ]
+    },
+    {
+      "id": "action-360-aerial",
+      "name": "Action/360/aerial",
+      "items": [
+        {
+          "name": "GoPro HERO12 Black"
+        },
+        {
+          "name": "Insta360 X3"
+        },
+        {
+          "name": "Insta360 ONE X2"
+        },
+        {
+          "name": "DJI Mini 4 Pro"
+        },
+        {
+          "name": "DJI Air 3S"
+        },
+        {
+          "name": "DJI Mavic Air 2"
+        }
+      ]
+    },
+    {
+      "id": "audio",
+      "name": "Audio",
+      "items": [
+        {
+          "name": "Zoom H1n"
+        }
+      ]
+    },
+    {
+      "id": "support-power",
+      "name": "Support & power",
+      "items": [
+        {
+          "name": "Manfrotto PIXI EVO",
+          "note": "mini tripod"
+        },
+        {
+          "name": "Anker Prime Power Bank",
+          "note": "20K, 220W"
+        }
+      ]
+    },
+    {
+      "id": "filters",
+      "name": "Filters",
+      "items": [
+        {
+          "name": "K&F Concept Nano-X Ultra Low Reflection CPL",
+          "note": "77mm"
+        },
+        {
+          "name": "K&F Concept Nano-X Soft GND8",
+          "note": "77mm"
+        },
+        {
+          "name": "K&F Concept Nano-X ND1000",
+          "note": "77mm"
+        },
+        {
+          "name": "K&F Concept Nano-X PRO Variable ND2-32",
+          "note": "82mm"
+        }
+      ]
+    },
+    {
+      "id": "editing",
+      "name": "Editing",
+      "items": [
+        {
+          "name": "DaVinci Resolve",
+          "note": "free edition, the main editor"
+        }
+      ]
+    }
+  ]
+}

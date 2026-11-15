@@ -1772,3 +1772,8 @@ a.trip-where-name:hover {
   .trip-stops li::before { left: -2.7rem; width: 1.6rem; font-size: 1.05rem; }
   .trip-stop-dot { left: -0.83rem; }
 }
+
+/* Gear page: first group sits closer to the intro than a trip "where" block. */
+body.gear-page .trip-simple > .trip-where:first-of-type {
+  margin-top: 0;
+}

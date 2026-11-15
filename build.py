@@ -314,6 +314,9 @@ def nav(prefix: str, current: str) -> str:
         f'          <li><a href="{prefix}destinations/{d["slug"]}.html"{cur("dest-"+d["slug"])}>{esc(d["name"])}</a></li>'
         for d in DESTINATIONS
     )
+    gear_nav = (
+        f'<li><a href="{prefix}gear.html"{cur("gear")}>What I film with</a></li>'
+    )
     html = f"""
 <header class="site-header">
   <div class="header-inner">
@@ -340,6 +343,7 @@ def nav(prefix: str, current: str) -> str:
         <li><a href="{prefix}restaurants.html"{cur("restaurants")}>Restaurants</a></li>
         <li><a href="{prefix}hotels.html"{cur("hotels")}>Hotels</a></li>
         <li><a href="{prefix}about.html"{cur("about")}>About</a></li>
+        {gear_nav}
       </ul>
       <a class="btn btn-gold nav-cta" href="{CHANNEL}" rel="noopener noreferrer"{_goat_click_attrs(CHANNEL)}>Subscribe on YouTube</a>
     </nav>
@@ -357,6 +361,9 @@ def nav(prefix: str, current: str) -> str:
 
 
 def footer(prefix: str, extra_js: str = "") -> str:
+    gear_footer = (
+        f'<a href="{prefix}gear.html">What I film with</a>'
+    )
     return f"""
 <footer class="site-footer">
   <div class="footer-inner">
@@ -375,6 +382,7 @@ def footer(prefix: str, extra_js: str = "") -> str:
       <a href="{prefix}restaurants.html">Restaurants</a>
       <a href="{prefix}hotels.html">Hotels</a>
       <a href="{prefix}about.html">About</a>
+      {gear_footer}
       <a href="{prefix}privacy.html">Privacy</a>
       <a href="{CHANNEL}" rel="noopener noreferrer"{_goat_click_attrs(CHANNEL)}>YouTube</a>
     </nav>
@@ -1619,7 +1627,56 @@ def page_privacy() -> str:
 </html>"""
 
 
+def _gear_data() -> dict:
+    path = ROOT / "data" / "gear.json"
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def page_gear() -> str:
+    prefix = ""
+    data = _gear_data()
+    intro = (data.get("intro") or "").strip()
+    intro_html = f'<p class="trip-simple-intro">{esc(intro)}</p>' if intro else ""
+    sections = []
+    for group in data.get("groups") or []:
+        rows = []
+        for item in group.get("items") or []:
+            name = item.get("name") or ""
+            note = (item.get("note") or "").strip()
+            note_html = f'<span class="trip-where-place">{esc(note)}</span>' if note else ""
+            rows.append(
+                f'<li><span class="trip-where-name">{esc(name)}</span>{note_html}</li>'
+            )
+        if not rows:
+            continue
+        gid = esc(group.get("id") or "")
+        heading = esc(group.get("name") or "")
+        sections.append(
+            f'<section class="trip-where" aria-labelledby="gear-{gid}">'
+            f'<h2 id="gear-{gid}">{heading}</h2>'
+            f'<ul>{"".join(rows)}</ul></section>'
+        )
+    desc = data.get("description") or data.get("intro") or data["title"]
+    return f"""{head(data["title"] + " — Totin My Pack", desc, "/gear.html", "logo", prefix, og_logo=True)}
+<body class="trip-simple-page gear-page">
+<a class="skip-link" href="#content">Skip to content</a>
+{nav(prefix, "gear")}
+<main id="content">
+  <article class="trip-simple">
+    <header class="trip-simple-head">
+      <h1>{esc(data["title"])}</h1>
+      {intro_html}
+    </header>
+    {"".join(sections)}
+  </article>
+</main>
+{footer(prefix)}
+</body>
+</html>"""
+
+
 def robots_and_sitemap() -> None:
+
 
     pages = [
         "/",
@@ -1630,6 +1687,7 @@ def robots_and_sitemap() -> None:
         "/hotels.html",
         "/about.html",
         "/privacy.html",
+        "/gear.html",
         "/trips/",
     ] + [f"/trips/{slug}.html" for slug in _trip_slugs()] + [
         f"/destinations/{d['slug']}.html" for d in DESTINATIONS
@@ -1687,6 +1745,7 @@ def main() -> None:
     write(ROOT / "shorts.html", page_shorts())
     write(ROOT / "about.html", page_about())
     write(ROOT / "privacy.html", page_privacy())
+    write(ROOT / "gear.html", page_gear())
     write(ROOT / "restaurants.html", page_restaurants())
     write(ROOT / "hotels.html", page_hotels())
     write(ROOT / "404.html", page_404())
