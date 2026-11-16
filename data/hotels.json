@@ -366,7 +366,11 @@
       "location_note": "",
       "teddy_note": "",
       "visited": "",
-      "expedia": "https://www.expedia.com/affiliates/thessaloniki-hotels-mediterranean-palace-hotel.iAoAtv6"
+      "expedia": "https://www.expedia.com/affiliates/thessaloniki-hotels-mediterranean-palace-hotel.iAoAtv6",
+      "photo": "places/mediterranean-palace-thessaloniki.webp",
+      "photo_alt": "Mediterranean Palace hotel in Thessaloniki at night",
+      "photo_width": 588,
+      "photo_height": 327
     }
   ]
 }
