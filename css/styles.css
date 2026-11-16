@@ -267,6 +267,7 @@ body.trip-simple-page:has(.preview-topbar) .site-header { top: 0; }
   border: 0;
   padding: 0.35rem 0;
   cursor: pointer;
+  white-space: nowrap;
 }
 .site-nav a:hover,
 .site-nav .nav-label:hover,
@@ -356,7 +357,7 @@ body.trip-simple-page:has(.preview-topbar) .site-header { top: 0; }
 }
 .nav-cta { margin-left: 0.5rem; padding: 0.45rem 0.95rem; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em; }
 
-@media (max-width: 880px) {
+@media (max-width: 1024px) {
   .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
   .site-nav {
     position: fixed;
@@ -455,12 +456,12 @@ body.trip-simple-page:has(.preview-topbar) .site-header { top: 0; }
   height: 100%;
   object-fit: cover;
   object-position: 100% 78%;
-  transform: scale(1.72);
+  transform: scale(1);
   animation: heroDrift 28s var(--ease) alternate infinite;
 }
 @keyframes heroDrift {
-  from { transform: scale(1.72) translate3d(0, 0, 0); }
-  to { transform: scale(1.8) translate3d(-0.6%, 0.8%, 0); }
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to { transform: scale(1.06) translate3d(-0.6%, 0.8%, 0); }
 }
 .hero-shade {
   position: absolute;
@@ -528,7 +529,7 @@ body.trip-simple-page:has(.preview-topbar) .site-header { top: 0; }
 }
 .page-hero .hero-media img {
   object-position: 100% 58%;
-  transform: scale(1.8);
+  transform: scale(1);
   animation: heroDrift 30s var(--ease) alternate infinite;
 }
 .page-hero .hero-copy { padding-bottom: clamp(2.2rem, 6vh, 4rem); }
@@ -594,6 +595,11 @@ main { display: block; }
 }
 .link-arrow:hover { color: var(--gold-soft); }
 .link-arrow::after { content: " →"; }
+
+.home-gear-line {
+  margin: 1.25rem 0 0;
+  font-size: 0.95rem;
+}
 
 /* ---------- Film cards ---------- */
 .film-grid {
@@ -1029,7 +1035,7 @@ main { display: block; }
   .hero-media img,
   .page-hero .hero-media img {
     animation: none;
-    transform: scale(1.35);
+    transform: scale(1);
   }
   .thumb img,
   .dest-card img { transition: none; }

@@ -412,6 +412,7 @@ def nav(prefix: str, current: str) -> str:
             <li><a href="{prefix}hotels.html"{cur("hotels")}>Hotels</a></li>
           </ul>
         </li>
+        <li><a href="{prefix}gear.html"{cur("gear")}>Gear</a></li>
         <li><a href="{prefix}about.html"{cur("about")}>About</a></li>
       </ul>
       <a class="btn btn-gold nav-cta" href="{CHANNEL}" rel="noopener noreferrer"{_goat_click_attrs(CHANNEL)}>Subscribe on YouTube</a>
@@ -668,6 +669,7 @@ def page_home() -> str:
       <div class="region-grid">
         {''.join(dest_cards)}
       </div>
+      <p class="home-gear-line"><a class="link-arrow" href="gear.html">What I film with</a></p>
     </div>
   </section>
 
@@ -1721,8 +1723,8 @@ def page_hotels() -> str:
     extra_js = f'<script src="{prefix}js/restaurant-map.js" defer></script>'
     title = "Hotels — Totin My Pack"
     desc = "Places we’ve stayed and liked along the way, shown on the map at each stay’s true location when we have a precise point."
-    extra = _map_leaflet_hints()
-    return f"""{head(title, desc, "/hotels.html", "logo", prefix, extra=extra, og_logo=True, preconnect_yt=False)}
+    early = _map_poster_hints(prefix, "hotels.webp")
+    return f"""{head(title, desc, "/hotels.html", "logo", prefix, early_extra=early, og_logo=True, preconnect_yt=False)}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "hotels")}
@@ -1748,9 +1750,7 @@ def page_hotels() -> str:
         </div>
       </div>
       <div class="trip-map-frame restaurant-map-frame">
-        <div id="hotel-map" class="trip-map" role="region" aria-label="Map of hotels">
-          <p class="trip-map-placeholder">The map loads when you scroll to it. The list is below.</p>
-        </div>
+        {_map_mount("hotel-map", "Map of hotels", "hotels.webp", prefix)}
       </div>
       <p class="map-attrib">Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer"{_goat_click_attrs("https://www.openstreetmap.org/copyright")}>OpenStreetMap</a></p>
     </div>
