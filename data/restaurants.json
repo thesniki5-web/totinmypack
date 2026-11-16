@@ -2022,6 +2022,30 @@
       "photo_domain": "tzitzikas.eu",
       "photo_width": 800,
       "photo_height": 450
+    },
+    {
+      "id": "mouragio-gerakini",
+      "name": "Gerakini Mouragio",
+      "listed_as": "Gerakini Mouragio",
+      "city": "Gerakini",
+      "region": "Halkidiki",
+      "country": "Greece",
+      "lat": 40.2697474,
+      "lng": 23.4479889,
+      "cuisine": "Traditional tavern",
+      "address": "Gerakini 631 00, Halkidiki, Greece",
+      "website": "https://gerakini-mouragio.gr/new/en/home/",
+      "status": "open",
+      "teddy_note": "",
+      "visited": "",
+      "video_id": "",
+      "start_seconds": null,
+      "location_note": "Open April 1 to October 31.",
+      "sources": [
+        "https://gerakini-mouragio.gr/new/en/home/",
+        "https://gerakini-mouragio.gr/new/en/our-history/",
+        "https://www.openstreetmap.org/node/3051740141"
+      ]
     }
   ]
 }
