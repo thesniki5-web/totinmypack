@@ -286,7 +286,7 @@ body.trip-simple-page:has(.preview-topbar) .site-header { top: 0; }
 .site-nav .subnav {
   display: none;
   position: absolute;
-  top: calc(100% + 0.55rem);
+  top: calc(100% + 0.45rem);
   left: 50%;
   transform: translateX(-30%);
   min-width: 17.5rem;
@@ -302,9 +302,29 @@ body.trip-simple-page:has(.preview-topbar) .site-header { top: 0; }
   align-items: stretch;
   gap: 0;
 }
+/* Invisible hover bridge so the pointer can travel from the trigger to the items. */
+.site-nav .subnav::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 0.75rem;
+}
 .site-nav .has-sub:hover > .subnav,
+.site-nav .has-sub:focus-within > .subnav,
 .site-nav .has-sub.is-open > .subnav {
   display: flex;
+}
+@media (min-width: 1025px) {
+  /* With JS, hover and keyboard drive .is-open so click and Escape can close while the pointer or focus stays on the trigger. */
+  html.js .site-nav .has-sub:hover > .subnav,
+  html.js .site-nav .has-sub:focus-within > .subnav {
+    display: none;
+  }
+  html.js .site-nav .has-sub.is-open > .subnav {
+    display: flex;
+  }
 }
 .site-nav .subnav a {
   display: block;
