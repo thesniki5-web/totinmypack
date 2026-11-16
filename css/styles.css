@@ -267,6 +267,7 @@ body.trip-simple-page:has(.preview-topbar) .site-header { top: 0; }
   border: 0;
   padding: 0.35rem 0;
   cursor: pointer;
+  white-space: nowrap;
 }
 .site-nav a:hover,
 .site-nav .nav-label:hover,
@@ -356,7 +357,7 @@ body.trip-simple-page:has(.preview-topbar) .site-header { top: 0; }
 }
 .nav-cta { margin-left: 0.5rem; padding: 0.45rem 0.95rem; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em; }
 
-@media (max-width: 880px) {
+@media (max-width: 1024px) {
   .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
   .site-nav {
     position: fixed;
@@ -594,6 +595,11 @@ main { display: block; }
 }
 .link-arrow:hover { color: var(--gold-soft); }
 .link-arrow::after { content: " →"; }
+
+.home-gear-line {
+  margin: 1.25rem 0 0;
+  font-size: 0.95rem;
+}
 
 /* ---------- Film cards ---------- */
 .film-grid {

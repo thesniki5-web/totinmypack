@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hotels — Totin My Pack</title>
   <meta name="description" content="Places we’ve stayed and liked along the way, shown on the map at each stay’s true location when we have a precise point.">
+  <meta name="robots" content="noindex">
   <link rel="canonical" href="https://totinmypack.com/hotels.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Totin My Pack">
@@ -23,18 +24,16 @@
   <link rel="icon" href="assets/icon-512.png" type="image/png" sizes="512x512">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180">
   <link rel="shortcut icon" href="favicon.ico">
-  
+  <link rel="preload" as="image" href="assets/maps/hotels.webp" type="image/webp" fetchpriority="high">
   <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="preconnect" href="https://unpkg.com" crossorigin>
-  <link rel="preconnect" href="https://tile.openstreetmap.org">
-  <link rel="preload" as="style" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=">
-  <link rel="preload" as="script" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=">
+  
 </head>
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
 
+<div class="preview-topbar" role="status"><p><strong>Preview only.</strong> These changes are not on the live site yet.</p></div>
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="index.html">
@@ -56,6 +55,7 @@
             <li><a href="hotels.html" aria-current="page">Hotels</a></li>
           </ul>
         </li>
+        <li><a href="gear.html">Gear</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
       <a class="btn btn-gold nav-cta" href="https://youtube.com/@totinmypack" rel="noopener noreferrer" data-goatcounter-click="out: youtube.com/@totinmypack" data-goatcounter-title="out: youtube.com/@totinmypack">Subscribe on YouTube</a>
@@ -84,9 +84,7 @@
         </div>
       </div>
       <div class="trip-map-frame restaurant-map-frame">
-        <div id="hotel-map" class="trip-map" role="region" aria-label="Map of hotels">
-          <p class="trip-map-placeholder">The map loads when you scroll to it. The list is below.</p>
-        </div>
+        <div id="hotel-map" class="trip-map has-poster" role="region" aria-label="Map of hotels"><img class="trip-map-poster" src="assets/maps/hotels.webp" width="740" height="704" alt="" fetchpriority="high"><p class="trip-map-static-attrib">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" aria-label="OpenStreetMap copyright" data-goatcounter-click="out: openstreetmap.org/copyright" data-goatcounter-title="OpenStreetMap copyright">OpenStreetMap</a> contributors</p><p class="trip-map-placeholder">The map loads when you scroll to it. The list is below.</p></div>
       </div>
       <p class="map-attrib">Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer" data-goatcounter-click="out: openstreetmap.org/copyright" data-goatcounter-title="out: openstreetmap.org/copyright">OpenStreetMap</a></p>
     </div>
@@ -174,7 +172,6 @@
 </dialog>
 <script src="js/main.js" defer></script>
 <script src="js/restaurant-map.js" defer></script>
-<script data-goatcounter="https://totinmypack.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script type="application/json" id="hotel-map-data">{"default_bounds": [[24.5, -125.0], [49.4, 28.3]], "maxZoom": 12, "hotels": [{"id": "bar-harbor-inn-bar-harbor", "name": "Bar Harbor Inn", "place": "Bar Harbor, Maine, United States", "lat": 44.39065, "lng": -68.203598, "address": "1 Newport Drive, Bar Harbor, ME 04609", "website": "https://barharborinn.com/", "teddy_note": "", "number": 1}, {"id": "nonantum-resort-kennebunkport", "name": "Nonantum Resort", "place": "Kennebunkport, Maine, United States", "lat": 43.3525267, "lng": -70.4728114, "address": "95 Ocean Avenue, Kennebunkport, ME 04046", "website": "https://www.nonantumresort.com/", "teddy_note": "", "number": 2}, {"id": "the-viewpoint-york", "name": "The Viewpoint", "place": "York, Maine, United States", "lat": 43.1683718, "lng": -70.5951432, "address": "229 Nubble Road, York, ME 03909", "website": "https://www.viewpointhotel.com/", "teddy_note": "", "number": 3}, {"id": "hotel-phillips-kansas-city", "name": "Hotel Phillips", "place": "Kansas City, Missouri, United States", "lat": 39.1001445, "lng": -94.5846686, "address": "106 W 12th Street, Kansas City, MO 64105", "website": "https://www.hilton.com/en/hotels/mkccuqq-hotel-phillips-kansas-city/", "teddy_note": "", "number": 4}, {"id": "mountain-view-grand-whitefield", "name": "Mountain View Grand Resort & Spa", "place": "Whitefield, New Hampshire, United States", "lat": 44.39794, "lng": -71.5888, "address": "101 Mountain View Road, Whitefield, NH 03598", "website": "https://www.mountainviewgrand.com/", "teddy_note": "", "number": 5}, {"id": "colcord-hotel-oklahoma-city", "name": "Colcord Hotel", "place": "Oklahoma City, Oklahoma, United States", "lat": 35.466795, "lng": -97.5166443, "address": "15 N Robinson Ave, Oklahoma City, OK 73102", "website": "https://www.colcordhotel.com/", "teddy_note": "", "number": 6}, {"id": "tulsa-club-hotel-tulsa", "name": "Tulsa Club Hotel", "place": "Tulsa, Oklahoma, United States", "lat": 36.1523784, "lng": -95.9881447, "address": "115 E. 5th St., Tulsa, OK 74103", "website": "https://tulsaclub.com/", "teddy_note": "", "number": 7}, {"id": "the-sinclair-fort-worth", "name": "The Sinclair, Autograph Collection", "place": "Fort Worth, Texas, United States", "lat": 32.7542975, "lng": -97.331103, "address": "512 Main Street, Fort Worth, TX 76102", "website": "https://www.thesinclairhotel.com/", "teddy_note": "", "number": 8}, {"id": "the-jackson-woodstock", "name": "The Jackson", "place": "Woodstock, Vermont, United States", "lat": 43.6122692, "lng": -72.5494575, "address": "43 Senior Lane, Woodstock, VT 05091", "website": "https://jacksonwoodstock.com/", "teddy_note": "", "number": 9}, {"id": "the-virginian-hotel-lynchburg", "name": "The Virginian Hotel", "place": "Lynchburg, Virginia, United States", "lat": 37.4155486, "lng": -79.1440471, "address": "712 Church Street, Lynchburg, VA 24504", "website": "https://thevirginianhotel.com/", "teddy_note": "", "number": 10}, {"id": "hilton-norfolk-the-main-norfolk", "name": "Hilton Norfolk The Main", "place": "Norfolk, Virginia, United States", "lat": 36.846448, "lng": -76.291858, "address": "100 E. Main Street, Norfolk, VA 23510", "website": "https://www.themainnorfolk.com/", "teddy_note": "", "number": 11}, {"id": "hotel-roanoke-roanoke", "name": "The Hotel Roanoke & Conference Center", "place": "Roanoke, Virginia, United States", "lat": 37.2746891, "lng": -79.9396514, "address": "110 Shenandoah Ave NW, Roanoke, VA 24016", "website": "https://www.hotelroanoke.com/", "teddy_note": "", "number": 12}]}</script>
 </body>
 </html>
