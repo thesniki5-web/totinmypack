@@ -27,7 +27,7 @@ CHANNEL_META = (
 
 # Preview branches set this True so the built pages stay noindex, show a
 # banner, and omit GoatCounter. Production builds leave it False.
-PREVIEW = False
+PREVIEW = True
 PREVIEW_BANNER = (
     '<div class="draft-banner" role="status">'
     "<p><strong>Preview only.</strong> These changes are not on the live site yet.</p>"
@@ -1397,6 +1397,19 @@ def _restaurant_card(r: dict, index: int, prefix: str, *, link_kind: str = "rest
             f'aria-label="Show on the map: {esc(name)}">'
             "Show on the map</button>"
         )
+    expedia = (r.get("expedia") or "").strip()
+    if (
+        link_kind == "hotel"
+        and expedia.startswith("https://")
+        and "expedia.com/affiliates/" in expedia
+    ):
+        actions.append(
+            f'<a class="hotel-expedia" href="{esc(expedia)}" target="_blank" '
+            f'rel="sponsored nofollow noopener" '
+            f'aria-label="Check rates on Expedia for {esc(name)}"'
+            f'{_goat_click_attrs(expedia, kind="hotel-expedia", name=name, title=f"Check rates on Expedia for {name}")}>'
+            "Check rates on Expedia</a>"
+        )
     video_id = (r.get("video_id") or "").strip()
     if video_id:
         v = BY_ID.get(video_id)
@@ -1761,6 +1774,7 @@ def page_hotels() -> str:
         <div class="section-intro">
           <p class="kicker">The list</p>
           <h2 id="list-heading">Places</h2>
+          <p class="hotel-affiliate-disclosure">Hotel links go to Expedia. I may earn a commission if you book, at no extra cost to you.</p>
         </div>
       </div>
       {list_html}
@@ -1809,6 +1823,7 @@ def page_privacy() -> str:
         <p>Visit counts for this site are public and can be read without signing in.</p>
         <p>Pages on this site link out to YouTube, and to restaurant and hotel websites, when those addresses are listed.</p>
         <p>The gear page has Amazon affiliate links.</p>
+        <p>The hotels page has Expedia affiliate links. I may earn a commission if you book, at no extra cost to you.</p>
       </div>
     </div>
   </section>

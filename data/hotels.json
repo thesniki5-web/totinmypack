@@ -24,7 +24,8 @@
       "photo": "places/bar-harbor-inn-bar-harbor.webp",
       "photo_domain": "barharborinn.com",
       "photo_width": 800,
-      "photo_height": 600
+      "photo_height": 600,
+      "expedia": "https://www.expedia.com/affiliates/bar-harbor-hotels-bar-harbor-inn.1OGr4k9"
     },
     {
       "id": "nonantum-resort-kennebunkport",
@@ -47,7 +48,8 @@
       "photo": "places/nonantum-resort-kennebunkport.webp",
       "photo_domain": "nonantumresort.com",
       "photo_width": 800,
-      "photo_height": 600
+      "photo_height": 600,
+      "expedia": "https://www.expedia.com/affiliates/portland-hotels-nonantum-resort.M1q5200"
     },
     {
       "id": "the-viewpoint-york",
@@ -71,7 +73,8 @@
       "photo": "places/the-viewpoint-york.webp",
       "photo_domain": "viewpointhotel.com",
       "photo_width": 800,
-      "photo_height": 420
+      "photo_height": 420,
+      "expedia": "https://www.expedia.com/affiliates/york-hotels-viewpoint-hotel.NIgO2Wg"
     },
     {
       "id": "hotel-phillips-kansas-city",
@@ -96,7 +99,8 @@
       "photo_domain": "Wikimedia Commons",
       "photo_credit_url": "https://commons.wikimedia.org/wiki/File:Hotel_Phillips_Kansas_City_Missouri.jpg",
       "photo_width": 800,
-      "photo_height": 500
+      "photo_height": 500,
+      "expedia": "https://www.expedia.com/affiliates/kansas-city-hotels-hotel-phillips-kansas-city-curio-collection-by-hilton.HxZ070D"
     },
     {
       "id": "mountain-view-grand-whitefield",
@@ -119,7 +123,8 @@
       "photo": "places/mountain-view-grand-whitefield.webp",
       "photo_domain": "mountainviewgrand.com",
       "photo_width": 640,
-      "photo_height": 471
+      "photo_height": 471,
+      "expedia": "https://www.expedia.com/affiliates/whitefield-hotels-mountain-view-grand-resort-spa.baMjFNN"
     },
     {
       "id": "colcord-hotel-oklahoma-city",
@@ -142,7 +147,8 @@
       "photo": "places/colcord-hotel-oklahoma-city.webp",
       "photo_domain": "colcordhotel.com",
       "photo_width": 800,
-      "photo_height": 356
+      "photo_height": 356,
+      "expedia": "https://www.expedia.com/affiliates/oklahoma-city-hotels-colcord-hotel.eUaweHK"
     },
     {
       "id": "tulsa-club-hotel-tulsa",
@@ -166,7 +172,8 @@
       "photo": "places/tulsa-club-hotel-tulsa.webp",
       "photo_domain": "tulsaclub.com",
       "photo_width": 768,
-      "photo_height": 512
+      "photo_height": 512,
+      "expedia": "https://www.expedia.com/affiliates/tulsa-hotels-tulsa-club-hotel.UCe6BJB"
     },
     {
       "id": "the-sinclair-fort-worth",
@@ -190,7 +197,8 @@
       "photo": "places/the-sinclair-fort-worth.webp",
       "photo_domain": "thesinclairhotel.com",
       "photo_width": 800,
-      "photo_height": 560
+      "photo_height": 560,
+      "expedia": "https://www.expedia.com/affiliates/fort-worth-hotels-the-sinclair.ULzo0h0"
     },
     {
       "id": "the-jackson-woodstock",
@@ -214,7 +222,8 @@
       "photo": "places/the-jackson-woodstock.webp",
       "photo_domain": "jacksonwoodstock.com",
       "photo_width": 376,
-      "photo_height": 610
+      "photo_height": 610,
+      "expedia": "https://www.expedia.com/affiliates/woodstock-hotels-the-jackson-house-inn.tBMRHly"
     },
     {
       "id": "the-virginian-hotel-lynchburg",
@@ -238,7 +247,8 @@
       "photo": "places/the-virginian-hotel-lynchburg.webp",
       "photo_domain": "thevirginianhotel.com",
       "photo_width": 800,
-      "photo_height": 533
+      "photo_height": 533,
+      "expedia": "https://www.expedia.com/affiliates/lynchburg-hotels-the-virginian-lynchburg-curio-collection.z3ELqPL"
     },
     {
       "id": "hilton-norfolk-the-main-norfolk",
@@ -261,7 +271,8 @@
       "photo": "places/hilton-norfolk-the-main-norfolk.webp",
       "photo_domain": "themainnorfolk.com",
       "photo_width": 800,
-      "photo_height": 500
+      "photo_height": 500,
+      "expedia": "https://www.expedia.com/affiliates/norfolk-hotels-hilton-norfolk-the-main.3vUuuVe"
     },
     {
       "id": "hotel-roanoke-roanoke",
@@ -284,7 +295,78 @@
       "photo": "places/hotel-roanoke-roanoke.webp",
       "photo_domain": "hotelroanoke.com",
       "photo_width": 800,
-      "photo_height": 480
+      "photo_height": 480,
+      "expedia": "https://www.expedia.com/affiliates/roanoke-hotels-hotel-roanoke-conference-ctr.MKux7Z7"
+    },
+    {
+      "id": "electra-palace-thessaloniki",
+      "name": "Electra Palace Thessaloniki",
+      "listed_as": "",
+      "city": "Thessaloniki",
+      "region": "",
+      "country": "Greece",
+      "lat": 40.6331737,
+      "lng": 22.9412448,
+      "address": "9 Aristotelous Square, 54624 Thessaloniki, Greece",
+      "website": "https://www.electrahotels.gr/hotels/electra-palace-thessaloniki/",
+      "sources": [
+        "https://www.electrahotels.gr/hotels/electra-palace-thessaloniki/contact/",
+        "https://www.openstreetmap.org/way/144215746"
+      ],
+      "location_note": "",
+      "teddy_note": "",
+      "visited": "",
+      "photo": "places/electra-palace-thessaloniki.webp",
+      "photo_domain": "Wikimedia Commons",
+      "photo_credit_url": "https://commons.wikimedia.org/wiki/File:Electra_Palace_Hotel_(Thessaloniki).jpg",
+      "photo_width": 800,
+      "photo_height": 600,
+      "expedia": "https://www.expedia.com/affiliates/thessaloniki-hotels-electra-palace-thessaloniki.GPsYkYa"
+    },
+    {
+      "id": "makedonia-palace-thessaloniki",
+      "name": "Makedonia Palace",
+      "listed_as": "",
+      "city": "Thessaloniki",
+      "region": "",
+      "country": "Greece",
+      "lat": 40.6181032,
+      "lng": 22.9523887,
+      "address": "2, M. Alexandrou Av, 546 40, Thessaloniki, Greece",
+      "website": "https://makedoniapalace.com/",
+      "sources": [
+        "https://makedoniapalace.com/contact/",
+        "https://www.openstreetmap.org/way/424863088"
+      ],
+      "location_note": "",
+      "teddy_note": "",
+      "visited": "",
+      "photo": "places/makedonia-palace-thessaloniki.webp",
+      "photo_domain": "Wikimedia Commons",
+      "photo_credit_url": "https://commons.wikimedia.org/wiki/File:Makedonia_Palace_Thessaloniki.jpg",
+      "photo_width": 800,
+      "photo_height": 584,
+      "expedia": "https://www.expedia.com/affiliates/thessaloniki-hotels-makedonia-palace.2fFUu0w"
+    },
+    {
+      "id": "mediterranean-palace-thessaloniki",
+      "name": "Mediterranean Palace Hotel",
+      "listed_as": "",
+      "city": "Thessaloniki",
+      "region": "",
+      "country": "Greece",
+      "lat": 40.6360148,
+      "lng": 22.9356405,
+      "address": "3, Salaminos & Karatassou str., Thessaloniki, Greece, 54626",
+      "website": "https://www.mediterranean-palace.gr/en",
+      "sources": [
+        "https://www.mediterranean-palace.gr/en/contact",
+        "https://www.openstreetmap.org/way/27561027"
+      ],
+      "location_note": "",
+      "teddy_note": "",
+      "visited": "",
+      "expedia": "https://www.expedia.com/affiliates/thessaloniki-hotels-mediterranean-palace-hotel.iAoAtv6"
     }
   ]
 }

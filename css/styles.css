@@ -1916,6 +1916,15 @@ body.gear-page .gear-affiliate-disclosure {
   line-height: 1.45;
 }
 
+.hotel-affiliate-disclosure {
+  margin: 0.7rem 0 0;
+  max-width: 36rem;
+  color: var(--text-mute);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+
 /* Official-site photos on restaurant and hotel cards */
 .restaurant-card.has-photo {
   padding: 0;
