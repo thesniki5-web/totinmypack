@@ -456,12 +456,12 @@ body.trip-simple-page:has(.preview-topbar) .site-header { top: 0; }
   height: 100%;
   object-fit: cover;
   object-position: 100% 78%;
-  transform: scale(1.72);
+  transform: scale(1);
   animation: heroDrift 28s var(--ease) alternate infinite;
 }
 @keyframes heroDrift {
-  from { transform: scale(1.72) translate3d(0, 0, 0); }
-  to { transform: scale(1.8) translate3d(-0.6%, 0.8%, 0); }
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to { transform: scale(1.06) translate3d(-0.6%, 0.8%, 0); }
 }
 .hero-shade {
   position: absolute;
@@ -529,7 +529,7 @@ body.trip-simple-page:has(.preview-topbar) .site-header { top: 0; }
 }
 .page-hero .hero-media img {
   object-position: 100% 58%;
-  transform: scale(1.8);
+  transform: scale(1);
   animation: heroDrift 30s var(--ease) alternate infinite;
 }
 .page-hero .hero-copy { padding-bottom: clamp(2.2rem, 6vh, 4rem); }
@@ -1035,7 +1035,7 @@ main { display: block; }
   .hero-media img,
   .page-hero .hero-media img {
     animation: none;
-    transform: scale(1.35);
+    transform: scale(1);
   }
   .thumb img,
   .dest-card img { transition: none; }
