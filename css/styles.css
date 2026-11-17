@@ -1949,3 +1949,96 @@ body.gear-page .gear-affiliate-disclosure {
 .restaurant-card.has-photo .restaurant-card-body {
   padding: 0.95rem 1.2rem 1.15rem;
 }
+
+/* Travel blog */
+.blog-index-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  max-width: 40rem;
+}
+.blog-card {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-elev);
+}
+.blog-card-link {
+  display: block;
+  padding: 1.15rem 1.25rem 1.25rem;
+  text-decoration: none;
+  color: inherit;
+}
+.blog-card-link:hover h2,
+.blog-card-link:focus-visible h2 {
+  color: var(--gold-soft);
+}
+.blog-card h2 {
+  margin: 0 0 0.4rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  color: var(--text);
+}
+.blog-card-dates {
+  margin: 0 0 0.55rem;
+  color: var(--text-mute);
+  font-size: 0.92rem;
+}
+.blog-card-excerpt {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 1.02rem;
+  line-height: 1.5;
+}
+.blog-post {
+  padding-top: clamp(2rem, 6vh, 3.4rem);
+}
+.blog-post .wrap {
+  max-width: 42rem;
+}
+.blog-kicker {
+  margin: 0 0 0.7rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.blog-kicker a {
+  color: var(--gold);
+  text-decoration: none;
+}
+.blog-kicker a:hover {
+  color: var(--gold-soft);
+}
+.blog-post h1 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(2rem, 5vw, 2.85rem);
+  line-height: 1.15;
+  margin: 0 0 0.55rem;
+  color: var(--text);
+}
+.blog-post-dates {
+  margin: 0 0 1.6rem;
+  color: var(--text-mute);
+  font-size: 1rem;
+}
+.blog-prose {
+  max-width: 40rem;
+}
+.blog-prose a {
+  color: var(--gold-soft);
+}
+.blog-prose a:hover {
+  color: var(--gold);
+}
+
+@media (min-width: 1025px) and (max-width: 1180px) {
+  .site-nav { gap: 0.15rem 0.9rem; }
+  .site-nav > ul { gap: 0.15rem 0.9rem; }
+  .nav-cta { margin-left: 0.25rem; }
+}
