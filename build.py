@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import html
 import json
+import re
 import shutil
 import unicodedata
 from collections import OrderedDict
@@ -27,7 +28,7 @@ CHANNEL_META = (
 
 # Preview branches set this True so the built pages stay noindex, show a
 # banner, and omit GoatCounter. Production builds leave it False.
-PREVIEW = False
+PREVIEW = True
 PREVIEW_BANNER = (
     '<div class="draft-banner" role="status">'
     "<p><strong>Preview only.</strong> These changes are not on the live site yet.</p>"
@@ -404,6 +405,7 @@ def nav(prefix: str, current: str) -> str:
       <ul>
         <li><a href="{prefix}videos.html"{cur("videos")}>Films</a></li>
         <li><a href="{prefix}trips/index.html"{cur("trips")}>Trips</a></li>
+        <li><a href="{prefix}blog/"{cur("blog")}>Travel Blog</a></li>
         <li><a href="{prefix}destinations/index.html"{dest_cur}>Destinations</a></li>
         <li class="has-sub">
           <button class="nav-label" type="button" id="nav-food-stays-btn" aria-expanded="false" aria-haspopup="true" aria-controls="nav-food-stays">Food &amp; Stays</button>
@@ -456,6 +458,7 @@ def footer(prefix: str, extra_js: str = "") -> str:
       <div class="footer-nav">
       <a href="{prefix}videos.html">Films</a>
       <a href="{prefix}trips/index.html">Trips</a>
+      <a href="{prefix}blog/">Travel Blog</a>
       <a href="{prefix}destinations/index.html">Destinations</a>
       <a href="{prefix}restaurants.html">Restaurants</a>
       <a href="{prefix}hotels.html">Hotels</a>
@@ -507,7 +510,7 @@ def _goat_script() -> str:
     )
 
 
-def head(title: str, description: str, path: str, og_id: str, prefix: str, extra: str = "", og_logo: bool = False, robots: str | None = None, preconnect_yt: bool = True, early_extra: str = "") -> str:
+def head(title: str, description: str, path: str, og_id: str, prefix: str, extra: str = "", og_logo: bool = False, robots: str | None = None, preconnect_yt: bool = True, early_extra: str = "", og_type: str = "website") -> str:
     canon = SITE + path
     if og_logo or og_id == "logo":
         image = f"{SITE}/assets/og-image.jpg"
@@ -531,7 +534,7 @@ def head(title: str, description: str, path: str, og_id: str, prefix: str, extra
   <title>{esc(title)}</title>
   <meta name="description" content="{esc(description)}">
 {robots_tag}  <link rel="canonical" href="{esc(canon)}">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="{esc(og_type)}">
   <meta property="og:site_name" content="Totin My Pack">
   <meta property="og:title" content="{esc(title)}">
   <meta property="og:description" content="{esc(description)}">
@@ -1876,6 +1879,174 @@ def page_gear() -> str:
 </html>"""
 
 
+
+def _blog_data() -> dict:
+    path = ROOT / "data" / "blog.json"
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _blog_posts() -> list[dict]:
+    posts = list(_blog_data().get("posts") or [])
+    posts.sort(key=lambda p: (p.get("date_published") or "", p.get("slug") or ""), reverse=True)
+    return posts
+
+
+def _blog_inline(text: str) -> str:
+    """Escape text and render markdown links [label](url) without changing either."""
+    pattern = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+    parts: list[str] = []
+    pos = 0
+    for m in pattern.finditer(text):
+        parts.append(esc(text[pos : m.start()]))
+        label, url = m.group(1), m.group(2)
+        href = esc(url)
+        label_html = esc(label)
+        if url.startswith("https://totinmypack.com/") or url.startswith("http://totinmypack.com/"):
+            parts.append(f'<a href="{href}">{label_html}</a>')
+        else:
+            rel = "noopener noreferrer"
+            parts.append(
+                f'<a href="{href}" target="_blank" rel="{rel}" '
+                f'aria-label="{label_html}"'
+                f"{_goat_click_attrs(url)}>{label_html}</a>"
+            )
+        pos = m.end()
+    parts.append(esc(text[pos:]))
+    return "".join(parts)
+
+
+def _blog_body_html(markdown: str) -> str:
+    blocks = re.split(r"\n\s*\n", (markdown or "").strip())
+    chunks: list[str] = []
+    first_p = True
+    for raw in blocks:
+        block = raw.strip()
+        if not block:
+            continue
+        if block.startswith("## "):
+            heading = block[3:].strip()
+            chunks.append(f"<h2>{esc(heading)}</h2>")
+            first_p = False
+            continue
+        cls = ' class="lead"' if first_p else ""
+        chunks.append(f"<p{cls}>{_blog_inline(block)}</p>")
+        first_p = False
+    return "\n        ".join(chunks)
+
+
+def _blog_json_ld(post: dict, path: str) -> str:
+    title = (post.get("title") or "").strip()
+    desc = (post.get("meta_description") or "").strip()
+    published = (post.get("date_published") or "").strip()
+    data = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": title,
+        "description": desc,
+        "url": SITE + path,
+        "mainEntityOfPage": SITE + path,
+        "image": f"{SITE}/assets/og-image.jpg",
+        "author": {
+            "@type": "Person",
+            "name": "Teddy",
+            "url": f"{SITE}/about.html",
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Totin My Pack",
+            "url": SITE,
+            "sameAs": [CHANNEL],
+        },
+    }
+    if published:
+        data["datePublished"] = published
+    return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
+
+
+def page_blog_index() -> str:
+    prefix = "../"
+    data = _blog_data()
+    desc = (data.get("description") or "").strip() or "Travel writing from Totin My Pack."
+    cards = []
+    for post in _blog_posts():
+        slug = post["slug"]
+        title = (post.get("title") or "").strip()
+        excerpt = (post.get("meta_description") or "").strip()
+        trip_dates = (post.get("trip_dates") or "").strip()
+        date_html = (
+            f'<p class="blog-card-dates">{esc(trip_dates)}</p>' if trip_dates else ""
+        )
+        excerpt_html = f'<p class="blog-card-excerpt">{esc(excerpt)}</p>' if excerpt else ""
+        cards.append(
+            '<li class="blog-card">'
+            f'<a class="blog-card-link" href="{esc(slug)}/">'
+            f"<h2>{esc(title)}</h2>"
+            f"{date_html}{excerpt_html}"
+            "</a></li>"
+        )
+    list_html = (
+        f'<ul class="blog-index-list">{"".join(cards)}</ul>'
+        if cards
+        else '<p class="blog-empty">Posts will appear here as they are added.</p>'
+    )
+    return f"""{head("Travel Blog — Totin My Pack", desc, "/blog/", "logo", prefix, og_logo=True, preconnect_yt=False)}
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+{nav(prefix, "blog")}
+<main id="content">
+  <section class="page-hero" aria-label="Travel Blog">
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <h1>Travel Blog</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      {list_html}
+    </div>
+  </section>
+</main>
+{footer(prefix)}
+</body>
+</html>"""
+
+
+def page_blog_post(post: dict) -> str:
+    prefix = "../../"
+    slug = post["slug"]
+    path = f"/blog/{slug}/"
+    title = (post.get("title") or "").strip()
+    desc = (post.get("meta_description") or "").strip()
+    trip_dates = (post.get("trip_dates") or "").strip()
+    published = (post.get("date_published") or "").strip()
+    body_html = _blog_body_html(post.get("body") or "")
+    date_html = (
+        f'<p class="blog-post-dates">{esc(trip_dates)}</p>' if trip_dates else ""
+    )
+    extra = _blog_json_ld(post, path)
+    if published:
+        extra = f'<meta property="article:published_time" content="{esc(published)}">\n  ' + extra
+    return f"""{head(f"{title} — Totin My Pack", desc, path, "logo", prefix, extra=extra, og_logo=True, preconnect_yt=False, og_type="article")}
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+{nav(prefix, "blog")}
+<main id="content">
+  <article class="section blog-post">
+    <div class="wrap">
+      <p class="blog-kicker"><a href="../">Travel Blog</a></p>
+      <h1>{esc(title)}</h1>
+      {date_html}
+      <div class="prose blog-prose">
+        {body_html}
+      </div>
+    </div>
+  </article>
+</main>
+{footer(prefix)}
+</body>
+</html>"""
+
+
 def robots_and_sitemap() -> None:
 
 
@@ -1890,7 +2061,10 @@ def robots_and_sitemap() -> None:
         "/privacy.html",
         "/gear.html",
         "/trips/",
+        "/blog/",
     ] + [f"/trips/{slug}.html" for slug in _trip_slugs()] + [
+        f"/blog/{post['slug']}/" for post in _blog_posts()
+    ] + [
         f"/destinations/{d['slug']}.html" for d in DESTINATIONS
     ]
     (ROOT / "robots.txt").write_text(
@@ -1955,6 +2129,9 @@ def main() -> None:
     write(ROOT / "trips" / "index.html", page_trips_index())
     for slug in _trip_slugs():
         write(ROOT / "trips" / f"{slug}.html", page_trip(slug))
+    write(ROOT / "blog" / "index.html", page_blog_index())
+    for post in _blog_posts():
+        write(ROOT / "blog" / post["slug"] / "index.html", page_blog_post(post))
     robots_and_sitemap()
     ids = [v["id"] for v in VIDEOS]
     assert len(ids) == len(set(ids)), "duplicate video ids"
