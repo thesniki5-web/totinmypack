@@ -1232,29 +1232,6 @@
       "photo_height": 258
     },
     {
-      "id": "rooster-s-roadhouse-denton",
-      "name": "Rooster's Roadhouse",
-      "listed_as": "Roosters Roadhouse",
-      "city": "Denton",
-      "region": "Texas",
-      "country": "United States",
-      "lat": 33.213783,
-      "lng": -97.1299689,
-      "cuisine": "Barbecue",
-      "address": "113 Industrial Street, Denton, TX 76201",
-      "website": "http://www.roosters-roadhouse.com/",
-      "status": "open",
-      "teddy_note": "",
-      "visited": "",
-      "video_id": "",
-      "start_seconds": null,
-      "sources": [
-        "http://www.roosters-roadhouse.com/directions/",
-        "http://www.roosters-roadhouse.com/",
-        "https://www.openstreetmap.org/?mlat=33.2137830&mlon=-97.1299689"
-      ]
-    },
-    {
       "id": "las-palmas-el-paso",
       "name": "Las Palmas",
       "listed_as": "Las Palmas",

@@ -84,10 +84,9 @@
   }
 
   function markerSizeForZoom(z) {
-    if (z < 6) return 18;
-    if (z < 7) return 20;
-    if (z < 8) return 24;
-    if (z < 10) return 28;
+    if (z < 6) return 24;
+    if (z < 8) return 28;
+    if (z < 10) return 32;
     return 36;
   }
 
@@ -179,7 +178,7 @@
         bounds.push(latlng);
         var number = place.number != null ? place.number : index + 1;
         var marker = L.marker(latlng, {
-          icon: markerIcon(number, 18),
+          icon: markerIcon(number, 24),
           title: place.name,
           keyboard: true,
           riseOnHover: true
