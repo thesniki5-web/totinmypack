@@ -1361,12 +1361,33 @@ def _external_link(href: str, label: str, aria: str, *, kind: str | None = None,
 
 
 
+
+def _last_checked_label(value: str) -> str:
+    """Turn a YYYY-MM or YYYY-MM-DD verification date into 'Nov 2026'."""
+    raw = (value or "").strip()
+    if not raw:
+        return ""
+    parts = raw.split("-")
+    if len(parts) >= 2 and parts[0].isdigit() and parts[1].isdigit():
+        month = int(parts[1])
+        if 1 <= month <= 12:
+            months = (
+                "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+            )
+            return f"{months[month - 1]} {parts[0]}"
+    return raw
+
+
 def _restaurant_card(r: dict, index: int, prefix: str, *, link_kind: str = "restaurant") -> str:
     rid = esc(_restaurant_slug(r, index))
     name = r.get("name") or "Restaurant"
     place = _restaurant_place(r)
     status = (r.get("status") or "").strip().lower()
     status_label = {"open": "Open", "closed": "Closed", "unverified": "Unverified"}.get(status, "")
+    checked = _last_checked_label(r.get("last_checked") or "")
+    if status_label and checked:
+        status_label = f"{status_label} · last checked {checked}"
     status_html = (
         f'<p class="restaurant-status is-{esc(status)}">{esc(status_label)}</p>'
         if status_label
@@ -1442,28 +1463,15 @@ def _restaurant_card(r: dict, index: int, prefix: str, *, link_kind: str = "rest
     photo_html = ""
     card_class = "restaurant-card"
     if photo:
-        domain = (r.get("photo_domain") or "").strip()
-        alt = (r.get("photo_alt") or "").strip() or (
-            f"{name}, photo from {domain}" if domain else name
-        )
+        alt = (r.get("photo_alt") or "").strip() or name
         w = r.get("photo_width") or 800
         h = r.get("photo_height") or ""
         size_attrs = f' width="{int(w)}"' + (f' height="{int(h)}"' if h else "")
-        credit = ""
-        credit_href = (r.get("photo_credit_url") or r.get("website") or "").strip()
-        credit_label = (r.get("photo_credit") or (f"Photo: {domain}" if domain else "")).strip()
-        if credit_label and credit_href:
-            credit = (
-                f'<figcaption class="restaurant-photo-credit">'
-                f'{_external_link(credit_href, credit_label, f"Photo of {name} from {domain or credit_label}", kind=f"{link_kind}-photo", name=name)}'
-                f"</figcaption>"
-            )
-        elif credit_label:
-            credit = f'<figcaption class="restaurant-photo-credit">{esc(credit_label)}</figcaption>'
+        # Photos stay on the cards; public credit lines and their links are omitted.
         photo_html = (
             f'<figure class="restaurant-photo">'
             f'<img src="{prefix}assets/{esc(photo)}" alt="{esc(alt)}"{size_attrs} loading="lazy" decoding="async">'
-            f"{credit}</figure>"
+            f"</figure>"
         )
         card_class += " has-photo"
     return (
