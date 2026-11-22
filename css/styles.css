@@ -528,7 +528,7 @@ body.trip-simple-page:has(.preview-topbar) .site-header { top: 0; }
   padding-top: var(--header-h);
 }
 .page-hero .hero-media img {
-  object-position: 100% 58%;
+  object-position: 50% 50%;
   transform: scale(1);
   animation: heroDrift 30s var(--ease) alternate infinite;
 }
@@ -755,7 +755,7 @@ main { display: block; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 70% 50%;
+  object-position: 50% 50%;
   transform: scale(1.12);
   transition: transform 0.8s var(--ease);
 }
@@ -812,7 +812,7 @@ main { display: block; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 70% 50%;
+  object-position: 50% 50%;
 }
 .region-tile::after {
   content: "";

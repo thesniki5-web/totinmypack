@@ -38,6 +38,7 @@ PREVIEW_BANNER = (
 # Dates are America/New_York. Eight early films use YouTube's published date only.
 # The catalog itself lives in data/videos.json and is updated from the channel RSS feed.
 SITE_DATA = json.loads((ROOT / "data" / "site.json").read_text(encoding="utf-8"))
+STILLS = json.loads((ROOT / "data" / "stills.json").read_text(encoding="utf-8"))
 VIDEOS = json.loads((ROOT / "data" / "videos.json").read_text(encoding="utf-8"))
 START_IDS = SITE_DATA["start_ids"]
 HERO_ID = SITE_DATA["hero_id"]
@@ -262,9 +263,69 @@ def _hero_srcset_attrs(vid: str, prefix: str, default_width: int = 960) -> str |
     )
 
 
+
+def _still_record(vid: str) -> dict | None:
+    rec = STILLS.get(vid)
+    return rec if rec and rec.get("still_id") else None
+
+
+def _still_widths(still_id: str) -> list[int]:
+    return [w for w in HERO_WIDTHS if (ROOT / "assets" / "stills" / f"{still_id}-{w}.webp").exists()]
+
+
+def still_srcset_attrs(
+    vid: str,
+    *,
+    sizes: str,
+    prefix: str = "",
+    default_width: int = 960,
+) -> str | None:
+    """Srcset for a clean film still, or None if this video has no still."""
+    rec = _still_record(vid)
+    if not rec:
+        return None
+    still_id = rec["still_id"]
+    widths = _still_widths(still_id)
+    if not widths:
+        return None
+    if default_width not in widths:
+        default_width = 960 if 960 in widths else widths[0]
+    src = f"{prefix}assets/stills/{still_id}-{default_width}.webp"
+    srcset = ", ".join(f"{prefix}assets/stills/{still_id}-{w}.webp {w}w" for w in widths)
+    height = round(default_width * 9 / 16)
+    return (
+        f'src="{src}" srcset="{srcset}" sizes="{sizes}" '
+        f'width="{default_width}" height="{height}"'
+    )
+
+
+def card_srcset(
+    vid: str,
+    sizes: str = "(max-width: 700px) 100vw, 480px",
+    prefix: str = "",
+    default_width: int = 640,
+) -> str:
+    """Prefer a clean still when the image will be cropped; otherwise the YouTube thumb."""
+    local = still_srcset_attrs(vid, sizes=sizes, prefix=prefix, default_width=default_width)
+    if local:
+        return local
+    return thumb_srcset(vid, sizes=sizes, prefix=prefix)
+
+
 def hero_img(vid: str, alt: str, prefix: str = "", style: str = "") -> str:
+    rec = _still_record(vid)
+    if rec and rec.get("alt") and (not alt or alt == vid):
+        alt = rec["alt"]
+    # Clean stills are framed for a centered crop; do not keep offsets
+    # that were chosen to hide burned-in YouTube titles.
+    if rec:
+        style = ""
     style_attr = f" style=\"{style}\"" if style else ""
-    local = _hero_srcset_attrs(vid, prefix=prefix)
+    still = still_srcset_attrs(vid, sizes="100vw", prefix=prefix, default_width=960)
+    local = still or _hero_srcset_attrs(vid, prefix=prefix)
+    if rec and rec.get("alt"):
+        # Prefer the still's alt when we swapped the image.
+        alt = rec["alt"]
     if local:
         return (
             f'<img {local} alt="{esc(alt)}" '
@@ -277,6 +338,18 @@ def hero_img(vid: str, alt: str, prefix: str = "", style: str = "") -> str:
 
 
 def hero_preload(vid: str, prefix: str = "") -> str:
+    rec = _still_record(vid)
+    if rec:
+        still_id = rec["still_id"]
+        widths = _still_widths(still_id)
+        if widths:
+            default = 960 if 960 in widths else widths[0]
+            href = f"{prefix}assets/stills/{still_id}-{default}.webp"
+            srcset = ", ".join(f"{prefix}assets/stills/{still_id}-{w}.webp {w}w" for w in widths)
+            return (
+                f'<link rel="preload" as="image" href="{href}" type="image/webp" '
+                f'imagesrcset="{srcset}" imagesizes="100vw" fetchpriority="high">'
+            )
     ensure_hero_images(vid)
     widths = _hero_local_widths(vid)
     folder = "heroes"
@@ -609,7 +682,7 @@ def page_home() -> str:
         photo = ""
         if img:
             photo = (
-                f'<img {thumb_srcset(img, sizes="(max-width: 560px) 46vw, (max-width: 900px) 30vw, 280px", prefix=prefix)} '
+                f'<img {card_srcset(img, sizes="(max-width: 560px) 46vw, (max-width: 900px) 30vw, 280px", prefix=prefix)} '
                 f'alt="" loading="lazy" decoding="async">'
             )
         dest_cards.append(
@@ -733,7 +806,7 @@ def page_destinations_index() -> str:
         cards.append(
             f"""
 <a class="dest-card" href="{d['slug']}.html">
-  <img {thumb_srcset(d['hero'], sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px", prefix=prefix)} alt="{esc(d['name'])}" loading="lazy" decoding="async">
+  <img {card_srcset(d['hero'], sizes="(max-width: 560px) 92vw, (max-width: 900px) 45vw, 380px", prefix=prefix)} alt="{esc(d['name'])}" loading="lazy" decoding="async">
   <span class="dest-copy">
     <h2>{esc(d['name'])}</h2>
     <p>{n} {'film' if n == 1 else 'films'}</p>
@@ -1161,6 +1234,9 @@ def _trip_postcard_video(trip: dict) -> str | None:
 
 
 def _trip_postcard_alt(trip: dict, vid: str) -> str:
+    rec = _still_record(vid)
+    if rec and rec.get("alt"):
+        return rec["alt"]
     if vid == trip.get("hero"):
         alt = (trip.get("hero_alt") or "").strip()
         if alt:
@@ -1177,7 +1253,7 @@ def _trip_postcard(trip: dict, prefix: str) -> str:
     if not vid:
         return ""
     alt = _trip_postcard_alt(trip, vid)
-    img_attrs = thumb_srcset(
+    img_attrs = card_srcset(
         vid,
         sizes="(max-width: 42rem) 92vw, 42rem",
         prefix=prefix,
