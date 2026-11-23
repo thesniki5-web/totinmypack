@@ -1,6 +1,8 @@
 (function () {
   "use strict";
 
+  document.documentElement.classList.add("js");
+
   var header = document.querySelector(".site-header");
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.querySelector(".site-nav");
@@ -18,7 +20,7 @@
   window.addEventListener("scroll", onScroll, { passive: true });
 
   function isMobileNav() {
-    return window.matchMedia("(max-width: 880px)").matches;
+    return window.matchMedia("(max-width: 1024px)").matches;
   }
 
   function setMobileMenuOpen(open) {
@@ -52,24 +54,66 @@
   document.querySelectorAll(".has-sub").forEach(function (item) {
     var btn = item.querySelector(":scope > .nav-label");
     if (!btn) return;
+    var closeTimer = null;
+    var ignoreHover = false;
+    var openedAt = 0;
 
     function setSubOpen(open) {
+      if (closeTimer) {
+        clearTimeout(closeTimer);
+        closeTimer = null;
+      }
       btn.setAttribute("aria-expanded", String(open));
       item.classList.toggle("is-open", open);
+      if (open) openedAt = Date.now();
     }
 
-    btn.addEventListener("click", function () {
-      setSubOpen(btn.getAttribute("aria-expanded") !== "true");
+    function scheduleClose() {
+      if (closeTimer) clearTimeout(closeTimer);
+      closeTimer = setTimeout(function () {
+        closeTimer = null;
+        setSubOpen(false);
+      }, 250);
+    }
+
+    btn.addEventListener("click", function (e) {
+      var open = btn.getAttribute("aria-expanded") === "true";
+      if (isMobileNav()) {
+        setSubOpen(!open);
+        return;
+      }
+      // Pointer movement for this click already opened the menu on hover — keep it open.
+      // Clear openedAt so a second click can close it.
+      if (e.detail !== 0 && open && Date.now() - openedAt < 400) {
+        openedAt = 0;
+        return;
+      }
+      if (open) {
+        setSubOpen(false);
+        ignoreHover = true;
+      } else {
+        ignoreHover = false;
+        setSubOpen(true);
+      }
     });
     item.addEventListener("mouseenter", function () {
-      if (!isMobileNav()) setSubOpen(true);
+      if (isMobileNav() || ignoreHover) return;
+      setSubOpen(true);
     });
     item.addEventListener("mouseleave", function () {
-      if (!isMobileNav()) setSubOpen(false);
+      ignoreHover = false;
+      if (!isMobileNav()) scheduleClose();
+    });
+    item.addEventListener("focusin", function () {
+      if (!isMobileNav()) setSubOpen(true);
     });
     item.addEventListener("focusout", function (e) {
       if (item.contains(e.relatedTarget)) return;
-      if (!isMobileNav()) setSubOpen(false);
+      if (!isMobileNav()) scheduleClose();
+    });
+    document.addEventListener("click", function (e) {
+      if (isMobileNav() || item.contains(e.target)) return;
+      setSubOpen(false);
     });
   });
 
