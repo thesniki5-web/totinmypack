@@ -35,7 +35,7 @@ PREVIEW_BANNER = (
     "</div>"
 )
 
-# Dates are America/New_York. Eight early films use YouTube's published date only.
+# Existing catalog dates are preserved. New releases use America/Chicago.
 # The catalog itself lives in data/videos.json and is updated from the channel RSS feed.
 SITE_DATA = json.loads((ROOT / "data" / "site.json").read_text(encoding="utf-8"))
 STILLS = json.loads((ROOT / "data" / "stills.json").read_text(encoding="utf-8"))
@@ -134,6 +134,17 @@ DESTINATIONS = [
         "og": "VeKh55kDqeg",
     },
 ]
+
+# This destination becomes visible only after the first confirmed public film.
+NEW_ENGLAND_FILMS = [v for v in VIDEOS if "newengland" in v.get("groups", []) and v["kind"] == "film"]
+if NEW_ENGLAND_FILMS:
+    first_film = min(NEW_ENGLAND_FILMS, key=lambda v: v.get("published", ""))
+    DESTINATIONS.append({
+        "slug": "new-england", "name": "New England",
+        "count_label": "the coast, mountains and villages",
+        "hero": first_film["id"], "og": first_film["id"], "hero_pos": "50% 50%",
+        "blurb": "Our November 2026 journey along the Maine coast, through the White Mountains and Vermont, and back to the coast and Boston.",
+    })
 
 
 
@@ -881,6 +892,8 @@ def page_destination(d: dict) -> str:
             f'<a class="btn btn-gold" href="../trips/{d["slug"]}.html">Follow the journey on the map</a>'
             "</div>"
         )
+    elif d["slug"] == "new-england":
+        trip_cta = '<div class="hero-actions"><a class="btn btn-gold" href="../trips/new-england-2026.html">Watch the trip in order</a></div>'
     title = f"{d['name']} — Totin My Pack"
     desc = d.get("meta") or d["blurb"]
     return f"""{head(title, desc, f"/destinations/{d['slug']}.html", d["og"], prefix, early_extra=hero_preload(d["hero"], prefix))}
@@ -1100,10 +1113,15 @@ def _trip_slugs() -> list[str]:
     ]
     ordered = [s for s in preferred if s in names]
     ordered += sorted(s for s in names if s not in ordered)
+    if _series_posts():
+        ordered.insert(0, "new-england-2026")
     return ordered
 
 
 def _trip_data(slug: str) -> dict:
+    if slug == "new-england-2026":
+        return {"slug": slug, "name": "New England 2026",
+                "index_blurb": "November 6–14: watch the journey one day at a time"}
     path = ROOT / "data" / "trips" / f"{slug}.json"
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -1266,6 +1284,8 @@ def _trip_postcard(trip: dict, prefix: str) -> str:
 
 
 def page_trip(slug: str) -> str:
+    if slug == "new-england-2026":
+        return page_new_england_series()
     prefix = "../"
     trip = _trip_data(slug)
     along = _trip_places(trip)
@@ -1990,6 +2010,46 @@ def _blog_posts() -> list[dict]:
     return posts
 
 
+def _series_posts() -> list[dict]:
+    return sorted((p for p in _blog_posts() if p.get("series_slug") == "new-england-2026"),
+                  key=lambda p: p["episode_day"])
+
+
+def page_new_england_series() -> str:
+    posts = _series_posts()
+    prefix = "../"
+    desc = "Watch our November 6–14, 2026 New England trip in order: the Maine coast, White Mountains, Vermont and the road back to Boston."
+    cards = []
+    for post in posts:
+        cards.append(
+            '<li class="blog-card">'
+            f'<a class="blog-card-link" href="../blog/{esc(post["slug"])}/">'
+            f'<h2>{esc(post["title"])}</h2>'
+            f'<p class="blog-card-dates">{esc(post["trip_dates"])}</p>'
+            f'<p class="blog-card-excerpt">{esc(post["meta_description"])}</p>'
+            '</a></li>'
+        )
+    first = posts[0]["video_id"] if posts else "logo"
+    return f'''{head("New England 2026 — Totin My Pack", desc, "/trips/new-england-2026.html", first, prefix)}
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+{nav(prefix, "trips")}
+<main id="content">
+  <article class="section blog-post">
+    <div class="wrap">
+      <p class="blog-kicker"><a href="index.html">Trips</a></p>
+      <h1>New England 2026</h1>
+      <p class="blog-post-dates">November 6–14, 2026</p>
+      <p class="lead">Follow our trip from the Maine coast through the White Mountains and Vermont, then back to the coast and Boston. Watch the films in day order below.</p>
+      <ul class="blog-index-list">{"".join(cards)}</ul>
+    </div>
+  </article>
+</main>
+{footer(prefix)}
+</body>
+</html>'''
+
+
 def _blog_inline(text: str) -> str:
     """Escape text and render markdown links [label](url) without changing either."""
     pattern = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
@@ -2125,7 +2185,30 @@ def page_blog_post(post: dict) -> str:
     extra = _blog_json_ld(post, path)
     if published:
         extra = f'<meta property="article:published_time" content="{esc(published)}">\n  ' + extra
-    return f"""{head(f"{title} — Totin My Pack", desc, path, "logo", prefix, extra=extra, og_logo=True, preconnect_yt=False, og_type="article")}
+    vid = post.get("video_id")
+    film = ""
+    if vid and vid in BY_ID:
+        film = (f'<div class="article-film">{film_card(BY_ID[vid], prefix=prefix, lazy=False)}</div>'
+                f'<p class="article-watch-link"><a href="https://www.youtube.com/watch?v={esc(vid)}" '
+                'target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>')
+        film = "      " + film + "\n"
+    series_nav = ""
+    if post.get("series_slug") == "new-england-2026":
+        posts = _series_posts()
+        index = next(i for i, p in enumerate(posts) if p["slug"] == slug)
+        links = ['<a href="../../trips/new-england-2026.html">All New England films</a>']
+        if index > 0:
+            prev = posts[index - 1]
+            links.append(f'<a href="../{esc(prev["slug"])}/">Previous film: Day {prev["episode_day"]}</a>')
+        if index + 1 < len(posts):
+            nxt = posts[index + 1]
+            links.append(f'<a href="../{esc(nxt["slug"])}/">Next film: Day {nxt["episode_day"]}</a>')
+        series_nav = '      <nav class="episode-nav" aria-label="New England films">' + "".join(links) + '</nav>\n'
+    credits = ""
+    if post.get("music_credits"):
+        credits = ('      <details class="music-credits"><summary>Music credits</summary>'
+                   f'<pre>{esc(post["music_credits"])}</pre></details>\n')
+    return f"""{head(f"{title} — Totin My Pack", desc, path, vid or "logo", prefix, extra=extra, og_logo=not bool(vid), preconnect_yt=bool(vid), og_type="article")}
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
 {nav(prefix, "blog")}
@@ -2135,10 +2218,10 @@ def page_blog_post(post: dict) -> str:
       <p class="blog-kicker"><a href="../">Travel Blog</a></p>
       <h1>{esc(title)}</h1>
       {date_html}
-      <div class="prose blog-prose">
+{film}      <div class="prose blog-prose">
         {body_html}
       </div>
-    </div>
+{credits}{series_nav}    </div>
   </article>
 </main>
 {footer(prefix)}

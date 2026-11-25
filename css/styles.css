@@ -2066,6 +2066,29 @@ body.gear-page .gear-affiliate-disclosure {
   color: var(--gold);
 }
 
+.article-film { margin: 0 0 0.75rem; }
+.article-film .film-card { width: 100%; }
+.article-watch-link { margin: 0 0 2rem; }
+.article-watch-link a, .episode-nav a { color: var(--gold-soft); }
+.episode-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.5rem;
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+.music-credits { margin-top: 2rem; }
+.music-credits summary { cursor: pointer; color: var(--text-dim); }
+.music-credits pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-dim);
+}
+
 @media (min-width: 1025px) and (max-width: 1180px) {
   .site-nav { gap: 0.15rem 0.9rem; }
   .site-nav > ul { gap: 0.15rem 0.9rem; }
