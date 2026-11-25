@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "timezone": "America/Chicago",
+  "series_slug": "new-england-2026",
+  "title": "New England 2026",
+  "description": "Nine travel films from our November 6–14, 2026 trip, from the Maine coast through the White Mountains and Vermont, then back to the coast and Boston.",
+  "episodes": [
+    {
+      "day": 1,
+      "video_id": null,
+      "publish_at": "2026-11-28T18:00:00-06:00",
+      "video_title": "Nubble Lighthouse in the Fog | New England Day 1",
+      "duration_seconds": 186.6
+    },
+    {
+      "day": 2,
+      "video_id": null,
+      "publish_at": "2026-12-02T18:00:00-06:00",
+      "video_title": "Portland Head Light & the Maine Coast | New England Day 2",
+      "duration_seconds": 191.1
+    },
+    {
+      "day": 3,
+      "video_id": null,
+      "publish_at": "2026-12-05T18:00:00-06:00",
+      "video_title": "Acadia National Park & West Quoddy Head Lighthouse | New England Day 3",
+      "duration_seconds": 190.1666667
+    },
+    {
+      "day": 4,
+      "video_id": null,
+      "publish_at": "2026-12-09T18:00:00-06:00",
+      "video_title": "Bar Harbor Sunrise to the White Mountains | New England Day 4",
+      "duration_seconds": 187.4666667
+    },
+    {
+      "day": 5,
+      "video_id": null,
+      "publish_at": "2026-12-12T18:00:00-06:00",
+      "video_title": "Kancamagus Highway: Lower Falls & Mountain Views | New England Day 5",
+      "duration_seconds": 192.6
+    },
+    {
+      "day": 6,
+      "video_id": null,
+      "publish_at": "2026-12-16T18:00:00-06:00",
+      "video_title": "Ben & Jerry’s and a Day Across Vermont | New England Day 6",
+      "duration_seconds": 206.5333333
+    },
+    {
+      "day": 7,
+      "video_id": null,
+      "publish_at": "2026-12-19T18:00:00-06:00",
+      "video_title": "Glassmaking in Quechee, Vermont | New England Day 7",
+      "duration_seconds": 187.2666667
+    },
+    {
+      "day": 8,
+      "video_id": null,
+      "publish_at": "2026-12-23T18:00:00-06:00",
+      "video_title": "Inside USS Albacore in Portsmouth | New England Day 8",
+      "duration_seconds": 184.9333333
+    },
+    {
+      "day": 9,
+      "video_id": null,
+      "publish_at": "2026-12-26T18:00:00-06:00",
+      "video_title": "Nubble Lighthouse Sunrise, Then Boston | New England Day 9",
+      "duration_seconds": 184.5
+    }
+  ]
+}

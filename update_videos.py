@@ -25,7 +25,7 @@ FEED_URL = f"https://www.youtube.com/feeds/videos.xml?channel_id={CHANNEL_ID}"
 USER_AGENT = (
     "TotinMyPackSite/1.0 (+https://totinmypack.com; video catalog updater)"
 )
-TZ = ZoneInfo("America/New_York")
+TZ = ZoneInfo("America/Chicago")
 ATOM = "http://www.w3.org/2005/Atom"
 YT = "http://www.youtube.com/xml/schemas/2015"
 MEDIA = "http://search.yahoo.com/mrss/"
@@ -33,6 +33,16 @@ MEDIA = "http://search.yahoo.com/mrss/"
 # Higher-weight phrases are listed first within each group. Generic state
 # names score lower so "Dallas, Texas" or "Route 66, Texas" land correctly.
 DEST_KEYWORDS: list[tuple[str, list[tuple[str, int]]]] = [
+    (
+        "newengland",
+        [
+            ("new england", 40), ("nubble", 12), ("kennebunkport", 12),
+            ("portland head light", 12), ("bar harbor", 12), ("acadia", 12),
+            ("west quoddy", 12), ("campobello", 12), ("white mountains", 12),
+            ("kancamagus", 12), ("vermont", 12), ("quechee", 12),
+            ("uss albacore", 12), ("maine", 8), ("new hampshire", 8),
+        ],
+    ),
     (
         "dallas",
         [
@@ -340,9 +350,16 @@ def dump_json(path: Path, data) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def merge(videos: list[dict], site: dict, entries: list[dict], *, fetch_durations: bool) -> list[dict]:
+def merge(videos: list[dict], site: dict, entries: list[dict], *, fetch_durations: bool,
+          planned_main_ids: set[str] | None = None,
+          planned_main_titles: set[str] | None = None) -> list[dict]:
     known = {v["id"] for v in videos}
-    new_entries = [e for e in entries if e["id"] not in known]
+    # Planned main films use the release manifest's time and public-embed gate,
+    # so RSS cannot publish a partial catalog entry before its companion article.
+    blocked = planned_main_ids or set()
+    blocked_titles = {t.strip().casefold() for t in (planned_main_titles or set())}
+    new_entries = [e for e in entries if e["id"] not in known and e["id"] not in blocked
+                   and e["title"].strip().casefold() not in blocked_titles]
     if not new_entries:
         return []
 
@@ -417,7 +434,15 @@ def main(argv: list[str] | None = None) -> int:
     entries = parse_feed(xml_bytes)
     log(f"Feed has {len(entries)} entries; catalog has {len(videos)} videos")
 
-    added = merge(videos, site, entries, fetch_durations=not args.skip_duration)
+    manifest_path = ROOT / "data" / "new-england-releases.json"
+    planned_ids = set()
+    planned_titles = set()
+    if manifest_path.exists():
+        manifest = load_json(manifest_path)
+        planned_ids = {e["video_id"] for e in manifest.get("episodes", []) if e.get("video_id")}
+        planned_titles = {e["video_title"] for e in manifest.get("episodes", [])}
+    added = merge(videos, site, entries, fetch_durations=not args.skip_duration,
+                  planned_main_ids=planned_ids, planned_main_titles=planned_titles)
     if not added:
         log("No new videos.")
         set_output("changed", "false")
