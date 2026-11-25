@@ -37,6 +37,7 @@ jobs:
     needs: check
     runs-on: ubuntu-latest
     permissions:
+      actions: read
       contents: write
       pages: write
       id-token: write
@@ -80,16 +81,37 @@ jobs:
         run: python package_site.py
 
       - name: Upload GitHub Pages artifact
+        id: pages_artifact
         if: steps.releases.outputs.changed == 'true' || steps.rss.outputs.changed == 'true' || github.event_name != 'schedule'
         uses: actions/upload-pages-artifact@v4
         with:
           path: _site
 
+      - name: Wait for uploaded Pages artifact to become available
+        if: steps.pages_artifact.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PAGES_ARTIFACT_ID: ${{ steps.pages_artifact.outputs.artifact_id }}
+        run: |
+          for attempt in {1..12}; do
+            artifact_id=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts" \
+              --jq ".artifacts[] | select(.id == ${PAGES_ARTIFACT_ID} and .expired == false) | .id" 2>/dev/null || true)
+            if [ "$artifact_id" = "$PAGES_ARTIFACT_ID" ]; then
+              echo "Confirmed uploaded Pages artifact ${PAGES_ARTIFACT_ID}."
+              # Allow the Pages artifact service to finish propagating metadata.
+              sleep 10
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::Uploaded Pages artifact is not yet available; the next release check will retry."
+          exit 1
+
       # GITHUB_TOKEN pushes do not trigger a Pages build. Deploy explicitly.
       - name: Deploy the updated website
         id: deployment
         if: steps.releases.outputs.changed == 'true' || steps.rss.outputs.changed == 'true' || github.event_name != 'schedule'
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5.0.1
 
       # Persist only after successful deployment. A failed deployment leaves the
       # source catalog unchanged, so the next scheduled run retries the release.
